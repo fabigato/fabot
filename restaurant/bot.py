@@ -118,7 +118,7 @@ def get_parser():
         description='starts the bot')
     parser.add_argument(
         'task',
-        choices=["train-nlu", "train-dialogue", "run"],
+        choices=["train-nlu", "train-dialogue", "run", "test-nlu", "ner-cv-eval"],
         help="what the bot should do - e.g. run or train?")
     return parser
 
@@ -128,9 +128,50 @@ def rid_warnings():
     os.environ["TF_CPP_MIN_LOG_LEVEL"] = "2"
 
 
+def nlu_test(nlu_test_config, nlu_model_directory, nlu_data):
+    import numpy as np
+    from rasa_nlu.config import RasaNLUConfig
+    from rasa_nlu.converters import load_data
+    from rasa_nlu.evaluate import run_evaluation
+    from rasa_nlu.evaluate import run_cv_evaluation
+    from rasa_nlu.evaluate import prepare_data
+
+    logger = logging.getLogger(__name__)
+
+    nlu_config = RasaNLUConfig(nlu_test_config)
+
+    # Evaluation
+    run_evaluation(nlu_config, nlu_model_directory)
+
+    # Cross validation evaluation: takes long!
+    data = load_data(nlu_data)
+    data = prepare_data(data, cutoff=5)
+    folds = 10
+    results = run_cv_evaluation(data, folds, nlu_config)
+    logger.info("CV evaluation (n={})".format(folds))
+    for k,v in results.items():
+        logger.info("{}: {:.3f} ({:.3f})".format(k, np.mean(v), np.std(v)))
+
+    logger.info("Finished evaluation")
+
+
+def ner_cv_eval():
+    from rasa_nlu.config import RasaNLUConfig
+    from rasa_nlu.converters import load_data
+    from rasa_nlu.evaluate import prepare_data
+    import numpy as np
+    from test_utils.ner import ner_cv
+    results = ner_cv(prepare_data(load_data("data/franken_data.json"), cutoff=5), 3,
+                          RasaNLUConfig("test_utils/data/config/crf_config.json"))
+    for k, v in results.items():
+        logger.info("{}: {:.3f} ({:.3f})".format(k, np.mean(v), np.std(v)))
+    logger.info("Finished evaluation")
+
+
 if __name__ == '__main__':
-    rid_warnings()
+    logging.basicConfig(level="DEBUG")
     utils.configure_colored_logging(loglevel="INFO")
+    rid_warnings()
     parser = get_parser()
     task = parser.parse_args().task
 
@@ -141,6 +182,11 @@ if __name__ == '__main__':
         train_dialogue()
     elif task == "run":
         run()
+    elif task == "test-nlu":
+        nlu_test(nlu_test_config="nlu_model_config.json", nlu_model_directory="models/nlu/current",
+                  nlu_data="data/franken_data.json")
+    elif task == "ner-cv-eval":
+        ner_cv_eval()
     else:
         warnings.warn("Need to pass either 'train-nlu', 'train-dialogue' or "
                       "'run' to use the script.")

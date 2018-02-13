@@ -1,0 +1,9 @@
+{
+  "pipeline": [
+    "nlp_spacy",
+    "tokenizer_spacy",
+    "ner_crf"
+  ],
+  "path" : "./models/nlu",
+  "data" : "./data/franken_data.json"
+}

@@ -332,6 +332,10 @@ def produce_rasa_file(files_list=None, path_prefix='', only_success=False, quali
     (label['task-information']['feedback']['questionnaire'][0][1] is in this iterable)
     :param output_file: name of the output file
     """
+    # TODO tmp crap to select only simple stories
+    import re
+    pattern = re.compile('reqalts|inform_dontcare|thankyou|negate|affirm|correct|query|include_filter|deny|ack')
+
     files = iter_dstc2_files_from_listfile(files_list, path_prefix) if files_list else iter_dstc2_files(path_prefix)
     for label, log in files:
         with open(label) as json_label, open(log) as json_log, open(output_file, 'a') as output:
@@ -344,11 +348,21 @@ def produce_rasa_file(files_list=None, path_prefix='', only_success=False, quali
                                format(label_dic['task-information']['feedback']['questionnaire'][0][1],
                                       quality_filters, json_label))
                 continue
-            output.write('## ' + label.replace(path_prefix, '').replace('/Mar', 'Mar')[:-11] + '\n')
             try:
                 story = _make_story(label_dic, log_dic)
+                # TODO tmp crap to select only simple stories
+                skip = False
+                for turn in story:
+                    if turn[0] == 'affirm':
+                        pass
+                    if pattern.search(turn[0]) is not None:
+                        skip = True  # skip stories with user intents for which I yet don't have examples
+                if skip:
+                    continue
+
             except AssertionError as e:
                 print('assertion error at story {}'.format(label))
+            output.write('## ' + label.replace(path_prefix, '').replace('/Mar', 'Mar')[:-11] + '\n')
             for turn in story:
                 output.write('* ' + turn[0] + '\n - ' + turn[1] + '\n')
             output.write('\n')
@@ -356,4 +370,4 @@ def produce_rasa_file(files_list=None, path_prefix='', only_success=False, quali
 
 if __name__ == '__main__':
     produce_rasa_file(files_list='trndev/dstc2/scripts/config/dstc2_train.flist', path_prefix='trndev/dstc2/data',
-                      only_success=True, output_file='stories.md')
+                      only_success=True, output_file='stories_limited.md')

@@ -8,5 +8,5 @@
     "ner_synonyms"
   ],
   "path" : "./models/nlu",
-  "data" : "./data/franken_data.json"
+  "data" : "./data/nlu_train.json"
 }

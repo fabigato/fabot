@@ -158,51 +158,51 @@ The action must solve the this using context. If it can't, the user must've said
 ### all user acts observed act combinations
 |  Act Combination             | trn |dev |  Special handling                                                                                                        |
 |------------------------------|-----|----|--------------------------------------------------------------------------------------------------------------------------|
-|*hello                         | 12  | 7  | pointless. This act should be deleted as well as the next bot reply                                                      |
-|*reqalts,inform                | 417 |129 | disregard reqalts, keep inform only. Reqalts always empty here. Map to inform da                                         |
-|*reqalts                       | 274 | 87 | no slots to keep, map to reqalts action                                                                                  |
-|*request x2                    | 294 | 91 | keep only one request with all the requestable slots. Map to request da                                                  |
-|*request                       |2588 |787 | keep slots, map to request da                                                                                            |
-|*thankyou,bye                  |1406 | 0  | keep no slots, map to bye da                                                                                             |
-|*inform                        |2886 |869 |'this'=last dealt slot (always = 'dontcare'), if present map to inform_dontcare da, else to inform. Keep all slots anyway |
+|hello                         | 12  | 7  | pointless. This act should be deleted as well as the next bot reply                                                      |
+|reqalts,inform                | 417 |129 | disregard reqalts, keep inform only. Reqalts always empty here. Map to inform da                                         |
+|reqalts                       | 274 | 87 | no slots to keep, map to reqalts action                                                                                  |
+|request x2                    | 294 | 91 | keep only one request with all the requestable slots. Map to request da                                                  |
+|request                       |2588 |787 | keep slots, map to request da                                                                                            |
+|thankyou,bye                  |1406 | 0  | keep no slots, map to bye da                                                                                             |
+|inform                        |2886 |869 |'this'=last dealt slot (always = 'dontcare'), if present map to inform_dontcare da, else to inform. Keep all slots anyway |
 |                              | 495 |197 | nothing said, should be deleted from dialogue as well as next bot reply                                                  |
-|*request x3                    | 55  | 9  | accumulate all slots in single request. Map to request da                                                                |
-|*inform x3                     | 741 | 1  | accumulate all slots in single inform. Map to inform da                                                                  |
-|*thankyou                      | 60  | 17 | no slots to keep, map to thankyou da                                                                                     |
-|*negate                        | 51  | 20 | no slots to keep, map to negate da                                                                                       |
-|*affirm                        | 281 | 99 | no slots to keep, map to affirm da                                                                                       |
-|*bye                           | 109 | 31 | no slots to keep, map to bye da                                                                                          |
-|*negate,inform                 | 22  | 17 | clear all slots thus far collected. Keep inform slots, map to new correct da                                             |
-|*confirm                       | 77  | 27 | keep slots, map to confirm action (see 'dataset limitations', on bot design docs)                                        |
-|*request,inform                | 6   | 7  | keep requestables, and informables (except 'this') separately. Map to new act 'query'                                    |
-|*inform,request x2             | 1   | 1  | like request,inform                                                                                                      |
-|*ack,reqalts                   | 1   | 0  | disregard ack, no slots to keep, map to reqalts da                                                                       |
-|*affirm,inform                 | 40  | 7  | keep the inform slots, map to new act 'include_filter'                                                                   |
-|*hello,inform                  | 8   | 5  | disregard hello, keep inform slots, map to inform da                                                                     |
-|*hello,inform x2               | 10  | 3  | like hello,inform                                                                                                        |
-|*deny                          | 2   | 0  | disregard slots, map to deny da                                                                                          |
-|*negate,reqalts                | 1   | 0  | disregard negate, keep no slots, map to reqalts da                                                                       |
-|*affirm, request               | 2   | 1  | disregard affirm, keep request slots, map to request da                                                                  |
-|*negate,bye                    | 1   | 1  | keep no slots, map to bye da                                                                                             |
-|*reqalts,inform x2             | 12  | 4  | like reqalts,inform                                                                                                      |
+|request x3                    | 55  | 9  | accumulate all slots in single request. Map to request da                                                                |
+|inform x3                     | 741 | 1  | accumulate all slots in single inform. Map to inform da                                                                  |
+|thankyou                      | 60  | 17 | no slots to keep, map to thankyou da                                                                                     |
+|negate                        | 51  | 20 | no slots to keep, map to negate da                                                                                       |
+|affirm                        | 281 | 99 | no slots to keep, map to affirm da                                                                                       |
+|bye                           | 109 | 31 | no slots to keep, map to bye da                                                                                          |
+|negate,inform                 | 22  | 17 | clear all slots thus far collected. Keep inform slots, map to new correct da                                             |
+|confirm                       | 77  | 27 | keep slots, map to confirm action (see 'dataset limitations', on bot design docs)                                        |
+|request,inform                | 6   | 7  | keep requestables, and informables (except 'this') separately. Map to new act 'query'                                    |
+|inform,request x2             | 1   | 1  | like request,inform                                                                                                      |
+|ack,reqalts                   | 1   | 0  | disregard ack, no slots to keep, map to reqalts da                                                                       |
+|affirm,inform                 | 40  | 7  | keep the inform slots, map to new act 'include_filter'                                                                   |
+|hello,inform                  | 8   | 5  | disregard hello, keep inform slots, map to inform da                                                                     |
+|hello,inform x2               | 10  | 3  | like hello,inform                                                                                                        |
+|deny                          | 2   | 0  | disregard slots, map to deny da                                                                                          |
+|negate,reqalts                | 1   | 0  | disregard negate, keep no slots, map to reqalts da                                                                       |
+|affirm, request               | 2   | 1  | disregard affirm, keep request slots, map to request da                                                                  |
+|negate,bye                    | 1   | 1  | keep no slots, map to bye da                                                                                             |
+|reqalts,inform x2             | 12  | 4  | like reqalts,inform                                                                                                      |
 |repeat                        | 10  | 6  | useless, should be deleted as well as the bot utterance that triggered                                                   |
-|*reqalts,deny                  | 2   | 0  | disregard deny, keep no slots, map to reqalts da                                                                         |
-|*ack                           | 13  | 0  | no slots to keep, map to ack da                                                                                          |
-|*reqmore                       | 1   | 0  | no slots to keep, map to reqalts da                                                                                      |
-|*inform,bye                    | 1   | 0  | equals bye                                                                                                               |
-|*confirm x2                    | 3   | 2  | accumulate slots, keep them, map to inform da                                                                            |
+|reqalts,deny                  | 2   | 0  | disregard deny, keep no slots, map to reqalts da                                                                         |
+|ack                           | 13  | 0  | no slots to keep, map to ack da                                                                                          |
+|reqmore                       | 1   | 0  | no slots to keep, map to reqalts da                                                                                      |
+|inform,bye                    | 1   | 0  | equals bye                                                                                                               |
+|confirm x2                    | 3   | 2  | accumulate slots, keep them, map to inform da                                                                            |
 |restart                       | 1   | 1  | ask bot to start over, no slots. Delete entire conversation so far to start from next turn                               |
-|*request,inform x2             | 2   | 0  | same as inform,request                                                                                                   |
-|*affirm,thankyou,bye           | 1   | 0  | equals bye                                                                                                               |
-|*negate,reqalts,inform         | 1   | 2  | 'no, what about <x> food?'. Equals inform, keep its slots                                                                |
-|*ack,request                   | 2   | 0  | disregard ack, keep request                                                                                              |
-|*affirm, inform x2             | 16  | 5  | same as affirm,inform                                                                                                    |
-|*inform,ack                    | 1   | 0  | ack is void of sense. Keep inform                                                                                        |
-|*bye,thankyou                  | 2   |426 | just bye                                                                                                                 |
-|*inform x2                     | 0   |220 | like inform x3                                                                                                           |
-|*hello,inform x2               | 0   | 3  | like hello,inform                                                                                                        |
-|*deny,inform                   | 0   | 3  | disregard deny,keep inform slots, map to inform da                                                                       |
-|*thankyou,request              | 0   | 1  | disregard thankyou, keep request slots, map to request da                                                                |
+|request,inform x2             | 2   | 0  | same as inform,request                                                                                                   |
+|affirm,thankyou,bye           | 1   | 0  | equals bye                                                                                                               |
+|negate,reqalts,inform         | 1   | 2  | 'no, what about <x> food?'. Equals inform, keep its slots                                                                |
+|ack,request                   | 2   | 0  | disregard ack, keep request                                                                                              |
+|affirm, inform x2             | 16  | 5  | same as affirm,inform                                                                                                    |
+|inform,ack                    | 1   | 0  | ack is void of sense. Keep inform                                                                                        |
+|bye,thankyou                  | 2   |426 | just bye                                                                                                                 |
+|inform x2                     | 0   |220 | like inform x3                                                                                                           |
+|hello,inform x2               | 0   | 3  | like hello,inform                                                                                                        |
+|deny,inform                   | 0   | 3  | disregard deny,keep inform slots, map to inform da                                                                       |
+|thankyou,request              | 0   | 1  | disregard thankyou, keep request slots, map to request da                                                                |
 
 
 ### getting the 'this' context

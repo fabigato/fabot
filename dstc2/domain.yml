@@ -1,0 +1,16 @@
+slots:
+  requested_address:
+    type: boolean
+
+entities:
+- requested_address
+
+intents:
+ - request
+
+templates:
+  utter_greet:
+    - "hey there!"
+
+actions:
+- utter_greet

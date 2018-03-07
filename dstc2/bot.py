@@ -5,12 +5,14 @@ import os
 from rasa_core.interpreter import RasaNLUInterpreter
 from rasa_core.agent import Agent
 from rasa_core.channels.console import ConsoleInputChannel, ConsoleOutputChannel
+from rasa_core.policies.keras_policy import KerasPolicy
+from rasa_core.policies.memoization import MemoizationPolicy
 
 logger = logging.getLogger(__name__)
 
 
 def init():
-    utils.configure_colored_logging(loglevel="INFO")
+    utils.configure_colored_logging(loglevel="DEBUG")
     logging.basicConfig(level="DEBUG")
     os.environ["TF_CPP_MIN_LOG_LEVEL"] = "2"
 
@@ -36,7 +38,26 @@ def train_nlu():
     return model_directory
 
 
-def run():
+def train_dialogue(domain_file="fabot_domain.yml",
+                   model_path="models/dialogue",
+                   training_data_file="data/stories_limited.md"):
+    agent = Agent(domain_file,
+                  # policies=[MemoizationPolicy(), KerasPolicy()])
+                  policies=[KerasPolicy()])
+
+    agent.train(
+            training_data_file,
+            max_history=3,
+            epochs=400,
+            batch_size=100,
+            validation_split=0.2
+    )
+
+    agent.persist(model_path)
+    return agent
+
+
+def test_nlu():
     from rasa_core.channels.channel import UserMessage
     interpreter = RasaNLUInterpreter("models/nlu/fabot/current")
     # agent = Agent.load("models/dialogue", interpreter=interpreter)
@@ -52,9 +73,18 @@ def run():
             'do they prepare chinese food',
             'what is the specialty of this place'
         ]
+    print(texts)
     for text in texts:
         parse_data = interpreter.parse(text)
     pass
+
+
+def run(serve_forever=True):
+    interpreter = RasaNLUInterpreter("models/nlu/fabot/current")
+    agent = Agent.load("models/dialogue", interpreter=interpreter)
+    if serve_forever:
+        agent.handle_channel(ConsoleInputChannel())
+    return agent
 
 
 if __name__ == '__main__':
@@ -62,5 +92,7 @@ if __name__ == '__main__':
     args = get_args()
     if args.task == "train-nlu":
         train_nlu()
+    elif args.task == "train-dialogue":
+        train_dialogue()
     elif args.task == "run":
         run()

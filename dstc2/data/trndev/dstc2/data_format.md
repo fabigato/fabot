@@ -49,7 +49,7 @@ impl-conf => request
 |------------------------------|-----|----|---------------------------------------------------------------------------------------------------------------------|
 |welcomemsg                    | 1504|457 | useless, should be deleted from stories                                                                             |
 |canthelp                      | 935 |284 | say can't help, listing all the slots provided so far. Map to canthelp                                              |
-|offer,inform x2               | 1669|476 | offer option (always by name) and mention every filter used. Map to offer_detailed                                  |
+|offer,inform x2               | 1669|476 | offer option (always by name) and mention every filter used, or provides requested field. Map to offer_detailed     |
 |reqmore                       | 44  |19  | Map to reqmore                                                                                                      |
 |offer,inform                  | 3154|1013| same as offer,inform x2                                                                                             |
 |request                       | 1494|460 | request value for slot (only 1 slot). One da per informable slot except name(i.e. 3)                                |

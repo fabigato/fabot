@@ -1,0 +1,101 @@
+slots:
+  address:
+    type: text
+  area:
+    type: text
+  food:
+    type: text
+  phone:
+    type: text
+  pricerange:
+    type: text
+  postcode:
+    type: text
+  signature:
+    type: text
+  name:
+    type: unfeaturized
+
+entities:
+- address
+- area
+- food
+- phone
+- pricerange
+- postcode
+- signature
+- name
+
+intents:
+ - request
+ - confirm
+ - inform
+ - bye
+
+templates:
+  utter_canthelp:
+    - "I cant help you"
+  utter_offer_detailed:
+    - "<restaurant name> complies with your provided filters"
+  utter_reqmore:
+    - "can I help you with anything else?"
+  utter_request_food:
+    - "what kind of food would you like? (hint: say a nationality, or a well-known type of food)"
+  utter_request_area:
+    - text: "in which area?"
+      buttons:
+        - title: "_inform{\"area\": \"north\"}"
+          payload: "north"
+        - title: "west"
+          payload: "_inform{\"area\": \"west\"}"
+        - title: "south"
+          payload: "_inform{\"area\": \"south\"}"
+        - title: "east"
+          payload: "_inform{\"area\": \"east\"}"
+        - title: "center"
+          payload: "_inform{\"area\": \"center\"}"
+  utter_request_pricerange:
+    - text: "in which price range?"
+      buttons:
+        - title: "cheap"
+          payload: "_inform{\"pricerange\": \"cheap\"}"
+        - title: "moderate"
+          payload: "_inform{\"pricerange\": \"moderate\"}"
+        - title: "expensive"
+          payload: "_inform{\"pricerange\": \"expensive\"}"
+  utter_expl-conf:
+    - text: "let me confirm, you provided these filters right? <insert filters provided by user>"
+      buttons:
+        - title: "yes"
+          payload: "yes"
+        - title: "no"
+          payload: "no"
+  utter_select:
+    - "please select between this and this value (hint: say a value for a filter you haven't yet provided)"
+  utter_confirm-domain:
+    - "you want to look for a restaurant right? (Yes, it's obvious, but DSTC2 bots actually ask this)"
+  utter_offer:
+    - text: "how about this option? <insert restaurant name>"
+      buttons:
+        - title: "yes"
+          payload: "yes"
+        - title: "no"
+          payload: "no"
+  utter_request_area_detailed:
+    - "there are options available with the thus far provided slots. Which are are you looking for?"
+  utter_bye:
+    - "it was a pleasure"
+
+actions:
+- utter_canthelp
+- utter_offer_detailed
+- utter_reqmore
+- utter_request_food
+- utter_request_area
+- utter_request_pricerange
+- utter_expl-conf
+- utter_select
+- utter_confirm-domain
+- utter_offer
+- utter_request_area_detailed
+- utter_bye

@@ -111,4 +111,5 @@ restaurant/*.log
 /dstc2/data/trndev/dstc2/scripts/*
 /dstc2/data/trndev/dstc2/handbook.pdf
 /dstc2/data/trndev/dstc2/problematic.txt
+/dstc2/data/test/dstc2/*
 /dstc2/models/

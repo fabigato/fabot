@@ -7,6 +7,8 @@ import logging
 logger = logging.getLogger(__name__)
 logging.basicConfig(level="DEBUG")
 
+REQUESTED_ENTITY_FLAG = '_REQUESTED_'
+
 
 def iter_dstc2_files(dstc2_data_path='data/'):
     """Get an iterator over all the (label.json, log.json) file tuples from dstc2"""
@@ -76,7 +78,7 @@ def compress_semantics(semantics):
     return compressed_semantics
 
 
-def _get_bot_da(das):
+def get_bot_da(das):
     """
     Extract the right Dialog Act uttered by the bot. These are the rules:
     accumulation rule:
@@ -130,7 +132,7 @@ def _get_bot_da(das):
         raise ValueError('unknown bot da configuration: {}'.format(acts))
 
 
-def _get_user_intent(semantics):
+def get_user_intent(semantics):
     """
     Determines the architecture specific user intent in rasa format given the utterance semantics from DSTC2.
     Rasa can only deal with one user intent per utterance, so whenever DSTC2 contains more than one user intent, it
@@ -182,12 +184,13 @@ def _get_user_intent(semantics):
     :return: string with the user intent in the architecture specific rasa format
     """
     def change_and_filter(semantics, oldname, newname=None):
-        """Finds the act with oldname, replaces by newname and returns a list with only that semantic"""
-        changed_semantics = [semantic for semantic in semantics if semantic['act'] == oldname]
-        assert len(changed_semantics) == 1
+        """Finds the act with oldname, replaces by newname and returns a list with only that semantic. If there
+        are several semantics with oldname, only the first one will be considered. This should never be the case"""
+        changed_semantics = next(semantic for semantic in semantics if semantic['act'] == oldname)
         if newname is not None:
-            changed_semantics[0]['act'] = newname
-        return changed_semantics[0]
+            changed_semantics['act'] = newname
+        return changed_semantics
+    semantics = copy.deepcopy(semantics)
     # bye priority rule
     if 'bye' in [semantic['act'] for semantic in semantics]:
         return {'act': 'bye', 'slots': []}
@@ -195,7 +198,7 @@ def _get_user_intent(semantics):
     clean_semantics = [semantic for semantic in semantics
                        if semantic['act'] not in ['hello', 'thankyou', 'deny', 'ack']] \
         if len([semantic for semantic in semantics if semantic['act'] not in ['hello', 'thankyou', 'deny', 'ack']]) > 0\
-        else copy.deepcopy(semantics)  # at any rate, we'll work with a copy of semantics
+        else semantics  # at any rate, we'll work with a copy of semantics
     # confirms2inform rule
     if all(semantic['act'] == 'confirm' for semantic in clean_semantics) and len(clean_semantics) > 1:
         clean_semantics = compress_semantics(clean_semantics)
@@ -203,7 +206,6 @@ def _get_user_intent(semantics):
     # accumulation rule (ensure at most one of each intent is present. Combine their slots if more than one is found)
     compressed_semantics = compress_semantics(clean_semantics)
     acts = {intent['act'] for intent in compressed_semantics}
-    assert len(compressed_semantics) == len(set(acts))  # reducing => at most one of each, set should remove nothing
     # inform precedence rules (keep inform, drop the rest)
     if acts in [{'reqalts', 'inform'}, {'ack', 'inform'}, {'negate', 'reqalts', 'inform'}, {'deny', 'inform'}]:
         compressed_semantics = [semantic for semantic in compressed_semantics if semantic['act'] == 'inform']
@@ -212,7 +214,14 @@ def _get_user_intent(semantics):
     # first, fix request by renaming its keys and giving them the True value
     for semantic in compressed_semantics:
         if semantic['act'] == 'request':
-            semantic['slots'] = [['requested_' + slot[1], "True"] for slot in semantic['slots']]
+            semantic['slots'] = [[slot[1], REQUESTED_ENTITY_FLAG] for slot in semantic['slots']]
+    """basic sanity checks that can only be done after the user da was produced"""
+    for j, semantic in enumerate(compressed_semantics):
+        for i, (slot_name, slot_value) in enumerate(semantic['slots']):
+            if slot_name == 'this' or slot_name == 'slot':  # those should never make this far, unless wrong transcript
+                compressed_semantics[j]['slots'].pop(i)
+            if slot_name == 'addr':  # our entity is called address, not addr
+                compressed_semantics[j]['slots'][i][0] = 'address'
     if acts == {'hello'}:  # {hello} => HELLO_ERROR
         return 'HELLO_ERROR'
     elif acts == {'repeat'}:
@@ -247,6 +256,10 @@ def _get_user_intent(semantics):
     elif acts == {'reqalts', 'deny'}:  # {reqalts, deny} => {reqalts}
         return next(semantic for semantic in compressed_semantics if semantic['act'] == 'reqalts')
     elif len(acts) == 1:  # identity mappings
+        if acts == {'request'} and 'name' in [slot_name for slot_name, _ in compressed_semantics[0]['slots']]:
+            # a weird case observed 3 times in training data: user asks for the name of the restaurant and it is
+            # annotated as request rather than a confirm
+            compressed_semantics[0]['act'] = 'confirm'
         return compressed_semantics[0]
     else:
         raise ValueError('unknown user act combination found: {}\nwith semantics:{}'.format(acts, semantics))
@@ -273,19 +286,17 @@ def _make_story(human, bot):
             bot_da = last_good_bot_utter
             last_good_bot_utter = None  # clean the flag
         else:
-            bot_da = _get_bot_da(bot_turn['output']['dialog-acts'])  # else, take the current bot utter
+            bot_da = get_bot_da(bot_turn['output']['dialog-acts'])  # else, take the current bot utter
             if bot_da == 'REPEAT_ERROR':
                 h_utterances.pop()  # delete last user utterance, since it was unclear
                 # this bot da is also useless, later we check and discard it
-            elif bot_da == 'WELCOME_ERROR':
+            elif bot_da == 'WELCOME_ERROR':  # nothing to do, it gets deleted at the end. Why is this if even here?
                 pass
-        user_intent = _get_user_intent(human_turn['semantics']['json'])
+        user_intent = get_user_intent(human_turn['semantics']['json'])
         if isinstance(user_intent, dict):  # normal intent, just convert to rasa string
             user_utter = user_intent['act']
             if len(user_intent['slots']) > 0:
                 slot_name, slot_value = user_intent['slots'][0][0], user_intent['slots'][0][1]
-                assert slot_name != 'this', 'a \'this\' argument detected: {}'.format(user_intent)
-                assert slot_name != 'slot', 'a \'slot\' argument detected: {}'.format(user_intent)
                 user_utter += '{{"{}": "{}"'.format(slot_name, slot_value)  # note {{
                 for slot in user_intent['slots'][1:]:  # only if there are still more, to deal with the commas
                     slot_name, slot_value = slot[0], slot[1]
@@ -317,13 +328,13 @@ def _make_story(human, bot):
     return list(zip(h_utterances, b_utterances))
 
 
-def produce_rasa_file(files_list=None, path_prefix='', only_success=False, quality_filters=('strongly agree', 'agree',
-                                                                                            'slightly agree',
-                                                                                            'slightly disagree',
-                                                                                            'strongly disagree'),
-                      output_file='stories.md'):
+def process_dstc2_files(process, files_list=None, path_prefix='', only_success=False,
+                        quality_filters=('strongly agree', 'agree', 'slightly agree', 'slightly disagree',
+                                         'strongly disagree')):
     """
-    Writes (or overwrites) the rasa format story file, from the dstc2 files
+    Goes through dstc2 stories and executes a given function on each one of them
+    :param process: callable with the code to execute on each story. It receives as parameters the dstc2 label json file
+    as a dictionary, the log dictionary and the dstc2 path to this story.
     :param files_list: a file with the list of dstc files to consider (from dstc2 data folder, up to dialog folder,
     without json files). If ommited, all files are considered
     :param path_prefix: prefix to the dstc2 file paths
@@ -332,13 +343,9 @@ def produce_rasa_file(files_list=None, path_prefix='', only_success=False, quali
     (label['task-information']['feedback']['questionnaire'][0][1] is in this iterable)
     :param output_file: name of the output file
     """
-    # TODO tmp crap to select only simple stories
-    import re
-    pattern = re.compile('reqalts|inform_dontcare|thankyou|negate|affirm|correct|query|include_filter|deny|ack')
-
     files = iter_dstc2_files_from_listfile(files_list, path_prefix) if files_list else iter_dstc2_files(path_prefix)
     for label, log in files:
-        with open(label) as json_label, open(log) as json_log, open(output_file, 'a') as output:
+        with open(label) as json_label, open(log) as json_log:
             label_dic, log_dic = json_load(json_label), json_load(json_log)
             if only_success and not label_dic['task-information']['feedback']['success']:
                 logger.warning('skipping unsuccessful dialogue: {}'.format(json_label))
@@ -348,26 +355,38 @@ def produce_rasa_file(files_list=None, path_prefix='', only_success=False, quali
                                format(label_dic['task-information']['feedback']['questionnaire'][0][1],
                                       quality_filters, json_label))
                 continue
+            process(label_dic, log_dic, story_path=label.replace(path_prefix, '').replace('/Mar', 'Mar')[:-11])
+
+
+def produce_rasa_file(files_list=None, path_prefix='', only_success=False,
+                      quality_filters=('strongly agree', 'agree', 'slightly agree', 'slightly disagree',
+                                       'strongly disagree'),
+                      output_file='stories.md'):
+    """
+    Writes (or overwrites) the rasa format story file, from the dstc2 files (appending, in case file existed)
+    :param files_list: a file with the list of dstc files to consider (from dstc2 data folder, up to dialog folder,
+    without json files). If ommited, all files are considered
+    :param path_prefix: prefix to the dstc2 file paths
+    :param only_success: consider only successful dialogs (label['task-information']['feedback']['success'] == True)
+    :param quality_filters: consider only dialogs where the questionnaire was positive
+    (label['task-information']['feedback']['questionnaire'][0][1] is in this iterable)
+    :param output_file: name of the output file
+    """
+    def process_story(label_dic, log_dic, story_path):
+        with open(output_file, 'a') as output:
             try:
                 story = _make_story(label_dic, log_dic)
-                # TODO tmp crap to select only simple stories
-                skip = False
+                output.write('## ' + story_path + '\n')
                 for turn in story:
-                    if turn[0] == 'affirm':
-                        pass
-                    if pattern.search(turn[0]) is not None:
-                        skip = True  # skip stories with user intents for which I yet don't have examples
-                if skip:
-                    continue
-
+                    output.write('* ' + turn[0] + '\n - ' + turn[1] + '\n')
+                output.write('\n')
             except AssertionError as e:
-                print('assertion error at story {}'.format(label))
-            output.write('## ' + label.replace(path_prefix, '').replace('/Mar', 'Mar')[:-11] + '\n')
-            for turn in story:
-                output.write('* ' + turn[0] + '\n - ' + turn[1] + '\n')
-            output.write('\n')
+                print('assertion error at story {}'.format(story_path))
+
+    process_dstc2_files(process=process_story, files_list=files_list, path_prefix=path_prefix,
+                        only_success=only_success, quality_filters=quality_filters)
 
 
 if __name__ == '__main__':
     produce_rasa_file(files_list='trndev/dstc2/scripts/config/dstc2_train.flist', path_prefix='trndev/dstc2/data',
-                      only_success=True, output_file='stories_limited.md')
+                      only_success=True, output_file='stories_tmp.md')

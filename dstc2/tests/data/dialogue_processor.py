@@ -77,9 +77,9 @@ class TestDialogueProcessor(TestCase):
             # error test 4: canthelp with canthelp.exception and something else
         ]
         for t in tests:
-            self.assertEqual(processor._get_bot_da(t['X']), t['Y'])
+            self.assertEqual(processor.get_bot_da(t['X']), t['Y'])
         for t in error_tests:
-            self.assertRaises(ValueError, processor._get_bot_da, t)
+            self.assertRaises(ValueError, processor.get_bot_da, t)
 
     def test__make_story(self):
         tests = [

@@ -218,8 +218,8 @@ def get_user_intent(semantics):
     """basic sanity checks that can only be done after the user da was produced"""
     for j, semantic in enumerate(compressed_semantics):
         for i, (slot_name, slot_value) in enumerate(semantic['slots']):
-            if slot_name == 'this' or slot_name == 'slot':  # those should never make this far, unless wrong transcript
-                compressed_semantics[j]['slots'].pop(i)
+            # if slot_name == 'this' or slot_name == 'slot':  # those should never make this far, unless wrong transcript
+            #    compressed_semantics[j]['slots'].pop(i)
             if slot_name == 'addr':  # our entity is called address, not addr
                 compressed_semantics[j]['slots'][i][0] = 'address'
     if acts == {'hello'}:  # {hello} => HELLO_ERROR
@@ -388,5 +388,5 @@ def produce_rasa_file(files_list=None, path_prefix='', only_success=False,
 
 
 if __name__ == '__main__':
-    produce_rasa_file(files_list='trndev/dstc2/scripts/config/dstc2_train.flist', path_prefix='trndev/dstc2/data',
-                      only_success=True, output_file='stories_tmp.md')
+    produce_rasa_file(files_list='data/trndev/dstc2/scripts/config/dstc2_train.flist',
+                      path_prefix='data/trndev/dstc2/data', only_success=True, output_file='stories_tmp.md')

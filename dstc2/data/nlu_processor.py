@@ -5,7 +5,7 @@ from string import Formatter
 from numpy import random
 from collections import defaultdict
 import logging
-from dialogue_processor import REQUESTED_ENTITY_FLAG, process_dstc2_files, get_user_intent, get_bot_da
+from data.dialogue_processor import REQUESTED_ENTITY_FLAG, process_dstc2_files, get_user_intent
 
 logger = logging.getLogger(__name__)
 logging.basicConfig(level="DEBUG")
@@ -21,7 +21,7 @@ class NLUExampleGenerator(object):
         food_types, priceranges, areas, names = ontology['food'], ontology['pricerange'], \
                                                                     ontology['area'], ontology['name']
         self._requestables = {  # maps each requestable to a list of synonyms and an informable flag
-            'address': {'syn_hints': ['address', 'addr'],
+            'address': {'syn_hints': ['address'],
                         'informable': False},
             'area': {'syn_hints': ['location', 'part of town', 'located', 'area', 'part'],
                      'informable': True, 'values': areas},
@@ -74,7 +74,7 @@ class NLUExampleGenerator(object):
             {
                 "value": "dontcare",
                 "synonyms": ["dont care", "don't care", "do not care", "does not matter", "doesnt matter",
-                             "doesn't matter", "not important", 'any', 'dont mind'],
+                             "doesn't matter", "not important", 'anywhere', 'any', 'dont mind'],
                 "entity": "any"
             },
             {
@@ -157,7 +157,7 @@ class NLUExampleGenerator(object):
                                                                                       for syn in self._entity_synonyms],
                                            "regex_features": regex_features}}
 
-    def generate_dstc2_examples_tmp(self, **kwargs):
+    def _generate_dstc2_examples_tmp(self, **kwargs):
         """
         :param kwargs: the rest of the named arguments are simply passed along to
         data.dialogue_processor.process_dstc2_files. Do not send the 'process' argument since this function does it
@@ -331,9 +331,13 @@ class NLUExampleGenerator(object):
 
     def generate_dstc2_examples(self, **kwargs):
         """
-        :param kwargs: the rest of the named arguments are simply passed along to
-        data.dialogue_processor.process_dstc2_files. Do not send the 'process' argument since this function does it
-        :return:
+        processes dstc2 dialogues, converting each utterance to rasa json format
+        :param kwargs: arguments passed to data.dialogue_processor.process_dstc2_files. Do not send the 'process'
+        argument since this function does it
+        :return: examples, failed_examples. Examples is a list of dictionaries, each being an NLU example compatible
+        with rasa json format. failed_examples is a dictionary that maps a list of failed examples to their intents.
+        Each file example is a dictionary with keys 'text' (the raw utterance) and 'semantics' (the utterance semantics
+        as captured in dstc2 log_turn['semantics']['json']
         """
         examples = []
         failed_examples = defaultdict(list)
@@ -366,12 +370,6 @@ class NLUExampleGenerator(object):
                 if syn['entity'] == entity:
                     informed_entity_res[entity] = '|'.join([informed_entity_res[entity]] + syn['synonyms'])
 
-        # add the dontcare value option for all informables
-        dontcare_values = next(syn for syn in self.nlu_json['rasa_nlu_data']['entity_synonyms']
-                               if syn['value'] == 'dontcare')['synonyms']
-        for informable in informed_entity_res:
-            informed_entity_res[informable] = '|'.join(dontcare_values + [informed_entity_res[informable]])
-
         # sort or patterns from longest to shortest
         for informable in informed_entity_res:
             informed_entity_res[informable] = '|'.join(sorted(informed_entity_res[informable].split('|'), key=lambda i: -len(i)))
@@ -380,6 +378,11 @@ class NLUExampleGenerator(object):
         for informable in informed_entity_res:
             informed_entity_res[informable] = re.compile(informed_entity_res[informable])
 
+        # dontcare regex
+        # add the dontcare value option for all informables
+        dontcare_values = next(syn for syn in self.nlu_json['rasa_nlu_data']['entity_synonyms']
+                               if syn['value'] == 'dontcare')['synonyms'] + ['dontcare']
+        dontcare_re = re.compile('|'.join(sorted(dontcare_values, key=lambda i: -len(i))))
 
         def collect_nlu_example(human, bot, **kwargs):
             """I just wanted to say that I'm baffled by python's flexibility, by allowing me to pass this function as an
@@ -391,30 +394,42 @@ class NLUExampleGenerator(object):
                 if isinstance(curated_human_semantics, dict):
                     text = human_turn['transcription']
                     curated_act = curated_human_semantics['act']
-                    if curated_act in ['request', 'inform', 'inform_dontcare', 'correct', 'confirm', 'query', 'include_filter',
-                               'deny']:  # look for entities
+                    if text.find('noise') != -1:
+                        failed_examples[curated_act].append(
+                            {'text': text, 'semantics': human_turn['semantics']['json']})
+                        continue  # we don't want unintelligible text. Plus, only 32 instances in tst, 47 in trn/dev
+                    if curated_act in ['request', 'inform', 'inform_dontcare', 'correct', 'confirm', 'query',
+                                       'include_filter', 'deny']:  # look for entities
                         entities = []
-                        for act_semantics in human_turn['semantics']['json']:
+                        for i, act_semantics in enumerate(human_turn['semantics']['json']):
                             for slot in act_semantics['slots']:  # there's always one slot per act, but cycle won't hurt
                                 if act_semantics['act'] == 'request':
                                     entity = dstc2fabot_entity_map(slot[1])
                                     if entity == 'this':
-                                        # this sentences are usually 'i dont care', so no way to infer the entity
-                                        logger.warning('"this" value found, ignoring entity')
-                                        break
+                                        if len(human_turn['semantics']['json']) > 1:  # if there are other entities
+                                            continue  # just this regard this entity
+                                        else:
+                                            # this sentences are usually 'i dont care', so no way to infer the entity
+                                            logger.warning('"this" value found, ignoring entity')
+                                            break
                                     match = requested_entity_res[entity].search(text)
                                     if match is None:
-                                        logger.warning('couldn\'t find match for "{}", while looking for entity {}'.format(text, entity))
+                                        logger.warning('couldn\'t find match for "{}", while looking for entity {}'.
+                                                       format(text, entity))
                                         failed_examples[curated_act].append(
                                             {'text': text, 'semantics': human_turn['semantics']['json']})
                                     else:
-                                        entities.append({'start': match.start(), 'end': match.end(), 'value': REQUESTED_ENTITY_FLAG, 'entity': entity})
+                                        entities.append({'start': match.start(), 'end': match.end(),
+                                                         'value': REQUESTED_ENTITY_FLAG, 'entity': entity})
                                 else:
                                     entity = dstc2fabot_entity_map(slot[0])
                                     if entity == 'this':
-                                        # this sentences are usually 'i dont care', so no way to infer the entity
-                                        logger.warning('"this" value found, ignoring entity')
-                                        break
+                                        if len(human_turn['semantics']['json']) > 1:  # if there are other entities
+                                            continue  # just this regard this entity
+                                        else:
+                                            # this sentences are usually 'i dont care', so no way to infer the entity
+                                            logger.warning('"this" value found, ignoring entity')
+                                            break
                                     raw_value = slot[1]
                                     if raw_value not in self._requestables[entity]['values']:
                                         # look if available in synonyms
@@ -436,10 +451,21 @@ class NLUExampleGenerator(object):
                                                 failed_examples[curated_act].append(
                                                     {'text': text, 'semantics': human_turn['semantics']['json']})
                                         else:
-                                            logger.warning('unknown value "{}" found for entity {}, in sentence: {} '.format(
-                                                raw_value, entity, text))
+                                            logger.warning('unknown value "{}" found for entity {}, in sentence: {} '.
+                                                format(raw_value, entity, text))
                                     else:
-                                        match = informed_entity_res[entity].search(text)
+                                        if raw_value == 'dontcare':
+                                            # check if there was any entity before with value dontcare: you dont want to
+                                            # get that previous dontcare, you want the next: e.g. 'any area any price'
+                                            look_from = 0
+                                            if i > 0 and 'dontcare' in [e['value'] for e in entities]:
+                                                look_from = int(next(e['end'] for e in entities
+                                                                     if e['value'] == 'dontcare'))
+                                            match = dontcare_re.search('x'*look_from + text[look_from:])
+                                            # from last match onwards. I'm literally replacing the previously matched
+                                            # part of the string with xs, that's how dirty this is!
+                                        else:
+                                            match = informed_entity_res[entity].search(text)
                                         if match is not None:
                                             entities.append({'start': match.start(), 'end': match.end(),
                                                              'value': raw_value, 'entity': entity})
@@ -450,9 +476,16 @@ class NLUExampleGenerator(object):
                                             failed_examples[curated_act].append(
                                                 {'text': text, 'semantics': human_turn['semantics']['json']})
                         if len(entities) == 0:
-                            failed_examples[curated_act].append({'text': text, 'semantics': human_turn['semantics']['json']})
+                            failed_examples[curated_act].append({'text': text,
+                                                                 'semantics': human_turn['semantics']['json']})
                         else:
                             examples.append({'text': text, 'intent': curated_act, 'entities': entities})
+                    else:  # other acts, with no entities. We just do basic checks
+                        if text.find('noise') != -1:
+                            failed_examples[curated_act].append(
+                                {'text': text, 'semantics': human_turn['semantics']['json']})
+                            continue
+                        examples.append({'text': text, 'intent': curated_act, 'entities': []})
 
         process_dstc2_files(process=collect_nlu_example, **kwargs)
         self.nlu_json["rasa_nlu_data"]["common_examples"] = examples
@@ -722,19 +755,15 @@ def generate_inform_dontcare_examples(food_types, priceranges, areas):
                    }
 
 
-def generate_bye_examples():
-    # TODO include bye examples with "No thanks", "No", "thanks", etc
-    bye_texts = next(rf for rf in regex_features if rf['name'] == 'bye')['pattern'].split('|')
-    for bye_text in bye_texts:
-        yield {"text": bye_text,
-               "intent": "bye",
-               "entities": []
-               }
-
-
 if __name__ == '__main__':
-    nlu_generator = NLUExampleGenerator(ontology_file='trndev/dstc2/scripts/config/ontology_dstc2.json', random_seed=42)
-    nlu_data, failed_examples = nlu_generator.generate_dstc2_examples(path_prefix='test/dstc2/data')
+    nlu_generator = NLUExampleGenerator(ontology_file='data/trndev/dstc2/scripts/config/ontology_dstc2.json',
+                                        random_seed=42)
+    nlu_data, failed_examples = nlu_generator.generate_dstc2_examples(path_prefix='data/trndev/dstc2/data')
+    with open("dstc2_nlu_train.json", "w") as nlu_output:
+         json.dump(nlu_data, nlu_output, indent=2)
+    with open("dstc2_nlu_train_unparsable.json", 'w') as fails:
+        json.dump(failed_examples, fails, indent=2)
+    nlu_data, failed_examples = nlu_generator.generate_dstc2_examples(path_prefix='data/test/dstc2/data')
     with open("dstc2_nlu_test.json", "w") as nlu_output:
         json.dump(nlu_data, nlu_output, indent=2)
     with open("dstc2_nlu_test_unparsable.json", 'w') as fails:

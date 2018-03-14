@@ -1,5 +1,5 @@
 {
-  "inform": [
+  "inform_dontcare": [
     {
       "text": "doesnt matter",
       "semantics": [
@@ -246,29 +246,6 @@
             [
               "this",
               "dontcare"
-            ]
-          ],
-          "act": "inform"
-        }
-      ]
-    },
-    {
-      "text": "i want a restaurant in the center of town that serves vinesha",
-      "semantics": [
-        {
-          "slots": [
-            [
-              "food",
-              "venetian"
-            ]
-          ],
-          "act": "inform"
-        },
-        {
-          "slots": [
-            [
-              "area",
-              "centre"
             ]
           ],
           "act": "inform"
@@ -668,78 +645,6 @@
       ]
     },
     {
-      "text": "how about a castro pub",
-      "semantics": [
-        {
-          "slots": [],
-          "act": "reqalts"
-        },
-        {
-          "slots": [
-            [
-              "food",
-              "dontcare"
-            ]
-          ],
-          "act": "inform"
-        }
-      ]
-    },
-    {
-      "text": "how about a castro pub",
-      "semantics": [
-        {
-          "slots": [],
-          "act": "reqalts"
-        },
-        {
-          "slots": [
-            [
-              "food",
-              "dontcare"
-            ]
-          ],
-          "act": "inform"
-        }
-      ]
-    },
-    {
-      "text": "how about a castro pub type of food",
-      "semantics": [
-        {
-          "slots": [],
-          "act": "reqalts"
-        },
-        {
-          "slots": [
-            [
-              "food",
-              "gastropub"
-            ]
-          ],
-          "act": "inform"
-        }
-      ]
-    },
-    {
-      "text": "how about a castro pub type of food",
-      "semantics": [
-        {
-          "slots": [],
-          "act": "reqalts"
-        },
-        {
-          "slots": [
-            [
-              "food",
-              "gastropub"
-            ]
-          ],
-          "act": "inform"
-        }
-      ]
-    },
-    {
       "text": "i dont care",
       "semantics": [
         {
@@ -922,34 +827,6 @@
       ]
     },
     {
-      "text": "venesian",
-      "semantics": [
-        {
-          "slots": [
-            [
-              "food",
-              "venetian"
-            ]
-          ],
-          "act": "inform"
-        }
-      ]
-    },
-    {
-      "text": "venesian",
-      "semantics": [
-        {
-          "slots": [
-            [
-              "food",
-              "venetian"
-            ]
-          ],
-          "act": "inform"
-        }
-      ]
-    },
-    {
       "text": "doesnt matter",
       "semantics": [
         {
@@ -1055,34 +932,6 @@
             [
               "this",
               "dontcare"
-            ]
-          ],
-          "act": "inform"
-        }
-      ]
-    },
-    {
-      "text": "canopus",
-      "semantics": [
-        {
-          "slots": [
-            [
-              "food",
-              "canapes"
-            ]
-          ],
-          "act": "inform"
-        }
-      ]
-    },
-    {
-      "text": "canopus",
-      "semantics": [
-        {
-          "slots": [
-            [
-              "food",
-              "canapes"
             ]
           ],
           "act": "inform"
@@ -1279,34 +1128,6 @@
             [
               "this",
               "dontcare"
-            ]
-          ],
-          "act": "inform"
-        }
-      ]
-    },
-    {
-      "text": "unusal",
-      "semantics": [
-        {
-          "slots": [
-            [
-              "food",
-              "unusual"
-            ]
-          ],
-          "act": "inform"
-        }
-      ]
-    },
-    {
-      "text": "unusal",
-      "semantics": [
-        {
-          "slots": [
-            [
-              "food",
-              "unusual"
             ]
           ],
           "act": "inform"
@@ -1440,34 +1261,6 @@
       ]
     },
     {
-      "text": "air tran",
-      "semantics": [
-        {
-          "slots": [
-            [
-              "food",
-              "eritrean"
-            ]
-          ],
-          "act": "inform"
-        }
-      ]
-    },
-    {
-      "text": "air tran",
-      "semantics": [
-        {
-          "slots": [
-            [
-              "food",
-              "eritrean"
-            ]
-          ],
-          "act": "inform"
-        }
-      ]
-    },
-    {
       "text": "any",
       "semantics": [
         {
@@ -1503,29 +1296,6 @@
             [
               "this",
               "dontcare"
-            ]
-          ],
-          "act": "inform"
-        }
-      ]
-    },
-    {
-      "text": "i want an expensive steak house",
-      "semantics": [
-        {
-          "slots": [
-            [
-              "food",
-              "steakhouse"
-            ]
-          ],
-          "act": "inform"
-        },
-        {
-          "slots": [
-            [
-              "pricerange",
-              "expensive"
             ]
           ],
           "act": "inform"
@@ -1596,62 +1366,6 @@
             [
               "this",
               "dontcare"
-            ]
-          ],
-          "act": "inform"
-        }
-      ]
-    },
-    {
-      "text": "central",
-      "semantics": [
-        {
-          "slots": [
-            [
-              "area",
-              "centre"
-            ]
-          ],
-          "act": "inform"
-        }
-      ]
-    },
-    {
-      "text": "central",
-      "semantics": [
-        {
-          "slots": [
-            [
-              "area",
-              "centre"
-            ]
-          ],
-          "act": "inform"
-        }
-      ]
-    },
-    {
-      "text": "middle",
-      "semantics": [
-        {
-          "slots": [
-            [
-              "area",
-              "centre"
-            ]
-          ],
-          "act": "inform"
-        }
-      ]
-    },
-    {
-      "text": "middle",
-      "semantics": [
-        {
-          "slots": [
-            [
-              "area",
-              "centre"
             ]
           ],
           "act": "inform"
@@ -1995,62 +1709,6 @@
       ]
     },
     {
-      "text": "cross over",
-      "semantics": [
-        {
-          "slots": [
-            [
-              "food",
-              "crossover"
-            ]
-          ],
-          "act": "inform"
-        }
-      ]
-    },
-    {
-      "text": "cross over",
-      "semantics": [
-        {
-          "slots": [
-            [
-              "food",
-              "crossover"
-            ]
-          ],
-          "act": "inform"
-        }
-      ]
-    },
-    {
-      "text": "cross over",
-      "semantics": [
-        {
-          "slots": [
-            [
-              "food",
-              "crossover"
-            ]
-          ],
-          "act": "inform"
-        }
-      ]
-    },
-    {
-      "text": "cross over",
-      "semantics": [
-        {
-          "slots": [
-            [
-              "food",
-              "crossover"
-            ]
-          ],
-          "act": "inform"
-        }
-      ]
-    },
-    {
       "text": "doesnt matter",
       "semantics": [
         {
@@ -2198,42 +1856,6 @@
             [
               "this",
               "dontcare"
-            ]
-          ],
-          "act": "inform"
-        }
-      ]
-    },
-    {
-      "text": "how about europea",
-      "semantics": [
-        {
-          "slots": [],
-          "act": "reqalts"
-        },
-        {
-          "slots": [
-            [
-              "food",
-              "european"
-            ]
-          ],
-          "act": "inform"
-        }
-      ]
-    },
-    {
-      "text": "how about europea",
-      "semantics": [
-        {
-          "slots": [],
-          "act": "reqalts"
-        },
-        {
-          "slots": [
-            [
-              "food",
-              "european"
             ]
           ],
           "act": "inform"
@@ -2437,34 +2059,6 @@
       ]
     },
     {
-      "text": "pan asian food",
-      "semantics": [
-        {
-          "slots": [
-            [
-              "food",
-              "asian oriental"
-            ]
-          ],
-          "act": "inform"
-        }
-      ]
-    },
-    {
-      "text": "pan asian food",
-      "semantics": [
-        {
-          "slots": [
-            [
-              "food",
-              "asian oriental"
-            ]
-          ],
-          "act": "inform"
-        }
-      ]
-    },
-    {
       "text": "i dont care",
       "semantics": [
         {
@@ -2472,134 +2066,6 @@
             [
               "this",
               "dontcare"
-            ]
-          ],
-          "act": "inform"
-        }
-      ]
-    },
-    {
-      "text": "im looking for a restaurant serving pan asian foo",
-      "semantics": [
-        {
-          "slots": [
-            [
-              "food",
-              "asian oriental"
-            ]
-          ],
-          "act": "inform"
-        }
-      ]
-    },
-    {
-      "text": "im looking for a restaurant serving pan asian foo",
-      "semantics": [
-        {
-          "slots": [
-            [
-              "food",
-              "asian oriental"
-            ]
-          ],
-          "act": "inform"
-        }
-      ]
-    },
-    {
-      "text": "im looking for a restaurant serving pan asian foo",
-      "semantics": [
-        {
-          "slots": [
-            [
-              "food",
-              "asian oriental"
-            ]
-          ],
-          "act": "inform"
-        }
-      ]
-    },
-    {
-      "text": "im looking for a restaurant serving pan asian foo",
-      "semantics": [
-        {
-          "slots": [
-            [
-              "food",
-              "asian oriental"
-            ]
-          ],
-          "act": "inform"
-        }
-      ]
-    },
-    {
-      "text": "how about portugeuse food",
-      "semantics": [
-        {
-          "slots": [],
-          "act": "reqalts"
-        },
-        {
-          "slots": [
-            [
-              "food",
-              "portuguese"
-            ]
-          ],
-          "act": "inform"
-        }
-      ]
-    },
-    {
-      "text": "how about portugeuse food",
-      "semantics": [
-        {
-          "slots": [],
-          "act": "reqalts"
-        },
-        {
-          "slots": [
-            [
-              "food",
-              "portuguese"
-            ]
-          ],
-          "act": "inform"
-        }
-      ]
-    },
-    {
-      "text": "how about itailian",
-      "semantics": [
-        {
-          "slots": [],
-          "act": "reqalts"
-        },
-        {
-          "slots": [
-            [
-              "food",
-              "italian"
-            ]
-          ],
-          "act": "inform"
-        }
-      ]
-    },
-    {
-      "text": "how about itailian",
-      "semantics": [
-        {
-          "slots": [],
-          "act": "reqalts"
-        },
-        {
-          "slots": [
-            [
-              "food",
-              "italian"
             ]
           ],
           "act": "inform"
@@ -2824,34 +2290,6 @@
             [
               "this",
               "dontcare"
-            ]
-          ],
-          "act": "inform"
-        }
-      ]
-    },
-    {
-      "text": "brazillian",
-      "semantics": [
-        {
-          "slots": [
-            [
-              "food",
-              "brazilian"
-            ]
-          ],
-          "act": "inform"
-        }
-      ]
-    },
-    {
-      "text": "brazillian",
-      "semantics": [
-        {
-          "slots": [
-            [
-              "food",
-              "brazilian"
             ]
           ],
           "act": "inform"
@@ -3020,34 +2458,6 @@
             [
               "this",
               "dontcare"
-            ]
-          ],
-          "act": "inform"
-        }
-      ]
-    },
-    {
-      "text": "steak house",
-      "semantics": [
-        {
-          "slots": [
-            [
-              "food",
-              "steakhouse"
-            ]
-          ],
-          "act": "inform"
-        }
-      ]
-    },
-    {
-      "text": "steak house",
-      "semantics": [
-        {
-          "slots": [
-            [
-              "food",
-              "steakhouse"
             ]
           ],
           "act": "inform"
@@ -3419,34 +2829,6 @@
       ]
     },
     {
-      "text": "venesian",
-      "semantics": [
-        {
-          "slots": [
-            [
-              "food",
-              "venetian"
-            ]
-          ],
-          "act": "inform"
-        }
-      ]
-    },
-    {
-      "text": "venesian",
-      "semantics": [
-        {
-          "slots": [
-            [
-              "food",
-              "venetian"
-            ]
-          ],
-          "act": "inform"
-        }
-      ]
-    },
-    {
       "text": "any",
       "semantics": [
         {
@@ -3454,29 +2836,6 @@
             [
               "this",
               "dontcare"
-            ]
-          ],
-          "act": "inform"
-        }
-      ]
-    },
-    {
-      "text": "im looking for a moderately priced restaurant that serves asian",
-      "semantics": [
-        {
-          "slots": [
-            [
-              "food",
-              "asian oriental"
-            ]
-          ],
-          "act": "inform"
-        },
-        {
-          "slots": [
-            [
-              "pricerange",
-              "moderate"
             ]
           ],
           "act": "inform"
@@ -3561,62 +2920,6 @@
             [
               "this",
               "dontcare"
-            ]
-          ],
-          "act": "inform"
-        }
-      ]
-    },
-    {
-      "text": "pan asian food",
-      "semantics": [
-        {
-          "slots": [
-            [
-              "food",
-              "asian oriental"
-            ]
-          ],
-          "act": "inform"
-        }
-      ]
-    },
-    {
-      "text": "pan asian food",
-      "semantics": [
-        {
-          "slots": [
-            [
-              "food",
-              "asian oriental"
-            ]
-          ],
-          "act": "inform"
-        }
-      ]
-    },
-    {
-      "text": "pan asian food",
-      "semantics": [
-        {
-          "slots": [
-            [
-              "food",
-              "asian oriental"
-            ]
-          ],
-          "act": "inform"
-        }
-      ]
-    },
-    {
-      "text": "pan asian food",
-      "semantics": [
-        {
-          "slots": [
-            [
-              "food",
-              "asian oriental"
             ]
           ],
           "act": "inform"
@@ -4338,34 +3641,6 @@
       ]
     },
     {
-      "text": "portugese",
-      "semantics": [
-        {
-          "slots": [
-            [
-              "food",
-              "portuguese"
-            ]
-          ],
-          "act": "inform"
-        }
-      ]
-    },
-    {
-      "text": "portugese",
-      "semantics": [
-        {
-          "slots": [
-            [
-              "food",
-              "portuguese"
-            ]
-          ],
-          "act": "inform"
-        }
-      ]
-    },
-    {
       "text": "i dont care",
       "semantics": [
         {
@@ -4387,29 +3662,6 @@
             [
               "this",
               "dontcare"
-            ]
-          ],
-          "act": "inform"
-        }
-      ]
-    },
-    {
-      "text": "austria asian restaurant in the center of town",
-      "semantics": [
-        {
-          "slots": [
-            [
-              "food",
-              "australasian"
-            ]
-          ],
-          "act": "inform"
-        },
-        {
-          "slots": [
-            [
-              "area",
-              "centre"
             ]
           ],
           "act": "inform"
@@ -5257,62 +4509,6 @@
       ]
     },
     {
-      "text": "austral asian",
-      "semantics": [
-        {
-          "slots": [
-            [
-              "food",
-              "australasian"
-            ]
-          ],
-          "act": "inform"
-        }
-      ]
-    },
-    {
-      "text": "austral asian",
-      "semantics": [
-        {
-          "slots": [
-            [
-              "food",
-              "australasian"
-            ]
-          ],
-          "act": "inform"
-        }
-      ]
-    },
-    {
-      "text": "austral asian",
-      "semantics": [
-        {
-          "slots": [
-            [
-              "food",
-              "australasian"
-            ]
-          ],
-          "act": "inform"
-        }
-      ]
-    },
-    {
-      "text": "austral asian",
-      "semantics": [
-        {
-          "slots": [
-            [
-              "food",
-              "australasian"
-            ]
-          ],
-          "act": "inform"
-        }
-      ]
-    },
-    {
       "text": "i dont care",
       "semantics": [
         {
@@ -5649,42 +4845,6 @@
       ]
     },
     {
-      "text": "what about a modern europene type of food",
-      "semantics": [
-        {
-          "slots": [],
-          "act": "reqalts"
-        },
-        {
-          "slots": [
-            [
-              "food",
-              "modern european"
-            ]
-          ],
-          "act": "inform"
-        }
-      ]
-    },
-    {
-      "text": "what about a modern europene type of food",
-      "semantics": [
-        {
-          "slots": [],
-          "act": "reqalts"
-        },
-        {
-          "slots": [
-            [
-              "food",
-              "modern european"
-            ]
-          ],
-          "act": "inform"
-        }
-      ]
-    },
-    {
       "text": "dont care",
       "semantics": [
         {
@@ -5832,34 +4992,6 @@
             [
               "this",
               "dontcare"
-            ]
-          ],
-          "act": "inform"
-        }
-      ]
-    },
-    {
-      "text": "missing sock",
-      "semantics": [
-        {
-          "slots": [
-            [
-              "name",
-              "the missing sock"
-            ]
-          ],
-          "act": "inform"
-        }
-      ]
-    },
-    {
-      "text": "missing sock",
-      "semantics": [
-        {
-          "slots": [
-            [
-              "name",
-              "the missing sock"
             ]
           ],
           "act": "inform"
@@ -5873,34 +5005,6 @@
           "slots": [
             [
               "this",
-              "dontcare"
-            ]
-          ],
-          "act": "inform"
-        }
-      ]
-    },
-    {
-      "text": "uh im not interested in the type",
-      "semantics": [
-        {
-          "slots": [
-            [
-              "food",
-              "dontcare"
-            ]
-          ],
-          "act": "inform"
-        }
-      ]
-    },
-    {
-      "text": "uh im not interested in the type",
-      "semantics": [
-        {
-          "slots": [
-            [
-              "food",
               "dontcare"
             ]
           ],
@@ -6427,34 +5531,6 @@
       ]
     },
     {
-      "text": "singapore",
-      "semantics": [
-        {
-          "slots": [
-            [
-              "food",
-              "singaporean"
-            ]
-          ],
-          "act": "inform"
-        }
-      ]
-    },
-    {
-      "text": "singapore",
-      "semantics": [
-        {
-          "slots": [
-            [
-              "food",
-              "singaporean"
-            ]
-          ],
-          "act": "inform"
-        }
-      ]
-    },
-    {
       "text": "anything",
       "semantics": [
         {
@@ -6504,154 +5580,6 @@
             [
               "this",
               "dontcare"
-            ]
-          ],
-          "act": "inform"
-        }
-      ]
-    },
-    {
-      "text": "how about asian",
-      "semantics": [
-        {
-          "slots": [],
-          "act": "reqalts"
-        },
-        {
-          "slots": [
-            [
-              "food",
-              "asian oriental"
-            ]
-          ],
-          "act": "inform"
-        }
-      ]
-    },
-    {
-      "text": "how about asian",
-      "semantics": [
-        {
-          "slots": [],
-          "act": "reqalts"
-        },
-        {
-          "slots": [
-            [
-              "food",
-              "asian oriental"
-            ]
-          ],
-          "act": "inform"
-        }
-      ]
-    },
-    {
-      "text": "asian",
-      "semantics": [
-        {
-          "slots": [
-            [
-              "food",
-              "asian oriental"
-            ]
-          ],
-          "act": "inform"
-        }
-      ]
-    },
-    {
-      "text": "asian",
-      "semantics": [
-        {
-          "slots": [
-            [
-              "food",
-              "asian oriental"
-            ]
-          ],
-          "act": "inform"
-        }
-      ]
-    },
-    {
-      "text": "asian",
-      "semantics": [
-        {
-          "slots": [
-            [
-              "food",
-              "asian oriental"
-            ]
-          ],
-          "act": "inform"
-        }
-      ]
-    },
-    {
-      "text": "asian",
-      "semantics": [
-        {
-          "slots": [
-            [
-              "food",
-              "asian oriental"
-            ]
-          ],
-          "act": "inform"
-        }
-      ]
-    },
-    {
-      "text": "asian",
-      "semantics": [
-        {
-          "slots": [
-            [
-              "food",
-              "asian oriental"
-            ]
-          ],
-          "act": "inform"
-        }
-      ]
-    },
-    {
-      "text": "asian",
-      "semantics": [
-        {
-          "slots": [
-            [
-              "food",
-              "asian oriental"
-            ]
-          ],
-          "act": "inform"
-        }
-      ]
-    },
-    {
-      "text": "asian",
-      "semantics": [
-        {
-          "slots": [
-            [
-              "food",
-              "asian oriental"
-            ]
-          ],
-          "act": "inform"
-        }
-      ]
-    },
-    {
-      "text": "asian",
-      "semantics": [
-        {
-          "slots": [
-            [
-              "food",
-              "asian oriental"
             ]
           ],
           "act": "inform"
@@ -6743,90 +5671,6 @@
       ]
     },
     {
-      "text": "medium priced",
-      "semantics": [
-        {
-          "slots": [
-            [
-              "pricerange",
-              "moderate"
-            ]
-          ],
-          "act": "inform"
-        }
-      ]
-    },
-    {
-      "text": "medium priced",
-      "semantics": [
-        {
-          "slots": [
-            [
-              "pricerange",
-              "moderate"
-            ]
-          ],
-          "act": "inform"
-        }
-      ]
-    },
-    {
-      "text": "austria asian food",
-      "semantics": [
-        {
-          "slots": [
-            [
-              "food",
-              "australasian"
-            ]
-          ],
-          "act": "inform"
-        }
-      ]
-    },
-    {
-      "text": "austria asian food",
-      "semantics": [
-        {
-          "slots": [
-            [
-              "food",
-              "australasian"
-            ]
-          ],
-          "act": "inform"
-        }
-      ]
-    },
-    {
-      "text": "australia asian food",
-      "semantics": [
-        {
-          "slots": [
-            [
-              "food",
-              "australasian"
-            ]
-          ],
-          "act": "inform"
-        }
-      ]
-    },
-    {
-      "text": "australia asian food",
-      "semantics": [
-        {
-          "slots": [
-            [
-              "food",
-              "australasian"
-            ]
-          ],
-          "act": "inform"
-        }
-      ]
-    },
-    {
       "text": "any",
       "semantics": [
         {
@@ -6848,34 +5692,6 @@
             [
               "this",
               "dontcare"
-            ]
-          ],
-          "act": "inform"
-        }
-      ]
-    },
-    {
-      "text": "middle",
-      "semantics": [
-        {
-          "slots": [
-            [
-              "area",
-              "centre"
-            ]
-          ],
-          "act": "inform"
-        }
-      ]
-    },
-    {
-      "text": "middle",
-      "semantics": [
-        {
-          "slots": [
-            [
-              "area",
-              "centre"
             ]
           ],
           "act": "inform"
@@ -6946,34 +5762,6 @@
             [
               "this",
               "dontcare"
-            ]
-          ],
-          "act": "inform"
-        }
-      ]
-    },
-    {
-      "text": "s e a f o o d",
-      "semantics": [
-        {
-          "slots": [
-            [
-              "food",
-              "seafood"
-            ]
-          ],
-          "act": "inform"
-        }
-      ]
-    },
-    {
-      "text": "s e a f o o d",
-      "semantics": [
-        {
-          "slots": [
-            [
-              "food",
-              "seafood"
             ]
           ],
           "act": "inform"
@@ -7317,29 +6105,6 @@
       ]
     },
     {
-      "text": "i would like an africa restaurant in the center",
-      "semantics": [
-        {
-          "slots": [
-            [
-              "food",
-              "african"
-            ]
-          ],
-          "act": "inform"
-        },
-        {
-          "slots": [
-            [
-              "area",
-              "centre"
-            ]
-          ],
-          "act": "inform"
-        }
-      ]
-    },
-    {
       "text": "i do not care",
       "semantics": [
         {
@@ -7466,34 +6231,6 @@
       ]
     },
     {
-      "text": "singapore",
-      "semantics": [
-        {
-          "slots": [
-            [
-              "food",
-              "singaporean"
-            ]
-          ],
-          "act": "inform"
-        }
-      ]
-    },
-    {
-      "text": "singapore",
-      "semantics": [
-        {
-          "slots": [
-            [
-              "food",
-              "singaporean"
-            ]
-          ],
-          "act": "inform"
-        }
-      ]
-    },
-    {
       "text": "any",
       "semantics": [
         {
@@ -7508,34 +6245,6 @@
       ]
     },
     {
-      "text": "singapore",
-      "semantics": [
-        {
-          "slots": [
-            [
-              "food",
-              "singaporean"
-            ]
-          ],
-          "act": "inform"
-        }
-      ]
-    },
-    {
-      "text": "singapore",
-      "semantics": [
-        {
-          "slots": [
-            [
-              "food",
-              "singaporean"
-            ]
-          ],
-          "act": "inform"
-        }
-      ]
-    },
-    {
       "text": "dont care",
       "semantics": [
         {
@@ -7557,34 +6266,6 @@
             [
               "this",
               "dontcare"
-            ]
-          ],
-          "act": "inform"
-        }
-      ]
-    },
-    {
-      "text": "singapore",
-      "semantics": [
-        {
-          "slots": [
-            [
-              "food",
-              "singaporean"
-            ]
-          ],
-          "act": "inform"
-        }
-      ]
-    },
-    {
-      "text": "singapore",
-      "semantics": [
-        {
-          "slots": [
-            [
-              "food",
-              "singaporean"
             ]
           ],
           "act": "inform"
@@ -7697,29 +6378,6 @@
             [
               "this",
               "dontcare"
-            ]
-          ],
-          "act": "inform"
-        }
-      ]
-    },
-    {
-      "text": "west part of town moderatley price",
-      "semantics": [
-        {
-          "slots": [
-            [
-              "pricerange",
-              "moderate"
-            ]
-          ],
-          "act": "inform"
-        },
-        {
-          "slots": [
-            [
-              "area",
-              "west"
             ]
           ],
           "act": "inform"
@@ -7874,65 +6532,6 @@
             [
               "this",
               "dontcare"
-            ]
-          ],
-          "act": "inform"
-        }
-      ]
-    },
-    {
-      "text": "another type of food",
-      "semantics": [
-        {
-          "slots": [],
-          "act": "reqalts"
-        },
-        {
-          "slots": [
-            [
-              "food",
-              "dontcare"
-            ]
-          ],
-          "act": "inform"
-        }
-      ]
-    },
-    {
-      "text": "another type of food",
-      "semantics": [
-        {
-          "slots": [],
-          "act": "reqalts"
-        },
-        {
-          "slots": [
-            [
-              "food",
-              "dontcare"
-            ]
-          ],
-          "act": "inform"
-        }
-      ]
-    },
-    {
-      "text": "cheap portugeuse",
-      "semantics": [
-        {
-          "slots": [
-            [
-              "food",
-              "portuguese"
-            ]
-          ],
-          "act": "inform"
-        },
-        {
-          "slots": [
-            [
-              "pricerange",
-              "cheap"
             ]
           ],
           "act": "inform"
@@ -8402,70 +7001,6 @@
       ]
     },
     {
-      "text": "what about turkey food",
-      "semantics": [
-        {
-          "slots": [],
-          "act": "reqalts"
-        },
-        {
-          "slots": [
-            [
-              "food",
-              "turkish"
-            ]
-          ],
-          "act": "inform"
-        }
-      ]
-    },
-    {
-      "text": "what about turkey food",
-      "semantics": [
-        {
-          "slots": [],
-          "act": "reqalts"
-        },
-        {
-          "slots": [
-            [
-              "food",
-              "turkish"
-            ]
-          ],
-          "act": "inform"
-        }
-      ]
-    },
-    {
-      "text": "expnsive",
-      "semantics": [
-        {
-          "slots": [
-            [
-              "pricerange",
-              "expensive"
-            ]
-          ],
-          "act": "inform"
-        }
-      ]
-    },
-    {
-      "text": "expnsive",
-      "semantics": [
-        {
-          "slots": [
-            [
-              "pricerange",
-              "expensive"
-            ]
-          ],
-          "act": "inform"
-        }
-      ]
-    },
-    {
       "text": "i dont care",
       "semantics": [
         {
@@ -8585,114 +7120,6 @@
             [
               "this",
               "dontcare"
-            ]
-          ],
-          "act": "inform"
-        }
-      ]
-    },
-    {
-      "text": "how about asian food",
-      "semantics": [
-        {
-          "slots": [],
-          "act": "reqalts"
-        },
-        {
-          "slots": [
-            [
-              "food",
-              "asian oriental"
-            ]
-          ],
-          "act": "inform"
-        }
-      ]
-    },
-    {
-      "text": "how about asian food",
-      "semantics": [
-        {
-          "slots": [],
-          "act": "reqalts"
-        },
-        {
-          "slots": [
-            [
-              "food",
-              "asian oriental"
-            ]
-          ],
-          "act": "inform"
-        }
-      ]
-    },
-    {
-      "text": "how about asian food",
-      "semantics": [
-        {
-          "slots": [],
-          "act": "reqalts"
-        },
-        {
-          "slots": [
-            [
-              "food",
-              "asian oriental"
-            ]
-          ],
-          "act": "inform"
-        }
-      ]
-    },
-    {
-      "text": "how about asian food",
-      "semantics": [
-        {
-          "slots": [],
-          "act": "reqalts"
-        },
-        {
-          "slots": [
-            [
-              "food",
-              "asian oriental"
-            ]
-          ],
-          "act": "inform"
-        }
-      ]
-    },
-    {
-      "text": "how about oriental type of food",
-      "semantics": [
-        {
-          "slots": [],
-          "act": "reqalts"
-        },
-        {
-          "slots": [
-            [
-              "food",
-              "asian oriental"
-            ]
-          ],
-          "act": "inform"
-        }
-      ]
-    },
-    {
-      "text": "how about oriental type of food",
-      "semantics": [
-        {
-          "slots": [],
-          "act": "reqalts"
-        },
-        {
-          "slots": [
-            [
-              "food",
-              "asian oriental"
             ]
           ],
           "act": "inform"
@@ -8966,62 +7393,6 @@
       ]
     },
     {
-      "text": "hold on im working hold on gastro pub",
-      "semantics": [
-        {
-          "slots": [
-            [
-              "food",
-              "gastropub"
-            ]
-          ],
-          "act": "inform"
-        }
-      ]
-    },
-    {
-      "text": "hold on im working hold on gastro pub",
-      "semantics": [
-        {
-          "slots": [
-            [
-              "food",
-              "gastropub"
-            ]
-          ],
-          "act": "inform"
-        }
-      ]
-    },
-    {
-      "text": "asian",
-      "semantics": [
-        {
-          "slots": [
-            [
-              "food",
-              "asian oriental"
-            ]
-          ],
-          "act": "inform"
-        }
-      ]
-    },
-    {
-      "text": "asian",
-      "semantics": [
-        {
-          "slots": [
-            [
-              "food",
-              "asian oriental"
-            ]
-          ],
-          "act": "inform"
-        }
-      ]
-    },
-    {
       "text": "any",
       "semantics": [
         {
@@ -9057,126 +7428,6 @@
             [
               "this",
               "dontcare"
-            ]
-          ],
-          "act": "inform"
-        }
-      ]
-    },
-    {
-      "text": "canape",
-      "semantics": [
-        {
-          "slots": [
-            [
-              "food",
-              "canapes"
-            ]
-          ],
-          "act": "inform"
-        }
-      ]
-    },
-    {
-      "text": "canape",
-      "semantics": [
-        {
-          "slots": [
-            [
-              "food",
-              "canapes"
-            ]
-          ],
-          "act": "inform"
-        }
-      ]
-    },
-    {
-      "text": "how about canape",
-      "semantics": [
-        {
-          "slots": [],
-          "act": "reqalts"
-        },
-        {
-          "slots": [
-            [
-              "food",
-              "canapes"
-            ]
-          ],
-          "act": "inform"
-        }
-      ]
-    },
-    {
-      "text": "how about canape",
-      "semantics": [
-        {
-          "slots": [],
-          "act": "reqalts"
-        },
-        {
-          "slots": [
-            [
-              "food",
-              "canapes"
-            ]
-          ],
-          "act": "inform"
-        }
-      ]
-    },
-    {
-      "text": "canape",
-      "semantics": [
-        {
-          "slots": [
-            [
-              "food",
-              "canapes"
-            ]
-          ],
-          "act": "inform"
-        }
-      ]
-    },
-    {
-      "text": "canape",
-      "semantics": [
-        {
-          "slots": [
-            [
-              "food",
-              "canapes"
-            ]
-          ],
-          "act": "inform"
-        }
-      ]
-    },
-    {
-      "text": "canape",
-      "semantics": [
-        {
-          "slots": [
-            [
-              "food",
-              "canapes"
-            ]
-          ],
-          "act": "inform"
-        }
-      ]
-    },
-    {
-      "text": "canape",
-      "semantics": [
-        {
-          "slots": [
-            [
-              "food",
-              "canapes"
             ]
           ],
           "act": "inform"
@@ -9352,34 +7603,6 @@
       ]
     },
     {
-      "text": "enlish",
-      "semantics": [
-        {
-          "slots": [
-            [
-              "food",
-              "english"
-            ]
-          ],
-          "act": "inform"
-        }
-      ]
-    },
-    {
-      "text": "enlish",
-      "semantics": [
-        {
-          "slots": [
-            [
-              "food",
-              "english"
-            ]
-          ],
-          "act": "inform"
-        }
-      ]
-    },
-    {
       "text": "i dont care",
       "semantics": [
         {
@@ -9429,62 +7652,6 @@
             [
               "this",
               "dontcare"
-            ]
-          ],
-          "act": "inform"
-        }
-      ]
-    },
-    {
-      "text": "gastro pub food",
-      "semantics": [
-        {
-          "slots": [
-            [
-              "food",
-              "gastropub"
-            ]
-          ],
-          "act": "inform"
-        }
-      ]
-    },
-    {
-      "text": "gastro pub food",
-      "semantics": [
-        {
-          "slots": [
-            [
-              "food",
-              "gastropub"
-            ]
-          ],
-          "act": "inform"
-        }
-      ]
-    },
-    {
-      "text": "gastro pub food",
-      "semantics": [
-        {
-          "slots": [
-            [
-              "food",
-              "gastropub"
-            ]
-          ],
-          "act": "inform"
-        }
-      ]
-    },
-    {
-      "text": "gastro pub food",
-      "semantics": [
-        {
-          "slots": [
-            [
-              "food",
-              "gastropub"
             ]
           ],
           "act": "inform"
@@ -9786,154 +7953,6 @@
       ]
     },
     {
-      "text": "how about asian food",
-      "semantics": [
-        {
-          "slots": [],
-          "act": "reqalts"
-        },
-        {
-          "slots": [
-            [
-              "food",
-              "asian oriental"
-            ]
-          ],
-          "act": "inform"
-        }
-      ]
-    },
-    {
-      "text": "how about asian food",
-      "semantics": [
-        {
-          "slots": [],
-          "act": "reqalts"
-        },
-        {
-          "slots": [
-            [
-              "food",
-              "asian oriental"
-            ]
-          ],
-          "act": "inform"
-        }
-      ]
-    },
-    {
-      "text": "asian food",
-      "semantics": [
-        {
-          "slots": [
-            [
-              "food",
-              "asian oriental"
-            ]
-          ],
-          "act": "inform"
-        }
-      ]
-    },
-    {
-      "text": "asian food",
-      "semantics": [
-        {
-          "slots": [
-            [
-              "food",
-              "asian oriental"
-            ]
-          ],
-          "act": "inform"
-        }
-      ]
-    },
-    {
-      "text": "asian food",
-      "semantics": [
-        {
-          "slots": [
-            [
-              "food",
-              "asian oriental"
-            ]
-          ],
-          "act": "inform"
-        }
-      ]
-    },
-    {
-      "text": "asian food",
-      "semantics": [
-        {
-          "slots": [
-            [
-              "food",
-              "asian oriental"
-            ]
-          ],
-          "act": "inform"
-        }
-      ]
-    },
-    {
-      "text": "id like a restaurant that serves asian food",
-      "semantics": [
-        {
-          "slots": [
-            [
-              "food",
-              "asian oriental"
-            ]
-          ],
-          "act": "inform"
-        }
-      ]
-    },
-    {
-      "text": "id like a restaurant that serves asian food",
-      "semantics": [
-        {
-          "slots": [
-            [
-              "food",
-              "asian oriental"
-            ]
-          ],
-          "act": "inform"
-        }
-      ]
-    },
-    {
-      "text": "asian food",
-      "semantics": [
-        {
-          "slots": [
-            [
-              "food",
-              "asian oriental"
-            ]
-          ],
-          "act": "inform"
-        }
-      ]
-    },
-    {
-      "text": "asian food",
-      "semantics": [
-        {
-          "slots": [
-            [
-              "food",
-              "asian oriental"
-            ]
-          ],
-          "act": "inform"
-        }
-      ]
-    },
-    {
       "text": "dont care",
       "semantics": [
         {
@@ -9941,34 +7960,6 @@
             [
               "this",
               "dontcare"
-            ]
-          ],
-          "act": "inform"
-        }
-      ]
-    },
-    {
-      "text": "steak house food noise steak house food",
-      "semantics": [
-        {
-          "slots": [
-            [
-              "food",
-              "steakhouse"
-            ]
-          ],
-          "act": "inform"
-        }
-      ]
-    },
-    {
-      "text": "steak house food noise steak house food",
-      "semantics": [
-        {
-          "slots": [
-            [
-              "food",
-              "steakhouse"
             ]
           ],
           "act": "inform"
@@ -10025,34 +8016,6 @@
             [
               "this",
               "dontcare"
-            ]
-          ],
-          "act": "inform"
-        }
-      ]
-    },
-    {
-      "text": "canape",
-      "semantics": [
-        {
-          "slots": [
-            [
-              "food",
-              "canapes"
-            ]
-          ],
-          "act": "inform"
-        }
-      ]
-    },
-    {
-      "text": "canape",
-      "semantics": [
-        {
-          "slots": [
-            [
-              "food",
-              "canapes"
             ]
           ],
           "act": "inform"
@@ -10228,34 +8191,6 @@
       ]
     },
     {
-      "text": "lebanse",
-      "semantics": [
-        {
-          "slots": [
-            [
-              "food",
-              "lebanese"
-            ]
-          ],
-          "act": "inform"
-        }
-      ]
-    },
-    {
-      "text": "lebanse",
-      "semantics": [
-        {
-          "slots": [
-            [
-              "food",
-              "lebanese"
-            ]
-          ],
-          "act": "inform"
-        }
-      ]
-    },
-    {
       "text": "i dont care",
       "semantics": [
         {
@@ -10473,29 +8408,6 @@
             [
               "this",
               "dontcare"
-            ]
-          ],
-          "act": "inform"
-        }
-      ]
-    },
-    {
-      "text": "im looking for a moderately priced restaurant that serves labenese food",
-      "semantics": [
-        {
-          "slots": [
-            [
-              "food",
-              "lebanese"
-            ]
-          ],
-          "act": "inform"
-        },
-        {
-          "slots": [
-            [
-              "pricerange",
-              "moderate"
             ]
           ],
           "act": "inform"
@@ -10552,34 +8464,6 @@
             [
               "this",
               "dontcare"
-            ]
-          ],
-          "act": "inform"
-        }
-      ]
-    },
-    {
-      "text": "uh low price range",
-      "semantics": [
-        {
-          "slots": [
-            [
-              "pricerange",
-              "cheap"
-            ]
-          ],
-          "act": "inform"
-        }
-      ]
-    },
-    {
-      "text": "uh low price range",
-      "semantics": [
-        {
-          "slots": [
-            [
-              "pricerange",
-              "cheap"
             ]
           ],
           "act": "inform"
@@ -10713,90 +8597,6 @@
       ]
     },
     {
-      "text": "oriental food",
-      "semantics": [
-        {
-          "slots": [
-            [
-              "food",
-              "asian oriental"
-            ]
-          ],
-          "act": "inform"
-        }
-      ]
-    },
-    {
-      "text": "oriental food",
-      "semantics": [
-        {
-          "slots": [
-            [
-              "food",
-              "asian oriental"
-            ]
-          ],
-          "act": "inform"
-        }
-      ]
-    },
-    {
-      "text": "i need asian food",
-      "semantics": [
-        {
-          "slots": [
-            [
-              "food",
-              "asian oriental"
-            ]
-          ],
-          "act": "inform"
-        }
-      ]
-    },
-    {
-      "text": "i need asian food",
-      "semantics": [
-        {
-          "slots": [
-            [
-              "food",
-              "asian oriental"
-            ]
-          ],
-          "act": "inform"
-        }
-      ]
-    },
-    {
-      "text": "asian food",
-      "semantics": [
-        {
-          "slots": [
-            [
-              "food",
-              "asian oriental"
-            ]
-          ],
-          "act": "inform"
-        }
-      ]
-    },
-    {
-      "text": "asian food",
-      "semantics": [
-        {
-          "slots": [
-            [
-              "food",
-              "asian oriental"
-            ]
-          ],
-          "act": "inform"
-        }
-      ]
-    },
-    {
       "text": "it doesnt matter",
       "semantics": [
         {
@@ -10853,34 +8653,6 @@
       ]
     },
     {
-      "text": "im looking for pollynasian food",
-      "semantics": [
-        {
-          "slots": [
-            [
-              "food",
-              "polynesian"
-            ]
-          ],
-          "act": "inform"
-        }
-      ]
-    },
-    {
-      "text": "im looking for pollynasian food",
-      "semantics": [
-        {
-          "slots": [
-            [
-              "food",
-              "polynesian"
-            ]
-          ],
-          "act": "inform"
-        }
-      ]
-    },
-    {
       "text": "any",
       "semantics": [
         {
@@ -10902,34 +8674,6 @@
             [
               "this",
               "dontcare"
-            ]
-          ],
-          "act": "inform"
-        }
-      ]
-    },
-    {
-      "text": "um medium price range",
-      "semantics": [
-        {
-          "slots": [
-            [
-              "pricerange",
-              "moderate"
-            ]
-          ],
-          "act": "inform"
-        }
-      ]
-    },
-    {
-      "text": "um medium price range",
-      "semantics": [
-        {
-          "slots": [
-            [
-              "pricerange",
-              "moderate"
             ]
           ],
           "act": "inform"
@@ -11014,34 +8758,6 @@
             [
               "this",
               "dontcare"
-            ]
-          ],
-          "act": "inform"
-        }
-      ]
-    },
-    {
-      "text": "gastro",
-      "semantics": [
-        {
-          "slots": [
-            [
-              "food",
-              "gastropub"
-            ]
-          ],
-          "act": "inform"
-        }
-      ]
-    },
-    {
-      "text": "gastro",
-      "semantics": [
-        {
-          "slots": [
-            [
-              "food",
-              "gastropub"
             ]
           ],
           "act": "inform"
@@ -11147,34 +8863,6 @@
       ]
     },
     {
-      "text": "jamcian food",
-      "semantics": [
-        {
-          "slots": [
-            [
-              "food",
-              "jamaican"
-            ]
-          ],
-          "act": "inform"
-        }
-      ]
-    },
-    {
-      "text": "jamcian food",
-      "semantics": [
-        {
-          "slots": [
-            [
-              "food",
-              "jamaican"
-            ]
-          ],
-          "act": "inform"
-        }
-      ]
-    },
-    {
       "text": "uh dont care",
       "semantics": [
         {
@@ -11224,90 +8912,6 @@
             [
               "this",
               "dontcare"
-            ]
-          ],
-          "act": "inform"
-        }
-      ]
-    },
-    {
-      "text": "veitnamese",
-      "semantics": [
-        {
-          "slots": [
-            [
-              "food",
-              "vietnamese"
-            ]
-          ],
-          "act": "inform"
-        }
-      ]
-    },
-    {
-      "text": "veitnamese",
-      "semantics": [
-        {
-          "slots": [
-            [
-              "food",
-              "vietnamese"
-            ]
-          ],
-          "act": "inform"
-        }
-      ]
-    },
-    {
-      "text": "vietnam",
-      "semantics": [
-        {
-          "slots": [
-            [
-              "food",
-              "vietnamese"
-            ]
-          ],
-          "act": "inform"
-        }
-      ]
-    },
-    {
-      "text": "vietnam",
-      "semantics": [
-        {
-          "slots": [
-            [
-              "food",
-              "vietnamese"
-            ]
-          ],
-          "act": "inform"
-        }
-      ]
-    },
-    {
-      "text": "vietnam",
-      "semantics": [
-        {
-          "slots": [
-            [
-              "food",
-              "vietnamese"
-            ]
-          ],
-          "act": "inform"
-        }
-      ]
-    },
-    {
-      "text": "vietnam",
-      "semantics": [
-        {
-          "slots": [
-            [
-              "food",
-              "vietnamese"
             ]
           ],
           "act": "inform"
@@ -11672,34 +9276,6 @@
             [
               "this",
               "dontcare"
-            ]
-          ],
-          "act": "inform"
-        }
-      ]
-    },
-    {
-      "text": "asian",
-      "semantics": [
-        {
-          "slots": [
-            [
-              "food",
-              "asian oriental"
-            ]
-          ],
-          "act": "inform"
-        }
-      ]
-    },
-    {
-      "text": "asian",
-      "semantics": [
-        {
-          "slots": [
-            [
-              "food",
-              "asian oriental"
             ]
           ],
           "act": "inform"
@@ -11945,42 +9521,6 @@
       ]
     },
     {
-      "text": "how about gastro type",
-      "semantics": [
-        {
-          "slots": [],
-          "act": "reqalts"
-        },
-        {
-          "slots": [
-            [
-              "food",
-              "gastropub"
-            ]
-          ],
-          "act": "inform"
-        }
-      ]
-    },
-    {
-      "text": "how about gastro type",
-      "semantics": [
-        {
-          "slots": [],
-          "act": "reqalts"
-        },
-        {
-          "slots": [
-            [
-              "food",
-              "gastropub"
-            ]
-          ],
-          "act": "inform"
-        }
-      ]
-    },
-    {
       "text": "do not care",
       "semantics": [
         {
@@ -12051,34 +9591,6 @@
       ]
     },
     {
-      "text": "vegitarian",
-      "semantics": [
-        {
-          "slots": [
-            [
-              "food",
-              "vegetarian"
-            ]
-          ],
-          "act": "inform"
-        }
-      ]
-    },
-    {
-      "text": "vegitarian",
-      "semantics": [
-        {
-          "slots": [
-            [
-              "food",
-              "vegetarian"
-            ]
-          ],
-          "act": "inform"
-        }
-      ]
-    },
-    {
       "text": "any",
       "semantics": [
         {
@@ -12142,34 +9654,6 @@
             [
               "this",
               "dontcare"
-            ]
-          ],
-          "act": "inform"
-        }
-      ]
-    },
-    {
-      "text": "portugese",
-      "semantics": [
-        {
-          "slots": [
-            [
-              "food",
-              "portuguese"
-            ]
-          ],
-          "act": "inform"
-        }
-      ]
-    },
-    {
-      "text": "portugese",
-      "semantics": [
-        {
-          "slots": [
-            [
-              "food",
-              "portuguese"
             ]
           ],
           "act": "inform"
@@ -12296,34 +9780,6 @@
             [
               "this",
               "dontcare"
-            ]
-          ],
-          "act": "inform"
-        }
-      ]
-    },
-    {
-      "text": "asian",
-      "semantics": [
-        {
-          "slots": [
-            [
-              "food",
-              "asian oriental"
-            ]
-          ],
-          "act": "inform"
-        }
-      ]
-    },
-    {
-      "text": "asian",
-      "semantics": [
-        {
-          "slots": [
-            [
-              "food",
-              "asian oriental"
             ]
           ],
           "act": "inform"
@@ -12520,90 +9976,6 @@
             [
               "this",
               "dontcare"
-            ]
-          ],
-          "act": "inform"
-        }
-      ]
-    },
-    {
-      "text": "asian",
-      "semantics": [
-        {
-          "slots": [
-            [
-              "food",
-              "asian oriental"
-            ]
-          ],
-          "act": "inform"
-        }
-      ]
-    },
-    {
-      "text": "asian",
-      "semantics": [
-        {
-          "slots": [
-            [
-              "food",
-              "asian oriental"
-            ]
-          ],
-          "act": "inform"
-        }
-      ]
-    },
-    {
-      "text": "asian restaurant",
-      "semantics": [
-        {
-          "slots": [
-            [
-              "food",
-              "asian oriental"
-            ]
-          ],
-          "act": "inform"
-        }
-      ]
-    },
-    {
-      "text": "asian restaurant",
-      "semantics": [
-        {
-          "slots": [
-            [
-              "food",
-              "asian oriental"
-            ]
-          ],
-          "act": "inform"
-        }
-      ]
-    },
-    {
-      "text": "asian restaurant",
-      "semantics": [
-        {
-          "slots": [
-            [
-              "food",
-              "asian oriental"
-            ]
-          ],
-          "act": "inform"
-        }
-      ]
-    },
-    {
-      "text": "asian restaurant",
-      "semantics": [
-        {
-          "slots": [
-            [
-              "food",
-              "asian oriental"
             ]
           ],
           "act": "inform"
@@ -12919,62 +10291,6 @@
       ]
     },
     {
-      "text": "austallison",
-      "semantics": [
-        {
-          "slots": [
-            [
-              "food",
-              "australasian"
-            ]
-          ],
-          "act": "inform"
-        }
-      ]
-    },
-    {
-      "text": "austallison",
-      "semantics": [
-        {
-          "slots": [
-            [
-              "food",
-              "australasian"
-            ]
-          ],
-          "act": "inform"
-        }
-      ]
-    },
-    {
-      "text": "austallison",
-      "semantics": [
-        {
-          "slots": [
-            [
-              "food",
-              "australasian"
-            ]
-          ],
-          "act": "inform"
-        }
-      ]
-    },
-    {
-      "text": "austallison",
-      "semantics": [
-        {
-          "slots": [
-            [
-              "food",
-              "australasian"
-            ]
-          ],
-          "act": "inform"
-        }
-      ]
-    },
-    {
       "text": "any",
       "semantics": [
         {
@@ -13010,90 +10326,6 @@
             [
               "this",
               "dontcare"
-            ]
-          ],
-          "act": "inform"
-        }
-      ]
-    },
-    {
-      "text": "chineese",
-      "semantics": [
-        {
-          "slots": [
-            [
-              "food",
-              "chinese"
-            ]
-          ],
-          "act": "inform"
-        }
-      ]
-    },
-    {
-      "text": "chineese",
-      "semantics": [
-        {
-          "slots": [
-            [
-              "food",
-              "chinese"
-            ]
-          ],
-          "act": "inform"
-        }
-      ]
-    },
-    {
-      "text": "chineese",
-      "semantics": [
-        {
-          "slots": [
-            [
-              "food",
-              "chinese"
-            ]
-          ],
-          "act": "inform"
-        }
-      ]
-    },
-    {
-      "text": "chineese",
-      "semantics": [
-        {
-          "slots": [
-            [
-              "food",
-              "chinese"
-            ]
-          ],
-          "act": "inform"
-        }
-      ]
-    },
-    {
-      "text": "chineese",
-      "semantics": [
-        {
-          "slots": [
-            [
-              "food",
-              "chinese"
-            ]
-          ],
-          "act": "inform"
-        }
-      ]
-    },
-    {
-      "text": "chineese",
-      "semantics": [
-        {
-          "slots": [
-            [
-              "food",
-              "chinese"
             ]
           ],
           "act": "inform"
@@ -13206,29 +10438,6 @@
             [
               "this",
               "dontcare"
-            ]
-          ],
-          "act": "inform"
-        }
-      ]
-    },
-    {
-      "text": "north part of town austral asian food",
-      "semantics": [
-        {
-          "slots": [
-            [
-              "food",
-              "australasian"
-            ]
-          ],
-          "act": "inform"
-        },
-        {
-          "slots": [
-            [
-              "area",
-              "north"
             ]
           ],
           "act": "inform"
@@ -13376,15 +10585,3246 @@
       ]
     }
   ],
+  "negate": [
+    {
+      "text": "no not noise",
+      "semantics": [
+        {
+          "slots": [],
+          "act": "negate"
+        }
+      ]
+    },
+    {
+      "text": "no noise",
+      "semantics": [
+        {
+          "slots": [],
+          "act": "negate"
+        }
+      ]
+    }
+  ],
+  "inform": [
+    {
+      "text": "looking for a restaurant noise in the east part of town",
+      "semantics": [
+        {
+          "slots": [
+            [
+              "area",
+              "east"
+            ]
+          ],
+          "act": "inform"
+        }
+      ]
+    },
+    {
+      "text": "noise ease part of town east",
+      "semantics": [
+        {
+          "slots": [
+            [
+              "area",
+              "east"
+            ]
+          ],
+          "act": "inform"
+        }
+      ]
+    },
+    {
+      "text": "how bout irish food noise",
+      "semantics": [
+        {
+          "slots": [
+            [
+              "food",
+              "irish"
+            ]
+          ],
+          "act": "inform"
+        }
+      ]
+    },
+    {
+      "text": "irish food noise",
+      "semantics": [
+        {
+          "slots": [
+            [
+              "food",
+              "irish"
+            ]
+          ],
+          "act": "inform"
+        }
+      ]
+    },
+    {
+      "text": "how about indian noise",
+      "semantics": [
+        {
+          "slots": [],
+          "act": "reqalts"
+        },
+        {
+          "slots": [
+            [
+              "food",
+              "indian"
+            ]
+          ],
+          "act": "inform"
+        }
+      ]
+    },
+    {
+      "text": "indian food noise",
+      "semantics": [
+        {
+          "slots": [
+            [
+              "food",
+              "indian"
+            ]
+          ],
+          "act": "inform"
+        }
+      ]
+    },
+    {
+      "text": "any price range noise",
+      "semantics": [
+        {
+          "slots": [
+            [
+              "pricerange",
+              "dontcare"
+            ]
+          ],
+          "act": "inform"
+        }
+      ]
+    },
+    {
+      "text": "i want a restaurant in the center of town that serves vinesha",
+      "semantics": [
+        {
+          "slots": [
+            [
+              "food",
+              "venetian"
+            ]
+          ],
+          "act": "inform"
+        },
+        {
+          "slots": [
+            [
+              "area",
+              "centre"
+            ]
+          ],
+          "act": "inform"
+        }
+      ]
+    },
+    {
+      "text": "how about a castro pub",
+      "semantics": [
+        {
+          "slots": [],
+          "act": "reqalts"
+        },
+        {
+          "slots": [
+            [
+              "food",
+              "dontcare"
+            ]
+          ],
+          "act": "inform"
+        }
+      ]
+    },
+    {
+      "text": "how about a castro pub",
+      "semantics": [
+        {
+          "slots": [],
+          "act": "reqalts"
+        },
+        {
+          "slots": [
+            [
+              "food",
+              "dontcare"
+            ]
+          ],
+          "act": "inform"
+        }
+      ]
+    },
+    {
+      "text": "how about a castro pub type of food",
+      "semantics": [
+        {
+          "slots": [],
+          "act": "reqalts"
+        },
+        {
+          "slots": [
+            [
+              "food",
+              "gastropub"
+            ]
+          ],
+          "act": "inform"
+        }
+      ]
+    },
+    {
+      "text": "how about a castro pub type of food",
+      "semantics": [
+        {
+          "slots": [],
+          "act": "reqalts"
+        },
+        {
+          "slots": [
+            [
+              "food",
+              "gastropub"
+            ]
+          ],
+          "act": "inform"
+        }
+      ]
+    },
+    {
+      "text": "venesian",
+      "semantics": [
+        {
+          "slots": [
+            [
+              "food",
+              "venetian"
+            ]
+          ],
+          "act": "inform"
+        }
+      ]
+    },
+    {
+      "text": "venesian",
+      "semantics": [
+        {
+          "slots": [
+            [
+              "food",
+              "venetian"
+            ]
+          ],
+          "act": "inform"
+        }
+      ]
+    },
+    {
+      "text": "canopus",
+      "semantics": [
+        {
+          "slots": [
+            [
+              "food",
+              "canapes"
+            ]
+          ],
+          "act": "inform"
+        }
+      ]
+    },
+    {
+      "text": "canopus",
+      "semantics": [
+        {
+          "slots": [
+            [
+              "food",
+              "canapes"
+            ]
+          ],
+          "act": "inform"
+        }
+      ]
+    },
+    {
+      "text": "im looking for corsica food noise",
+      "semantics": [
+        {
+          "slots": [
+            [
+              "food",
+              "corsica"
+            ]
+          ],
+          "act": "inform"
+        }
+      ]
+    },
+    {
+      "text": "gastropub type food noise",
+      "semantics": [
+        {
+          "slots": [
+            [
+              "food",
+              "gastropub"
+            ]
+          ],
+          "act": "inform"
+        }
+      ]
+    },
+    {
+      "text": "indian food noise",
+      "semantics": [
+        {
+          "slots": [
+            [
+              "food",
+              "indian"
+            ]
+          ],
+          "act": "inform"
+        }
+      ]
+    },
+    {
+      "text": "unusal",
+      "semantics": [
+        {
+          "slots": [
+            [
+              "food",
+              "unusual"
+            ]
+          ],
+          "act": "inform"
+        }
+      ]
+    },
+    {
+      "text": "unusal",
+      "semantics": [
+        {
+          "slots": [
+            [
+              "food",
+              "unusual"
+            ]
+          ],
+          "act": "inform"
+        }
+      ]
+    },
+    {
+      "text": "air tran",
+      "semantics": [
+        {
+          "slots": [
+            [
+              "food",
+              "eritrean"
+            ]
+          ],
+          "act": "inform"
+        }
+      ]
+    },
+    {
+      "text": "air tran",
+      "semantics": [
+        {
+          "slots": [
+            [
+              "food",
+              "eritrean"
+            ]
+          ],
+          "act": "inform"
+        }
+      ]
+    },
+    {
+      "text": "i want an expensive steak house",
+      "semantics": [
+        {
+          "slots": [
+            [
+              "food",
+              "steakhouse"
+            ]
+          ],
+          "act": "inform"
+        },
+        {
+          "slots": [
+            [
+              "pricerange",
+              "expensive"
+            ]
+          ],
+          "act": "inform"
+        }
+      ]
+    },
+    {
+      "text": "central",
+      "semantics": [
+        {
+          "slots": [
+            [
+              "area",
+              "centre"
+            ]
+          ],
+          "act": "inform"
+        }
+      ]
+    },
+    {
+      "text": "central",
+      "semantics": [
+        {
+          "slots": [
+            [
+              "area",
+              "centre"
+            ]
+          ],
+          "act": "inform"
+        }
+      ]
+    },
+    {
+      "text": "middle",
+      "semantics": [
+        {
+          "slots": [
+            [
+              "area",
+              "centre"
+            ]
+          ],
+          "act": "inform"
+        }
+      ]
+    },
+    {
+      "text": "middle",
+      "semantics": [
+        {
+          "slots": [
+            [
+              "area",
+              "centre"
+            ]
+          ],
+          "act": "inform"
+        }
+      ]
+    },
+    {
+      "text": "cross over",
+      "semantics": [
+        {
+          "slots": [
+            [
+              "food",
+              "crossover"
+            ]
+          ],
+          "act": "inform"
+        }
+      ]
+    },
+    {
+      "text": "cross over",
+      "semantics": [
+        {
+          "slots": [
+            [
+              "food",
+              "crossover"
+            ]
+          ],
+          "act": "inform"
+        }
+      ]
+    },
+    {
+      "text": "cross over",
+      "semantics": [
+        {
+          "slots": [
+            [
+              "food",
+              "crossover"
+            ]
+          ],
+          "act": "inform"
+        }
+      ]
+    },
+    {
+      "text": "cross over",
+      "semantics": [
+        {
+          "slots": [
+            [
+              "food",
+              "crossover"
+            ]
+          ],
+          "act": "inform"
+        }
+      ]
+    },
+    {
+      "text": "noise i am looking for a moderately priced restaurant unintelligible",
+      "semantics": [
+        {
+          "slots": [
+            [
+              "pricerange",
+              "moderate"
+            ]
+          ],
+          "act": "inform"
+        }
+      ]
+    },
+    {
+      "text": "how about europea",
+      "semantics": [
+        {
+          "slots": [],
+          "act": "reqalts"
+        },
+        {
+          "slots": [
+            [
+              "food",
+              "european"
+            ]
+          ],
+          "act": "inform"
+        }
+      ]
+    },
+    {
+      "text": "how about europea",
+      "semantics": [
+        {
+          "slots": [],
+          "act": "reqalts"
+        },
+        {
+          "slots": [
+            [
+              "food",
+              "european"
+            ]
+          ],
+          "act": "inform"
+        }
+      ]
+    },
+    {
+      "text": "pan asian food",
+      "semantics": [
+        {
+          "slots": [
+            [
+              "food",
+              "asian oriental"
+            ]
+          ],
+          "act": "inform"
+        }
+      ]
+    },
+    {
+      "text": "pan asian food",
+      "semantics": [
+        {
+          "slots": [
+            [
+              "food",
+              "asian oriental"
+            ]
+          ],
+          "act": "inform"
+        }
+      ]
+    },
+    {
+      "text": "im looking for a restaurant serving pan asian foo",
+      "semantics": [
+        {
+          "slots": [
+            [
+              "food",
+              "asian oriental"
+            ]
+          ],
+          "act": "inform"
+        }
+      ]
+    },
+    {
+      "text": "im looking for a restaurant serving pan asian foo",
+      "semantics": [
+        {
+          "slots": [
+            [
+              "food",
+              "asian oriental"
+            ]
+          ],
+          "act": "inform"
+        }
+      ]
+    },
+    {
+      "text": "im looking for a restaurant serving pan asian foo",
+      "semantics": [
+        {
+          "slots": [
+            [
+              "food",
+              "asian oriental"
+            ]
+          ],
+          "act": "inform"
+        }
+      ]
+    },
+    {
+      "text": "im looking for a restaurant serving pan asian foo",
+      "semantics": [
+        {
+          "slots": [
+            [
+              "food",
+              "asian oriental"
+            ]
+          ],
+          "act": "inform"
+        }
+      ]
+    },
+    {
+      "text": "how about portugeuse food",
+      "semantics": [
+        {
+          "slots": [],
+          "act": "reqalts"
+        },
+        {
+          "slots": [
+            [
+              "food",
+              "portuguese"
+            ]
+          ],
+          "act": "inform"
+        }
+      ]
+    },
+    {
+      "text": "how about portugeuse food",
+      "semantics": [
+        {
+          "slots": [],
+          "act": "reqalts"
+        },
+        {
+          "slots": [
+            [
+              "food",
+              "portuguese"
+            ]
+          ],
+          "act": "inform"
+        }
+      ]
+    },
+    {
+      "text": "how about itailian",
+      "semantics": [
+        {
+          "slots": [],
+          "act": "reqalts"
+        },
+        {
+          "slots": [
+            [
+              "food",
+              "italian"
+            ]
+          ],
+          "act": "inform"
+        }
+      ]
+    },
+    {
+      "text": "how about itailian",
+      "semantics": [
+        {
+          "slots": [],
+          "act": "reqalts"
+        },
+        {
+          "slots": [
+            [
+              "food",
+              "italian"
+            ]
+          ],
+          "act": "inform"
+        }
+      ]
+    },
+    {
+      "text": "i dont care about the price range i need bask food",
+      "semantics": [
+        {
+          "slots": [
+            [
+              "food",
+              "basque"
+            ]
+          ],
+          "act": "inform"
+        },
+        {
+          "slots": [
+            [
+              "pricerange",
+              "dontcare"
+            ]
+          ],
+          "act": "inform"
+        }
+      ]
+    },
+    {
+      "text": "brazillian",
+      "semantics": [
+        {
+          "slots": [
+            [
+              "food",
+              "brazilian"
+            ]
+          ],
+          "act": "inform"
+        }
+      ]
+    },
+    {
+      "text": "brazillian",
+      "semantics": [
+        {
+          "slots": [
+            [
+              "food",
+              "brazilian"
+            ]
+          ],
+          "act": "inform"
+        }
+      ]
+    },
+    {
+      "text": "steak house",
+      "semantics": [
+        {
+          "slots": [
+            [
+              "food",
+              "steakhouse"
+            ]
+          ],
+          "act": "inform"
+        }
+      ]
+    },
+    {
+      "text": "steak house",
+      "semantics": [
+        {
+          "slots": [
+            [
+              "food",
+              "steakhouse"
+            ]
+          ],
+          "act": "inform"
+        }
+      ]
+    },
+    {
+      "text": "venesian",
+      "semantics": [
+        {
+          "slots": [
+            [
+              "food",
+              "venetian"
+            ]
+          ],
+          "act": "inform"
+        }
+      ]
+    },
+    {
+      "text": "venesian",
+      "semantics": [
+        {
+          "slots": [
+            [
+              "food",
+              "venetian"
+            ]
+          ],
+          "act": "inform"
+        }
+      ]
+    },
+    {
+      "text": "im looking for a moderately priced restaurant that serves asian",
+      "semantics": [
+        {
+          "slots": [
+            [
+              "food",
+              "asian oriental"
+            ]
+          ],
+          "act": "inform"
+        },
+        {
+          "slots": [
+            [
+              "pricerange",
+              "moderate"
+            ]
+          ],
+          "act": "inform"
+        }
+      ]
+    },
+    {
+      "text": "pan asian food",
+      "semantics": [
+        {
+          "slots": [
+            [
+              "food",
+              "asian oriental"
+            ]
+          ],
+          "act": "inform"
+        }
+      ]
+    },
+    {
+      "text": "pan asian food",
+      "semantics": [
+        {
+          "slots": [
+            [
+              "food",
+              "asian oriental"
+            ]
+          ],
+          "act": "inform"
+        }
+      ]
+    },
+    {
+      "text": "pan asian food",
+      "semantics": [
+        {
+          "slots": [
+            [
+              "food",
+              "asian oriental"
+            ]
+          ],
+          "act": "inform"
+        }
+      ]
+    },
+    {
+      "text": "pan asian food",
+      "semantics": [
+        {
+          "slots": [
+            [
+              "food",
+              "asian oriental"
+            ]
+          ],
+          "act": "inform"
+        }
+      ]
+    },
+    {
+      "text": "noise malaysian noise",
+      "semantics": [
+        {
+          "slots": [
+            [
+              "food",
+              "malaysian"
+            ]
+          ],
+          "act": "inform"
+        }
+      ]
+    },
+    {
+      "text": "noise north part of town",
+      "semantics": [
+        {
+          "slots": [
+            [
+              "area",
+              "north"
+            ]
+          ],
+          "act": "inform"
+        }
+      ]
+    },
+    {
+      "text": "noise french food",
+      "semantics": [
+        {
+          "slots": [
+            [
+              "food",
+              "french"
+            ]
+          ],
+          "act": "inform"
+        }
+      ]
+    },
+    {
+      "text": "portugese",
+      "semantics": [
+        {
+          "slots": [
+            [
+              "food",
+              "portuguese"
+            ]
+          ],
+          "act": "inform"
+        }
+      ]
+    },
+    {
+      "text": "portugese",
+      "semantics": [
+        {
+          "slots": [
+            [
+              "food",
+              "portuguese"
+            ]
+          ],
+          "act": "inform"
+        }
+      ]
+    },
+    {
+      "text": "austria asian restaurant in the center of town",
+      "semantics": [
+        {
+          "slots": [
+            [
+              "food",
+              "australasian"
+            ]
+          ],
+          "act": "inform"
+        },
+        {
+          "slots": [
+            [
+              "area",
+              "centre"
+            ]
+          ],
+          "act": "inform"
+        }
+      ]
+    },
+    {
+      "text": "austral asian",
+      "semantics": [
+        {
+          "slots": [
+            [
+              "food",
+              "australasian"
+            ]
+          ],
+          "act": "inform"
+        }
+      ]
+    },
+    {
+      "text": "austral asian",
+      "semantics": [
+        {
+          "slots": [
+            [
+              "food",
+              "australasian"
+            ]
+          ],
+          "act": "inform"
+        }
+      ]
+    },
+    {
+      "text": "austral asian",
+      "semantics": [
+        {
+          "slots": [
+            [
+              "food",
+              "australasian"
+            ]
+          ],
+          "act": "inform"
+        }
+      ]
+    },
+    {
+      "text": "austral asian",
+      "semantics": [
+        {
+          "slots": [
+            [
+              "food",
+              "australasian"
+            ]
+          ],
+          "act": "inform"
+        }
+      ]
+    },
+    {
+      "text": "what about a modern europene type of food",
+      "semantics": [
+        {
+          "slots": [],
+          "act": "reqalts"
+        },
+        {
+          "slots": [
+            [
+              "food",
+              "modern european"
+            ]
+          ],
+          "act": "inform"
+        }
+      ]
+    },
+    {
+      "text": "what about a modern europene type of food",
+      "semantics": [
+        {
+          "slots": [],
+          "act": "reqalts"
+        },
+        {
+          "slots": [
+            [
+              "food",
+              "modern european"
+            ]
+          ],
+          "act": "inform"
+        }
+      ]
+    },
+    {
+      "text": "missing sock",
+      "semantics": [
+        {
+          "slots": [
+            [
+              "name",
+              "the missing sock"
+            ]
+          ],
+          "act": "inform"
+        }
+      ]
+    },
+    {
+      "text": "missing sock",
+      "semantics": [
+        {
+          "slots": [
+            [
+              "name",
+              "the missing sock"
+            ]
+          ],
+          "act": "inform"
+        }
+      ]
+    },
+    {
+      "text": "uh im not interested in the type",
+      "semantics": [
+        {
+          "slots": [
+            [
+              "food",
+              "dontcare"
+            ]
+          ],
+          "act": "inform"
+        }
+      ]
+    },
+    {
+      "text": "uh im not interested in the type",
+      "semantics": [
+        {
+          "slots": [
+            [
+              "food",
+              "dontcare"
+            ]
+          ],
+          "act": "inform"
+        }
+      ]
+    },
+    {
+      "text": "french noise",
+      "semantics": [
+        {
+          "slots": [
+            [
+              "food",
+              "french"
+            ]
+          ],
+          "act": "inform"
+        }
+      ]
+    },
+    {
+      "text": "singapore",
+      "semantics": [
+        {
+          "slots": [
+            [
+              "food",
+              "singaporean"
+            ]
+          ],
+          "act": "inform"
+        }
+      ]
+    },
+    {
+      "text": "singapore",
+      "semantics": [
+        {
+          "slots": [
+            [
+              "food",
+              "singaporean"
+            ]
+          ],
+          "act": "inform"
+        }
+      ]
+    },
+    {
+      "text": "how about asian",
+      "semantics": [
+        {
+          "slots": [],
+          "act": "reqalts"
+        },
+        {
+          "slots": [
+            [
+              "food",
+              "asian oriental"
+            ]
+          ],
+          "act": "inform"
+        }
+      ]
+    },
+    {
+      "text": "how about asian",
+      "semantics": [
+        {
+          "slots": [],
+          "act": "reqalts"
+        },
+        {
+          "slots": [
+            [
+              "food",
+              "asian oriental"
+            ]
+          ],
+          "act": "inform"
+        }
+      ]
+    },
+    {
+      "text": "asian",
+      "semantics": [
+        {
+          "slots": [
+            [
+              "food",
+              "asian oriental"
+            ]
+          ],
+          "act": "inform"
+        }
+      ]
+    },
+    {
+      "text": "asian",
+      "semantics": [
+        {
+          "slots": [
+            [
+              "food",
+              "asian oriental"
+            ]
+          ],
+          "act": "inform"
+        }
+      ]
+    },
+    {
+      "text": "asian",
+      "semantics": [
+        {
+          "slots": [
+            [
+              "food",
+              "asian oriental"
+            ]
+          ],
+          "act": "inform"
+        }
+      ]
+    },
+    {
+      "text": "asian",
+      "semantics": [
+        {
+          "slots": [
+            [
+              "food",
+              "asian oriental"
+            ]
+          ],
+          "act": "inform"
+        }
+      ]
+    },
+    {
+      "text": "asian",
+      "semantics": [
+        {
+          "slots": [
+            [
+              "food",
+              "asian oriental"
+            ]
+          ],
+          "act": "inform"
+        }
+      ]
+    },
+    {
+      "text": "asian",
+      "semantics": [
+        {
+          "slots": [
+            [
+              "food",
+              "asian oriental"
+            ]
+          ],
+          "act": "inform"
+        }
+      ]
+    },
+    {
+      "text": "asian",
+      "semantics": [
+        {
+          "slots": [
+            [
+              "food",
+              "asian oriental"
+            ]
+          ],
+          "act": "inform"
+        }
+      ]
+    },
+    {
+      "text": "asian",
+      "semantics": [
+        {
+          "slots": [
+            [
+              "food",
+              "asian oriental"
+            ]
+          ],
+          "act": "inform"
+        }
+      ]
+    },
+    {
+      "text": "medium priced",
+      "semantics": [
+        {
+          "slots": [
+            [
+              "pricerange",
+              "moderate"
+            ]
+          ],
+          "act": "inform"
+        }
+      ]
+    },
+    {
+      "text": "medium priced",
+      "semantics": [
+        {
+          "slots": [
+            [
+              "pricerange",
+              "moderate"
+            ]
+          ],
+          "act": "inform"
+        }
+      ]
+    },
+    {
+      "text": "noise i would like to find a moderately priced restaurant in the south of town",
+      "semantics": [
+        {
+          "slots": [
+            [
+              "pricerange",
+              "moderate"
+            ]
+          ],
+          "act": "inform"
+        },
+        {
+          "slots": [
+            [
+              "area",
+              "south"
+            ]
+          ],
+          "act": "inform"
+        }
+      ]
+    },
+    {
+      "text": "austria asian food",
+      "semantics": [
+        {
+          "slots": [
+            [
+              "food",
+              "australasian"
+            ]
+          ],
+          "act": "inform"
+        }
+      ]
+    },
+    {
+      "text": "austria asian food",
+      "semantics": [
+        {
+          "slots": [
+            [
+              "food",
+              "australasian"
+            ]
+          ],
+          "act": "inform"
+        }
+      ]
+    },
+    {
+      "text": "australia asian food",
+      "semantics": [
+        {
+          "slots": [
+            [
+              "food",
+              "australasian"
+            ]
+          ],
+          "act": "inform"
+        }
+      ]
+    },
+    {
+      "text": "australia asian food",
+      "semantics": [
+        {
+          "slots": [
+            [
+              "food",
+              "australasian"
+            ]
+          ],
+          "act": "inform"
+        }
+      ]
+    },
+    {
+      "text": "middle",
+      "semantics": [
+        {
+          "slots": [
+            [
+              "area",
+              "centre"
+            ]
+          ],
+          "act": "inform"
+        }
+      ]
+    },
+    {
+      "text": "middle",
+      "semantics": [
+        {
+          "slots": [
+            [
+              "area",
+              "centre"
+            ]
+          ],
+          "act": "inform"
+        }
+      ]
+    },
+    {
+      "text": "s e a f o o d",
+      "semantics": [
+        {
+          "slots": [
+            [
+              "food",
+              "seafood"
+            ]
+          ],
+          "act": "inform"
+        }
+      ]
+    },
+    {
+      "text": "s e a f o o d",
+      "semantics": [
+        {
+          "slots": [
+            [
+              "food",
+              "seafood"
+            ]
+          ],
+          "act": "inform"
+        }
+      ]
+    },
+    {
+      "text": "i would like an africa restaurant in the center",
+      "semantics": [
+        {
+          "slots": [
+            [
+              "food",
+              "african"
+            ]
+          ],
+          "act": "inform"
+        },
+        {
+          "slots": [
+            [
+              "area",
+              "centre"
+            ]
+          ],
+          "act": "inform"
+        }
+      ]
+    },
+    {
+      "text": "portuguese food noise",
+      "semantics": [
+        {
+          "slots": [
+            [
+              "food",
+              "portuguese"
+            ]
+          ],
+          "act": "inform"
+        }
+      ]
+    },
+    {
+      "text": "noise any area",
+      "semantics": [
+        {
+          "slots": [
+            [
+              "area",
+              "dontcare"
+            ]
+          ],
+          "act": "inform"
+        }
+      ]
+    },
+    {
+      "text": "singapore",
+      "semantics": [
+        {
+          "slots": [
+            [
+              "food",
+              "singaporean"
+            ]
+          ],
+          "act": "inform"
+        }
+      ]
+    },
+    {
+      "text": "singapore",
+      "semantics": [
+        {
+          "slots": [
+            [
+              "food",
+              "singaporean"
+            ]
+          ],
+          "act": "inform"
+        }
+      ]
+    },
+    {
+      "text": "singapore",
+      "semantics": [
+        {
+          "slots": [
+            [
+              "food",
+              "singaporean"
+            ]
+          ],
+          "act": "inform"
+        }
+      ]
+    },
+    {
+      "text": "singapore",
+      "semantics": [
+        {
+          "slots": [
+            [
+              "food",
+              "singaporean"
+            ]
+          ],
+          "act": "inform"
+        }
+      ]
+    },
+    {
+      "text": "singapore",
+      "semantics": [
+        {
+          "slots": [
+            [
+              "food",
+              "singaporean"
+            ]
+          ],
+          "act": "inform"
+        }
+      ]
+    },
+    {
+      "text": "singapore",
+      "semantics": [
+        {
+          "slots": [
+            [
+              "food",
+              "singaporean"
+            ]
+          ],
+          "act": "inform"
+        }
+      ]
+    },
+    {
+      "text": "west part of town moderatley price",
+      "semantics": [
+        {
+          "slots": [
+            [
+              "pricerange",
+              "moderate"
+            ]
+          ],
+          "act": "inform"
+        },
+        {
+          "slots": [
+            [
+              "area",
+              "west"
+            ]
+          ],
+          "act": "inform"
+        }
+      ]
+    },
+    {
+      "text": "another type of food",
+      "semantics": [
+        {
+          "slots": [],
+          "act": "reqalts"
+        },
+        {
+          "slots": [
+            [
+              "food",
+              "dontcare"
+            ]
+          ],
+          "act": "inform"
+        }
+      ]
+    },
+    {
+      "text": "another type of food",
+      "semantics": [
+        {
+          "slots": [],
+          "act": "reqalts"
+        },
+        {
+          "slots": [
+            [
+              "food",
+              "dontcare"
+            ]
+          ],
+          "act": "inform"
+        }
+      ]
+    },
+    {
+      "text": "cheap portugeuse",
+      "semantics": [
+        {
+          "slots": [
+            [
+              "food",
+              "portuguese"
+            ]
+          ],
+          "act": "inform"
+        },
+        {
+          "slots": [
+            [
+              "pricerange",
+              "cheap"
+            ]
+          ],
+          "act": "inform"
+        }
+      ]
+    },
+    {
+      "text": "noise im looking for a restaurant serving vegetarian food",
+      "semantics": [
+        {
+          "slots": [
+            [
+              "food",
+              "vegetarian"
+            ]
+          ],
+          "act": "inform"
+        }
+      ]
+    },
+    {
+      "text": "what about turkey food",
+      "semantics": [
+        {
+          "slots": [],
+          "act": "reqalts"
+        },
+        {
+          "slots": [
+            [
+              "food",
+              "turkish"
+            ]
+          ],
+          "act": "inform"
+        }
+      ]
+    },
+    {
+      "text": "what about turkey food",
+      "semantics": [
+        {
+          "slots": [],
+          "act": "reqalts"
+        },
+        {
+          "slots": [
+            [
+              "food",
+              "turkish"
+            ]
+          ],
+          "act": "inform"
+        }
+      ]
+    },
+    {
+      "text": "expnsive",
+      "semantics": [
+        {
+          "slots": [
+            [
+              "pricerange",
+              "expensive"
+            ]
+          ],
+          "act": "inform"
+        }
+      ]
+    },
+    {
+      "text": "expnsive",
+      "semantics": [
+        {
+          "slots": [
+            [
+              "pricerange",
+              "expensive"
+            ]
+          ],
+          "act": "inform"
+        }
+      ]
+    },
+    {
+      "text": "how about asian food",
+      "semantics": [
+        {
+          "slots": [],
+          "act": "reqalts"
+        },
+        {
+          "slots": [
+            [
+              "food",
+              "asian oriental"
+            ]
+          ],
+          "act": "inform"
+        }
+      ]
+    },
+    {
+      "text": "how about asian food",
+      "semantics": [
+        {
+          "slots": [],
+          "act": "reqalts"
+        },
+        {
+          "slots": [
+            [
+              "food",
+              "asian oriental"
+            ]
+          ],
+          "act": "inform"
+        }
+      ]
+    },
+    {
+      "text": "how about asian food",
+      "semantics": [
+        {
+          "slots": [],
+          "act": "reqalts"
+        },
+        {
+          "slots": [
+            [
+              "food",
+              "asian oriental"
+            ]
+          ],
+          "act": "inform"
+        }
+      ]
+    },
+    {
+      "text": "how about asian food",
+      "semantics": [
+        {
+          "slots": [],
+          "act": "reqalts"
+        },
+        {
+          "slots": [
+            [
+              "food",
+              "asian oriental"
+            ]
+          ],
+          "act": "inform"
+        }
+      ]
+    },
+    {
+      "text": "how about oriental type of food",
+      "semantics": [
+        {
+          "slots": [],
+          "act": "reqalts"
+        },
+        {
+          "slots": [
+            [
+              "food",
+              "asian oriental"
+            ]
+          ],
+          "act": "inform"
+        }
+      ]
+    },
+    {
+      "text": "how about oriental type of food",
+      "semantics": [
+        {
+          "slots": [],
+          "act": "reqalts"
+        },
+        {
+          "slots": [
+            [
+              "food",
+              "asian oriental"
+            ]
+          ],
+          "act": "inform"
+        }
+      ]
+    },
+    {
+      "text": "noise im looking for moderately priced in the north part of cleveland ohio",
+      "semantics": [
+        {
+          "slots": [
+            [
+              "pricerange",
+              "moderate"
+            ]
+          ],
+          "act": "inform"
+        },
+        {
+          "slots": [
+            [
+              "area",
+              "north"
+            ]
+          ],
+          "act": "inform"
+        }
+      ]
+    },
+    {
+      "text": "hold on im working hold on gastro pub",
+      "semantics": [
+        {
+          "slots": [
+            [
+              "food",
+              "gastropub"
+            ]
+          ],
+          "act": "inform"
+        }
+      ]
+    },
+    {
+      "text": "hold on im working hold on gastro pub",
+      "semantics": [
+        {
+          "slots": [
+            [
+              "food",
+              "gastropub"
+            ]
+          ],
+          "act": "inform"
+        }
+      ]
+    },
+    {
+      "text": "asian",
+      "semantics": [
+        {
+          "slots": [
+            [
+              "food",
+              "asian oriental"
+            ]
+          ],
+          "act": "inform"
+        }
+      ]
+    },
+    {
+      "text": "asian",
+      "semantics": [
+        {
+          "slots": [
+            [
+              "food",
+              "asian oriental"
+            ]
+          ],
+          "act": "inform"
+        }
+      ]
+    },
+    {
+      "text": "canape",
+      "semantics": [
+        {
+          "slots": [
+            [
+              "food",
+              "canapes"
+            ]
+          ],
+          "act": "inform"
+        }
+      ]
+    },
+    {
+      "text": "canape",
+      "semantics": [
+        {
+          "slots": [
+            [
+              "food",
+              "canapes"
+            ]
+          ],
+          "act": "inform"
+        }
+      ]
+    },
+    {
+      "text": "how about canape",
+      "semantics": [
+        {
+          "slots": [],
+          "act": "reqalts"
+        },
+        {
+          "slots": [
+            [
+              "food",
+              "canapes"
+            ]
+          ],
+          "act": "inform"
+        }
+      ]
+    },
+    {
+      "text": "how about canape",
+      "semantics": [
+        {
+          "slots": [],
+          "act": "reqalts"
+        },
+        {
+          "slots": [
+            [
+              "food",
+              "canapes"
+            ]
+          ],
+          "act": "inform"
+        }
+      ]
+    },
+    {
+      "text": "canape",
+      "semantics": [
+        {
+          "slots": [
+            [
+              "food",
+              "canapes"
+            ]
+          ],
+          "act": "inform"
+        }
+      ]
+    },
+    {
+      "text": "canape",
+      "semantics": [
+        {
+          "slots": [
+            [
+              "food",
+              "canapes"
+            ]
+          ],
+          "act": "inform"
+        }
+      ]
+    },
+    {
+      "text": "canape",
+      "semantics": [
+        {
+          "slots": [
+            [
+              "food",
+              "canapes"
+            ]
+          ],
+          "act": "inform"
+        }
+      ]
+    },
+    {
+      "text": "canape",
+      "semantics": [
+        {
+          "slots": [
+            [
+              "food",
+              "canapes"
+            ]
+          ],
+          "act": "inform"
+        }
+      ]
+    },
+    {
+      "text": "enlish",
+      "semantics": [
+        {
+          "slots": [
+            [
+              "food",
+              "english"
+            ]
+          ],
+          "act": "inform"
+        }
+      ]
+    },
+    {
+      "text": "enlish",
+      "semantics": [
+        {
+          "slots": [
+            [
+              "food",
+              "english"
+            ]
+          ],
+          "act": "inform"
+        }
+      ]
+    },
+    {
+      "text": "noise hungarian",
+      "semantics": [
+        {
+          "slots": [
+            [
+              "food",
+              "hungarian"
+            ]
+          ],
+          "act": "inform"
+        }
+      ]
+    },
+    {
+      "text": "gastro pub food",
+      "semantics": [
+        {
+          "slots": [
+            [
+              "food",
+              "gastropub"
+            ]
+          ],
+          "act": "inform"
+        }
+      ]
+    },
+    {
+      "text": "gastro pub food",
+      "semantics": [
+        {
+          "slots": [
+            [
+              "food",
+              "gastropub"
+            ]
+          ],
+          "act": "inform"
+        }
+      ]
+    },
+    {
+      "text": "gastro pub food",
+      "semantics": [
+        {
+          "slots": [
+            [
+              "food",
+              "gastropub"
+            ]
+          ],
+          "act": "inform"
+        }
+      ]
+    },
+    {
+      "text": "gastro pub food",
+      "semantics": [
+        {
+          "slots": [
+            [
+              "food",
+              "gastropub"
+            ]
+          ],
+          "act": "inform"
+        }
+      ]
+    },
+    {
+      "text": "noise cheap restaurant",
+      "semantics": [
+        {
+          "slots": [
+            [
+              "pricerange",
+              "cheap"
+            ]
+          ],
+          "act": "inform"
+        }
+      ]
+    },
+    {
+      "text": "how about asian food",
+      "semantics": [
+        {
+          "slots": [],
+          "act": "reqalts"
+        },
+        {
+          "slots": [
+            [
+              "food",
+              "asian oriental"
+            ]
+          ],
+          "act": "inform"
+        }
+      ]
+    },
+    {
+      "text": "how about asian food",
+      "semantics": [
+        {
+          "slots": [],
+          "act": "reqalts"
+        },
+        {
+          "slots": [
+            [
+              "food",
+              "asian oriental"
+            ]
+          ],
+          "act": "inform"
+        }
+      ]
+    },
+    {
+      "text": "asian food",
+      "semantics": [
+        {
+          "slots": [
+            [
+              "food",
+              "asian oriental"
+            ]
+          ],
+          "act": "inform"
+        }
+      ]
+    },
+    {
+      "text": "asian food",
+      "semantics": [
+        {
+          "slots": [
+            [
+              "food",
+              "asian oriental"
+            ]
+          ],
+          "act": "inform"
+        }
+      ]
+    },
+    {
+      "text": "asian food",
+      "semantics": [
+        {
+          "slots": [
+            [
+              "food",
+              "asian oriental"
+            ]
+          ],
+          "act": "inform"
+        }
+      ]
+    },
+    {
+      "text": "asian food",
+      "semantics": [
+        {
+          "slots": [
+            [
+              "food",
+              "asian oriental"
+            ]
+          ],
+          "act": "inform"
+        }
+      ]
+    },
+    {
+      "text": "id like a restaurant that serves asian food",
+      "semantics": [
+        {
+          "slots": [
+            [
+              "food",
+              "asian oriental"
+            ]
+          ],
+          "act": "inform"
+        }
+      ]
+    },
+    {
+      "text": "id like a restaurant that serves asian food",
+      "semantics": [
+        {
+          "slots": [
+            [
+              "food",
+              "asian oriental"
+            ]
+          ],
+          "act": "inform"
+        }
+      ]
+    },
+    {
+      "text": "asian food",
+      "semantics": [
+        {
+          "slots": [
+            [
+              "food",
+              "asian oriental"
+            ]
+          ],
+          "act": "inform"
+        }
+      ]
+    },
+    {
+      "text": "asian food",
+      "semantics": [
+        {
+          "slots": [
+            [
+              "food",
+              "asian oriental"
+            ]
+          ],
+          "act": "inform"
+        }
+      ]
+    },
+    {
+      "text": "steak house food noise steak house food",
+      "semantics": [
+        {
+          "slots": [
+            [
+              "food",
+              "steakhouse"
+            ]
+          ],
+          "act": "inform"
+        }
+      ]
+    },
+    {
+      "text": "canape",
+      "semantics": [
+        {
+          "slots": [
+            [
+              "food",
+              "canapes"
+            ]
+          ],
+          "act": "inform"
+        }
+      ]
+    },
+    {
+      "text": "canape",
+      "semantics": [
+        {
+          "slots": [
+            [
+              "food",
+              "canapes"
+            ]
+          ],
+          "act": "inform"
+        }
+      ]
+    },
+    {
+      "text": "lebanse",
+      "semantics": [
+        {
+          "slots": [
+            [
+              "food",
+              "lebanese"
+            ]
+          ],
+          "act": "inform"
+        }
+      ]
+    },
+    {
+      "text": "lebanse",
+      "semantics": [
+        {
+          "slots": [
+            [
+              "food",
+              "lebanese"
+            ]
+          ],
+          "act": "inform"
+        }
+      ]
+    },
+    {
+      "text": "im looking for a moderately priced restaurant that serves labenese food",
+      "semantics": [
+        {
+          "slots": [
+            [
+              "food",
+              "lebanese"
+            ]
+          ],
+          "act": "inform"
+        },
+        {
+          "slots": [
+            [
+              "pricerange",
+              "moderate"
+            ]
+          ],
+          "act": "inform"
+        }
+      ]
+    },
+    {
+      "text": "uh low price range",
+      "semantics": [
+        {
+          "slots": [
+            [
+              "pricerange",
+              "cheap"
+            ]
+          ],
+          "act": "inform"
+        }
+      ]
+    },
+    {
+      "text": "uh low price range",
+      "semantics": [
+        {
+          "slots": [
+            [
+              "pricerange",
+              "cheap"
+            ]
+          ],
+          "act": "inform"
+        }
+      ]
+    },
+    {
+      "text": "oriental food",
+      "semantics": [
+        {
+          "slots": [
+            [
+              "food",
+              "asian oriental"
+            ]
+          ],
+          "act": "inform"
+        }
+      ]
+    },
+    {
+      "text": "oriental food",
+      "semantics": [
+        {
+          "slots": [
+            [
+              "food",
+              "asian oriental"
+            ]
+          ],
+          "act": "inform"
+        }
+      ]
+    },
+    {
+      "text": "i need asian food",
+      "semantics": [
+        {
+          "slots": [
+            [
+              "food",
+              "asian oriental"
+            ]
+          ],
+          "act": "inform"
+        }
+      ]
+    },
+    {
+      "text": "i need asian food",
+      "semantics": [
+        {
+          "slots": [
+            [
+              "food",
+              "asian oriental"
+            ]
+          ],
+          "act": "inform"
+        }
+      ]
+    },
+    {
+      "text": "asian food",
+      "semantics": [
+        {
+          "slots": [
+            [
+              "food",
+              "asian oriental"
+            ]
+          ],
+          "act": "inform"
+        }
+      ]
+    },
+    {
+      "text": "asian food",
+      "semantics": [
+        {
+          "slots": [
+            [
+              "food",
+              "asian oriental"
+            ]
+          ],
+          "act": "inform"
+        }
+      ]
+    },
+    {
+      "text": "im looking for pollynasian food",
+      "semantics": [
+        {
+          "slots": [
+            [
+              "food",
+              "polynesian"
+            ]
+          ],
+          "act": "inform"
+        }
+      ]
+    },
+    {
+      "text": "im looking for pollynasian food",
+      "semantics": [
+        {
+          "slots": [
+            [
+              "food",
+              "polynesian"
+            ]
+          ],
+          "act": "inform"
+        }
+      ]
+    },
+    {
+      "text": "um medium price range",
+      "semantics": [
+        {
+          "slots": [
+            [
+              "pricerange",
+              "moderate"
+            ]
+          ],
+          "act": "inform"
+        }
+      ]
+    },
+    {
+      "text": "um medium price range",
+      "semantics": [
+        {
+          "slots": [
+            [
+              "pricerange",
+              "moderate"
+            ]
+          ],
+          "act": "inform"
+        }
+      ]
+    },
+    {
+      "text": "gastro",
+      "semantics": [
+        {
+          "slots": [
+            [
+              "food",
+              "gastropub"
+            ]
+          ],
+          "act": "inform"
+        }
+      ]
+    },
+    {
+      "text": "gastro",
+      "semantics": [
+        {
+          "slots": [
+            [
+              "food",
+              "gastropub"
+            ]
+          ],
+          "act": "inform"
+        }
+      ]
+    },
+    {
+      "text": "jamcian food",
+      "semantics": [
+        {
+          "slots": [
+            [
+              "food",
+              "jamaican"
+            ]
+          ],
+          "act": "inform"
+        }
+      ]
+    },
+    {
+      "text": "jamcian food",
+      "semantics": [
+        {
+          "slots": [
+            [
+              "food",
+              "jamaican"
+            ]
+          ],
+          "act": "inform"
+        }
+      ]
+    },
+    {
+      "text": "veitnamese",
+      "semantics": [
+        {
+          "slots": [
+            [
+              "food",
+              "vietnamese"
+            ]
+          ],
+          "act": "inform"
+        }
+      ]
+    },
+    {
+      "text": "veitnamese",
+      "semantics": [
+        {
+          "slots": [
+            [
+              "food",
+              "vietnamese"
+            ]
+          ],
+          "act": "inform"
+        }
+      ]
+    },
+    {
+      "text": "vietnam",
+      "semantics": [
+        {
+          "slots": [
+            [
+              "food",
+              "vietnamese"
+            ]
+          ],
+          "act": "inform"
+        }
+      ]
+    },
+    {
+      "text": "vietnam",
+      "semantics": [
+        {
+          "slots": [
+            [
+              "food",
+              "vietnamese"
+            ]
+          ],
+          "act": "inform"
+        }
+      ]
+    },
+    {
+      "text": "vietnam",
+      "semantics": [
+        {
+          "slots": [
+            [
+              "food",
+              "vietnamese"
+            ]
+          ],
+          "act": "inform"
+        }
+      ]
+    },
+    {
+      "text": "vietnam",
+      "semantics": [
+        {
+          "slots": [
+            [
+              "food",
+              "vietnamese"
+            ]
+          ],
+          "act": "inform"
+        }
+      ]
+    },
+    {
+      "text": "asian",
+      "semantics": [
+        {
+          "slots": [
+            [
+              "food",
+              "asian oriental"
+            ]
+          ],
+          "act": "inform"
+        }
+      ]
+    },
+    {
+      "text": "asian",
+      "semantics": [
+        {
+          "slots": [
+            [
+              "food",
+              "asian oriental"
+            ]
+          ],
+          "act": "inform"
+        }
+      ]
+    },
+    {
+      "text": "how about gastro type",
+      "semantics": [
+        {
+          "slots": [],
+          "act": "reqalts"
+        },
+        {
+          "slots": [
+            [
+              "food",
+              "gastropub"
+            ]
+          ],
+          "act": "inform"
+        }
+      ]
+    },
+    {
+      "text": "how about gastro type",
+      "semantics": [
+        {
+          "slots": [],
+          "act": "reqalts"
+        },
+        {
+          "slots": [
+            [
+              "food",
+              "gastropub"
+            ]
+          ],
+          "act": "inform"
+        }
+      ]
+    },
+    {
+      "text": "vegitarian",
+      "semantics": [
+        {
+          "slots": [
+            [
+              "food",
+              "vegetarian"
+            ]
+          ],
+          "act": "inform"
+        }
+      ]
+    },
+    {
+      "text": "vegitarian",
+      "semantics": [
+        {
+          "slots": [
+            [
+              "food",
+              "vegetarian"
+            ]
+          ],
+          "act": "inform"
+        }
+      ]
+    },
+    {
+      "text": "portugese",
+      "semantics": [
+        {
+          "slots": [
+            [
+              "food",
+              "portuguese"
+            ]
+          ],
+          "act": "inform"
+        }
+      ]
+    },
+    {
+      "text": "portugese",
+      "semantics": [
+        {
+          "slots": [
+            [
+              "food",
+              "portuguese"
+            ]
+          ],
+          "act": "inform"
+        }
+      ]
+    },
+    {
+      "text": "asian",
+      "semantics": [
+        {
+          "slots": [
+            [
+              "food",
+              "asian oriental"
+            ]
+          ],
+          "act": "inform"
+        }
+      ]
+    },
+    {
+      "text": "asian",
+      "semantics": [
+        {
+          "slots": [
+            [
+              "food",
+              "asian oriental"
+            ]
+          ],
+          "act": "inform"
+        }
+      ]
+    },
+    {
+      "text": "asian",
+      "semantics": [
+        {
+          "slots": [
+            [
+              "food",
+              "asian oriental"
+            ]
+          ],
+          "act": "inform"
+        }
+      ]
+    },
+    {
+      "text": "asian",
+      "semantics": [
+        {
+          "slots": [
+            [
+              "food",
+              "asian oriental"
+            ]
+          ],
+          "act": "inform"
+        }
+      ]
+    },
+    {
+      "text": "asian restaurant",
+      "semantics": [
+        {
+          "slots": [
+            [
+              "food",
+              "asian oriental"
+            ]
+          ],
+          "act": "inform"
+        }
+      ]
+    },
+    {
+      "text": "asian restaurant",
+      "semantics": [
+        {
+          "slots": [
+            [
+              "food",
+              "asian oriental"
+            ]
+          ],
+          "act": "inform"
+        }
+      ]
+    },
+    {
+      "text": "asian restaurant",
+      "semantics": [
+        {
+          "slots": [
+            [
+              "food",
+              "asian oriental"
+            ]
+          ],
+          "act": "inform"
+        }
+      ]
+    },
+    {
+      "text": "asian restaurant",
+      "semantics": [
+        {
+          "slots": [
+            [
+              "food",
+              "asian oriental"
+            ]
+          ],
+          "act": "inform"
+        }
+      ]
+    },
+    {
+      "text": "austallison",
+      "semantics": [
+        {
+          "slots": [
+            [
+              "food",
+              "australasian"
+            ]
+          ],
+          "act": "inform"
+        }
+      ]
+    },
+    {
+      "text": "austallison",
+      "semantics": [
+        {
+          "slots": [
+            [
+              "food",
+              "australasian"
+            ]
+          ],
+          "act": "inform"
+        }
+      ]
+    },
+    {
+      "text": "austallison",
+      "semantics": [
+        {
+          "slots": [
+            [
+              "food",
+              "australasian"
+            ]
+          ],
+          "act": "inform"
+        }
+      ]
+    },
+    {
+      "text": "austallison",
+      "semantics": [
+        {
+          "slots": [
+            [
+              "food",
+              "australasian"
+            ]
+          ],
+          "act": "inform"
+        }
+      ]
+    },
+    {
+      "text": "chineese",
+      "semantics": [
+        {
+          "slots": [
+            [
+              "food",
+              "chinese"
+            ]
+          ],
+          "act": "inform"
+        }
+      ]
+    },
+    {
+      "text": "chineese",
+      "semantics": [
+        {
+          "slots": [
+            [
+              "food",
+              "chinese"
+            ]
+          ],
+          "act": "inform"
+        }
+      ]
+    },
+    {
+      "text": "chineese",
+      "semantics": [
+        {
+          "slots": [
+            [
+              "food",
+              "chinese"
+            ]
+          ],
+          "act": "inform"
+        }
+      ]
+    },
+    {
+      "text": "chineese",
+      "semantics": [
+        {
+          "slots": [
+            [
+              "food",
+              "chinese"
+            ]
+          ],
+          "act": "inform"
+        }
+      ]
+    },
+    {
+      "text": "chineese",
+      "semantics": [
+        {
+          "slots": [
+            [
+              "food",
+              "chinese"
+            ]
+          ],
+          "act": "inform"
+        }
+      ]
+    },
+    {
+      "text": "chineese",
+      "semantics": [
+        {
+          "slots": [
+            [
+              "food",
+              "chinese"
+            ]
+          ],
+          "act": "inform"
+        }
+      ]
+    },
+    {
+      "text": "north part of town austral asian food",
+      "semantics": [
+        {
+          "slots": [
+            [
+              "food",
+              "australasian"
+            ]
+          ],
+          "act": "inform"
+        },
+        {
+          "slots": [
+            [
+              "area",
+              "north"
+            ]
+          ],
+          "act": "inform"
+        }
+      ]
+    }
+  ],
   "request": [
     {
-      "text": "where is it",
+      "text": "noise can i get the address and phone number",
       "semantics": [
         {
           "slots": [
             [
               "slot",
               "addr"
+            ]
+          ],
+          "act": "request"
+        },
+        {
+          "slots": [
+            [
+              "slot",
+              "phone"
+            ]
+          ],
+          "act": "request"
+        }
+      ]
+    },
+    {
+      "text": "and the address noise",
+      "semantics": [
+        {
+          "slots": [
+            [
+              "slot",
+              "addr"
+            ]
+          ],
+          "act": "request"
+        }
+      ]
+    },
+    {
+      "text": "whats the addre",
+      "semantics": [
+        {
+          "slots": [
+            [
+              "slot",
+              "addr"
+            ]
+          ],
+          "act": "request"
+        }
+      ]
+    },
+    {
+      "text": "whats the addre",
+      "semantics": [
+        {
+          "slots": [
+            [
+              "slot",
+              "addr"
+            ]
+          ],
+          "act": "request"
+        }
+      ]
+    },
+    {
+      "text": "whats the address noise",
+      "semantics": [
+        {
+          "slots": [
+            [
+              "slot",
+              "addr"
+            ]
+          ],
+          "act": "request"
+        }
+      ]
+    },
+    {
+      "text": "whats the post code noise",
+      "semantics": [
+        {
+          "slots": [
+            [
+              "slot",
+              "postcode"
             ]
           ],
           "act": "request"
@@ -13421,6 +13861,34 @@
     },
     {
       "text": "where is it",
+      "semantics": [
+        {
+          "slots": [
+            [
+              "slot",
+              "addr"
+            ]
+          ],
+          "act": "request"
+        }
+      ]
+    },
+    {
+      "text": "where is it",
+      "semantics": [
+        {
+          "slots": [
+            [
+              "slot",
+              "addr"
+            ]
+          ],
+          "act": "request"
+        }
+      ]
+    },
+    {
+      "text": "address noise",
       "semantics": [
         {
           "slots": [
@@ -13483,6 +13951,62 @@
             [
               "slot",
               "food"
+            ]
+          ],
+          "act": "request"
+        }
+      ]
+    },
+    {
+      "text": "what is the addre",
+      "semantics": [
+        {
+          "slots": [
+            [
+              "slot",
+              "addr"
+            ]
+          ],
+          "act": "request"
+        }
+      ]
+    },
+    {
+      "text": "what is the addre",
+      "semantics": [
+        {
+          "slots": [
+            [
+              "slot",
+              "addr"
+            ]
+          ],
+          "act": "request"
+        }
+      ]
+    },
+    {
+      "text": "okay what is the addre",
+      "semantics": [
+        {
+          "slots": [
+            [
+              "slot",
+              "addr"
+            ]
+          ],
+          "act": "request"
+        }
+      ]
+    },
+    {
+      "text": "okay what is the addre",
+      "semantics": [
+        {
+          "slots": [
+            [
+              "slot",
+              "addr"
             ]
           ],
           "act": "request"
@@ -13602,6 +14126,20 @@
       ]
     },
     {
+      "text": "what is the address noise",
+      "semantics": [
+        {
+          "slots": [
+            [
+              "slot",
+              "addr"
+            ]
+          ],
+          "act": "request"
+        }
+      ]
+    },
+    {
       "text": "where is it",
       "semantics": [
         {
@@ -13617,6 +14155,76 @@
     },
     {
       "text": "where is it",
+      "semantics": [
+        {
+          "slots": [
+            [
+              "slot",
+              "addr"
+            ]
+          ],
+          "act": "request"
+        }
+      ]
+    },
+    {
+      "text": "addre",
+      "semantics": [
+        {
+          "slots": [
+            [
+              "slot",
+              "addr"
+            ]
+          ],
+          "act": "request"
+        }
+      ]
+    },
+    {
+      "text": "addre",
+      "semantics": [
+        {
+          "slots": [
+            [
+              "slot",
+              "addr"
+            ]
+          ],
+          "act": "request"
+        }
+      ]
+    },
+    {
+      "text": "addre",
+      "semantics": [
+        {
+          "slots": [
+            [
+              "slot",
+              "addr"
+            ]
+          ],
+          "act": "request"
+        }
+      ]
+    },
+    {
+      "text": "addre",
+      "semantics": [
+        {
+          "slots": [
+            [
+              "slot",
+              "addr"
+            ]
+          ],
+          "act": "request"
+        }
+      ]
+    },
+    {
+      "text": "whats the address noise",
       "semantics": [
         {
           "slots": [
@@ -13679,6 +14287,20 @@
             [
               "slot",
               "addr"
+            ]
+          ],
+          "act": "request"
+        }
+      ]
+    },
+    {
+      "text": "whats the phone number for noise",
+      "semantics": [
+        {
+          "slots": [
+            [
+              "slot",
+              "phone"
             ]
           ],
           "act": "request"
@@ -13785,6 +14407,70 @@
     },
     {
       "text": "where is it",
+      "semantics": [
+        {
+          "slots": [
+            [
+              "slot",
+              "addr"
+            ]
+          ],
+          "act": "request"
+        }
+      ]
+    },
+    {
+      "text": "kay what is the addre",
+      "semantics": [
+        {
+          "slots": [],
+          "act": "ack"
+        },
+        {
+          "slots": [
+            [
+              "slot",
+              "addr"
+            ]
+          ],
+          "act": "request"
+        }
+      ]
+    },
+    {
+      "text": "kay what is the addre",
+      "semantics": [
+        {
+          "slots": [],
+          "act": "ack"
+        },
+        {
+          "slots": [
+            [
+              "slot",
+              "addr"
+            ]
+          ],
+          "act": "request"
+        }
+      ]
+    },
+    {
+      "text": "what is the addre",
+      "semantics": [
+        {
+          "slots": [
+            [
+              "slot",
+              "addr"
+            ]
+          ],
+          "act": "request"
+        }
+      ]
+    },
+    {
+      "text": "what is the addre",
       "semantics": [
         {
           "slots": [
@@ -13937,6 +14623,24 @@
             [
               "food",
               "asian oriental"
+            ]
+          ],
+          "act": "inform"
+        }
+      ]
+    },
+    {
+      "text": "noise no im looking for a french restaurant",
+      "semantics": [
+        {
+          "slots": [],
+          "act": "negate"
+        },
+        {
+          "slots": [
+            [
+              "food",
+              "french"
             ]
           ],
           "act": "inform"
@@ -14123,6 +14827,78 @@
             ]
           ],
           "act": "inform"
+        }
+      ]
+    }
+  ],
+  "bye": [
+    {
+      "text": "thank you goodbye noise",
+      "semantics": [
+        {
+          "slots": [],
+          "act": "thankyou"
+        },
+        {
+          "slots": [],
+          "act": "bye"
+        }
+      ]
+    },
+    {
+      "text": "thank you goodbye noise",
+      "semantics": [
+        {
+          "slots": [],
+          "act": "thankyou"
+        },
+        {
+          "slots": [],
+          "act": "bye"
+        }
+      ]
+    },
+    {
+      "text": "thank you goodbye noise",
+      "semantics": [
+        {
+          "slots": [],
+          "act": "thankyou"
+        },
+        {
+          "slots": [],
+          "act": "bye"
+        }
+      ]
+    }
+  ],
+  "thankyou": [
+    {
+      "text": "noise thank you goodbye",
+      "semantics": [
+        {
+          "slots": [],
+          "act": "thankyou"
+        }
+      ]
+    },
+    {
+      "text": "noise thank you goodbye",
+      "semantics": [
+        {
+          "slots": [],
+          "act": "thankyou"
+        }
+      ]
+    }
+  ],
+  "reqalts": [
+    {
+      "text": "noise is there anything else",
+      "semantics": [
+        {
+          "slots": [],
+          "act": "reqalts"
         }
       ]
     }

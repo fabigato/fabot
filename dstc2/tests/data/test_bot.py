@@ -1,12 +1,5 @@
 from unittest import TestCase
-import data.dialogue_processor as dialogue_processor
-import data.nlu_processor as nlu_processor
-from json import load as json_load
-
-NLU_TRAIN_PATH = '../../data/trndev/rasa/dstc2_nlu_train.json'
-NLU_TRAIN_CONFIG_PATH = "../../nlu_model_config.json"
-MODEL_PATH = '../../models/nlu/'
-NLU_TEST_CONFIG_PATH = 'nlu_model_test_config.json'
+from main import RASA_TRAIN_PATH, NLU_TRAIN_CONFIG_FILE, NLU_MODEL_PATH, NLU_TEST_CONFIG_FILE
 
 
 class TestBot(TestCase):
@@ -18,26 +11,26 @@ class TestBot(TestCase):
         from rasa_nlu.evaluate import run_evaluation
 
         # train
-        training_data = load_data(NLU_TRAIN_PATH)
-        trainer = Trainer(RasaNLUConfig(NLU_TRAIN_CONFIG_PATH))
+        training_data = load_data(RASA_TRAIN_PATH + 'dstc2_nlu_train.json')
+        trainer = Trainer(RasaNLUConfig(NLU_TRAIN_CONFIG_FILE))
         trainer.train(training_data)
-        model_directory = trainer.persist(MODEL_PATH, project_name='fabot', fixed_model_name="current")
+        model_directory = trainer.persist(NLU_MODEL_PATH, project_name='fabot', fixed_model_name="current")
 
         # evaluate
-        run_evaluation(config=RasaNLUConfig(NLU_TEST_CONFIG_PATH), model_path=model_directory)
+        run_evaluation(config=RasaNLUConfig(NLU_TEST_CONFIG_FILE), model_path=model_directory)
 
     def test_nlu(self):
         from rasa_nlu.evaluate import run_evaluation
         from rasa_nlu.config import RasaNLUConfig
-        run_evaluation(config=RasaNLUConfig(NLU_TEST_CONFIG_PATH), model_path='../../models/nlu/fabot/current')
+        run_evaluation(config=RasaNLUConfig(NLU_TEST_CONFIG_FILE), model_path='models/nlu/fabot/current')
 
     def test_entities(self):
         from rasa_nlu.config import RasaNLUConfig
         from rasa_nlu.converters import load_data
         from rasa_nlu.model import Interpreter
         from rasa_nlu.evaluate import get_targets, get_predictions, get_entity_extractors, evaluate_entities
-        config = RasaNLUConfig(NLU_TEST_CONFIG_PATH)
-        model_path = '../../models/nlu/fabot/current'
+        config = RasaNLUConfig(NLU_TEST_CONFIG_FILE)
+        model_path = NLU_MODEL_PATH
         # get the metadata config from the package data
         test_data = load_data(config['data'], config['language'])
         interpreter = Interpreter.load(model_path, config, None)

@@ -1,8 +1,9 @@
 from unittest import TestCase
 import data.dialogue_processor as processor
 from json import load as json_load
+from main import DSTC2_TRN_DATA_PATH
 
-dstc2_data_path = '../../data/trndev/dstc2/data/'
+
 
 
 class TestDialogueProcessor(TestCase):
@@ -108,8 +109,8 @@ class TestDialogueProcessor(TestCase):
         # check Mar13_S1A1/voip-d645d56d23-20130401_204424, starts with noise, then it should ignore that and delete the
         # following bot question
         for test in tests:
-            with open(dstc2_data_path + test['file'] + 'label.json', 'r') as label, \
-                 open(dstc2_data_path + test['file'] + 'log.json', 'r') as log:
+            with open(DSTC2_TRN_DATA_PATH + test['file'] + 'label.json', 'r') as label, \
+                 open(DSTC2_TRN_DATA_PATH + test['file'] + 'log.json', 'r') as log:
                 human_dic, bot_dic = json_load(label), json_load(log)
                 story = processor._make_story(human_dic, bot_dic)
                 self.assertEqual(story, test['label'])

@@ -3,6 +3,7 @@ from os.path import join
 from json import load as json_load
 import copy
 import logging
+from main import RASA_TRAIN_PATH, DSTC2_TRN_DATA_PATH, DSTCT2_TRN_LIST_FILE
 
 logger = logging.getLogger(__name__)
 logging.basicConfig(level="DEBUG")
@@ -115,10 +116,10 @@ def get_bot_da(das):
         return 'REPEAT_ERROR'
     elif acts == {'offer', 'inform'}:  # {offer, inform} => offer_detailed
         return 'offer_detailed'
-    elif acts == {'request'}:  # {request(informable)} => request_informable
+    elif acts == {'request'}:  # {request(informable)} => request_requestable
         assert len(compressed_semantics[0]['slots']) == 1, 'request bot da with more than one informable:  {}'.\
             format(compressed_semantics)
-        return 'request_' + compressed_semantics[0]['slots'][0][1]
+        return 'utter_request_' + compressed_semantics[0]['slots'][0][1]
     elif acts == {'canthelp', 'canthelp.exception'}:  # {canthelp, canthelp.exception} => canthelp
         return 'canthelp'
     elif acts == {'request', 'impl-conf'}:  # {request(informable), impl-conf} => request_informable_detailed
@@ -127,6 +128,8 @@ def get_bot_da(das):
             format(compressed_semantics)
         return 'request_' + request['slots'][0][1] + '_detailed'
     elif len(acts) == 1:  # identity mappings
+        if list(acts)[0] in ['reqmore', 'confirm-domain']:
+            return 'utter_' + list(acts)[0]
         return list(acts)[0]
     else:
         raise ValueError('unknown bot da configuration: {}'.format(acts))
@@ -322,7 +325,7 @@ def _make_story(human, bot):
         else:
             raise ValueError('Unexpected user intent while building story: {}'.format(user_intent))
     b_utterances.pop(0)  # delete first welcome message
-    b_utterances.append('bye')  # add a final bye
+    b_utterances.append('utter_bye')  # add a final bye
     assert len(b_utterances) == len(h_utterances), "different number of bot and human utterances\nbot: {}\nhuman: {}".\
         format(b_utterances, h_utterances)
     return list(zip(h_utterances, b_utterances))
@@ -388,5 +391,9 @@ def produce_rasa_file(files_list=None, path_prefix='', only_success=False,
 
 
 if __name__ == '__main__':
-    produce_rasa_file(files_list='data/trndev/dstc2/scripts/config/dstc2_train.flist',
-                      path_prefix='data/trndev/dstc2/data', only_success=True, output_file='stories_tmp.md')
+    produce_rasa_file(files_list=DSTCT2_TRN_LIST_FILE,
+                      path_prefix=DSTC2_TRN_DATA_PATH, only_success=True,
+                      output_file=RASA_TRAIN_PATH + 'stories.md')
+    # produce_rasa_file(
+    #                   path_prefix='data/test/dstc2/data/', only_success=True,
+    #                   output_file='data/test/rasa/stories_test.md')

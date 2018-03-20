@@ -10,6 +10,21 @@ from rasa_core.policies.memoization import MemoizationPolicy
 
 logger = logging.getLogger(__name__)
 
+RASA_TRAIN_PATH = 'data/trndev/rasa/'
+RASA_TST_PATH = 'data/test/rasa/'
+NLU_TRAIN_CONFIG_FILE = "nlu_model_config.json"
+NLU_MODEL_PATH = 'models/nlu/'
+DIALOGUE_MODEL_PATH = 'models/dialogue/'
+NLU_TEST_CONFIG_FILE = 'tests/data/nlu_model_test_config.json'
+DSTC2_TRN_DATA_PATH = 'data/trndev/dstc2/data/'
+DSTC2_ONTHOLOGY_FILE = 'data/test/dstc2/data/config/ontology_dstc2.json'
+DSTC2_TST_DATA_PATH = 'data/test/dstc2/data/'
+DSTCT2_TRN_LIST_FILE = 'data/trndev/dstc2/scripts/config/dstc2_train.flist'
+DSTCT2_DEV_LIST_FILE = 'data/trndev/dstc2/scripts/config/dstc2_dev.flist'
+DSTCT2_TST_LIST_FILE = 'data/test/dstc2/scripts/config/dstc2_test.flist'
+DOMAIN_FILE = 'fabot_domain.yml'
+BABI_PATH = 'data/test/dialog-bAbI-tasks/'
+
 
 def init():
     utils.configure_colored_logging(loglevel="DEBUG")
@@ -31,16 +46,16 @@ def train_nlu():
     from rasa_nlu.converters import load_data
     from rasa_nlu.config import RasaNLUConfig
     from rasa_nlu.model import Trainer
-    training_data = load_data('data/test_nlu_output_confirm_request.json')
-    trainer = Trainer(RasaNLUConfig("nlu_model_config.json"))
+    training_data = load_data(RASA_TRAIN_PATH)
+    trainer = Trainer(RasaNLUConfig(NLU_TRAIN_CONFIG_FILE))
     trainer.train(training_data)
-    model_directory = trainer.persist('models/nlu/', project_name='fabot', fixed_model_name="current")
+    model_directory = trainer.persist(NLU_MODEL_PATH, project_name='fabot', fixed_model_name="current")
     return model_directory
 
 
-def train_dialogue(domain_file="fabot_domain.yml",
-                   model_path="models/dialogue",
-                   training_data_file="data/stories_limited.md"):
+def train_dialogue(domain_file=DOMAIN_FILE,
+                   model_path=DIALOGUE_MODEL_PATH,
+                   training_data_file=RASA_TRAIN_PATH + 'stories.md'):
     agent = Agent(domain_file,
                   # policies=[MemoizationPolicy(), KerasPolicy()])
                   policies=[KerasPolicy()])

@@ -6,9 +6,31 @@ from numpy import random
 from collections import defaultdict
 import logging
 from data.dialogue_processor import REQUESTED_ENTITY_FLAG, process_dstc2_files, get_user_intent
+from main import DSTC2_TRN_DATA_PATH, RASA_TRAIN_PATH, RASA_TST_PATH, DSTC2_TST_DATA_PATH, DSTC2_ONTHOLOGY_FILE
 
 logger = logging.getLogger(__name__)
 logging.basicConfig(level="DEBUG")
+
+
+def _text_is_troublesome(text):
+    """Checks if text is bad for training, for a variety of reasons"""
+    # these sentences make rasa create spurious synonyms
+    troublesome_sentences = [
+        'chinese food im looking for sea food',  # this made chinese a synonym of seafood
+        'no not indian scandinavian food',  # scandinavian -> indian
+        'i am looking for kitalian food',  # italian -> catalan
+        'i dont give a damn about chinese food i want thai food',  # chinese -> thai
+        'i dont give a fuck if hk fusion serves chinese food im looking for thai food',
+        'not chinese food thai food',  # chinese -> thai
+        'north east',  # north -> east
+        'was that in the east part of town west part of town',  # east -> west
+        'ok if there is no restaurant serving indonesian food how about a '
+        'restaurant serving chinese food',  # indonesian -> chinese
+        'not european fusion',  # european -> fusion
+        'id like a restaurant that serves australian asian food'  # australian asian -> australian
+    ]
+    # we don't want unintelligible text. Plus, only 32 instances in tst, 47 in trn/dev
+    return text.find('noise') != -1 or text in troublesome_sentences
 
 
 class NLUExampleGenerator(object):
@@ -57,6 +79,11 @@ class NLUExampleGenerator(object):
                 "entity": "pricerange"  # this is not rasa NLU json field, added for own convenience, will be removed
             },
             {
+                "value": "expensive",  # moderate value of the pricerange entity
+                "synonyms": ["high priced"],
+                "entity": "pricerange"  # this is not rasa NLU json field, added for own convenience, will be removed
+            },
+            {
                 "value": "middle eastern",
                 "synonyms": ['middle-eastern', 'middleeastern'],
                 "entity": "food"
@@ -90,6 +117,21 @@ class NLUExampleGenerator(object):
             {
                 "value": "barbeque",
                 "synonyms": ['barbecue'],
+                "entity": "food"
+            },
+            {
+                "value": "panasian",
+                "synonyms": ['pan asian'],
+                "entity": "food"
+            },
+            {
+                "value": "steakhouse",
+                "synonyms": ['steak house'],
+                "entity": "food"
+            },
+            {
+                "value": "australasian",
+                "synonyms": ['australian asian'],
                 "entity": "food"
             }
         ]
@@ -146,188 +188,30 @@ class NLUExampleGenerator(object):
                 "pattern": ""
             }
         ]
-        # include synonyms as regex patterns
+        # include requested entity synonyms as regex patterns
         for requestable in self._requestables:
             reg_feat = next(feat for feat in regex_features if feat['name'] == requestable)
             prefix = '' if reg_feat['pattern'] == '' else '|'  # append the regex or only if necessary
             reg_feat['pattern'] += prefix + '|'.join(self._requestables[requestable]['syn_hints'])
 
+        # include informed entity synonyms as regex patterns
+        # for each informable (i.e. food, area, pricerange)
+        #   for each value (e.g. chinese, north american)
+        #       gather synonyms
+        #       build regex with value or synonyms
+        #       include pattern under new regex, with name 'informed_' + value
+        for inf, data in [(k, v) for k, v in self._requestables.items() if v['informable']]:  # (food, area, price)
+            for value in data['values']:
+                patterns = [value]
+                syns = [s for s in self._entity_synonyms if s['value'] == value]
+                if syns:
+                    patterns += syns[0]['synonyms']
+                regex_features.append({'name': 'informed_' + value, 'pattern': '|'.join(patterns)})
+
         self.nlu_json = {"rasa_nlu_data": {"common_examples": [], "entity_synonyms": [{"value": syn["value"],
                                                                                        "synonyms": syn["synonyms"]}
                                                                                       for syn in self._entity_synonyms],
                                            "regex_features": regex_features}}
-
-    def _generate_dstc2_examples_tmp(self, **kwargs):
-        """
-        :param kwargs: the rest of the named arguments are simply passed along to
-        data.dialogue_processor.process_dstc2_files. Do not send the 'process' argument since this function does it
-        :return:
-        """
-        # json_result = {"rasa_nlu_data": {"common_examples": [], "entity_synonyms": entity_synonyms,
-        #                                 "regex_features": regex_features}}
-        """
-        Entities:
-            -requestables
-                - phone
-                - address
-                - postcode
-                - signature
-            -informables
-                - area
-                - food
-                - pricerange
-                - name
-        intents:
-            -request:
-                requestables
-            -inform:
-                informables
-            -inform_dontcare
-                informables - name
-            -correct
-                informables - name
-            -confirm
-                informables
-            -query 
-                informables, requestables
-            -include_filter
-                informables - name
-            -reqalts
-            -bye
-            -thankyou
-            -negate
-            -affirm
-            -deny
-                informable
-            -ack
-        """
-        # TODO in 'add extra custom regex', just read them from synonyms (use 'entity' field to determine the right
-        # entity). Then, when actually regex matching text, if match is not amongst possible values, match against the
-        # canonical value, as defined in the synonyms field, by looking in the list of the entity whose
-        # synonym list contains the match
-        examples = []
-        failed_examples = defaultdict(list)
-        # regex for requested entities
-        requested_entity_res = {requestable: '|'.join(self._requestables[requestable]['syn_hints'])
-                                for requestable in self._requestables}
-        # extra custom regex
-        requested_entity_res['pricerange'] = '|'.join([requested_entity_res['pricerange'], 'how much$'])
-        requested_entity_res['area'] = '|'.join([requested_entity_res['area'], '(?<=where is )it|where$'])
-
-        # compile regex
-        for requestable in requested_entity_res:
-            requested_entity_res[requestable] = re.compile(requested_entity_res[requestable])
-
-        # regex for informed entities
-        informed_entity_res = {informable: '|'.join(self._requestables[informable]['values'])
-                               for informable in self._requestables
-                               if self._requestables[informable]['informable'] == True}
-
-        # add extra values for informables
-        for entity in informed_entity_res:
-            for syn in self._entity_synonyms:
-                if syn['entity'] == entity:
-                    informed_entity_res[entity] = '|'.join([informed_entity_res[entity]] + syn['synonyms'])
-        # informed_entity_res['pricerange'] = '|'.join([informed_entity_res['pricerange'], 'moderately'])
-        # informed_entity_res['area'] = '|'.join([informed_entity_res['area'], 'center'])
-
-        # add the dontcare value option for all informables
-        dontcare_values = next(syn for syn in self.nlu_json['rasa_nlu_data']['entity_synonyms']
-                               if syn['value'] == 'dontcare')['synonyms']
-        for informable in informed_entity_res:
-            informed_entity_res[informable] = '|'.join(dontcare_values + [informed_entity_res[informable]])
-
-        # compile regex
-        for informable in informed_entity_res:
-            informed_entity_res[informable] = re.compile(informed_entity_res[informable])
-
-        def collect_nlu_example(human, bot, **kwargs):
-            """I just wanted to say that I'm baffled by python's flexibility, by allowing me to pass this function as an
-            argument to a function in a different module, yet preserving its namespace so that it could access objects
-            defined here only"""
-
-            def capture_entities():
-                """finds entities (relevant for the intent in 'act') in the text and saves the NLU example in examples
-                list. If no entities detected, saves the text under failed_examples['act'] list"""
-                entities = []
-                if act == 'request':
-                    value = REQUESTED_ENTITY_FLAG
-                elif act == 'inform':
-                    value = 'SAME'
-                elif act == 'inform_dontcare':
-                    value = 'SAME'
-                elif act == 'correct':
-                    pass
-                elif act == 'confirm':
-                    pass
-                elif act == 'query':
-                    pass
-                elif act == 'include_filter':
-                    pass
-                elif act == 'reqalts':
-                    pass
-                elif act == 'bye':
-                    pass
-                elif act == 'thankyou':
-                    pass
-                elif act == 'negate':
-                    pass
-                elif act == 'affirm':
-                    pass
-                elif act == 'deny':
-                    pass
-                elif act == 'ack':
-                    pass
-                else:
-                    raise ValueError('unknown user act: {} at conversation {}'.format(act, kwargs['story_path']))
-
-                if act in ['request', 'inform', 'inform_dontcare', 'correct', 'confirm', 'query', 'include_filter',
-                           'deny']:  # look for entities
-                    if act == 'request':  # only requested regex
-                        relevant_res = requested_entity_res
-                    elif act == 'query':
-                        relevant_res = {**requested_entity_res, **informed_entity_res}  # all regex are relevant
-                    else:  # only informed regex
-                        relevant_res = informed_entity_res
-                    for entity in relevant_res:
-                        match = relevant_res[entity].search(text)
-                        if match:
-                            if act == 'request':
-                                value = REQUESTED_ENTITY_FLAG
-                            else:
-                                value = text[match.start():match.end()]
-                                try:
-                                    if value not in self._requestables[entity]['values']:  # value must be a synonym
-                                        #value = None
-                                        for syn in self._entity_synonyms:
-                                            if syn['entity'] == entity or syn['entity'] == 'any':
-                                                if value in syn['synonyms']:
-                                                    value = syn['value']
-                                                    break
-                                        if value == text[match.start():match.end()]:  # value didn't change
-                                            raise ValueError('illegal value for entity "{}": {}'.format(entity, text[match.start():match.end()]))
-                                except KeyError:
-                                    print('failed sentence: "{}", with entity: "{}", value "{}", intent {}'.format(text, entity, value, act))
-                            entities.append({'start': match.start(), 'end': match.end(),
-                                            'value': value, 'entity': entity})
-                    if len(entities) == 0:
-                        failed_examples[act].append(text)
-                    else:
-                        examples.append({'text': text, 'intent': act, 'entities': entities})
-                else:  # no entities to look for
-                    examples.append({'text': text, 'intent': act, 'entities': []})
-
-            for bot_turn, human_turn in zip(bot['turns'], human['turns']):
-                human_semantics = get_user_intent(human_turn['semantics']['json'])
-                # bot_da = get_bot_da(bot_turn['output']['dialog-acts'])
-                if isinstance(human_semantics, dict):
-                    text = human_turn['transcription']
-                    act = human_semantics['act']
-                    capture_entities()
-
-        process_dstc2_files(process=collect_nlu_example, **kwargs)
-        print('done')
-        return examples, failed_examples
 
     def generate_dstc2_examples(self, **kwargs):
         """
@@ -360,7 +244,7 @@ class NLUExampleGenerator(object):
             requested_entity_res[requestable] = re.compile(requested_entity_res[requestable])
 
         # regex for informed entities
-        informed_entity_res = {informable: '|'.join(self._requestables[informable]['values'])
+        informed_entity_res = {informable: '|'.join(self._requestables[informable]['values'] + ['australian asian'])
                                for informable in self._requestables
                                if self._requestables[informable]['informable'] == True}
 
@@ -384,7 +268,7 @@ class NLUExampleGenerator(object):
                                if syn['value'] == 'dontcare')['synonyms'] + ['dontcare']
         dontcare_re = re.compile('|'.join(sorted(dontcare_values, key=lambda i: -len(i))))
 
-        def collect_nlu_example(human, bot, **kwargs):
+        def collect_nlu_example(human, bot):
             """I just wanted to say that I'm baffled by python's flexibility, by allowing me to pass this function as an
             argument to a function in a different module, yet preserving its namespace so that it could access objects
             defined here only"""
@@ -394,10 +278,10 @@ class NLUExampleGenerator(object):
                 if isinstance(curated_human_semantics, dict):
                     text = human_turn['transcription']
                     curated_act = curated_human_semantics['act']
-                    if text.find('noise') != -1:
+                    if _text_is_troublesome(text):
                         failed_examples[curated_act].append(
                             {'text': text, 'semantics': human_turn['semantics']['json']})
-                        continue  # we don't want unintelligible text. Plus, only 32 instances in tst, 47 in trn/dev
+                        continue
                     if curated_act in ['request', 'inform', 'inform_dontcare', 'correct', 'confirm', 'query',
                                        'include_filter', 'deny']:  # look for entities
                         entities = []
@@ -721,50 +605,15 @@ def generate_inform_examples(food_types, priceranges, areas):
                    }
 
 
-def generate_inform_dontcare_examples(food_types, priceranges, areas):
-    """
-    Generates example sentences of the inform_dontcare da in rasa json format, sampling sentence constructions from a
-    template and randomly choosing combinations of provided informable values
-    :param food_types: list of food types. Generated examples will use all values in this list
-    :param priceranges: list of price ranges. Generated examples will use all values in this list
-    :param areas: list of areas. Generated examples will use all values in this list
-    :return: an example in rasa json format:
-    {"text": str, "intent": "inform", entities: [{"start": int, "end": int, "value": str, "entity": str}]}
-    """
-    pattern = re.compile(next(rf for rf in regex_features if rf['name'] == 'dontcare')['pattern'])
-    dontcare_texts = pattern.pattern.split('|')
-    yield {"text": "i dont care",
-           "intent": "inform_dontcare",
-           "entities": []
-           }
-    things_you_dont_care_about = {'pricerange': ['price range', 'price'], 'area': ['area', 'location'],
-                                  'food': ['food type', 'food']}
-    for dontcare_informable in things_you_dont_care_about:
-        for dontcare_value in things_you_dont_care_about['dontcare_informable']:
-            text = 'i dont care about the ' + dontcare_value
-            match = pattern.search(text)
-            yield {"text": "i dont care",
-                   "intent": "inform_dontcare",
-                   "entities": [
-                       {"start": match.start(),
-                        "end": match.end(),
-                        "value": 'dontcare',
-                        "entity": dontcare_informable
-                        }
-                   ] if match is not None else []
-                   }
-
-
 if __name__ == '__main__':
-    nlu_generator = NLUExampleGenerator(ontology_file='data/trndev/dstc2/scripts/config/ontology_dstc2.json',
-                                        random_seed=42)
-    nlu_data, failed_examples = nlu_generator.generate_dstc2_examples(path_prefix='data/trndev/dstc2/data')
-    with open("dstc2_nlu_train.json", "w") as nlu_output:
+    nlu_generator = NLUExampleGenerator(ontology_file=DSTC2_ONTHOLOGY_FILE, random_seed=42)
+    nlu_data, failed_examples = nlu_generator.generate_dstc2_examples(path_prefix=DSTC2_TRN_DATA_PATH)
+    with open(RASA_TRAIN_PATH + "dstc2_nlu_train.json", "w") as nlu_output:
          json.dump(nlu_data, nlu_output, indent=2)
-    with open("dstc2_nlu_train_unparsable.json", 'w') as fails:
+    with open(RASA_TRAIN_PATH + "dstc2_nlu_train_unparsable.json", 'w') as fails:
         json.dump(failed_examples, fails, indent=2)
-    nlu_data, failed_examples = nlu_generator.generate_dstc2_examples(path_prefix='data/test/dstc2/data')
-    with open("dstc2_nlu_test.json", "w") as nlu_output:
+    nlu_data, failed_examples = nlu_generator.generate_dstc2_examples(path_prefix=DSTC2_TST_DATA_PATH)
+    with open(RASA_TST_PATH + "dstc2_nlu_test.json", "w") as nlu_output:
         json.dump(nlu_data, nlu_output, indent=2)
-    with open("dstc2_nlu_test_unparsable.json", 'w') as fails:
+    with open(RASA_TST_PATH + "dstc2_nlu_test_unparsable.json", 'w') as fails:
         json.dump(failed_examples, fails, indent=2)

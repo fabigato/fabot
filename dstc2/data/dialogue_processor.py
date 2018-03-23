@@ -3,7 +3,7 @@ from os.path import join
 from json import load as json_load
 import copy
 import logging
-from main import RASA_TRAIN_PATH, DSTC2_TRN_DATA_PATH, DSTCT2_TRN_LIST_FILE
+from main import RASA_TRAIN_PATH, DSTC2_TRN_DEV_DATA_PATH, DSTCT2_TRN_LIST_FILE
 
 logger = logging.getLogger(__name__)
 logging.basicConfig(level="DEBUG")
@@ -108,6 +108,7 @@ def get_bot_da(das):
     key. This comes from the log.json files, in log_turn['output']['dialog-acts'])
     :return: a str indicating the bot da
     """
+    das = copy.deepcopy(das)
     compressed_semantics = compress_semantics(das)
     acts = {da['act'] for da in compressed_semantics}
     if acts == {'welcomemsg'}:  # {welcomemsg} => WELCOME_ERROR
@@ -122,7 +123,8 @@ def get_bot_da(das):
         return 'utter_request_' + compressed_semantics[0]['slots'][0][1]
     elif acts == {'canthelp', 'canthelp.exception'}:  # {canthelp, canthelp.exception} => canthelp
         return 'canthelp'
-    elif acts == {'request', 'impl-conf'}:  # {request(informable), impl-conf} => request_informable_detailed
+    elif acts == {'request', 'impl-conf'} or acts == {'request', 'inform', 'impl-conf'}:
+        # {request(informable), impl-conf} => request_informable_detailed
         request = next(semantic for semantic in compressed_semantics if semantic['act'] == 'request')
         assert len(request['slots']) == 1, 'request bot da with more than one informable:  {}'. \
             format(compressed_semantics)
@@ -392,7 +394,7 @@ def produce_rasa_file(files_list=None, path_prefix='', only_success=False,
 
 if __name__ == '__main__':
     produce_rasa_file(files_list=DSTCT2_TRN_LIST_FILE,
-                      path_prefix=DSTC2_TRN_DATA_PATH, only_success=True,
+                      path_prefix=DSTC2_TRN_DEV_DATA_PATH, only_success=True,
                       output_file=RASA_TRAIN_PATH + 'stories.md')
     # produce_rasa_file(
     #                   path_prefix='data/test/dstc2/data/', only_success=True,

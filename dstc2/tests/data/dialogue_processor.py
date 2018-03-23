@@ -1,8 +1,8 @@
 from unittest import TestCase
 import data.dialogue_processor as processor
 from json import load as json_load
-from main import DSTC2_TRN_DATA_PATH
-
+from main import DSTC2_TRN_DEV_DATA_PATH, DSTC2_TST_DATA_PATH
+import re
 
 
 
@@ -109,11 +109,61 @@ class TestDialogueProcessor(TestCase):
         # check Mar13_S1A1/voip-d645d56d23-20130401_204424, starts with noise, then it should ignore that and delete the
         # following bot question
         for test in tests:
-            with open(DSTC2_TRN_DATA_PATH + test['file'] + 'label.json', 'r') as label, \
-                 open(DSTC2_TRN_DATA_PATH + test['file'] + 'log.json', 'r') as log:
+            with open(DSTC2_TRN_DEV_DATA_PATH + test['file'] + 'label.json', 'r') as label, \
+                 open(DSTC2_TRN_DEV_DATA_PATH + test['file'] + 'log.json', 'r') as log:
                 human_dic, bot_dic = json_load(label), json_load(log)
                 story = processor._make_story(human_dic, bot_dic)
                 self.assertEqual(story, test['label'])
+
+    def test_all_da_values(self):
+        from collections import Counter, defaultdict
+        da_examples = defaultdict(list)
+        das = ['expl-conf', 'select', 'request_area_detailed']
+
+        def collect_da_examples(human, bot, **kwargs):
+            for bot_turn, human_turn in zip(bot['turns'], human['turns']):
+                bot_da = processor.get_bot_da(bot_turn['output']['dialog-acts'])
+                for da_of_interest in das:
+                    if bot_da == da_of_interest:
+                        da_examples[da_of_interest].append(bot_turn['output']['transcript'])
+        processor.process_dstc2_files(process=collect_da_examples, path_prefix=DSTC2_TST_DATA_PATH)
+        for da in da_examples:
+            da_examples[da] = Counter(da_examples[da])
+        res = {
+            'expl-conf': [
+                'You are looking for a restaurant serving any kind of food right?',
+                'You are looking for a (\w+_?\s?)+ restaurant right?',
+                'Did you say you are looking for a restaurant in the \w+ of town?',
+                'Let me confirm , You are looking for a restaurant in the \w+ price range right?',
+                'Let me confirm , You are looking for a restaurant and you dont care about the price range right?',
+                'Ok , a restaurant in any part of town is that right?'
+            ],
+            'select': [
+                'Sorry would you like something in the w+ or in the \w+',
+                'Sorry would you like (\w+_?\s?)+ or (\w+_?\s?)+ food',
+                'Sorry would you like (\w+_?\s?)+ food or you dont care',
+                'Sorry would you like the \w+ of town or you dont care',
+                'Sorry would you like something in the \w+ price range or in the \w+ price range',
+                'Sorry would you like something in the \w+ price range or you dont care',
+                'Sorry would you like something in the \w+ or in the \w+'
+            ],
+            'request_area_detailed': [
+                'There are  restaurants serving (\w+_?\s?)+ food . What area do you want?',
+                'There are  restaurants serving (\w+_?\s?)+ in the \w+ price range . What area would you like?',
+                'There are \d+ restaurants serving (\w+_?\s?)+ in the \w+ price range . What area would you like?',
+                'There are \d+ restaurants serving (\w+_?\s?)+ food . What area do you want?',
+                'There are \d+ restaurants if you don\'t care about the food . What area do you want?',
+                'There are \d+ restaurants serving (\w+_?\s?)+ in any price range. What area would you like?',
+                'There are \d+ restaurants in the \w+ price range . What area do you want?'
+            ]
+        }
+        for da in res:
+            res[da] = [re.compile(pattern) for pattern in res[da]]
+        for da in da_examples:
+            for utterance in da_examples[da]:
+                matches = [pattern.match(utterance) for pattern in res[da]]
+                if not any(matches):
+                    print('troublesome {}: {}'.format(da, utterance))
 
     def test_misc_dstc2_cases_checker(self):
         from collections import Counter

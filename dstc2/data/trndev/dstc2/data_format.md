@@ -45,25 +45,26 @@ impl-conf => request
 ### bot multi-intents:
 
 ### all observed bot act combinations
-|  Act Combination             | trn |dev |  Special handling                                                                                                   |
-|------------------------------|-----|----|---------------------------------------------------------------------------------------------------------------------|
-|welcomemsg                    | 1504|457 | useless, should be deleted from stories                                                                             |
-|canthelp                      | 935 |284 | say can't help, listing all the slots provided so far. Map to canthelp                                              |
-|offer,inform x2               | 1669|476 | offer option (always by name) and mention every filter used, or provides requested field. Map to offer_detailed     |
-|reqmore                       | 44  |19  | Map to reqmore                                                                                                      |
-|offer,inform                  | 3154|1013| same as offer,inform x2                                                                                             |
-|request                       | 1494|460 | request value for slot (only 1 slot). One da per informable slot except name(i.e. 3)                                |
-|expl-conf                     | 358 |136 | confirm informable slot. Keep latest filled slot as tracker topic. Map to expl-conf                                 |
-|select,select                 | 90  |25  | offer user several values to pick for slot. Slot and values random. Map to select                                   |
-|confirm-domain                | 60  |16  | ask if user wants a restaurant. Useless but tested in bAbI. Map to confirm-domain                                   |
-|offer,inform x3               | 208 |59  | same as offer,inform x2                                                                                             |
-|offer                         | 356 |120 | offer restaurant by name. Map to offer                                                                              |
-|canthelp,canthelp.exception x2| 9   |3   | same as canthelp (the exceptions have no effect on the output)                                                      |
-|repeat                        | 6   |8   | ask user to repeat. Useless, should be deleted. NLU can send repeat signal if needed                                |
-|canthelp,canthelp.exception   | 15  |5   | same as canthelp                                                                                                    |
-|request,impl-conf x2          | 4   |2   | affirm options available with given slots, request new slot. Map to a request_detailed da per informable except name|
-|request,impl-conf             | 3   |0   | same as request,impl-conf x2                                                                                        |
-|canthelp,canthelp.exception x3| 1   |0   | same as canthelp                                                                                                    |
+|  Act Combination             | trn |dev | tst |  Special handling                                                                                                   |
+|------------------------------|-----|----|-----|---------------------------------------------------------------------------------------------------------------------|
+|welcomemsg                    | 1504|457 |     | useless, should be deleted from stories                                                                             |
+|canthelp                      | 935 |284 |     | say can't help, listing all the slots provided so far. Map to canthelp                                              |
+|offer,inform x2               | 1669|476 |     | offer option (always by name) and mention every filter used, or provides requested field. Map to offer_detailed     |
+|reqmore                       | 44  |19  |     | Map to reqmore                                                                                                      |
+|offer,inform                  | 3154|1013|     | same as offer,inform x2                                                                                             |
+|request                       | 1494|460 |     | request value for slot (only 1 slot). One da per informable slot except name(i.e. 3)                                |
+|expl-conf                     | 358 |136 |     | confirm informable slot. Keep latest filled slot as tracker topic. Map to expl-conf                                 |
+|select,select                 | 90  |25  |  0  | offer user several values to pick for slot. Slot and values random. Map to select                                   |
+|confirm-domain                | 60  |16  |     | ask if user wants a restaurant. Useless but tested in bAbI. Map to confirm-domain                                   |
+|offer,inform x3               | 208 |59  |     | same as offer,inform x2                                                                                             |
+|offer                         | 356 |120 |     | offer restaurant by name. Map to offer                                                                              |
+|canthelp,canthelp.exception x2| 9   |3   |     | same as canthelp (the exceptions have no effect on the output)                                                      |
+|repeat                        | 6   |8   |     | ask user to repeat. Useless, should be deleted. NLU can send repeat signal if needed                                |
+|canthelp,canthelp.exception   | 15  |5   |     | same as canthelp                                                                                                    |
+|request,impl-conf x2          | 4   |2   |     | affirm options available with given slots, request new slot. Map to a request_detailed da per informable except name|
+|request,impl-conf             | 3   |0   |     | same as request,impl-conf x2                                                                                        |
+|canthelp,canthelp.exception x3| 1   |0   |     | same as canthelp                                                                                                    |
+|request, impl-conf, inform    | 0   |0   | 998 | same as request,impl-conf                                                                      |
 
 ## user acts
 | Act              | Definition                     | Example                                                                                                                                   |

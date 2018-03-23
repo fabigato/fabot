@@ -6,7 +6,7 @@ from numpy import random
 from collections import defaultdict
 import logging
 from data.dialogue_processor import REQUESTED_ENTITY_FLAG, process_dstc2_files, get_user_intent
-from main import DSTC2_TRN_DATA_PATH, RASA_TRAIN_PATH, RASA_TST_PATH, DSTC2_TST_DATA_PATH, DSTC2_ONTHOLOGY_FILE
+from main import DSTC2_TRN_DEV_DATA_PATH, RASA_TRAIN_PATH, RASA_TST_PATH, DSTC2_TST_DATA_PATH, DSTC2_ONTOLOGY_FILE
 
 logger = logging.getLogger(__name__)
 logging.basicConfig(level="DEBUG")
@@ -268,7 +268,7 @@ class NLUExampleGenerator(object):
                                if syn['value'] == 'dontcare')['synonyms'] + ['dontcare']
         dontcare_re = re.compile('|'.join(sorted(dontcare_values, key=lambda i: -len(i))))
 
-        def collect_nlu_example(human, bot):
+        def collect_nlu_example(human, bot, **kwargs):
             """I just wanted to say that I'm baffled by python's flexibility, by allowing me to pass this function as an
             argument to a function in a different module, yet preserving its namespace so that it could access objects
             defined here only"""
@@ -606,8 +606,8 @@ def generate_inform_examples(food_types, priceranges, areas):
 
 
 if __name__ == '__main__':
-    nlu_generator = NLUExampleGenerator(ontology_file=DSTC2_ONTHOLOGY_FILE, random_seed=42)
-    nlu_data, failed_examples = nlu_generator.generate_dstc2_examples(path_prefix=DSTC2_TRN_DATA_PATH)
+    nlu_generator = NLUExampleGenerator(ontology_file=DSTC2_ONTOLOGY_FILE, random_seed=42)
+    nlu_data, failed_examples = nlu_generator.generate_dstc2_examples(path_prefix=DSTC2_TRN_DEV_DATA_PATH)
     with open(RASA_TRAIN_PATH + "dstc2_nlu_train.json", "w") as nlu_output:
          json.dump(nlu_data, nlu_output, indent=2)
     with open(RASA_TRAIN_PATH + "dstc2_nlu_train_unparsable.json", 'w') as fails:

@@ -19,6 +19,8 @@ slots:
     type: unfeaturized
   last_offer_index:
     type: unfeaturized
+  current_slot:
+    type: unfeaturized
 
 entities:
 - address

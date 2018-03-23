@@ -4,6 +4,8 @@ import pandas as pd
 BABI2FABOT_SLOT = {b: f for b, f in zip(['R_cuisine', 'R_location', 'R_price', 'R_address', 'R_phone', 'R_post_code'],
                                         ['food', 'area', 'pricerange', 'address', 'phone', 'postcode'])}
 
+NOT_PREFIX = 'NOT|||'
+
 
 class BabiDB(object):
 
@@ -20,16 +22,6 @@ class BabiDB(object):
                 if BABI2FABOT_SLOT[var] not in data:
                     data[BABI2FABOT_SLOT[var]] = None
             self.restaurants = self.restaurants.append({'name': restaurant, **data}, ignore_index=True)
-        self.latest_results = None  # tmp storage to keep results of latest query, to iterate over them if user wants
-        self.last_offered_index = None  # when this = len(latest_results), we know options were exhausted
-
-    def _update_latest_search_results(self, results):
-        """updates the latest results so that it can be referenced later upon user request"""
-        if len(results) > 0:
-            self.latest_results, self.latest_results = results, 0
-        else:
-            self.latest_results, self.latest_results = None, None
-        return results
 
     def find_restaurant(self, **kwargs):
         """
@@ -40,5 +32,11 @@ class BabiDB(object):
         """
         result = self.restaurants
         for var, value in kwargs.items():  # go through each condition
-            result = result[result[var] == value]
-        return self._update_latest_search_results(result)
+            if value.startswith(NOT_PREFIX):  # search all but those with this value
+                result = result[result[var] != value]
+            else:
+                result = result[result[var].str.contains(value)] if var == 'name' else result[result[var] == value]
+        return result
+
+    def num_results(self, **kwargs):
+        return len(self.find_restaurant(**kwargs))

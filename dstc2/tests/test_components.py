@@ -2,7 +2,7 @@ from unittest import TestCase
 from main import RASA_TRAIN_PATH, NLU_TRAIN_CONFIG_FILE, NLU_MODEL_PATH, NLU_TEST_CONFIG_FILE
 
 
-class TestBot(TestCase):
+class TestNLU(TestCase):
 
     def test_nlu_with_train(self):
         from rasa_nlu.converters import load_data

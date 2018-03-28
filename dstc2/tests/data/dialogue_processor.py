@@ -118,7 +118,7 @@ class TestDialogueProcessor(TestCase):
     def test_all_da_values(self):
         from collections import Counter, defaultdict
         da_examples = defaultdict(list)
-        das = ['expl-conf', 'select', 'request_area_detailed']
+        das = ['request_pricerange_detailed', 'request_food_detailed', 'expl-conf', 'select', 'request_area_detailed']
 
         def collect_da_examples(human, bot, **kwargs):
             for bot_turn, human_turn in zip(bot['turns'], human['turns']):
@@ -126,13 +126,32 @@ class TestDialogueProcessor(TestCase):
                 for da_of_interest in das:
                     if bot_da == da_of_interest:
                         da_examples[da_of_interest].append(bot_turn['output']['transcript'])
-        processor.process_dstc2_files(process=collect_da_examples, path_prefix=DSTC2_TST_DATA_PATH)
+        processor.process_dstc2_files(process=collect_da_examples, path_prefix=DSTC2_TRN_DEV_DATA_PATH)
         for da in da_examples:
             da_examples[da] = Counter(da_examples[da])
         res = {
+            'request_pricerange_detailed': [
+                'There are \d+ restaurants serving [\w ]+ in the \w+ of town . What price range would you like?',  #
+                'There are \d+ restaurants serving [\w ]+ food in any part of town . What price range would you'
+                ' like?',  #
+                'There are \d+ restaurants if you don\'t care about the area or the type of food . What price range '
+                'would you like?',  #
+                'There are \d+ restaurants in the \w+ of town serving any kind of food . What price range would you '
+                'like?',  #
+                'There are \d+ restaurants serving [\w ]+ food . What price range do you want?',  #
+                'There are \d+ restaurants in all parts of town . What type of pricerange do you want?',  #
+                'There are \d+ restaurants if you don\'t care about the food . What price range do you want?'  #
+            ],
+            'request_food_detailed': [
+                'There are \d+ restaurants in the \w+ price range and the \w+ of town . What type of food would you '
+                'like?',  #
+                'There are \d+ restaurants in the \w+ of town . What type of food do you want?',  #
+                'There are \d+ restaurants in the \w+ price range . What type of food do you want?',  #
+                'There are \d+ restaurants in all parts of town . What type of food do you want?'  #
+            ],
             'expl-conf': [
                 'You are looking for a restaurant serving any kind of food right?',
-                'You are looking for a (\w+_?\s?)+ restaurant right?',
+                'You are looking for a [\w ]+ restaurant right?',
                 'Did you say you are looking for a restaurant in the \w+ of town?',
                 'Let me confirm , You are looking for a restaurant in the \w+ price range right?',
                 'Let me confirm , You are looking for a restaurant and you dont care about the price range right?',
@@ -140,20 +159,20 @@ class TestDialogueProcessor(TestCase):
             ],
             'select': [
                 'Sorry would you like something in the w+ or in the \w+',
-                'Sorry would you like (\w+_?\s?)+ or (\w+_?\s?)+ food',
-                'Sorry would you like (\w+_?\s?)+ food or you dont care',
+                'Sorry would you like [\w ]+ or [\w ]+ food',
+                'Sorry would you like [\w ]+ food or you dont care',
                 'Sorry would you like the \w+ of town or you dont care',
                 'Sorry would you like something in the \w+ price range or in the \w+ price range',
                 'Sorry would you like something in the \w+ price range or you dont care',
                 'Sorry would you like something in the \w+ or in the \w+'
             ],
             'request_area_detailed': [
-                'There are  restaurants serving (\w+_?\s?)+ food . What area do you want?',
-                'There are  restaurants serving (\w+_?\s?)+ in the \w+ price range . What area would you like?',
-                'There are \d+ restaurants serving (\w+_?\s?)+ in the \w+ price range . What area would you like?',
-                'There are \d+ restaurants serving (\w+_?\s?)+ food . What area do you want?',
+                'There are  restaurants serving [\w ]+ food . What area do you want?',
+                'There are  restaurants serving [\w ]+ in the \w+ price range . What area would you like?',
+                'There are \d+ restaurants serving [\w ]+ in the \w+ price range . What area would you like?',
+                'There are \d+ restaurants serving [\w ]+ food . What area do you want?',
                 'There are \d+ restaurants if you don\'t care about the food . What area do you want?',
-                'There are \d+ restaurants serving (\w+_?\s?)+ in any price range. What area would you like?',
+                'There are \d+ restaurants serving [\w ]+ in any price range. What area would you like?',
                 'There are \d+ restaurants in the \w+ price range . What area do you want?'
             ]
         }

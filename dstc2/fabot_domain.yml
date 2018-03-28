@@ -55,30 +55,12 @@ templates:
     - "What kind of food would you like?"
   utter_request_area:
     - text: "in which area?"
-      buttons:
-        - title: "north"
-          payload: "/inform{\"area\": \"north\"}"
-        - title: "west"
-          payload: "/inform{\"area\": \"west\"}"
-        - title: "south"
-          payload: "/inform{\"area\": \"south\"}"
-        - title: "east"
-          payload: "/inform{\"area\": \"east\"}"
-        - title: "center"
-          payload: "/inform{\"area\": \"center\"}"
   utter_request_pricerange:
     - text: "Would you like something in the cheap , moderate , or expensive price range?"
-      buttons:
-        - title: "cheap"
-          payload: "/inform{\"pricerange\": \"cheap\"}"
-        - title: "moderate"
-          payload: "/inform{\"pricerange\": \"moderate\"}"
-        - title: "expensive"
-          payload: "/inform{\"pricerange\": \"expensive\"}"
   utter_confirm-domain:
     - "You are looking for a restaurant is that right?"
   utter_bye:
-    - "you are welcome"
+    - " you are welcome"
 
 actions:
 - fabot.actions.ActionCantHelp

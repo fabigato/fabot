@@ -7,6 +7,6 @@
     "ner_crf",
     "ner_synonyms"
   ],
-  "path" : "../../models/nlu",
-  "data" : "../../data/test/rasa/dstc2_nlu_test.json"
+  "path" : "models/nlu",
+  "data" : "data/test/rasa/dstc2_nlu_test.json"
 }

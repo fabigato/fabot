@@ -1,6 +1,16 @@
-from main import BABI_PATH
-from os.path import join
 from copy import deepcopy
+from data.database import BABI_MESSAGES
+import re
+from rasa_core.interpreter import RasaNLUInterpreter
+from rasa_core.agent import Agent
+from rasa_core.channels.direct import CollectingOutputChannel
+from rasa_core.channels import UserMessage
+from rasa_core.events import Restarted
+import json
+import progressbar
+
+for da in BABI_MESSAGES:
+    BABI_MESSAGES[da] = [re.compile(pattern) for pattern in BABI_MESSAGES[da]]
 
 
 def babi_dialogue_iterator(babi_filename):
@@ -29,8 +39,8 @@ def babi_dialogue_iterator(babi_filename):
 
 class BabiComparator(object):
 
-    @staticmethod
-    def story_cleaner(story):
+    @classmethod
+    def story_cleaner(cls, story):
         """
         Cleans a story. Must be overriden by child class
         :param story: story to clean, as an ordered iterable of dictionaries with 'human' and 'bot' keys
@@ -38,8 +48,8 @@ class BabiComparator(object):
         """
         raise NotImplementedError
 
-    @staticmethod
-    def sentence_match(target, prediction):
+    @classmethod
+    def sentence_match(cls, target, prediction):
         """
         Determines if two bot sentences are equivalent. Since bAbI bot replies are not completely deterministic, it
         may be preferable to infer the dialogue act from grammar hints
@@ -49,11 +59,45 @@ class BabiComparator(object):
         """
         raise NotImplementedError
 
+    @classmethod
+    def test_bot(cls, test_conversation_filename, nlu_model_path, dialogue_model_path, output_filename=None):
+        import numpy as np
+        np.random.seed(42)
+        interpreter = RasaNLUInterpreter(nlu_model_path)
+        agent = Agent.load(dialogue_model_path, interpreter=interpreter)
+        results = []
+        counter = 0
+        output_channel = CollectingOutputChannel()
+        bar = progressbar.ProgressBar(max_value=1117)
+        for story in bar(babi_dialogue_iterator(test_conversation_filename)):
+            counter += 1
+            conversation = []
+            clean_story = cls.story_cleaner(story)
+            output_channel.messages.clear()
+            for human_says in [turn['human'] for turn in clean_story]:
+                bot_said = agent.handle_message(human_says, output_channel=output_channel)
+            tracker = agent.tracker_store.get_or_create_tracker(UserMessage.DEFAULT_SENDER_ID)
+            tracker.update(Restarted())
+            agent.tracker_store.save(tracker)
+            # agent = Agent.load(dialogue_model_path, interpreter=interpreter)
+            for human, target, actual in zip([turn['human'] for turn in clean_story],
+                                             [turn['bot'] for turn in clean_story],
+                                             bot_said):
+                match = cls.sentence_match(target, actual)
+                conversation.append({'human': human, 'bot': actual, 'target': target, 'match': match})
+            results.append(conversation)
+            if counter == 100:
+                break
+            if output_filename:
+                with open(output_filename, 'w') as result_output:
+                    json.dump(results, result_output, indent=2)
+        return results
+
 
 class BabiComparatorBasic(BabiComparator):
 
-    @staticmethod
-    def story_cleaner(story):
+    @classmethod
+    def story_cleaner(cls, story):
         """
         Basic story cleaner.
         -removes first (<SILENCE> - Welcome) pair
@@ -79,11 +123,15 @@ class BabiComparatorBasic(BabiComparator):
 
         return cleaned_story
 
-    @staticmethod
-    def sentence_match(target, prediction):
-        pass#if target
-
-
-if __name__ == '__main__':
-    for story in babi_dialogue_iterator(join(BABI_PATH, 'dialog-babi-task6-dstc2-tst.txt')):
-        cleaned = BabiComparatorBasic.story_cleaner(story)
+    @classmethod
+    def sentence_match(cls, target, prediction):
+        for da in BABI_MESSAGES:
+            for pattern in BABI_MESSAGES[da]:
+                match_target = pattern.match(target)
+                if match_target:
+                    for other_pattern in BABI_MESSAGES[da]:
+                        match_pred = other_pattern.match(prediction)
+                        if match_pred:
+                            return True
+                    return False
+        raise ValueError('No template could match target: {}'.format(target))

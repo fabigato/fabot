@@ -223,8 +223,6 @@ def get_user_intent(semantics):
     """basic sanity checks that can only be done after the user da was produced"""
     for j, semantic in enumerate(compressed_semantics):
         for i, (slot_name, slot_value) in enumerate(semantic['slots']):
-            # if slot_name == 'this' or slot_name == 'slot':  # those should never make this far, unless wrong transcript
-            #    compressed_semantics[j]['slots'].pop(i)
             if slot_name == 'addr':  # our entity is called address, not addr
                 compressed_semantics[j]['slots'][i][0] = 'address'
     if acts == {'hello'}:  # {hello} => HELLO_ERROR
@@ -253,6 +251,8 @@ def get_user_intent(semantics):
         result['slots'] += requestables
         return result
     elif acts == {'affirm', 'inform'}:  # {affirm, inform(*informables)} => {include_filter(*informables)}
+        for sem in compressed_semantics:
+            sem['slots'] = [slot for slot in sem['slots'] if 'this' not in slot]
         return change_and_filter(compressed_semantics, oldname='inform', newname='include_filter')
     elif acts == {'negate', 'reqalts'}:  # {negate, reqalts} => {reqalts}
         return {'act': 'reqalts', 'slots': []}

@@ -57,8 +57,8 @@ def train_dialogue(domain_file=DOMAIN_FILE,
                    model_path=DIALOGUE_MODEL_PATH,
                    training_data_file=RASA_TRAIN_PATH + 'stories.md'):
     agent = Agent(domain_file,
-                  # policies=[MemoizationPolicy(), KerasPolicy()])
-                  policies=[KerasPolicy()])
+                  policies=[MemoizationPolicy(), KerasPolicy()])
+                  # policies=[KerasPolicy()])
 
     agent.train(
             training_data_file,

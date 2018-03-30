@@ -13,6 +13,8 @@ slots:
     type: unfeaturized
   test_list:
     type: list
+  phone:
+    type: text
 
 entities:
 - location

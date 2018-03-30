@@ -69,7 +69,6 @@ BABI_MESSAGES = {
         'Let me confirm , You are looking for a restaurant and you dont care about the price range right?',
         'You are looking for a restaurant serving any kind of food right?',
         'You are looking for a [\w ]+ restaurant right?',
-        'Let me confirm , You are looking for a restaurant and you dont care about the price range right?',
         'Let me confirm , You are looking for a restaurant in the \w+ price range right?',
         'Ok , a restaurant in any part of town is that right?',
         'Did you say you are looking for a restaurant in the \w+ of town?'

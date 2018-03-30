@@ -103,13 +103,14 @@ ENV/
 .idea/
 restaurant/*.log
 
-/dstc2/data/stories.md.bak*
 /restaurant/*
 /misc_utils/*
-/dstc2/data/trndev/dialog-bAbI-tasks/*
-/dstc2/data/trndev/dstc2/data/*
-/dstc2/data/trndev/dstc2/scripts/*
+/*/data/trndev/dialog-bAbI-tasks/
+/*/data/test/dialog-bAbI-tasks/
+/*/data/trndev/dstc2/data/
+/*/data/trndev/dstc2/scripts/
 /dstc2/data/trndev/dstc2/handbook.pdf
 /dstc2/data/trndev/dstc2/problematic.txt
-/dstc2/data/test/dstc2/*
-/dstc2/models/
+/*/data/test/dstc2/
+/*/models/
+/dstc2/tests/resutls1.txt

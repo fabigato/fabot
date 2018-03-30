@@ -1,0 +1,79 @@
+slots:
+  address:
+    type: text
+  area:
+    type: text
+  food:
+    type: text
+  phone:
+    type: text
+  pricerange:
+    type: text
+  postcode:
+    type: text
+  signature:
+    type: text
+  name:
+    type: unfeaturized
+  results:
+    type: unfeaturized
+  last_offer_index:
+    type: unfeaturized
+  current_slot:
+    type: unfeaturized
+
+entities:
+- address
+- area
+- food
+- phone
+- pricerange
+- postcode
+- signature
+- name
+
+intents:
+ - request
+ - confirm
+ - inform
+ - reqalts
+ - bye
+ - inform_dontcare
+ - thankyou
+ - negate
+ - affirm
+ - correct
+ - query
+ - include_filter
+ - deny
+ - ack
+
+templates:
+  utter_reqmore:
+    - "Can I help you with anything else?"
+  utter_request_food:
+    - "What kind of food would you like?"
+  utter_request_area:
+    - text: "in which area?"
+  utter_request_pricerange:
+    - text: "Would you like something in the cheap , moderate , or expensive price range?"
+  utter_confirm-domain:
+    - "You are looking for a restaurant is that right?"
+  utter_bye:
+    - " you are welcome"
+
+actions:
+- fabot.actions.ActionCantHelp
+- fabot.actions.ActionOfferDetailed
+- utter_reqmore
+- utter_request_food
+- utter_request_area
+- utter_request_pricerange
+- fabot.actions.ActionExplConf
+- fabot.actions.ActionSelect
+- utter_confirm-domain
+- fabot.actions.ActionOffer
+- fabot.actions.ActionRequestFoodDetailed
+- fabot.actions.ActionRequestPricerangeDetailed
+- fabot.actions.ActionRequestAreaDetailed
+- utter_bye

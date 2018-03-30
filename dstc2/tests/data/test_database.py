@@ -8,7 +8,7 @@ import re
 class TestDatabase(TestCase):
     def test_find_restaurant(self):
         db = BabiDB(join(BABI_PATH, 'dialog-babi-task6-dstc2-kb.txt'))
-        results = db.find_restaurant(food='british', pricerange='cheap')
+        results = db.find_restaurant(food='persian', area='north')
         print(results.iloc[0]['name'])
 
     def test_babi_messages(self):

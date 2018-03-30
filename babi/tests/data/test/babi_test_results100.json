@@ -1,0 +1,4466 @@
+[
+  [
+    {
+      "human": "persian restaurant in the north part of town",
+      "bot": "Did you say you are looking for a restaurant in the north of town?",
+      "target": "I'm sorry but there is no restaurant serving persian food",
+      "match": false
+    },
+    {
+      "human": "chinese food",
+      "bot": "You are looking for a chinese restaurant right?",
+      "target": "Did you say you are looking for a restaurant in the north of town?",
+      "match": true
+    },
+    {
+      "human": "yes",
+      "bot": "Sorry would you like something in the expensive price range or in the cheap price range",
+      "target": "There are restaurants serving chinese in the north of town . What price range would you like?",
+      "match": false
+    },
+    {
+      "human": "any",
+      "bot": "how about restaurant sesame_restaurant_and_bar?",
+      "target": "the_hotpot is a nice place in the north of town serving tasty chinese food",
+      "match": false
+    },
+    {
+      "human": "phone number",
+      "bot": "The phone number of sesame_restaurant_and_bar is sesame_restaurant_and_bar_phone",
+      "target": "golden_wok is a great restaurant",
+      "match": false
+    },
+    {
+      "human": "phone number",
+      "bot": "The phone number of sesame_restaurant_and_bar is sesame_restaurant_and_bar_phone",
+      "target": "The phone number of golden_wok is golden_wok_phone",
+      "match": true
+    },
+    {
+      "human": "thank you good bye",
+      "bot": " you are welcome",
+      "target": " you are welcome",
+      "match": true
+    }
+  ],
+  [
+    {
+      "human": "cheap restaurant in th east part of town",
+      "bot": "the_missing_sock is a nice place in the east of town and the prices are cheap",
+      "target": "the_missing_sock is a nice place in the east of town and the prices are cheap",
+      "match": true
+    },
+    {
+      "human": "address",
+      "bot": "Sure , the_missing_sock is on the_missing_sock_address",
+      "target": "Sure , the_missing_sock is on the_missing_sock_address",
+      "match": true
+    },
+    {
+      "human": "phone number",
+      "bot": "The phone number of the_missing_sock is the_missing_sock_phone",
+      "target": "The phone number of the_missing_sock is the_missing_sock_phone",
+      "match": true
+    },
+    {
+      "human": "thank you good bye",
+      "bot": " you are welcome",
+      "target": " you are welcome",
+      "match": true
+    }
+  ],
+  [
+    {
+      "human": "expensive australian restaurant",
+      "bot": "in which area?",
+      "target": "You are looking for a australian restaurant right?",
+      "match": false
+    },
+    {
+      "human": "yes",
+      "bot": "I'm sorry but there is no restaurant serving expensive australian food",
+      "target": "I'm sorry but there is no restaurant serving australian food",
+      "match": true
+    },
+    {
+      "human": "expensive french restaurant",
+      "bot": "how about restaurant cote?",
+      "target": "You are looking for a australian restaurant right?",
+      "match": false
+    },
+    {
+      "human": "french",
+      "bot": "You are looking for a restaurant is that right?",
+      "target": "There are restaurants serving french in the expensive price range . What area would you like?",
+      "match": false
+    },
+    {
+      "human": "any",
+      "bot": "how about restaurant cote?",
+      "target": "cote serves french food in the expensive price range",
+      "match": false
+    },
+    {
+      "human": "phone number",
+      "bot": "The phone number of cote is cote_phone",
+      "target": "cote is a great restaurant",
+      "match": false
+    },
+    {
+      "human": "phone number",
+      "bot": "The phone number of cote is cote_phone",
+      "target": "The phone number of cote is cote_phone",
+      "match": true
+    },
+    {
+      "human": "thank you good bye",
+      "bot": " you are welcome",
+      "target": " you are welcome",
+      "match": true
+    }
+  ],
+  [
+    {
+      "human": "i dont care in the north part of town",
+      "bot": "how about restaurant the_hotpot?",
+      "target": "There are restaurants in the north of town serving any kind of food . What price range would you like?",
+      "match": false
+    },
+    {
+      "human": "cheap",
+      "bot": "da_vinci_pizzeria is a nice place in the north of town and the prices are cheap",
+      "target": "royal_spice is a nice place in the north of town and the prices are cheap",
+      "match": true
+    },
+    {
+      "human": "can i have the phone number and address",
+      "bot": "Sure , da_vinci_pizzeria is on da_vinci_pizzeria_address. The phone number of da_vinci_pizzeria is da_vinci_pizzeria_phone",
+      "target": "The phone number of royal_spice is royal_spice_phone",
+      "match": true
+    },
+    {
+      "human": "can i have the address",
+      "bot": "Sure , da_vinci_pizzeria is on da_vinci_pizzeria_address",
+      "target": "Sure , royal_spice is on royal_spice_address",
+      "match": true
+    },
+    {
+      "human": "thank you good bye",
+      "bot": " you are welcome",
+      "target": " you are welcome",
+      "match": true
+    }
+  ],
+  [
+    {
+      "human": "im looking for a cheap restaurant in the south part of town",
+      "bot": "the_lucky_star is a nice place in the south of town and the prices are cheap",
+      "target": "There are restaurants in the cheap price range and the south of town . What type of food would you like?",
+      "match": false
+    },
+    {
+      "human": "i dont care",
+      "bot": " you are welcome",
+      "target": "nandos is a nice place in the south of town and the prices are cheap",
+      "match": false
+    },
+    {
+      "human": "what else is there",
+      "bot": "I am sorry but there is no other restaurant that matches your request",
+      "target": "the_lucky_star is a great restaurant",
+      "match": false
+    },
+    {
+      "human": "anything else",
+      "bot": "I am sorry but there is no other restaurant that matches your request",
+      "target": "The post code of the_lucky_star is the_lucky_star_post_code",
+      "match": false
+    },
+    {
+      "human": "is there anything else",
+      "bot": "I am sorry but there is no other restaurant that matches your request",
+      "target": "Sorry but there is no other restaurant in the cheap price range and the south of town",
+      "match": false
+    },
+    {
+      "human": "can i have the phone number",
+      "bot": "The phone number of the_lucky_star is the_lucky_star_phone",
+      "target": "The phone number of the_lucky_star is the_lucky_star_phone",
+      "match": true
+    },
+    {
+      "human": "what type of food is it",
+      "bot": "the_lucky_star serves chinese food",
+      "target": " you are welcome",
+      "match": false
+    }
+  ],
+  [
+    {
+      "human": "north part of town fast food",
+      "bot": "What kind of food would you like?",
+      "target": "I'm sorry but there is no restaurant serving basque food",
+      "match": false
+    },
+    {
+      "human": "asian_oriental food",
+      "bot": "saigon_city is a nice place in the north of town serving tasty asian_oriental food",
+      "target": "There are restaurants serving asian_oriental food . What area do you want?",
+      "match": false
+    },
+    {
+      "human": "any",
+      "bot": "how about restaurant j_restaurant?",
+      "target": "Ok , a restaurant in any part of town is that right?",
+      "match": false
+    },
+    {
+      "human": "no north",
+      "bot": "saigon_city is a nice place in the north of town serving tasty asian_oriental food",
+      "target": "Would you like something in the cheap , moderate , or expensive price range?",
+      "match": false
+    },
+    {
+      "human": "any",
+      "bot": "how about restaurant j_restaurant?",
+      "target": "dojo_noodle_bar serves asian_oriental food",
+      "match": false
+    },
+    {
+      "human": "address phone number",
+      "bot": "Sure , j_restaurant is on j_restaurant_address. The phone number of j_restaurant is j_restaurant_phone",
+      "target": "The phone number of dojo_noodle_bar is dojo_noodle_bar_phone",
+      "match": true
+    },
+    {
+      "human": "thank you good bye",
+      "bot": " you are welcome",
+      "target": " you are welcome",
+      "match": true
+    }
+  ],
+  [
+    {
+      "human": "what about indian food",
+      "bot": "how about restaurant the_golden_curry?",
+      "target": "I'm sorry but there is no restaurant serving belgian food",
+      "match": false
+    },
+    {
+      "human": "indian food",
+      "bot": "You are looking for a indian restaurant right?",
+      "target": "taj_tandoori is a nice place in the south of town serving tasty indian food",
+      "match": false
+    },
+    {
+      "human": "whats the phone number",
+      "bot": "The phone number of the_golden_curry is the_golden_curry_phone",
+      "target": "The phone number of taj_tandoori is taj_tandoori_phone",
+      "match": true
+    },
+    {
+      "human": "thank you good bye",
+      "bot": " you are welcome",
+      "target": " you are welcome",
+      "match": true
+    }
+  ],
+  [
+    {
+      "human": "hello",
+      "bot": "in which area?",
+      "target": "I'm sorry but there is no restaurant serving halal food",
+      "match": false
+    },
+    {
+      "human": "european",
+      "bot": "Would you like something in the cheap , moderate , or expensive price range?",
+      "target": "There are restaurants serving european food . What area do you want?",
+      "match": false
+    },
+    {
+      "human": "uh i dont care",
+      "bot": " you are welcome",
+      "target": "There are restaurants serving european food in any part of town . What price range would you like?",
+      "match": false
+    },
+    {
+      "human": "i dont care",
+      "bot": "in which area?",
+      "target": "hotel_du_vin_and_bistro serves european food",
+      "match": false
+    },
+    {
+      "human": "talking whats the address",
+      "bot": "in which area?",
+      "target": "Sure , hotel_du_vin_and_bistro is on hotel_du_vin_and_bistro_address",
+      "match": false
+    },
+    {
+      "human": "whats the phone number talking",
+      "bot": "which restaurant are you talking about?",
+      "target": "The phone number of hotel_du_vin_and_bistro is hotel_du_vin_and_bistro_phone",
+      "match": false
+    },
+    {
+      "human": "whats the phone number for hotel dubai",
+      "bot": "which restaurant are you talking about?",
+      "target": "The phone number of cambridge_lodge_restaurant is cambridge_lodge_restaurant_phone",
+      "match": false
+    },
+    {
+      "human": "background_speech",
+      "bot": "which restaurant are you talking about?",
+      "target": "hotel_du_vin_and_bistro serves european food",
+      "match": false
+    },
+    {
+      "human": "whats the phone number",
+      "bot": "which restaurant are you talking about?",
+      "target": "The phone number of hotel_du_vin_and_bistro is hotel_du_vin_and_bistro_phone",
+      "match": false
+    },
+    {
+      "human": "background_speech",
+      "bot": "which restaurant are you talking about?",
+      "target": "Can I help you with anything else?",
+      "match": false
+    },
+    {
+      "human": "thank you goodbye",
+      "bot": " you are welcome",
+      "target": " you are welcome",
+      "match": true
+    }
+  ],
+  [
+    {
+      "human": "looking for a moderately priced restaurant that serves british food",
+      "bot": "in which area?",
+      "target": "You are looking for a british restaurant right?",
+      "match": false
+    },
+    {
+      "human": "moderate",
+      "bot": "in which area?",
+      "target": "There are restaurants serving british in the moderate price range . What area would you like?",
+      "match": false
+    },
+    {
+      "human": "yes that serves british food",
+      "bot": "how about restaurant restaurant_one_seven?",
+      "target": "Would you like something in the cheap , moderate , or expensive price range?",
+      "match": false
+    },
+    {
+      "human": "correct",
+      "bot": "how about restaurant restaurant_one_seven?",
+      "target": "Would you like something in the cheap , moderate , or expensive price range?",
+      "match": false
+    },
+    {
+      "human": "correct",
+      "bot": "how about restaurant restaurant_one_seven?",
+      "target": "Would you like something in the cheap , moderate , or expensive price range?",
+      "match": false
+    },
+    {
+      "human": "<SILENCE>",
+      "bot": "how about restaurant restaurant_one_seven?",
+      "target": "saint_johns_chop_house serves british food in the moderate price range",
+      "match": false
+    },
+    {
+      "human": "whats the phone number",
+      "bot": "The phone number of restaurant_one_seven is restaurant_one_seven_phone",
+      "target": "The phone number of saint_johns_chop_house is saint_johns_chop_house_phone",
+      "match": true
+    },
+    {
+      "human": "thank you goodbye",
+      "bot": " you are welcome",
+      "target": " you are welcome",
+      "match": true
+    }
+  ],
+  [
+    {
+      "human": "im looking for indian food in the east part of town",
+      "bot": "Would you like something in the cheap , moderate , or expensive price range?",
+      "target": "You are looking for a indian restaurant right?",
+      "match": false
+    },
+    {
+      "human": "yes in the east part of town",
+      "bot": "What kind of food would you like?",
+      "target": "There are restaurants serving indian in the east of town . What price range would you like?",
+      "match": false
+    },
+    {
+      "human": "i dont care",
+      "bot": " you are welcome",
+      "target": "rajmahal is a nice place in the east of town serving tasty indian food",
+      "match": false
+    },
+    {
+      "human": "is there anything else",
+      "bot": "which restaurant are you talking about?",
+      "target": "sitar_tandoori is a nice place in the east of town serving tasty indian food",
+      "match": false
+    },
+    {
+      "human": "whats the address",
+      "bot": " you are welcome",
+      "target": "Sure , sitar_tandoori is on sitar_tandoori_address",
+      "match": false
+    }
+  ],
+  [
+    {
+      "human": "id like an expensive restaurant in the south part of town",
+      "bot": "frankie_and_bennys is a nice place in the south of town and the prices are expensive",
+      "target": "There are restaurants in the expensive price range and the south of town . What type of food would you like?",
+      "match": false
+    },
+    {
+      "human": "any type of food",
+      "bot": "frankie_and_bennys is a nice place in the south of town and the prices are expensive",
+      "target": "peking_restaurant is a nice place in the south of town and the prices are expensive",
+      "match": true
+    },
+    {
+      "human": "what is the phone number",
+      "bot": "The phone number of frankie_and_bennys is frankie_and_bennys_phone",
+      "target": "The phone number of peking_restaurant is peking_restaurant_phone",
+      "match": true
+    },
+    {
+      "human": "what is the post code",
+      "bot": "The post code of frankie_and_bennys is frankie_and_bennys_post_code",
+      "target": "The post code of peking_restaurant is peking_restaurant_post_code",
+      "match": true
+    },
+    {
+      "human": "thank you good bye",
+      "bot": " you are welcome",
+      "target": " you are welcome",
+      "match": true
+    }
+  ],
+  [
+    {
+      "human": "id like a cheap restaurant on the south of town",
+      "bot": "the_lucky_star is a nice place in the south of town and the prices are cheap",
+      "target": "There are restaurants in the cheap price range and the south of town . What type of food would you like?",
+      "match": false
+    },
+    {
+      "human": "any type of food",
+      "bot": "the_lucky_star is a nice place in the south of town and the prices are cheap",
+      "target": "nandos is a nice place in the south of town and the prices are cheap",
+      "match": true
+    },
+    {
+      "human": "what is the address and phone number",
+      "bot": "Sure , the_lucky_star is on the_lucky_star_address. The phone number of the_lucky_star is the_lucky_star_phone",
+      "target": "The phone number of nandos is nandos_phone",
+      "match": true
+    },
+    {
+      "human": "thank you good bye",
+      "bot": " you are welcome",
+      "target": " you are welcome",
+      "match": true
+    }
+  ],
+  [
+    {
+      "human": "how about chinese",
+      "bot": "how about restaurant sesame_restaurant_and_bar?",
+      "target": "I'm sorry but there is no restaurant serving cantonese food",
+      "match": false
+    },
+    {
+      "human": "chinese food",
+      "bot": "You are looking for a chinese restaurant right?",
+      "target": "Did you say you are looking for a restaurant in the south of town?",
+      "match": true
+    },
+    {
+      "human": "yes",
+      "bot": "You are looking for a chinese restaurant right?",
+      "target": "There are restaurants serving chinese in the south of town . What price range would you like?",
+      "match": false
+    },
+    {
+      "human": "any price range",
+      "bot": "Let me confirm , You are looking for a restaurant and you dont care about the price range right?",
+      "target": "Would you like something in the cheap , moderate , or expensive price range?",
+      "match": false
+    },
+    {
+      "human": "any price range",
+      "bot": "how about restaurant sesame_restaurant_and_bar?",
+      "target": "peking_restaurant is a nice place in the south of town serving tasty chinese food",
+      "match": false
+    },
+    {
+      "human": "what price range is it",
+      "bot": "sesame_restaurant_and_bar is in the expensive price range",
+      "target": "peking_restaurant is in the expensive price range",
+      "match": true
+    },
+    {
+      "human": "what is the address",
+      "bot": "Sure , sesame_restaurant_and_bar is on sesame_restaurant_and_bar_address",
+      "target": "Sure , peking_restaurant is on peking_restaurant_address",
+      "match": true
+    },
+    {
+      "human": "thank you good bye",
+      "bot": " you are welcome",
+      "target": " you are welcome",
+      "match": true
+    }
+  ],
+  [
+    {
+      "human": "id like a moderately priced restaurant in the south part of town",
+      "bot": "pizza_hut_cherry_hinton is a nice place in the south of town and the prices are moderate",
+      "target": "There are restaurants in the moderate price range and the south of town . What type of food would you like?",
+      "match": false
+    },
+    {
+      "human": "any type",
+      "bot": "pizza_hut_cherry_hinton is a nice place in the south of town and the prices are moderate",
+      "target": "restaurant_alimentum is a nice place in the south of town and the prices are moderate",
+      "match": true
+    },
+    {
+      "human": "what is the phone number",
+      "bot": "The phone number of pizza_hut_cherry_hinton is pizza_hut_cherry_hinton_phone",
+      "target": "The phone number of restaurant_alimentum is restaurant_alimentum_phone",
+      "match": true
+    },
+    {
+      "human": "thank you good bye",
+      "bot": " you are welcome",
+      "target": " you are welcome",
+      "match": true
+    }
+  ],
+  [
+    {
+      "human": "can i get a restaurant in the center",
+      "bot": "What kind of food would you like?",
+      "target": "There are restaurants in the centre of town . What type of food do you want?",
+      "match": false
+    },
+    {
+      "human": "okay how about asian_oriental",
+      "bot": "j_restaurant is a nice place in the centre of town serving tasty asian_oriental food",
+      "target": "I'm sorry but there is no restaurant serving romanian food",
+      "match": false
+    },
+    {
+      "human": "asian food",
+      "bot": "I'm sorry but there is no asian restaurant in the centre of town",
+      "target": "You are looking for a fusion restaurant right?",
+      "match": false
+    },
+    {
+      "human": "asian food",
+      "bot": "I'm sorry but there is no asian restaurant in the centre of town",
+      "target": "I'm sorry but there is no restaurant serving fusion food",
+      "match": true
+    },
+    {
+      "human": "asian food",
+      "bot": "I'm sorry but there is no asian restaurant in the centre of town",
+      "target": "I'm sorry but there is no restaurant serving fusion food",
+      "match": true
+    },
+    {
+      "human": "thank you good bye",
+      "bot": " you are welcome",
+      "target": " you are welcome",
+      "match": true
+    }
+  ],
+  [
+    {
+      "human": "can i have a restaurant in the center with spanish food",
+      "bot": "Would you like something in the cheap , moderate , or expensive price range?",
+      "target": "You are looking for a spanish restaurant right?",
+      "match": false
+    },
+    {
+      "human": "yeah",
+      "bot": "What kind of food would you like?",
+      "target": "There are restaurants serving spanish in the centre of town . What price range would you like?",
+      "match": false
+    },
+    {
+      "human": "i dont care",
+      "bot": " you are welcome",
+      "target": "la_raza is a nice place in the centre of town serving tasty spanish food",
+      "match": false
+    },
+    {
+      "human": "can i get the address",
+      "bot": "in which area?",
+      "target": "la_raza is a great restaurant",
+      "match": false
+    },
+    {
+      "human": "could i get the address please",
+      "bot": "which restaurant are you talking about?",
+      "target": "Sure , la_raza is on la_raza_address",
+      "match": false
+    },
+    {
+      "human": "and the phone number",
+      "bot": "which restaurant are you talking about?",
+      "target": "The phone number of la_raza is la_raza_phone",
+      "match": false
+    },
+    {
+      "human": "thank you good bye",
+      "bot": " you are welcome",
+      "target": " you are welcome",
+      "match": true
+    }
+  ],
+  [
+    {
+      "human": "moderately priced",
+      "bot": "in which area?",
+      "target": "There are restaurants in the moderate price range . What type of food do you want?",
+      "match": false
+    },
+    {
+      "human": "jamcian food",
+      "bot": "I'm sorry but there is no restaurant serving moderate jamcian food",
+      "target": "I'm sorry but there is no restaurant serving jamaican food",
+      "match": true
+    },
+    {
+      "human": "asian_oriental",
+      "bot": "how about restaurant yippee_noodle_bar?",
+      "target": "yippee_noodle_bar serves asian_oriental food in the moderate price range",
+      "match": false
+    },
+    {
+      "human": "can i get the address",
+      "bot": "Sure , yippee_noodle_bar is on yippee_noodle_bar_address",
+      "target": "Sure , yippee_noodle_bar is on yippee_noodle_bar_address",
+      "match": true
+    },
+    {
+      "human": "can i get the phone number",
+      "bot": "The phone number of yippee_noodle_bar is yippee_noodle_bar_phone",
+      "target": "The phone number of yippee_noodle_bar is yippee_noodle_bar_phone",
+      "match": true
+    },
+    {
+      "human": "okay good bye",
+      "bot": " you are welcome",
+      "target": " you are welcome",
+      "match": true
+    }
+  ],
+  [
+    {
+      "human": "looking for a restaurant in the south part of town",
+      "bot": "What kind of food would you like?",
+      "target": "There are restaurants in the south of town . What type of food do you want?",
+      "match": false
+    },
+    {
+      "human": "eritrean food",
+      "bot": "I'm sorry but there is no eritrean restaurant in the south of town",
+      "target": "You are looking for a restaurant serving any kind of food right?",
+      "match": false
+    },
+    {
+      "human": "yes",
+      "bot": "I'm sorry but there is no eritrean restaurant in the south of town",
+      "target": "Would you like something in the cheap , moderate , or expensive price range?",
+      "match": false
+    },
+    {
+      "human": "expensive",
+      "bot": "no options available with the provided requirements",
+      "target": "chiquito_restaurant_bar is a nice place in the south of town and the prices are expensive",
+      "match": false
+    },
+    {
+      "human": "okay thank you bye",
+      "bot": " you are welcome",
+      "target": " you are welcome",
+      "match": true
+    }
+  ],
+  [
+    {
+      "human": "catalan food",
+      "bot": "I'm sorry but there is no restaurant serving catalan food",
+      "target": "There are restaurants if you don't care about the food . What area do you want?",
+      "match": false
+    },
+    {
+      "human": "catalan food expensive",
+      "bot": "Let me confirm , You are looking for a restaurant in the expensive price range right?",
+      "target": "What part of town do you have in mind?",
+      "match": false
+    },
+    {
+      "human": "dont care",
+      "bot": "You are looking for a catalan restaurant right?",
+      "target": "Let me confirm , You are looking for a restaurant in the expensive price range right?",
+      "match": true
+    },
+    {
+      "human": "yes",
+      "bot": "I'm sorry but there is no restaurant serving catalan food",
+      "target": "bedouin is in the expensive price range",
+      "match": false
+    },
+    {
+      "human": "what is the phone number",
+      "bot": "which restaurant are you talking about?",
+      "target": "saigon_city serves asian_oriental food in the expensive price range",
+      "match": false
+    },
+    {
+      "human": "thank you good bye",
+      "bot": " you are welcome",
+      "target": " you are welcome",
+      "match": true
+    }
+  ],
+  [
+    {
+      "human": "thank you",
+      "bot": "in which area?",
+      "target": "What kind of food would you like?",
+      "match": false
+    },
+    {
+      "human": "gastropub",
+      "bot": "how about restaurant the_slug_and_lettuce?",
+      "target": "You are looking for a restaurant serving any kind of food right?",
+      "match": false
+    },
+    {
+      "human": "no gastropub",
+      "bot": "You are looking for a gastropub restaurant right?",
+      "target": "You are looking for a gastropub restaurant right?",
+      "match": true
+    },
+    {
+      "human": "yes",
+      "bot": "how about restaurant the_slug_and_lettuce?",
+      "target": "What part of town do you have in mind?",
+      "match": false
+    },
+    {
+      "human": "dont care",
+      "bot": "how about restaurant the_slug_and_lettuce?",
+      "target": "There are restaurants serving gastropub food in any part of town . What price range would you like?",
+      "match": false
+    },
+    {
+      "human": "expensive",
+      "bot": "how about restaurant the_slug_and_lettuce?",
+      "target": "royal_standard serves gastropub food in the expensive price range",
+      "match": false
+    },
+    {
+      "human": "what is the address",
+      "bot": "Sure , the_slug_and_lettuce is on the_slug_and_lettuce_address",
+      "target": "Sure , royal_standard is on royal_standard_address",
+      "match": true
+    },
+    {
+      "human": "thank you good bye",
+      "bot": " you are welcome",
+      "target": " you are welcome",
+      "match": true
+    }
+  ],
+  [
+    {
+      "human": "danish food",
+      "bot": "I'm sorry but there is no restaurant serving danish food",
+      "target": "There are restaurants in the cheap price range . What type of food do you want?",
+      "match": false
+    },
+    {
+      "human": "danish",
+      "bot": "You are looking for a danish restaurant right?",
+      "target": "I'm sorry but there is no restaurant serving canapes food",
+      "match": false
+    },
+    {
+      "human": "danish",
+      "bot": "in which area?",
+      "target": "I'm sorry but there is no restaurant serving danish food",
+      "match": false
+    },
+    {
+      "human": "vietnamese",
+      "bot": "in which area?",
+      "target": "thanh_binh serves vietnamese food in the cheap price range",
+      "match": false
+    },
+    {
+      "human": "west part of town",
+      "bot": "venue is a nice place in the west of town serving tasty vietnamese food",
+      "target": "thanh_binh is a great restaurant serving cheap vietnamese food in the west of town .",
+      "match": true
+    },
+    {
+      "human": "what is the phone number",
+      "bot": "The phone number of venue is venue_phone",
+      "target": "The phone number of thanh_binh is thanh_binh_phone",
+      "match": true
+    },
+    {
+      "human": "thank you good bye",
+      "bot": " you are welcome",
+      "target": " you are welcome",
+      "match": true
+    }
+  ],
+  [
+    {
+      "human": "north part of town",
+      "bot": "What kind of food would you like?",
+      "target": "There are restaurants in the north of town . What type of food do you want?",
+      "match": false
+    },
+    {
+      "human": "dont care",
+      "bot": "how about restaurant the_hotpot?",
+      "target": "There are restaurants in the north of town serving any kind of food . What price range would you like?",
+      "match": false
+    },
+    {
+      "human": "cheap",
+      "bot": "da_vinci_pizzeria is a nice place in the north of town and the prices are cheap",
+      "target": "royal_spice is a nice place in the north of town and the prices are cheap",
+      "match": true
+    },
+    {
+      "human": "what is the phone number and address",
+      "bot": "Sure , da_vinci_pizzeria is on da_vinci_pizzeria_address. The phone number of da_vinci_pizzeria is da_vinci_pizzeria_phone",
+      "target": "The phone number of royal_spice is royal_spice_phone",
+      "match": true
+    },
+    {
+      "human": "thank you good bye",
+      "bot": " you are welcome",
+      "target": " you are welcome",
+      "match": true
+    }
+  ],
+  [
+    {
+      "human": "hungarian food",
+      "bot": "I'm sorry but there is no restaurant serving hungarian food",
+      "target": "What kind of food would you like?",
+      "match": false
+    },
+    {
+      "human": "hungarian",
+      "bot": "You are looking for a hungarian restaurant right?",
+      "target": "You are looking for a restaurant serving any kind of food right?",
+      "match": true
+    },
+    {
+      "human": "hungarian food",
+      "bot": "in which area?",
+      "target": "What part of town do you have in mind?",
+      "match": true
+    },
+    {
+      "human": "im looking for a hungarian restaurant",
+      "bot": "in which area?",
+      "target": "You are looking for a restaurant serving any kind of food right?",
+      "match": false
+    },
+    {
+      "human": "british feed",
+      "bot": "in which area?",
+      "target": "What part of town do you have in mind?",
+      "match": true
+    },
+    {
+      "human": "it doesnt matter hungarian food",
+      "bot": "Would you like something in the cheap , moderate , or expensive price range?",
+      "target": "You are looking for a restaurant serving any kind of food right?",
+      "match": false
+    },
+    {
+      "human": "no hungarian food",
+      "bot": "I'm sorry but there is no restaurant serving hungarian food",
+      "target": "There are restaurants if you don't care about the area or the type of food . What price range would you like?",
+      "match": false
+    },
+    {
+      "human": "food",
+      "bot": "I'm sorry but there is no restaurant serving hungarian food",
+      "target": "Would you like something in the cheap , moderate , or expensive price range?",
+      "match": false
+    },
+    {
+      "human": "hungarian food",
+      "bot": "in which area?",
+      "target": "Let me confirm , You are looking for a restaurant and you dont care about the price range right?",
+      "match": false
+    },
+    {
+      "human": "wrong",
+      "bot": "Would you like something in the cheap , moderate , or expensive price range?",
+      "target": "Ok , a restaurant in any part of town is that right?",
+      "match": false
+    },
+    {
+      "human": "wrong",
+      "bot": "I'm sorry but there is no restaurant serving hungarian food",
+      "target": "Let me confirm , You are looking for a restaurant and you dont care about the price range right?",
+      "match": false
+    },
+    {
+      "human": "hungarian food",
+      "bot": "I'm sorry but there is no restaurant serving hungarian food",
+      "target": "Ok , a restaurant in any part of town is that right?",
+      "match": false
+    },
+    {
+      "human": "thank you good bye",
+      "bot": " you are welcome",
+      "target": " you are welcome",
+      "match": true
+    }
+  ],
+  [
+    {
+      "human": "im looking for a turkish food restaurant",
+      "bot": "how about restaurant efes_restaurant?",
+      "target": "There are restaurants serving turkish food . What area do you want?",
+      "match": false
+    },
+    {
+      "human": "east part of town",
+      "bot": "I'm sorry but there is no turkish restaurant in the east of town",
+      "target": "I'm sorry but there is no turkish restaurant in the east of town",
+      "match": true
+    },
+    {
+      "human": "im done",
+      "bot": "You are looking for a turkish restaurant right?",
+      "target": "I'm sorry but there is no turkish restaurant in the east of town",
+      "match": false
+    },
+    {
+      "human": "no",
+      "bot": "I'm sorry but there is no turkish restaurant in the east of town",
+      "target": "I'm sorry but there is no turkish restaurant in the east of town",
+      "match": true
+    }
+  ],
+  [
+    {
+      "human": "north",
+      "bot": "What kind of food would you like?",
+      "target": "Did you say you are looking for a restaurant in the north of town?",
+      "match": false
+    },
+    {
+      "human": "yes",
+      "bot": "What kind of food would you like?",
+      "target": "You are looking for a restaurant serving any kind of food right?",
+      "match": false
+    },
+    {
+      "human": "moderate",
+      "bot": "golden_wok is a nice place in the north of town and the prices are moderate",
+      "target": "meghna is a nice place in the north of town and the prices are moderate",
+      "match": true
+    },
+    {
+      "human": "thank you good bye",
+      "bot": " you are welcome",
+      "target": " you are welcome",
+      "match": true
+    }
+  ],
+  [
+    {
+      "human": "indonesian food",
+      "bot": "I'm sorry but there is no restaurant serving indonesian food",
+      "target": "What kind of food would you like?",
+      "match": false
+    },
+    {
+      "human": "indonesian food",
+      "bot": "You are looking for a indonesian restaurant right?",
+      "target": "You are looking for a indonesian restaurant right?",
+      "match": true
+    },
+    {
+      "human": "yes",
+      "bot": "You are looking for a indonesian restaurant right?",
+      "target": "I'm sorry but there is no restaurant serving indonesian food",
+      "match": false
+    },
+    {
+      "human": "yes",
+      "bot": "I'm sorry but there is no restaurant serving indonesian food",
+      "target": "I'm sorry but there is no restaurant serving indonesian food",
+      "match": true
+    },
+    {
+      "human": "indian food",
+      "bot": "how about restaurant the_golden_curry?",
+      "target": "There are restaurants serving indian food . What area do you want?",
+      "match": false
+    },
+    {
+      "human": "east",
+      "bot": "curry_prince is a nice place in the east of town serving tasty indian food",
+      "target": "Did you say you are looking for a restaurant in the east of town?",
+      "match": false
+    },
+    {
+      "human": "yes",
+      "bot": "curry_prince is a nice place in the east of town serving tasty indian food",
+      "target": "Would you like something in the cheap , moderate , or expensive price range?",
+      "match": false
+    },
+    {
+      "human": "moderate",
+      "bot": "curry_prince is a great restaurant serving moderate indian food in the east of town",
+      "target": "curry_prince is a great restaurant serving moderate indian food in the east of town .",
+      "match": true
+    },
+    {
+      "human": "thank you good bye",
+      "bot": " you are welcome",
+      "target": " you are welcome",
+      "match": true
+    }
+  ],
+  [
+    {
+      "human": "corsica food",
+      "bot": "I'm sorry but there is no restaurant serving corsica food",
+      "target": "I'm sorry but there is no restaurant serving corsica food",
+      "match": true
+    },
+    {
+      "human": "gastropub food",
+      "bot": "You are looking for a gastropub restaurant right?",
+      "target": "There are restaurants serving gastropub food . What area do you want?",
+      "match": false
+    },
+    {
+      "human": "south",
+      "bot": "I'm sorry but there is no gastropub restaurant in the south of town",
+      "target": "I'm sorry but there is no gastropub restaurant in the south of town",
+      "match": true
+    },
+    {
+      "human": "thank you good bye",
+      "bot": " you are welcome",
+      "target": " you are welcome",
+      "match": true
+    }
+  ],
+  [
+    {
+      "human": "unusual food",
+      "bot": "I'm sorry but there is no restaurant serving unusual food",
+      "target": "I'm sorry but there is no restaurant serving unusual food",
+      "match": true
+    },
+    {
+      "human": "french food",
+      "bot": "You are looking for a french restaurant right?",
+      "target": "There are restaurants serving french food . What area do you want?",
+      "match": false
+    },
+    {
+      "human": "was",
+      "bot": "You are looking for a french restaurant right?",
+      "target": "Did you say you are looking for a restaurant in the west of town?",
+      "match": true
+    },
+    {
+      "human": "yes",
+      "bot": "how about restaurant cote?",
+      "target": "I'm sorry but there is no french restaurant in the west of town",
+      "match": false
+    },
+    {
+      "human": "thank you good bye",
+      "bot": " you are welcome",
+      "target": " you are welcome",
+      "match": true
+    }
+  ],
+  [
+    {
+      "human": "portuguese food",
+      "bot": "how about restaurant nandos?",
+      "target": "There are restaurants serving portuguese food . What area do you want?",
+      "match": false
+    },
+    {
+      "human": "any area",
+      "bot": "how about restaurant nandos?",
+      "target": "There are restaurants serving portuguese food in any part of town . What price range would you like?",
+      "match": false
+    },
+    {
+      "human": "any price range",
+      "bot": "how about restaurant nandos?",
+      "target": "nandos_city_centre serves portuguese food",
+      "match": false
+    },
+    {
+      "human": "whats the address",
+      "bot": "Sure , nandos is on nandos_address",
+      "target": "Sure , nandos_city_centre is on nandos_city_centre_address",
+      "match": true
+    },
+    {
+      "human": "whats the address",
+      "bot": "Sure , nandos is on nandos_address",
+      "target": "Sure , nandos is on nandos_address",
+      "match": true
+    },
+    {
+      "human": "whats the phone number",
+      "bot": "The phone number of nandos is nandos_phone",
+      "target": "The phone number of nandos is nandos_phone",
+      "match": true
+    },
+    {
+      "human": "thank you goodbye",
+      "bot": " you are welcome",
+      "target": " you are welcome",
+      "match": true
+    }
+  ],
+  [
+    {
+      "human": "modern_european food",
+      "bot": "I'm sorry but there is no restaurant serving modern_european food",
+      "target": "I'm sorry but there is no restaurant serving northern_european food",
+      "match": true
+    },
+    {
+      "human": "australia asian food",
+      "bot": "You are looking for a australia asian restaurant right?",
+      "target": "I'm sorry but there is no restaurant serving australasian food",
+      "match": false
+    },
+    {
+      "human": "thank you good bye",
+      "bot": " you are welcome",
+      "target": " you are welcome",
+      "match": true
+    }
+  ],
+  [
+    {
+      "human": "i dont care",
+      "bot": "What kind of food would you like?",
+      "target": "There are restaurants if you don't care about the food . What area do you want?",
+      "match": false
+    },
+    {
+      "human": "east",
+      "bot": "What kind of food would you like?",
+      "target": "There are restaurants in the east of town serving any kind of food . What price range would you like?",
+      "match": false
+    },
+    {
+      "human": "cheap",
+      "bot": "which restaurant are you talking about?",
+      "target": "the_missing_sock is a nice place in the east of town and the prices are cheap",
+      "match": false
+    },
+    {
+      "human": "whats the address",
+      "bot": "which restaurant are you talking about?",
+      "target": "Sure , the_missing_sock is on the_missing_sock_address",
+      "match": false
+    },
+    {
+      "human": "and the phone number",
+      "bot": "which restaurant are you talking about?",
+      "target": "The phone number of the_missing_sock is the_missing_sock_phone",
+      "match": false
+    },
+    {
+      "human": "and what kind of food",
+      "bot": " you are welcome",
+      "target": "the_missing_sock serves international food",
+      "match": false
+    }
+  ],
+  [
+    {
+      "human": "i dont care",
+      "bot": "What kind of food would you like?",
+      "target": "There are restaurants if you don't care about the food . What area do you want?",
+      "match": false
+    },
+    {
+      "human": "the south part of town",
+      "bot": "What kind of food would you like?",
+      "target": "There are restaurants in the south of town serving any kind of food . What price range would you like?",
+      "match": false
+    },
+    {
+      "human": "moderately priced",
+      "bot": "which restaurant are you talking about?",
+      "target": "restaurant_alimentum is a nice place in the south of town and the prices are moderate",
+      "match": false
+    },
+    {
+      "human": "whats their address",
+      "bot": "which restaurant are you talking about?",
+      "target": "Sure , restaurant_alimentum is on restaurant_alimentum_address",
+      "match": false
+    },
+    {
+      "human": "and their phone number",
+      "bot": "which restaurant are you talking about?",
+      "target": "The phone number of restaurant_alimentum is restaurant_alimentum_phone",
+      "match": false
+    },
+    {
+      "human": "what kind of food do they serve",
+      "bot": " you are welcome",
+      "target": "restaurant_alimentum serves modern_european food",
+      "match": false
+    }
+  ],
+  [
+    {
+      "human": "im looking for a restaurant that serves gastropub food",
+      "bot": "how about restaurant the_slug_and_lettuce?",
+      "target": "There are restaurants serving gastropub food . What area do you want?",
+      "match": false
+    },
+    {
+      "human": "i dont care",
+      "bot": " you are welcome",
+      "target": "There are restaurants serving gastropub food in any part of town . What price range would you like?",
+      "match": false
+    },
+    {
+      "human": "i dont care",
+      "bot": "in which area?",
+      "target": "the_slug_and_lettuce serves gastropub food",
+      "match": false
+    },
+    {
+      "human": "whats their address",
+      "bot": "in which area?",
+      "target": "Sure , the_slug_and_lettuce is on the_slug_and_lettuce_address",
+      "match": false
+    },
+    {
+      "human": "thank you good bye",
+      "bot": " you are welcome",
+      "target": " you are welcome",
+      "match": true
+    }
+  ],
+  [
+    {
+      "human": "im looking for a restaurant in the east part of town",
+      "bot": "What kind of food would you like?",
+      "target": "There are restaurants in the east of town . What type of food do you want?",
+      "match": false
+    },
+    {
+      "human": "gastropub",
+      "bot": "royal_standard is a nice place in the east of town serving tasty gastropub food",
+      "target": "royal_standard is a nice place in the east of town serving tasty gastropub food",
+      "match": true
+    },
+    {
+      "human": "whats their phone number",
+      "bot": "The phone number of royal_standard is royal_standard_phone",
+      "target": "The phone number of royal_standard is royal_standard_phone",
+      "match": true
+    },
+    {
+      "human": "thank you good bye",
+      "bot": " you are welcome",
+      "target": " you are welcome",
+      "match": true
+    }
+  ],
+  [
+    {
+      "human": "im looking for a restaurant in the center of town",
+      "bot": "What kind of food would you like?",
+      "target": "There are restaurants in the centre of town . What type of food do you want?",
+      "match": false
+    },
+    {
+      "human": "how about international food",
+      "bot": "bloomsbury_restaurant is a nice place in the centre of town serving tasty international food",
+      "target": "I'm sorry but there is no restaurant serving unusual food",
+      "match": false
+    },
+    {
+      "human": "international food",
+      "bot": "bloomsbury_restaurant is a nice place in the centre of town serving tasty international food",
+      "target": "Did you say you are looking for a restaurant in the centre of town?",
+      "match": false
+    },
+    {
+      "human": "yes",
+      "bot": "bloomsbury_restaurant is a nice place in the centre of town serving tasty international food",
+      "target": "There are restaurants serving international in the centre of town . What price range would you like?",
+      "match": false
+    },
+    {
+      "human": "i dont care",
+      "bot": " you are welcome",
+      "target": "bloomsbury_restaurant is a nice place in the centre of town serving tasty international food",
+      "match": false
+    },
+    {
+      "human": "whats their phone number",
+      "bot": "The phone number of bloomsbury_restaurant is bloomsbury_restaurant_phone",
+      "target": "bloomsbury_restaurant is a great restaurant",
+      "match": false
+    },
+    {
+      "human": "whats their phone number",
+      "bot": "The phone number of bloomsbury_restaurant is bloomsbury_restaurant_phone",
+      "target": "The phone number of bloomsbury_restaurant is bloomsbury_restaurant_phone",
+      "match": true
+    },
+    {
+      "human": "and whats their price range",
+      "bot": "bloomsbury_restaurant is in the moderate price range",
+      "target": "bloomsbury_restaurant is in the moderate price range",
+      "match": true
+    },
+    {
+      "human": "thank you good bye",
+      "bot": " you are welcome",
+      "target": " you are welcome",
+      "match": true
+    }
+  ],
+  [
+    {
+      "human": "a cheap restaurant and it should be in the west part of town",
+      "bot": "la_margherita is a nice place in the west of town and the prices are cheap",
+      "target": "There are restaurants in the west of town . What type of food do you want?",
+      "match": false
+    },
+    {
+      "human": "any",
+      "bot": "how about restaurant j_restaurant?",
+      "target": "You are looking for a restaurant serving any kind of food right?",
+      "match": false
+    },
+    {
+      "human": "yes",
+      "bot": "how about restaurant j_restaurant?",
+      "target": "Let me confirm , You are looking for a restaurant in the cheap price range right?",
+      "match": false
+    },
+    {
+      "human": "cheap restaurant",
+      "bot": "how about restaurant j_restaurant?",
+      "target": "thanh_binh is a nice place in the west of town and the prices are cheap",
+      "match": false
+    },
+    {
+      "human": "yes",
+      "bot": "how about restaurant j_restaurant?",
+      "target": "la_margherita is a nice place in the west of town and the prices are cheap",
+      "match": false
+    },
+    {
+      "human": "whats the address",
+      "bot": "Sure , j_restaurant is on j_restaurant_address",
+      "target": "Sure , la_margherita is on la_margherita_address",
+      "match": true
+    },
+    {
+      "human": "and phone number",
+      "bot": "The phone number of j_restaurant is j_restaurant_phone",
+      "target": "The phone number of la_margherita is la_margherita_phone",
+      "match": true
+    },
+    {
+      "human": "thank you good bye",
+      "bot": " you are welcome",
+      "target": " you are welcome",
+      "match": true
+    }
+  ],
+  [
+    {
+      "human": "i want to find a restaurant in the center and it should serve vietnamese food",
+      "bot": "Would you like something in the cheap , moderate , or expensive price range?",
+      "target": "There are restaurants in the centre of town . What type of food do you want?",
+      "match": false
+    },
+    {
+      "human": "vietnamese food",
+      "bot": "Would you like something in the cheap , moderate , or expensive price range?",
+      "target": "thanh_binh serves vietnamese food",
+      "match": false
+    },
+    {
+      "human": "whats the address",
+      "bot": "which restaurant are you talking about?",
+      "target": "Sure , thanh_binh is on thanh_binh_address",
+      "match": false
+    },
+    {
+      "human": "and the price range",
+      "bot": "which restaurant are you talking about?",
+      "target": "thanh_binh is in the cheap price range",
+      "match": false
+    },
+    {
+      "human": "thank you good bye",
+      "bot": " you are welcome",
+      "target": " you are welcome",
+      "match": true
+    }
+  ],
+  [
+    {
+      "human": "im looking for a expensive restaurant and it should serve french food",
+      "bot": "in which area?",
+      "target": "What kind of food would you like?",
+      "match": false
+    },
+    {
+      "human": "french food",
+      "bot": "in which area?",
+      "target": "You are looking for a restaurant serving any kind of food right?",
+      "match": false
+    },
+    {
+      "human": "no french food",
+      "bot": "in which area?",
+      "target": "There are restaurants serving french food . What area do you want?",
+      "match": false
+    },
+    {
+      "human": "any",
+      "bot": "how about restaurant cote?",
+      "target": "What part of town do you have in mind?",
+      "match": false
+    },
+    {
+      "human": "any part",
+      "bot": "how about restaurant cote?",
+      "target": "There are restaurants serving french food in any part of town . What price range would you like?",
+      "match": false
+    },
+    {
+      "human": "expensive",
+      "bot": "how about restaurant cote?",
+      "target": "Would you like something in the cheap , moderate , or expensive price range?",
+      "match": false
+    },
+    {
+      "human": "expensive price range",
+      "bot": "how about restaurant cote?",
+      "target": "restaurant_two_two serves french food in the expensive price range",
+      "match": false
+    },
+    {
+      "human": "what the phone number",
+      "bot": "The phone number of cote is cote_phone",
+      "target": "The phone number of restaurant_two_two is restaurant_two_two_phone",
+      "match": true
+    },
+    {
+      "human": "thank you good bye",
+      "bot": " you are welcome",
+      "target": " you are welcome",
+      "match": true
+    }
+  ],
+  [
+    {
+      "human": "im looking for a cheap restaurant and it should be in the east part of town",
+      "bot": "the_missing_sock is a nice place in the east of town and the prices are cheap",
+      "target": "the_missing_sock is a nice place in the east of town and the prices are cheap",
+      "match": true
+    },
+    {
+      "human": "whats the address",
+      "bot": "Sure , the_missing_sock is on the_missing_sock_address",
+      "target": "Sure , the_missing_sock is on the_missing_sock_address",
+      "match": true
+    },
+    {
+      "human": "and the post code",
+      "bot": "The post code of the_missing_sock is the_missing_sock_post_code",
+      "target": "The post code of the_missing_sock is the_missing_sock_post_code",
+      "match": true
+    },
+    {
+      "human": "thank you good bye",
+      "bot": " you are welcome",
+      "target": "Can I help you with anything else?",
+      "match": false
+    },
+    {
+      "human": "no thank you good bye",
+      "bot": "in which area?",
+      "target": " you are welcome",
+      "match": false
+    }
+  ],
+  [
+    {
+      "human": "i want to find a cheap restaurant and it should serve portuguese food",
+      "bot": "in which area?",
+      "target": "You are looking for a portuguese restaurant right?",
+      "match": false
+    },
+    {
+      "human": "yes",
+      "bot": "how about restaurant nandos?",
+      "target": "There are restaurants serving portuguese in the cheap price range . What area would you like?",
+      "match": false
+    },
+    {
+      "human": "any",
+      "bot": "how about restaurant nandos?",
+      "target": "nandos_city_centre serves portuguese food in the cheap price range",
+      "match": false
+    },
+    {
+      "human": "whats the phone number",
+      "bot": "The phone number of nandos is nandos_phone",
+      "target": "The phone number of nandos_city_centre is nandos_city_centre_phone",
+      "match": true
+    },
+    {
+      "human": "thank you good bye",
+      "bot": " you are welcome",
+      "target": " you are welcome",
+      "match": true
+    }
+  ],
+  [
+    {
+      "human": "im looking for a restaurant in the east part of town and it should serve greek food",
+      "bot": "Would you like something in the cheap , moderate , or expensive price range?",
+      "target": "You are looking for a greek restaurant right?",
+      "match": false
+    },
+    {
+      "human": "how about indian food",
+      "bot": "Would you like something in the cheap , moderate , or expensive price range?",
+      "target": "I'm sorry but there is no restaurant serving greek food",
+      "match": false
+    },
+    {
+      "human": "indian food",
+      "bot": "Would you like something in the cheap , moderate , or expensive price range?",
+      "target": "I'm sorry but there is no restaurant serving greek food",
+      "match": false
+    },
+    {
+      "human": "what about indian food",
+      "bot": "Would you like something in the cheap , moderate , or expensive price range?",
+      "target": "You are looking for a indian restaurant right?",
+      "match": false
+    },
+    {
+      "human": "yes",
+      "bot": "Would you like something in the cheap , moderate , or expensive price range?",
+      "target": "Did you say you are looking for a restaurant in the east of town?",
+      "match": false
+    },
+    {
+      "human": "any",
+      "bot": "Sorry would you like something in the expensive price range or in the moderate price range",
+      "target": " you are welcome",
+      "match": false
+    }
+  ],
+  [
+    {
+      "human": "i want to find a moderately priced restaurant and it should be in the west part of town",
+      "bot": "saint_johns_chop_house is a nice place in the west of town and the prices are moderate",
+      "target": "There are restaurants in the moderate price range and the west of town . What type of food would you like?",
+      "match": false
+    },
+    {
+      "human": "any type",
+      "bot": "saint_johns_chop_house is a nice place in the west of town and the prices are moderate",
+      "target": "saint_johns_chop_house is a nice place in the west of town and the prices are moderate",
+      "match": true
+    },
+    {
+      "human": "whats the phone number",
+      "bot": "The phone number of saint_johns_chop_house is saint_johns_chop_house_phone",
+      "target": "The phone number of saint_johns_chop_house is saint_johns_chop_house_phone",
+      "match": true
+    },
+    {
+      "human": "and what type of food",
+      "bot": "saint_johns_chop_house serves british food",
+      "target": "saint_johns_chop_house is a nice place in the west of town and the prices are moderate",
+      "match": false
+    },
+    {
+      "human": "what type of food",
+      "bot": "saint_johns_chop_house serves british food",
+      "target": "prezzo serves italian food",
+      "match": true
+    },
+    {
+      "human": "thank you good bye",
+      "bot": " you are welcome",
+      "target": " you are welcome",
+      "match": true
+    }
+  ],
+  [
+    {
+      "human": "no",
+      "bot": "What kind of food would you like?",
+      "target": "You are looking for a portuguese restaurant right?",
+      "match": false
+    },
+    {
+      "human": "south",
+      "bot": "Did you say you are looking for a restaurant in the south of town?",
+      "target": "What part of town do you have in mind?",
+      "match": false
+    },
+    {
+      "human": "south",
+      "bot": "What kind of food would you like?",
+      "target": "nandos is a nice place in the south of town serving tasty portuguese food",
+      "match": false
+    },
+    {
+      "human": "the price range",
+      "bot": "which restaurant are you talking about?",
+      "target": "Can I help you with anything else?",
+      "match": false
+    },
+    {
+      "human": "another type of food",
+      "bot": "no options available with the provided requirements",
+      "target": "I'm sorry but there is no restaurant serving moderate portuguese food",
+      "match": false
+    },
+    {
+      "human": "reset",
+      "bot": "no options available with the provided requirements",
+      "target": "Can I help you with anything else?",
+      "match": false
+    },
+    {
+      "human": "yes",
+      "bot": "no options available with the provided requirements",
+      "target": "I'm sorry but there is no restaurant serving moderate portuguese food",
+      "match": false
+    },
+    {
+      "human": "yes",
+      "bot": " you are welcome",
+      "target": "Can I help you with anything else?",
+      "match": false
+    }
+  ],
+  [
+    {
+      "human": "need a cheap restaurant",
+      "bot": "in which area?",
+      "target": "What kind of food would you like?",
+      "match": false
+    },
+    {
+      "human": "any type",
+      "bot": "how about restaurant j_restaurant?",
+      "target": "There are restaurants if you don't care about the food . What area do you want?",
+      "match": false
+    },
+    {
+      "human": "the east part",
+      "bot": "the_missing_sock is a nice place in the east of town and the prices are cheap",
+      "target": "There are restaurants in the east of town serving any kind of food . What price range would you like?",
+      "match": false
+    },
+    {
+      "human": "cheap",
+      "bot": "the_missing_sock is a nice place in the east of town and the prices are cheap",
+      "target": "the_missing_sock is a nice place in the east of town and the prices are cheap",
+      "match": true
+    },
+    {
+      "human": "address",
+      "bot": "Sure , the_missing_sock is on the_missing_sock_address",
+      "target": "Sure , the_missing_sock is on the_missing_sock_address",
+      "match": true
+    },
+    {
+      "human": "phone number",
+      "bot": "The phone number of the_missing_sock is the_missing_sock_phone",
+      "target": "The phone number of the_missing_sock is the_missing_sock_phone",
+      "match": true
+    },
+    {
+      "human": "post code",
+      "bot": "The post code of the_missing_sock is the_missing_sock_post_code",
+      "target": "The post code of the_missing_sock is the_missing_sock_post_code",
+      "match": true
+    },
+    {
+      "human": "thank you good bye",
+      "bot": " you are welcome",
+      "target": " you are welcome",
+      "match": true
+    }
+  ],
+  [
+    {
+      "human": "is that a cheap restaurant",
+      "bot": "in which area?",
+      "target": "There are restaurants in the cheap price range . What type of food do you want?",
+      "match": false
+    },
+    {
+      "human": "indian",
+      "bot": "how about restaurant kohinoor?",
+      "target": "You are looking for a indian restaurant right?",
+      "match": false
+    },
+    {
+      "human": "yes",
+      "bot": "how about restaurant kohinoor?",
+      "target": "What part of town do you have in mind?",
+      "match": false
+    },
+    {
+      "human": "any part",
+      "bot": "how about restaurant kohinoor?",
+      "target": "royal_spice serves indian food in the cheap price range",
+      "match": false
+    },
+    {
+      "human": "address",
+      "bot": "Sure , kohinoor is on kohinoor_address",
+      "target": "royal_spice is a great restaurant",
+      "match": false
+    },
+    {
+      "human": "can i get the address",
+      "bot": "Sure , kohinoor is on kohinoor_address",
+      "target": "Sure , royal_spice is on royal_spice_address",
+      "match": true
+    },
+    {
+      "human": "phone number",
+      "bot": "The phone number of kohinoor is kohinoor_phone",
+      "target": "The phone number of royal_spice is royal_spice_phone",
+      "match": true
+    },
+    {
+      "human": "thank you good bye",
+      "bot": " you are welcome",
+      "target": " you are welcome",
+      "match": true
+    }
+  ],
+  [
+    {
+      "human": "and i need the address and post code",
+      "bot": "in which area?",
+      "target": "What kind of food would you like?",
+      "match": false
+    },
+    {
+      "human": "doesnt matter",
+      "bot": "how about restaurant frankie_and_bennys?",
+      "target": "You are looking for a restaurant serving any kind of food right?",
+      "match": false
+    },
+    {
+      "human": "correct",
+      "bot": "how about restaurant frankie_and_bennys?",
+      "target": "What part of town do you have in mind?",
+      "match": false
+    },
+    {
+      "human": "south",
+      "bot": "how about restaurant frankie_and_bennys?",
+      "target": "There are restaurants in the south of town serving any kind of food . What price range would you like?",
+      "match": false
+    },
+    {
+      "human": "moderate",
+      "bot": "pizza_hut_cherry_hinton is a nice place in the south of town and the prices are moderate",
+      "target": "pizza_hut_cherry_hinton is a nice place in the south of town and the prices are moderate",
+      "match": true
+    },
+    {
+      "human": "thank you good bye",
+      "bot": " you are welcome",
+      "target": " you are welcome",
+      "match": true
+    }
+  ],
+  [
+    {
+      "human": "i need a restaurant in the north part of town",
+      "bot": "What kind of food would you like?",
+      "target": "There are restaurants in the north of town . What type of food do you want?",
+      "match": false
+    },
+    {
+      "human": "i dont care",
+      "bot": " you are welcome",
+      "target": "There are restaurants in the north of town serving any kind of food . What price range would you like?",
+      "match": false
+    },
+    {
+      "human": "moderate",
+      "bot": "What kind of food would you like?",
+      "target": "golden_wok is a nice place in the north of town and the prices are moderate",
+      "match": false
+    },
+    {
+      "human": "do you have anything else",
+      "bot": "which restaurant are you talking about?",
+      "target": "meghna is a nice place in the north of town and the prices are moderate",
+      "match": false
+    },
+    {
+      "human": "can i have the address and phone number",
+      "bot": "which restaurant are you talking about?",
+      "target": "Sure , meghna is on meghna_address",
+      "match": false
+    },
+    {
+      "human": "phone number",
+      "bot": " you are welcome",
+      "target": "The phone number of meghna is meghna_phone",
+      "match": false
+    }
+  ],
+  [
+    {
+      "human": "i need",
+      "bot": "in which area?",
+      "target": "What kind of food would you like?",
+      "match": false
+    },
+    {
+      "human": "moroccan food",
+      "bot": "I'm sorry but there is no restaurant serving moroccan food",
+      "target": "I'm sorry but there is no restaurant serving moroccan food",
+      "match": true
+    },
+    {
+      "human": "how about european type of food",
+      "bot": "There are 8 restaurants serving european food . What area do you want?",
+      "target": "You are looking for a moroccan restaurant right?",
+      "match": false
+    },
+    {
+      "human": "no",
+      "bot": "how about restaurant eraina?",
+      "target": "I'm sorry but there is no restaurant serving moroccan food",
+      "match": false
+    },
+    {
+      "human": "how about european",
+      "bot": "You are looking for a european restaurant right?",
+      "target": "You are looking for a european restaurant right?",
+      "match": true
+    },
+    {
+      "human": "doesnt matter",
+      "bot": "You are looking for a european restaurant right?",
+      "target": "What part of town do you have in mind?",
+      "match": false
+    },
+    {
+      "human": "any",
+      "bot": "You are looking for a european restaurant right?",
+      "target": "Ok , a restaurant in any part of town is that right?",
+      "match": true
+    },
+    {
+      "human": "expensive",
+      "bot": "You are looking for a european restaurant right?",
+      "target": "Would you like something in the cheap , moderate , or expensive price range?",
+      "match": false
+    },
+    {
+      "human": "expensive",
+      "bot": "Let me confirm , You are looking for a restaurant in the expensive price range right?",
+      "target": "I'm sorry but there is no restaurant serving cheap european food",
+      "match": false
+    },
+    {
+      "human": "thank you good bye",
+      "bot": " you are welcome",
+      "target": " you are welcome",
+      "match": true
+    }
+  ],
+  [
+    {
+      "human": "south",
+      "bot": "What kind of food would you like?",
+      "target": "What kind of food would you like?",
+      "match": true
+    },
+    {
+      "human": "corsica",
+      "bot": "I'm sorry but there is no corsica restaurant in the south of town",
+      "target": "I'm sorry but there is no restaurant serving corsica food",
+      "match": true
+    },
+    {
+      "human": "italian",
+      "bot": "frankie_and_bennys is a nice place in the south of town serving tasty italian food",
+      "target": "There are restaurants serving italian food . What area do you want?",
+      "match": false
+    },
+    {
+      "human": "south",
+      "bot": "frankie_and_bennys is a nice place in the south of town serving tasty italian food",
+      "target": "There are restaurants serving italian in the south of town . What price range would you like?",
+      "match": false
+    },
+    {
+      "human": "moderate",
+      "bot": "pizza_hut_cherry_hinton is a great restaurant serving moderate italian food in the south of town",
+      "target": "pizza_hut_cherry_hinton is a great restaurant serving moderate italian food in the south of town .",
+      "match": true
+    },
+    {
+      "human": "can i get post code",
+      "bot": "The post code of pizza_hut_cherry_hinton is pizza_hut_cherry_hinton_post_code",
+      "target": "The post code of pizza_hut_cherry_hinton is pizza_hut_cherry_hinton_post_code",
+      "match": true
+    },
+    {
+      "human": "phone number",
+      "bot": "The phone number of pizza_hut_cherry_hinton is pizza_hut_cherry_hinton_phone",
+      "target": "The phone number of pizza_hut_cherry_hinton is pizza_hut_cherry_hinton_phone",
+      "match": true
+    },
+    {
+      "human": "thank you good bye",
+      "bot": " you are welcome",
+      "target": " you are welcome",
+      "match": true
+    }
+  ],
+  [
+    {
+      "human": "east",
+      "bot": "What kind of food would you like?",
+      "target": "There are restaurants in the cheap price range . What type of food do you want?",
+      "match": false
+    },
+    {
+      "human": "no",
+      "bot": "Did you say you are looking for a restaurant in the east of town?",
+      "target": "You are looking for a restaurant serving any kind of food right?",
+      "match": true
+    },
+    {
+      "human": "east",
+      "bot": "What kind of food would you like?",
+      "target": "the_missing_sock is a nice place in the east of town and the prices are cheap",
+      "match": false
+    },
+    {
+      "human": "can you hear me",
+      "bot": "how about restaurant royal_standard?",
+      "target": "the_missing_sock is a great restaurant",
+      "match": false
+    },
+    {
+      "human": "okay",
+      "bot": "how about restaurant royal_standard?",
+      "target": "the_missing_sock is a nice place in the east of town and the prices are cheap",
+      "match": false
+    },
+    {
+      "human": "back",
+      "bot": "how about restaurant royal_standard?",
+      "target": "I'm sorry but there is no restaurant serving basque food",
+      "match": false
+    },
+    {
+      "human": "indian",
+      "bot": "curry_prince is a nice place in the east of town serving tasty indian food",
+      "target": "Can I help you with anything else?",
+      "match": false
+    },
+    {
+      "human": "i need a restaurant in the east part of town",
+      "bot": "Did you say you are looking for a restaurant in the east of town?",
+      "target": "I'm sorry but there is no indian restaurant in the east of town and the cheap price range",
+      "match": false
+    },
+    {
+      "human": "moderate",
+      "bot": "You are looking for a indian restaurant right?",
+      "target": "curry_prince is a great restaurant serving moderate indian food in the east of town .",
+      "match": false
+    },
+    {
+      "human": "address",
+      "bot": "Sure , curry_prince is on curry_prince_address",
+      "target": "curry_prince is a great restaurant",
+      "match": false
+    },
+    {
+      "human": "address",
+      "bot": "Sure , curry_prince is on curry_prince_address",
+      "target": "Sure , curry_prince is on curry_prince_address",
+      "match": true
+    },
+    {
+      "human": "telephone number",
+      "bot": "The phone number of curry_prince is curry_prince_phone",
+      "target": "curry_prince is a great restaurant",
+      "match": false
+    },
+    {
+      "human": "thank you good bye",
+      "bot": " you are welcome",
+      "target": " you are welcome",
+      "match": true
+    }
+  ],
+  [
+    {
+      "human": "yea im looking for a moderately priced restaurant in the south of town",
+      "bot": "pizza_hut_cherry_hinton is a nice place in the south of town and the prices are moderate",
+      "target": "There are restaurants in the south of town . What type of food do you want?",
+      "match": false
+    },
+    {
+      "human": "american",
+      "bot": "no options available with the provided requirements",
+      "target": "You are looking for a restaurant serving any kind of food right?",
+      "match": false
+    },
+    {
+      "human": "north_american",
+      "bot": "no options available with the provided requirements",
+      "target": "gourmet_burger_kitchen serves north_american food",
+      "match": false
+    },
+    {
+      "human": "spanish",
+      "bot": "no options available with the provided requirements",
+      "target": "I'm sorry but there is no north_american restaurant in the south of town",
+      "match": false
+    },
+    {
+      "human": "english food",
+      "bot": "no options available with the provided requirements",
+      "target": "Can I help you with anything else?",
+      "match": false
+    },
+    {
+      "human": "moderate",
+      "bot": "no options available with the provided requirements",
+      "target": "Can I help you with anything else?",
+      "match": false
+    },
+    {
+      "human": "moderately priced restaurant in the south of town",
+      "bot": "no options available with the provided requirements",
+      "target": "Can I help you with anything else?",
+      "match": false
+    },
+    {
+      "human": "whats the phone number of burger kitchen",
+      "bot": "which restaurant are you talking about?",
+      "target": "The phone number of gourmet_burger_kitchen is gourmet_burger_kitchen_phone",
+      "match": false
+    },
+    {
+      "human": "and the type of food at gourmet_burger_kitchen",
+      "bot": "no options available with the provided requirements",
+      "target": "gourmet_burger_kitchen serves north_american food",
+      "match": false
+    },
+    {
+      "human": "thank you good bye",
+      "bot": " you are welcome",
+      "target": " you are welcome",
+      "match": true
+    }
+  ],
+  [
+    {
+      "human": "cheap restaurant",
+      "bot": "in which area?",
+      "target": "You are looking for a greek restaurant right?",
+      "match": false
+    },
+    {
+      "human": "cheap",
+      "bot": "how about restaurant j_restaurant?",
+      "target": "I'm sorry but there is no restaurant serving greek food",
+      "match": false
+    },
+    {
+      "human": "cheap food",
+      "bot": "how about restaurant j_restaurant?",
+      "target": "I'm sorry but there is no restaurant serving greek food",
+      "match": false
+    },
+    {
+      "human": "food",
+      "bot": "how about restaurant j_restaurant?",
+      "target": "I'm sorry but there is no restaurant serving greek food",
+      "match": false
+    },
+    {
+      "human": "is there anything else",
+      "bot": "how about restaurant golden_house?",
+      "target": "You are looking for a greek restaurant right?",
+      "match": false
+    },
+    {
+      "human": "thank you is there anything else",
+      "bot": "how about restaurant la_margherita?",
+      "target": "I'm sorry but there is no restaurant serving greek food",
+      "match": false
+    },
+    {
+      "human": "north part of town",
+      "bot": "da_vinci_pizzeria is a nice place in the north of town and the prices are cheap",
+      "target": "You are looking for a greek restaurant right?",
+      "match": false
+    },
+    {
+      "human": "north part of town",
+      "bot": "da_vinci_pizzeria is a nice place in the north of town and the prices are cheap",
+      "target": "You are looking for a restaurant serving any kind of food right?",
+      "match": false
+    },
+    {
+      "human": "inexpensive",
+      "bot": "no options available with the provided requirements",
+      "target": "city_stop_restaurant is a nice place in the north of town and the prices are expensive",
+      "match": false
+    },
+    {
+      "human": "inexpensive",
+      "bot": "no options available with the provided requirements",
+      "target": "city_stop_restaurant is a great restaurant",
+      "match": false
+    },
+    {
+      "human": "anything else",
+      "bot": "which restaurant are you talking about?",
+      "target": "hakka is a nice place in the north of town and the prices are expensive",
+      "match": false
+    },
+    {
+      "human": "what prices",
+      "bot": " you are welcome",
+      "target": "hakka is a great restaurant",
+      "match": false
+    }
+  ],
+  [
+    {
+      "human": "im looking for a restaurant in the east part of town that serves canapes",
+      "bot": "Would you like something in the cheap , moderate , or expensive price range?",
+      "target": "You are looking for a canapes restaurant right?",
+      "match": false
+    },
+    {
+      "human": "how about canapes",
+      "bot": "Would you like something in the cheap , moderate , or expensive price range?",
+      "target": "I'm sorry but there is no restaurant serving canapes food",
+      "match": false
+    },
+    {
+      "human": "how about indian food",
+      "bot": "Would you like something in the cheap , moderate , or expensive price range?",
+      "target": "Did you say you are looking for a restaurant in the east of town?",
+      "match": false
+    },
+    {
+      "human": "yes",
+      "bot": "Would you like something in the cheap , moderate , or expensive price range?",
+      "target": "There are restaurants serving indian in the east of town . What price range would you like?",
+      "match": false
+    },
+    {
+      "human": "uh",
+      "bot": "Would you like something in the cheap , moderate , or expensive price range?",
+      "target": "Would you like something in the cheap , moderate , or expensive price range?",
+      "match": true
+    },
+    {
+      "human": "expensive",
+      "bot": "sitar_tandoori is a great restaurant serving expensive indian food in the east of town",
+      "target": "pipasha_restaurant is a great restaurant serving expensive indian food in the east of town .",
+      "match": true
+    },
+    {
+      "human": "medium priced",
+      "bot": "no options available with the provided requirements",
+      "target": "pipasha_restaurant is a great restaurant",
+      "match": false
+    },
+    {
+      "human": "whats the address",
+      "bot": "which restaurant are you talking about?",
+      "target": "Sure , pipasha_restaurant is on pipasha_restaurant_address",
+      "match": false
+    },
+    {
+      "human": "and whats the telephone number",
+      "bot": "which restaurant are you talking about?",
+      "target": "The phone number of pipasha_restaurant is pipasha_restaurant_phone",
+      "match": false
+    },
+    {
+      "human": "thank you",
+      "bot": "no options available with the provided requirements",
+      "target": "pipasha_restaurant is a great restaurant",
+      "match": false
+    },
+    {
+      "human": "good bye",
+      "bot": " you are welcome",
+      "target": " you are welcome",
+      "match": true
+    }
+  ],
+  [
+    {
+      "human": "i would like a restaurant in the west part of town that serves russian food",
+      "bot": "Would you like something in the cheap , moderate , or expensive price range?",
+      "target": "You are looking for a corsica restaurant right?",
+      "match": false
+    },
+    {
+      "human": "russian food",
+      "bot": "Would you like something in the cheap , moderate , or expensive price range?",
+      "target": "I'm sorry but there is no restaurant serving welsh food",
+      "match": false
+    },
+    {
+      "human": "russian food",
+      "bot": "Would you like something in the cheap , moderate , or expensive price range?",
+      "target": "I'm sorry but there is no restaurant serving welsh food",
+      "match": false
+    },
+    {
+      "human": "italian food",
+      "bot": "Would you like something in the cheap , moderate , or expensive price range?",
+      "target": "Did you say you are looking for a restaurant in the west of town?",
+      "match": false
+    },
+    {
+      "human": "yes",
+      "bot": "Would you like something in the cheap , moderate , or expensive price range?",
+      "target": "There are restaurants serving italian in the west of town . What price range would you like?",
+      "match": false
+    },
+    {
+      "human": "medium",
+      "bot": "Would you like something in the cheap , moderate , or expensive price range?",
+      "target": "Would you like something in the cheap , moderate , or expensive price range?",
+      "match": true
+    },
+    {
+      "human": "moderate",
+      "bot": "no options available with the provided requirements",
+      "target": "prezzo is a great restaurant serving moderate italian food in the west of town .",
+      "match": false
+    },
+    {
+      "human": "what is the phone number",
+      "bot": "which restaurant are you talking about?",
+      "target": "The phone number of prezzo is prezzo_phone",
+      "match": false
+    },
+    {
+      "human": "thank you good bye",
+      "bot": " you are welcome",
+      "target": " you are welcome",
+      "match": true
+    }
+  ],
+  [
+    {
+      "human": "i want to find a moderately priced restaurant serving spanish food",
+      "bot": "in which area?",
+      "target": "la_tasca serves spanish food in the moderate price range",
+      "match": false
+    },
+    {
+      "human": "whats the address",
+      "bot": "which restaurant are you talking about?",
+      "target": "Sure , la_tasca is on la_tasca_address",
+      "match": false
+    },
+    {
+      "human": "whats the phone number",
+      "bot": "which restaurant are you talking about?",
+      "target": "The phone number of la_tasca is la_tasca_phone",
+      "match": false
+    },
+    {
+      "human": "thank you goodbye",
+      "bot": " you are welcome",
+      "target": " you are welcome",
+      "match": true
+    }
+  ],
+  [
+    {
+      "human": "start over",
+      "bot": "in which area?",
+      "target": "What part of town do you have in mind?",
+      "match": true
+    },
+    {
+      "human": "expensive restaurant",
+      "bot": "in which area?",
+      "target": "There are restaurants serving any kind of food in the expensive price range . What area would you like?",
+      "match": false
+    },
+    {
+      "human": "serving christmas food",
+      "bot": "What kind of food would you like?",
+      "target": "I'm sorry but there is no restaurant serving christmas food",
+      "match": false
+    },
+    {
+      "human": "british",
+      "bot": "in which area?",
+      "target": "There are restaurants serving british in the expensive price range . What area would you like?",
+      "match": false
+    },
+    {
+      "human": "east",
+      "bot": "grafton_hotel_restaurant is a great restaurant serving expensive british food in the east of town",
+      "target": "grafton_hotel_restaurant is a great restaurant serving expensive british food in the east of town .",
+      "match": true
+    },
+    {
+      "human": "phone number",
+      "bot": "The phone number of grafton_hotel_restaurant is grafton_hotel_restaurant_phone",
+      "target": "grafton_hotel_restaurant is a great restaurant",
+      "match": false
+    },
+    {
+      "human": "phone number",
+      "bot": "The phone number of grafton_hotel_restaurant is grafton_hotel_restaurant_phone",
+      "target": "The phone number of grafton_hotel_restaurant is grafton_hotel_restaurant_phone",
+      "match": true
+    },
+    {
+      "human": "good bye",
+      "bot": " you are welcome",
+      "target": " you are welcome",
+      "match": true
+    }
+  ],
+  [
+    {
+      "human": "spanish restaurant in the south part of town",
+      "bot": "Would you like something in the cheap , moderate , or expensive price range?",
+      "target": "There are restaurants in the south of town . What type of food do you want?",
+      "match": false
+    },
+    {
+      "human": "spanish",
+      "bot": "Would you like something in the cheap , moderate , or expensive price range?",
+      "target": "You are looking for a restaurant serving any kind of food right?",
+      "match": false
+    },
+    {
+      "human": "any area",
+      "bot": "how about restaurant la_tasca?",
+      "target": "I'm sorry but there is no spanish restaurant in the south of town",
+      "match": false
+    },
+    {
+      "human": "spanish food in any area",
+      "bot": "how about restaurant la_tasca?",
+      "target": "There are restaurants serving spanish food . What area do you want?",
+      "match": false
+    },
+    {
+      "human": "east",
+      "bot": "I'm sorry but there is no spanish restaurant in the east of town",
+      "target": "I'm sorry but there is no spanish restaurant in the east of town",
+      "match": true
+    },
+    {
+      "human": "start over",
+      "bot": "I'm sorry but there is no spanish restaurant in the east of town",
+      "target": "I'm sorry but there is no spanish restaurant in the north of town",
+      "match": true
+    },
+    {
+      "human": "spanish food in west area",
+      "bot": "I'm sorry but there is no spanish restaurant in the west of town",
+      "target": "You are looking for a danish restaurant right?",
+      "match": false
+    },
+    {
+      "human": "no",
+      "bot": "I'm sorry but there is no spanish restaurant in the west of town",
+      "target": "I'm sorry but there is no restaurant serving danish food",
+      "match": true
+    },
+    {
+      "human": "spanish food",
+      "bot": "I'm sorry but there is no spanish restaurant in the west of town",
+      "target": "There are restaurants serving spanish food . What area do you want?",
+      "match": false
+    },
+    {
+      "human": "any",
+      "bot": "You are looking for a spanish restaurant right?",
+      "target": "There are restaurants serving spanish food in any part of town . What price range would you like?",
+      "match": false
+    },
+    {
+      "human": "cheap",
+      "bot": "You are looking for a spanish restaurant right?",
+      "target": "la_raza serves spanish food in the cheap price range",
+      "match": false
+    },
+    {
+      "human": "address",
+      "bot": "which restaurant are you talking about?",
+      "target": "la_raza is a great restaurant",
+      "match": false
+    },
+    {
+      "human": "address",
+      "bot": "which restaurant are you talking about?",
+      "target": "Sure , la_raza is on la_raza_address",
+      "match": false
+    },
+    {
+      "human": "good bye",
+      "bot": " you are welcome",
+      "target": " you are welcome",
+      "match": true
+    }
+  ],
+  [
+    {
+      "human": "restaurant in west part of town",
+      "bot": "What kind of food would you like?",
+      "target": "There are restaurants in the west of town . What type of food do you want?",
+      "match": false
+    },
+    {
+      "human": "moderately priced",
+      "bot": "saint_johns_chop_house is a nice place in the west of town and the prices are moderate",
+      "target": "There are restaurants in the moderate price range and the west of town . What type of food would you like?",
+      "match": false
+    },
+    {
+      "human": "doesnt matter",
+      "bot": "saint_johns_chop_house is a nice place in the west of town and the prices are moderate",
+      "target": "saint_johns_chop_house is a nice place in the west of town and the prices are moderate",
+      "match": true
+    },
+    {
+      "human": "what type of food",
+      "bot": "saint_johns_chop_house serves british food",
+      "target": "saint_johns_chop_house serves british food",
+      "match": true
+    },
+    {
+      "human": "whats the address and phone number",
+      "bot": "Sure , saint_johns_chop_house is on saint_johns_chop_house_address. The phone number of saint_johns_chop_house is saint_johns_chop_house_phone",
+      "target": "The phone number of saint_johns_chop_house is saint_johns_chop_house_phone",
+      "match": true
+    },
+    {
+      "human": "thank you good bye",
+      "bot": " you are welcome",
+      "target": " you are welcome",
+      "match": true
+    }
+  ],
+  [
+    {
+      "human": "find spanish restaurant",
+      "bot": "how about restaurant la_tasca?",
+      "target": "You are looking for a spanish restaurant right?",
+      "match": false
+    },
+    {
+      "human": "doesnt matter",
+      "bot": "You are looking for a spanish restaurant right?",
+      "target": "What part of town do you have in mind?",
+      "match": false
+    },
+    {
+      "human": "doesnt matter",
+      "bot": "You are looking for a spanish restaurant right?",
+      "target": "Ok , a restaurant in any part of town is that right?",
+      "match": true
+    },
+    {
+      "human": "yes",
+      "bot": "Would you like something in the cheap , moderate , or expensive price range?",
+      "target": "Would you like something in the cheap , moderate , or expensive price range?",
+      "match": true
+    },
+    {
+      "human": "any",
+      "bot": "how about restaurant la_tasca?",
+      "target": "la_tasca serves spanish food",
+      "match": false
+    },
+    {
+      "human": "the address and post code",
+      "bot": "Sure , la_tasca is on la_tasca_address. The post code of la_tasca is la_tasca_post_code",
+      "target": "The post code of la_tasca is la_tasca_post_code",
+      "match": true
+    },
+    {
+      "human": "what is the address",
+      "bot": "Sure , la_tasca is on la_tasca_address",
+      "target": "Sure , la_tasca is on la_tasca_address",
+      "match": true
+    },
+    {
+      "human": "thank you good bye",
+      "bot": " you are welcome",
+      "target": " you are welcome",
+      "match": true
+    }
+  ],
+  [
+    {
+      "human": "find cheap restaurant",
+      "bot": "in which area?",
+      "target": "There are restaurants in the cheap price range . What type of food do you want?",
+      "match": false
+    },
+    {
+      "human": "christmas food",
+      "bot": "I'm sorry but there is no restaurant serving cheap christmas food",
+      "target": "I'm sorry but there is no restaurant serving christmas food",
+      "match": true
+    },
+    {
+      "human": "asian_oriental food",
+      "bot": "how about restaurant j_restaurant?",
+      "target": "There are restaurants serving asian_oriental in the cheap price range . What area would you like?",
+      "match": false
+    },
+    {
+      "human": "doesnt matter",
+      "bot": "how about restaurant j_restaurant?",
+      "target": "What part of town do you have in mind?",
+      "match": false
+    },
+    {
+      "human": "i dont care",
+      "bot": " you are welcome",
+      "target": "j_restaurant serves asian_oriental food in the cheap price range",
+      "match": false
+    },
+    {
+      "human": "what is the address",
+      "bot": "in which area?",
+      "target": "Sure , j_restaurant is on j_restaurant_address",
+      "match": false
+    },
+    {
+      "human": "what is the phone number",
+      "bot": "The phone number of j_restaurant is j_restaurant_phone",
+      "target": "The phone number of j_restaurant is j_restaurant_phone",
+      "match": true
+    },
+    {
+      "human": "thank you good bye",
+      "bot": " you are welcome",
+      "target": " you are welcome",
+      "match": true
+    }
+  ],
+  [
+    {
+      "human": "moderate restaurant east part of town",
+      "bot": "curry_prince is a nice place in the east of town and the prices are moderate",
+      "target": "There are restaurants in the moderate price range and the east of town . What type of food would you like?",
+      "match": false
+    },
+    {
+      "human": "it doesnt matter",
+      "bot": "curry_prince is a nice place in the east of town and the prices are moderate",
+      "target": "curry_prince is a nice place in the east of town and the prices are moderate",
+      "match": true
+    },
+    {
+      "human": "anything else",
+      "bot": "rajmahal is a nice place in the east of town and the prices are moderate",
+      "target": "rajmahal is a nice place in the east of town and the prices are moderate",
+      "match": true
+    },
+    {
+      "human": "phone number",
+      "bot": "The phone number of rajmahal is rajmahal_phone",
+      "target": "rajmahal is a great restaurant",
+      "match": false
+    },
+    {
+      "human": "phone number",
+      "bot": "The phone number of rajmahal is rajmahal_phone",
+      "target": "The phone number of rajmahal is rajmahal_phone",
+      "match": true
+    },
+    {
+      "human": "thank you good bye",
+      "bot": " you are welcome",
+      "target": " you are welcome",
+      "match": true
+    }
+  ],
+  [
+    {
+      "human": "north part of town",
+      "bot": "What kind of food would you like?",
+      "target": "There are restaurants in the north of town . What type of food do you want?",
+      "match": false
+    },
+    {
+      "human": "traditional food",
+      "bot": "I'm sorry but there is no traditional restaurant in the north of town",
+      "target": "I'm sorry but there is no restaurant serving traditional food",
+      "match": true
+    },
+    {
+      "human": "asian",
+      "bot": "I'm sorry but there is no asian restaurant in the north of town",
+      "target": "saigon_city is a nice place in the north of town serving tasty asian_oriental food",
+      "match": false
+    },
+    {
+      "human": "address",
+      "bot": "which restaurant are you talking about?",
+      "target": "saigon_city is a great restaurant",
+      "match": false
+    },
+    {
+      "human": "address",
+      "bot": "which restaurant are you talking about?",
+      "target": "Sure , saigon_city is on saigon_city_address",
+      "match": false
+    },
+    {
+      "human": "phone number",
+      "bot": "which restaurant are you talking about?",
+      "target": "The phone number of saigon_city is saigon_city_phone",
+      "match": false
+    },
+    {
+      "human": "thank you good bye",
+      "bot": " you are welcome",
+      "target": " you are welcome",
+      "match": true
+    }
+  ],
+  [
+    {
+      "human": "aristrain food",
+      "bot": "I'm sorry but there is no restaurant serving aristrain food",
+      "target": "What kind of food would you like?",
+      "match": false
+    },
+    {
+      "human": "asian_oriental",
+      "bot": "You are looking for a asian_oriental restaurant right?",
+      "target": "You are looking for a restaurant serving any kind of food right?",
+      "match": true
+    },
+    {
+      "human": "no",
+      "bot": "You are looking for a asian_oriental restaurant right?",
+      "target": "What part of town do you have in mind?",
+      "match": false
+    },
+    {
+      "human": "any area",
+      "bot": "Ok , a restaurant in any part of town is that right?",
+      "target": "There are restaurants if you don't care about the area or the type of food . What price range would you like?",
+      "match": false
+    },
+    {
+      "human": "asian_oriental",
+      "bot": "Ok , a restaurant in any part of town is that right?",
+      "target": "There are restaurants serving asian_oriental food in any part of town . What price range would you like?",
+      "match": false
+    },
+    {
+      "human": "any",
+      "bot": "Sorry would you like something in the expensive price range or you dont care",
+      "target": "Would you like something in the cheap , moderate , or expensive price range?",
+      "match": false
+    },
+    {
+      "human": "cheap",
+      "bot": "how about restaurant j_restaurant?",
+      "target": "dojo_noodle_bar serves asian_oriental food in the cheap price range",
+      "match": false
+    },
+    {
+      "human": "phone number",
+      "bot": "The phone number of j_restaurant is j_restaurant_phone",
+      "target": "dojo_noodle_bar is a great restaurant",
+      "match": false
+    },
+    {
+      "human": "phone number",
+      "bot": "The phone number of j_restaurant is j_restaurant_phone",
+      "target": "The phone number of dojo_noodle_bar is dojo_noodle_bar_phone",
+      "match": true
+    },
+    {
+      "human": "address",
+      "bot": "Sure , j_restaurant is on j_restaurant_address",
+      "target": "Sure , dojo_noodle_bar is on dojo_noodle_bar_address",
+      "match": true
+    },
+    {
+      "human": "address",
+      "bot": "Sure , j_restaurant is on j_restaurant_address",
+      "target": "Sure , dojo_noodle_bar is on dojo_noodle_bar_address",
+      "match": true
+    },
+    {
+      "human": "thank you good bye",
+      "bot": " you are welcome",
+      "target": " you are welcome",
+      "match": true
+    }
+  ],
+  [
+    {
+      "human": "greek food east part of town",
+      "bot": "Would you like something in the cheap , moderate , or expensive price range?",
+      "target": "There are restaurants in the east of town . What type of food do you want?",
+      "match": false
+    },
+    {
+      "human": "chinese",
+      "bot": "Would you like something in the cheap , moderate , or expensive price range?",
+      "target": "I'm sorry but there is no restaurant serving greek food",
+      "match": false
+    },
+    {
+      "human": "chinese oriental",
+      "bot": "Would you like something in the cheap , moderate , or expensive price range?",
+      "target": "I'm sorry but there is no restaurant serving greek food",
+      "match": false
+    },
+    {
+      "human": "chinese food",
+      "bot": "Would you like something in the cheap , moderate , or expensive price range?",
+      "target": "yu_garden is a nice place in the east of town serving tasty chinese food",
+      "match": false
+    },
+    {
+      "human": "address",
+      "bot": "which restaurant are you talking about?",
+      "target": "Can I help you with anything else?",
+      "match": false
+    },
+    {
+      "human": "address",
+      "bot": "which restaurant are you talking about?",
+      "target": "Sure , yu_garden is on yu_garden_address",
+      "match": false
+    },
+    {
+      "human": "phone number",
+      "bot": "which restaurant are you talking about?",
+      "target": "The phone number of yu_garden is yu_garden_phone",
+      "match": false
+    },
+    {
+      "human": "post code",
+      "bot": "which restaurant are you talking about?",
+      "target": "The post code of yu_garden is yu_garden_post_code",
+      "match": false
+    },
+    {
+      "human": "thank you good bye",
+      "bot": " you are welcome",
+      "target": " you are welcome",
+      "match": true
+    }
+  ],
+  [
+    {
+      "human": "expensive restaurant south part of town",
+      "bot": "frankie_and_bennys is a nice place in the south of town and the prices are expensive",
+      "target": "There are restaurants in the south of town . What type of food do you want?",
+      "match": false
+    },
+    {
+      "human": "any type",
+      "bot": "frankie_and_bennys is a nice place in the south of town and the prices are expensive",
+      "target": "Did you say you are looking for a restaurant in the south of town?",
+      "match": false
+    },
+    {
+      "human": "yea",
+      "bot": "frankie_and_bennys is a nice place in the south of town and the prices are expensive",
+      "target": "There are restaurants in the south of town serving any kind of food . What price range would you like?",
+      "match": false
+    },
+    {
+      "human": "expensive",
+      "bot": "frankie_and_bennys is a nice place in the south of town and the prices are expensive",
+      "target": "chiquito_restaurant_bar is a nice place in the south of town and the prices are expensive",
+      "match": true
+    },
+    {
+      "human": "anything else",
+      "bot": "chiquito_restaurant_bar is a nice place in the south of town and the prices are expensive",
+      "target": "taj_tandoori is a nice place in the south of town and the prices are expensive",
+      "match": true
+    },
+    {
+      "human": "phone number",
+      "bot": "The phone number of chiquito_restaurant_bar is chiquito_restaurant_bar_phone",
+      "target": "taj_tandoori is a great restaurant",
+      "match": false
+    },
+    {
+      "human": "phone number",
+      "bot": "The phone number of chiquito_restaurant_bar is chiquito_restaurant_bar_phone",
+      "target": "The phone number of taj_tandoori is taj_tandoori_phone",
+      "match": true
+    },
+    {
+      "human": "type of food",
+      "bot": "chiquito_restaurant_bar serves mexican food",
+      "target": "taj_tandoori is a great restaurant",
+      "match": false
+    },
+    {
+      "human": "food type",
+      "bot": "no options available with the provided requirements",
+      "target": "the good luck chinese food takeaway is a nice place in the south of town and the prices are expensive",
+      "match": false
+    },
+    {
+      "human": "anything else",
+      "bot": " you are welcome",
+      "target": "frankie_and_bennys is a nice place in the south of town and the prices are expensive",
+      "match": false
+    }
+  ],
+  [
+    {
+      "human": "i am looking for a restaurant in any area and it should serve barbecue food",
+      "bot": "Would you like something in the cheap , moderate , or expensive price range?",
+      "target": "I'm sorry but there is no restaurant serving barbeque food",
+      "match": false
+    },
+    {
+      "human": "breath i am looking for a venue that serves gastropub food",
+      "bot": "Would you like something in the cheap , moderate , or expensive price range?",
+      "target": "You are looking for a barbeque restaurant right?",
+      "match": false
+    },
+    {
+      "human": "yes im looking for barbecue food",
+      "bot": "I'm sorry but there is no restaurant serving barbeque food",
+      "target": "I'm sorry but there is no restaurant serving barbeque food",
+      "match": true
+    },
+    {
+      "human": "how about gastro type",
+      "bot": "I'm sorry but there is no restaurant serving gastro food",
+      "target": "I'm sorry but there is no restaurant serving barbeque food",
+      "match": true
+    },
+    {
+      "human": "gastropub type of food",
+      "bot": "how about restaurant the_slug_and_lettuce?",
+      "target": "Ok , a restaurant in any part of town is that right?",
+      "match": false
+    },
+    {
+      "human": "that serves gastropub",
+      "bot": "how about restaurant the_slug_and_lettuce?",
+      "target": "There are restaurants serving gastropub food in any part of town . What price range would you like?",
+      "match": false
+    },
+    {
+      "human": "do not care",
+      "bot": "how about restaurant the_slug_and_lettuce?",
+      "target": "Would you like something in the cheap , moderate , or expensive price range?",
+      "match": false
+    },
+    {
+      "human": "i dont care",
+      "bot": " you are welcome",
+      "target": "royal_standard serves gastropub food",
+      "match": false
+    },
+    {
+      "human": "could i have the address and phone number plea",
+      "bot": "Sure , the_slug_and_lettuce is on the_slug_and_lettuce_address. The phone number of the_slug_and_lettuce is the_slug_and_lettuce_phone",
+      "target": "The phone number of royal_standard is royal_standard_phone",
+      "match": true
+    },
+    {
+      "human": "thank you goodbye",
+      "bot": " you are welcome",
+      "target": " you are welcome",
+      "match": true
+    }
+  ],
+  [
+    {
+      "human": "i would like to find a moderately priced restaurant and it should serve greek food",
+      "bot": "in which area?",
+      "target": "You are looking for a greek restaurant right?",
+      "match": false
+    },
+    {
+      "human": "yes",
+      "bot": "I'm sorry but there is no restaurant serving moderate greek food",
+      "target": "I'm sorry but there is no restaurant serving greek food",
+      "match": true
+    },
+    {
+      "human": "chinese food",
+      "bot": "how about restaurant golden_wok?",
+      "target": "I'm sorry but there is no restaurant serving greek food",
+      "match": false
+    },
+    {
+      "human": "im looking for a restaurant that serves chinese food",
+      "bot": "how about restaurant golden_wok?",
+      "target": "You are looking for a chinese restaurant right?",
+      "match": false
+    },
+    {
+      "human": "yes yea",
+      "bot": "how about restaurant golden_wok?",
+      "target": "There are restaurants serving chinese food . What area do you want?",
+      "match": false
+    },
+    {
+      "human": "i do not care",
+      "bot": " you are welcome",
+      "target": "Ok , a restaurant in any part of town is that right?",
+      "match": false
+    },
+    {
+      "human": "i need a moderately priced restaurant",
+      "bot": "Would you like something in the cheap , moderate , or expensive price range?",
+      "target": "shanghai_family_restaurant serves chinese food in the moderate price range",
+      "match": false
+    },
+    {
+      "human": "may i have the phone number",
+      "bot": "The phone number of golden_wok is golden_wok_phone",
+      "target": "The phone number of shanghai_family_restaurant is shanghai_family_restaurant_phone",
+      "match": true
+    },
+    {
+      "human": "thank you good bye",
+      "bot": " you are welcome",
+      "target": " you are welcome",
+      "match": true
+    }
+  ],
+  [
+    {
+      "human": "i would like to find an expensive restaurant in the south part of town",
+      "bot": "frankie_and_bennys is a nice place in the south of town and the prices are expensive",
+      "target": "There are restaurants in the expensive price range and the south of town . What type of food would you like?",
+      "match": false
+    },
+    {
+      "human": "i do not care",
+      "bot": " you are welcome",
+      "target": "frankie_and_bennys is a nice place in the south of town and the prices are expensive",
+      "match": false
+    },
+    {
+      "human": "what type of food do they serve",
+      "bot": "Would you like something in the cheap , moderate , or expensive price range?",
+      "target": "frankie_and_bennys serves italian food",
+      "match": false
+    },
+    {
+      "human": "thank you good bye",
+      "bot": " you are welcome",
+      "target": " you are welcome",
+      "match": true
+    }
+  ],
+  [
+    {
+      "human": "im looking for a moderately priced restaurant in the west part of town",
+      "bot": "saint_johns_chop_house is a nice place in the west of town and the prices are moderate",
+      "target": "There are restaurants in the moderate price range and the south of town . What type of food would you like?",
+      "match": false
+    },
+    {
+      "human": "uh",
+      "bot": "saint_johns_chop_house is a nice place in the west of town and the prices are moderate",
+      "target": "You are looking for a restaurant serving any kind of food right?",
+      "match": false
+    },
+    {
+      "human": "yes",
+      "bot": "saint_johns_chop_house is a nice place in the west of town and the prices are moderate",
+      "target": "restaurant_alimentum is a nice place in the south of town and the prices are moderate",
+      "match": true
+    },
+    {
+      "human": "address",
+      "bot": "Sure , saint_johns_chop_house is on saint_johns_chop_house_address",
+      "target": "Sure , restaurant_alimentum is on restaurant_alimentum_address",
+      "match": true
+    },
+    {
+      "human": "phone number",
+      "bot": "The phone number of saint_johns_chop_house is saint_johns_chop_house_phone",
+      "target": "The phone number of restaurant_alimentum is restaurant_alimentum_phone",
+      "match": true
+    },
+    {
+      "human": "thank you good bye",
+      "bot": " you are welcome",
+      "target": " you are welcome",
+      "match": true
+    }
+  ],
+  [
+    {
+      "human": "expensive price range",
+      "bot": "in which area?",
+      "target": "What kind of food would you like?",
+      "match": false
+    },
+    {
+      "human": "anything",
+      "bot": "how about restaurant frankie_and_bennys?",
+      "target": "There are restaurants if you don't care about the food . What price range do you want?",
+      "match": false
+    },
+    {
+      "human": "expensive",
+      "bot": "how about restaurant frankie_and_bennys?",
+      "target": "There are restaurants serving any kind of food in the expensive price range . What area would you like?",
+      "match": false
+    },
+    {
+      "human": "south part of town",
+      "bot": "frankie_and_bennys is a nice place in the south of town and the prices are expensive",
+      "target": "frankie_and_bennys is a nice place in the south of town and the prices are expensive",
+      "match": true
+    },
+    {
+      "human": "uh anything else",
+      "bot": "chiquito_restaurant_bar is a nice place in the south of town and the prices are expensive",
+      "target": "the good luck chinese food takeaway is a nice place in the south of town and the prices are expensive",
+      "match": true
+    },
+    {
+      "human": "uh whats the address",
+      "bot": "Sure , chiquito_restaurant_bar is on chiquito_restaurant_bar_address",
+      "target": "Sure , the good luck chinese food takeaway is on the_good_luck_chinese_food_takeaway_address",
+      "match": true
+    },
+    {
+      "human": "phone number",
+      "bot": "The phone number of chiquito_restaurant_bar is chiquito_restaurant_bar_phone",
+      "target": "The phone number of the good luck chinese food takeaway is the_good_luck_chinese_food_takeaway_phone",
+      "match": true
+    },
+    {
+      "human": "thank you good bye",
+      "bot": " you are welcome",
+      "target": " you are welcome",
+      "match": true
+    }
+  ],
+  [
+    {
+      "human": "restaurant in the south part of town",
+      "bot": "What kind of food would you like?",
+      "target": "There are restaurants in the south of town . What type of food do you want?",
+      "match": false
+    },
+    {
+      "human": "hello",
+      "bot": "What kind of food would you like?",
+      "target": "You are looking for a restaurant serving any kind of food right?",
+      "match": false
+    },
+    {
+      "human": "yes",
+      "bot": "how about restaurant frankie_and_bennys?",
+      "target": "Would you like something in the cheap , moderate , or expensive price range?",
+      "match": false
+    },
+    {
+      "human": "cheap",
+      "bot": "the_lucky_star is a nice place in the south of town and the prices are cheap",
+      "target": "the_lucky_star is a nice place in the south of town and the prices are cheap",
+      "match": true
+    },
+    {
+      "human": "address",
+      "bot": "Sure , the_lucky_star is on the_lucky_star_address",
+      "target": "Sure , the_lucky_star is on the_lucky_star_address",
+      "match": true
+    },
+    {
+      "human": "phone number",
+      "bot": "The phone number of the_lucky_star is the_lucky_star_phone",
+      "target": "the_lucky_star is a great restaurant",
+      "match": false
+    },
+    {
+      "human": "phone number",
+      "bot": "The phone number of the_lucky_star is the_lucky_star_phone",
+      "target": "The phone number of the_lucky_star is the_lucky_star_phone",
+      "match": true
+    },
+    {
+      "human": "thank you good bye",
+      "bot": " you are welcome",
+      "target": " you are welcome",
+      "match": true
+    }
+  ],
+  [
+    {
+      "human": "tuscan",
+      "bot": "I'm sorry but there is no restaurant serving tuscan food",
+      "target": "I'm sorry but there is no restaurant serving tuscan food",
+      "match": true
+    },
+    {
+      "human": "european",
+      "bot": "You are looking for a european restaurant right?",
+      "target": "There are restaurants serving european food . What area do you want?",
+      "match": false
+    },
+    {
+      "human": "any",
+      "bot": "how about restaurant eraina?",
+      "target": "There are restaurants serving european food in any part of town . What price range would you like?",
+      "match": false
+    },
+    {
+      "human": "moderately",
+      "bot": "how about restaurant restaurant_alimentum?",
+      "target": "Would you like something in the cheap , moderate , or expensive price range?",
+      "match": false
+    },
+    {
+      "human": "moderate",
+      "bot": "how about restaurant restaurant_alimentum?",
+      "target": "galleria serves european food in the moderate price range",
+      "match": false
+    },
+    {
+      "human": "can i get the address",
+      "bot": "Sure , restaurant_alimentum is on restaurant_alimentum_address",
+      "target": "galleria is a great restaurant",
+      "match": false
+    },
+    {
+      "human": "the address",
+      "bot": "Sure , restaurant_alimentum is on restaurant_alimentum_address",
+      "target": "Sure , galleria is on galleria_address",
+      "match": true
+    },
+    {
+      "human": "post code",
+      "bot": " you are welcome",
+      "target": "The post code of galleria is galleria_post_code",
+      "match": false
+    },
+    {
+      "human": "thank you good bye",
+      "bot": " you are welcome",
+      "target": " you are welcome",
+      "match": true
+    }
+  ],
+  [
+    {
+      "human": "moderately priced restaurant",
+      "bot": "in which area?",
+      "target": "There are restaurants in the moderate price range . What type of food do you want?",
+      "match": false
+    },
+    {
+      "human": "any",
+      "bot": "What kind of food would you like?",
+      "target": "What kind of food would you like?",
+      "match": true
+    },
+    {
+      "human": "any",
+      "bot": "how about restaurant restaurant_one_seven?",
+      "target": "You are looking for a restaurant serving any kind of food right?",
+      "match": false
+    },
+    {
+      "human": "east",
+      "bot": "curry_prince is a nice place in the east of town and the prices are moderate",
+      "target": "curry_prince is a nice place in the east of town and the prices are moderate",
+      "match": true
+    },
+    {
+      "human": "phone number",
+      "bot": "The phone number of curry_prince is curry_prince_phone",
+      "target": "curry_prince is a great restaurant",
+      "match": false
+    },
+    {
+      "human": "phone number",
+      "bot": "The phone number of curry_prince is curry_prince_phone",
+      "target": "The phone number of curry_prince is curry_prince_phone",
+      "match": true
+    },
+    {
+      "human": "thank you good bye",
+      "bot": " you are welcome",
+      "target": " you are welcome",
+      "match": true
+    }
+  ],
+  [
+    {
+      "human": "restaurant west",
+      "bot": "What kind of food would you like?",
+      "target": "What kind of food would you like?",
+      "match": true
+    },
+    {
+      "human": "afghan food",
+      "bot": "I'm sorry but there is no afghan restaurant in the west of town",
+      "target": "I'm sorry but there is no restaurant serving afghan food",
+      "match": true
+    },
+    {
+      "human": "vietnamese food",
+      "bot": "venue is a nice place in the west of town serving tasty vietnamese food",
+      "target": "thanh_binh is a nice place in the west of town serving tasty vietnamese food",
+      "match": true
+    },
+    {
+      "human": "phone number",
+      "bot": "The phone number of venue is venue_phone",
+      "target": "Can I help you with anything else?",
+      "match": false
+    },
+    {
+      "human": "phone number",
+      "bot": "The phone number of venue is venue_phone",
+      "target": "The phone number of thanh_binh is thanh_binh_phone",
+      "match": true
+    },
+    {
+      "human": "thank you good bye",
+      "bot": " you are welcome",
+      "target": " you are welcome",
+      "match": true
+    }
+  ],
+  [
+    {
+      "human": "i want to find a restaurant in the north part of town that serves italian food",
+      "bot": "Would you like something in the cheap , moderate , or expensive price range?",
+      "target": "da_vinci_pizzeria is a nice place in the north of town serving tasty italian food",
+      "match": false
+    },
+    {
+      "human": "may i have the address and phone number",
+      "bot": "which restaurant are you talking about?",
+      "target": "The phone number of da_vinci_pizzeria is da_vinci_pizzeria_phone",
+      "match": false
+    },
+    {
+      "human": "thank you good bye",
+      "bot": " you are welcome",
+      "target": " you are welcome",
+      "match": true
+    }
+  ],
+  [
+    {
+      "human": "im looking for a restaurant in the south part of town that serves",
+      "bot": "What kind of food would you like?",
+      "target": "There are restaurants in the south of town . What type of food do you want?",
+      "match": false
+    },
+    {
+      "human": "indonesian food",
+      "bot": "I'm sorry but there is no indonesian restaurant in the south of town",
+      "target": "You are looking for a venetian restaurant right?",
+      "match": false
+    },
+    {
+      "human": "how about chinese food",
+      "bot": "the_lucky_star is a nice place in the south of town serving tasty chinese food",
+      "target": "I'm sorry but there is no restaurant serving venetian food",
+      "match": false
+    },
+    {
+      "human": "chinese food",
+      "bot": "the_lucky_star is a nice place in the south of town serving tasty chinese food",
+      "target": "Did you say you are looking for a restaurant in the south of town?",
+      "match": false
+    },
+    {
+      "human": "yes serving chinese food",
+      "bot": "the_lucky_star is a nice place in the south of town serving tasty chinese food",
+      "target": "There are restaurants serving chinese in the south of town . What price range would you like?",
+      "match": false
+    },
+    {
+      "human": "it doesnt matter",
+      "bot": "the_lucky_star is a nice place in the south of town serving tasty chinese food",
+      "target": "the_lucky_star is a nice place in the south of town serving tasty chinese food",
+      "match": true
+    },
+    {
+      "human": "may i have the address and price range",
+      "bot": "Sure , the_lucky_star is on the_lucky_star_address. the_lucky_star is in the cheap price range",
+      "target": "Sure , the_lucky_star is on the_lucky_star_address",
+      "match": true
+    },
+    {
+      "human": "and what is the price range",
+      "bot": "the_lucky_star is in the cheap price range",
+      "target": "the_lucky_star is in the cheap price range",
+      "match": true
+    },
+    {
+      "human": "thank you good bye",
+      "bot": " you are welcome",
+      "target": " you are welcome",
+      "match": true
+    }
+  ],
+  [
+    {
+      "human": "i want to find a cheap restaurant in the west part of town",
+      "bot": "la_margherita is a nice place in the west of town and the prices are cheap",
+      "target": "There are restaurants in the cheap price range and the west of town . What type of food would you like?",
+      "match": false
+    },
+    {
+      "human": "it doesnt matter",
+      "bot": "la_margherita is a nice place in the west of town and the prices are cheap",
+      "target": "thanh_binh is a nice place in the west of town and the prices are cheap",
+      "match": true
+    },
+    {
+      "human": "may i have the address phone number and postcode",
+      "bot": "Sure , la_margherita is on la_margherita_address. The phone number of la_margherita is la_margherita_phone. The post code of la_margherita is la_margherita_post_code",
+      "target": "The phone number of thanh_binh is thanh_binh_phone",
+      "match": true
+    },
+    {
+      "human": "may i have the address",
+      "bot": "Sure , la_margherita is on la_margherita_address",
+      "target": "Sure , thanh_binh is on thanh_binh_address",
+      "match": true
+    },
+    {
+      "human": "thank you goodbye",
+      "bot": " you are welcome",
+      "target": " you are welcome",
+      "match": true
+    }
+  ],
+  [
+    {
+      "human": "i want to find a restaurant in the west part of town that serves english food",
+      "bot": "Would you like something in the cheap , moderate , or expensive price range?",
+      "target": "I'm sorry but there is no restaurant serving english food",
+      "match": false
+    },
+    {
+      "human": "how about vietnamese type of food",
+      "bot": "Would you like something in the cheap , moderate , or expensive price range?",
+      "target": "You are looking for a restaurant serving any kind of food right?",
+      "match": false
+    },
+    {
+      "human": "vietnamese type of food",
+      "bot": "Would you like something in the cheap , moderate , or expensive price range?",
+      "target": "Did you say you are looking for a restaurant in the west of town?",
+      "match": false
+    },
+    {
+      "human": "yes",
+      "bot": "Would you like something in the cheap , moderate , or expensive price range?",
+      "target": "Would you like something in the cheap , moderate , or expensive price range?",
+      "match": true
+    },
+    {
+      "human": "i dont care",
+      "bot": "venue is a nice place in the west of town serving tasty vietnamese food",
+      "target": "la_margherita is a nice place in the west of town",
+      "match": true
+    },
+    {
+      "human": "does it serve vietnamese type of food",
+      "bot": "venue is a nice place in the west of town serving tasty vietnamese food",
+      "target": "la_margherita is a great restaurant",
+      "match": true
+    },
+    {
+      "human": "i want to find a restaurant in the west part of town that serves vietnamese food",
+      "bot": "You are looking for a vietnamese restaurant right?",
+      "target": "la_margherita is a nice place in the west of town",
+      "match": false
+    },
+    {
+      "human": "what is the phone number",
+      "bot": "The phone number of venue is venue_phone",
+      "target": "The phone number of la_margherita is la_margherita_phone",
+      "match": true
+    },
+    {
+      "human": "what type of food does it serve",
+      "bot": "venue serves vietnamese food",
+      "target": "la_margherita serves italian food",
+      "match": true
+    },
+    {
+      "human": "is there a restaurant in the west part of town that serves vietnamese food",
+      "bot": "venue is a nice place in the west of town serving tasty vietnamese food",
+      "target": "la_margherita is a nice place in the west of town",
+      "match": true
+    },
+    {
+      "human": "thank you goodbye",
+      "bot": " you are welcome",
+      "target": " you are welcome",
+      "match": true
+    }
+  ],
+  [
+    {
+      "human": "african",
+      "bot": "how about restaurant bedouin?",
+      "target": "You are looking for a traditional restaurant right?",
+      "match": false
+    },
+    {
+      "human": "no",
+      "bot": "how about restaurant bedouin?",
+      "target": "I'm sorry but there is no restaurant serving traditional food",
+      "match": false
+    },
+    {
+      "human": "african",
+      "bot": "You are looking for a african restaurant right?",
+      "target": "bedouin serves african food",
+      "match": false
+    },
+    {
+      "human": "phone number and area",
+      "bot": "Can I help you with anything else?",
+      "target": "The phone number of bedouin is bedouin_phone",
+      "match": false
+    },
+    {
+      "human": "area",
+      "bot": " you are welcome",
+      "target": "I am sorry but there is no other african restaurant that matches your request",
+      "match": false
+    }
+  ],
+  [
+    {
+      "human": "singaporean",
+      "bot": "I'm sorry but there is no restaurant serving singaporean food",
+      "target": "little_seoul serves korean food",
+      "match": false
+    },
+    {
+      "human": "singapore",
+      "bot": "which restaurant are you talking about?",
+      "target": "I am sorry but there is no other korean restaurant that matches your request",
+      "match": false
+    },
+    {
+      "human": "european",
+      "bot": "how about restaurant eraina?",
+      "target": "Can I help you with anything else?",
+      "match": false
+    },
+    {
+      "human": "singaporean food",
+      "bot": "I'm sorry but there is no restaurant serving singaporean food",
+      "target": "You are looking for a european restaurant right?",
+      "match": false
+    },
+    {
+      "human": "fine",
+      "bot": "I'm sorry but there is no restaurant serving singaporean food",
+      "target": "What part of town do you have in mind?",
+      "match": false
+    },
+    {
+      "human": "any",
+      "bot": "I'm sorry but there is no restaurant serving singaporean food",
+      "target": "hotel_du_vin_and_bistro serves european food",
+      "match": false
+    },
+    {
+      "human": "phone number",
+      "bot": "which restaurant are you talking about?",
+      "target": "The phone number of hotel_du_vin_and_bistro is hotel_du_vin_and_bistro_phone",
+      "match": false
+    },
+    {
+      "human": "thank you",
+      "bot": "I'm sorry but there is no restaurant serving singaporean food",
+      "target": "cambridge_lodge_restaurant serves european food",
+      "match": false
+    },
+    {
+      "human": "singapore",
+      "bot": "which restaurant are you talking about?",
+      "target": "galleria serves european food",
+      "match": false
+    },
+    {
+      "human": "dont care",
+      "bot": "I'm sorry but there is no restaurant serving singaporean food",
+      "target": "michaelhouse_cafe serves european food",
+      "match": false
+    },
+    {
+      "human": "dont care",
+      "bot": "I'm sorry but there is no restaurant serving singaporean food",
+      "target": "eraina serves european food",
+      "match": false
+    },
+    {
+      "human": "mmhm",
+      "bot": "I'm sorry but there is no restaurant serving singaporean food",
+      "target": "Can I help you with anything else?",
+      "match": false
+    },
+    {
+      "human": "yes",
+      "bot": "I'm sorry but there is no restaurant serving singaporean food",
+      "target": "I am sorry but there is no other european restaurant that matches your request",
+      "match": false
+    },
+    {
+      "human": "singapore",
+      "bot": "which restaurant are you talking about?",
+      "target": "hotel_du_vin_and_bistro serves european food",
+      "match": false
+    },
+    {
+      "human": "phone number",
+      "bot": "which restaurant are you talking about?",
+      "target": "The phone number of hotel_du_vin_and_bistro is hotel_du_vin_and_bistro_phone",
+      "match": false
+    },
+    {
+      "human": "thank you good bye",
+      "bot": " you are welcome",
+      "target": " you are welcome",
+      "match": true
+    }
+  ],
+  [
+    {
+      "human": "id like a expensive restaurant in the south part of town",
+      "bot": "frankie_and_bennys is a nice place in the south of town and the prices are expensive",
+      "target": "There are restaurants in the expensive price range and the south of town . What type of food would you like?",
+      "match": false
+    },
+    {
+      "human": "uh",
+      "bot": "frankie_and_bennys is a nice place in the south of town and the prices are expensive",
+      "target": "You are looking for a restaurant serving any kind of food right?",
+      "match": false
+    },
+    {
+      "human": "yes",
+      "bot": "frankie_and_bennys is a nice place in the south of town and the prices are expensive",
+      "target": "chiquito_restaurant_bar is a nice place in the south of town and the prices are expensive",
+      "match": true
+    },
+    {
+      "human": "anything else",
+      "bot": "chiquito_restaurant_bar is a nice place in the south of town and the prices are expensive",
+      "target": "taj_tandoori is a nice place in the south of town and the prices are expensive",
+      "match": true
+    },
+    {
+      "human": "uh what type of food",
+      "bot": "chiquito_restaurant_bar serves mexican food",
+      "target": "taj_tandoori serves indian food",
+      "match": true
+    },
+    {
+      "human": "and the address",
+      "bot": "Sure , chiquito_restaurant_bar is on chiquito_restaurant_bar_address",
+      "target": "frankie_and_bennys is a nice place in the south of town and the prices are expensive",
+      "match": false
+    },
+    {
+      "human": "what type of food",
+      "bot": "chiquito_restaurant_bar serves mexican food",
+      "target": "frankie_and_bennys serves italian food",
+      "match": true
+    },
+    {
+      "human": "the address please",
+      "bot": "Sure , chiquito_restaurant_bar is on chiquito_restaurant_bar_address",
+      "target": "Sure , frankie_and_bennys is on frankie_and_bennys_address",
+      "match": true
+    },
+    {
+      "human": "thank you good bye",
+      "bot": " you are welcome",
+      "target": " you are welcome",
+      "match": true
+    }
+  ],
+  [
+    {
+      "human": "id like a hungarian food restaurant in the centre part of town",
+      "bot": "Would you like something in the cheap , moderate , or expensive price range?",
+      "target": "There are restaurants in the centre of town . What type of food do you want?",
+      "match": false
+    },
+    {
+      "human": "no",
+      "bot": "Would you like something in the cheap , moderate , or expensive price range?",
+      "target": "You are looking for a restaurant serving any kind of food right?",
+      "match": false
+    },
+    {
+      "human": "either one",
+      "bot": "I'm sorry but there is no hungarian restaurant in the centre of town",
+      "target": "Would you like something in the cheap , moderate , or expensive price range?",
+      "match": false
+    },
+    {
+      "human": "any price range",
+      "bot": "I'm sorry but there is no hungarian restaurant in the centre of town",
+      "target": "rice_house is a nice place in the centre of town and the prices are cheap",
+      "match": false
+    },
+    {
+      "human": "is it hungarian food",
+      "bot": "which restaurant are you talking about?",
+      "target": "rice_house is a great restaurant",
+      "match": false
+    },
+    {
+      "human": "what type of food",
+      "bot": "efes_restaurant is a nice place in the centre of town serving tasty turkish food",
+      "target": "rice_house serves chinese food",
+      "match": false
+    },
+    {
+      "human": "do you have a restaurant that serves turkish food",
+      "bot": "efes_restaurant is a nice place in the centre of town serving tasty turkish food",
+      "target": "rice_house is a nice place in the centre of town and the prices are cheap",
+      "match": true
+    },
+    {
+      "human": "do you have a place that serves turkish food",
+      "bot": "efes_restaurant is a nice place in the centre of town serving tasty turkish food",
+      "target": "I'm sorry but there is no restaurant serving cheap turkish food",
+      "match": false
+    },
+    {
+      "human": "any price range",
+      "bot": "efes_restaurant is a nice place in the centre of town serving tasty turkish food",
+      "target": "Can I help you with anything else?",
+      "match": false
+    },
+    {
+      "human": "turkish food any price range",
+      "bot": "efes_restaurant is a nice place in the centre of town serving tasty turkish food",
+      "target": "There are restaurants serving turkish in the centre of town . What price range would you like?",
+      "match": false
+    },
+    {
+      "human": "any price range",
+      "bot": "Sure , efes_restaurant is on efes_restaurant_address",
+      "target": "meze_bar_restaurant is a nice place in the centre of town serving tasty turkish food",
+      "match": false
+    },
+    {
+      "human": "and the address",
+      "bot": "efes_restaurant is in the moderate price range",
+      "target": "Sure , meze_bar_restaurant is on meze_bar_restaurant_address",
+      "match": true
+    },
+    {
+      "human": "and price range",
+      "bot": "Sure , efes_restaurant is on efes_restaurant_address",
+      "target": "meze_bar_restaurant is in the expensive price range , and their post code is C.B 1, 3 N.F",
+      "match": true
+    },
+    {
+      "human": "the address",
+      "bot": " you are welcome",
+      "target": "Sure , meze_bar_restaurant is on meze_bar_restaurant_address",
+      "match": false
+    }
+  ],
+  [
+    {
+      "human": "im looking for an expensive restaurant",
+      "bot": "in which area?",
+      "target": "There are restaurants in the expensive price range . What type of food do you want?",
+      "match": false
+    },
+    {
+      "human": "sells english food",
+      "bot": "I'm sorry but there is no restaurant serving expensive english food",
+      "target": "I'm sorry but there is no restaurant serving english food",
+      "match": true
+    },
+    {
+      "human": "what about turkey food",
+      "bot": "I'm sorry but there is no restaurant serving expensive english food",
+      "target": "I'm sorry but there is no restaurant serving english food",
+      "match": true
+    },
+    {
+      "human": "are there any restaurants serving turkish food",
+      "bot": "how about restaurant meze_bar_restaurant?",
+      "target": "Sorry, I can't hear you",
+      "match": false
+    },
+    {
+      "human": "are there any turkish restaurants at all",
+      "bot": "how about restaurant meze_bar_restaurant?",
+      "target": "Can I help you with anything else?",
+      "match": false
+    },
+    {
+      "human": "i need to know if there are any restaurants serving turkish food",
+      "bot": "how about restaurant meze_bar_restaurant?",
+      "target": "meze_bar_restaurant serves turkish food in the expensive price range",
+      "match": false
+    },
+    {
+      "human": "whats the address",
+      "bot": "Sure , meze_bar_restaurant is on meze_bar_restaurant_address",
+      "target": "Sure , meze_bar_restaurant is on meze_bar_restaurant_address",
+      "match": true
+    },
+    {
+      "human": "okay thank you",
+      "bot": "how about restaurant meze_bar_restaurant?",
+      "target": "meze_bar_restaurant serves turkish food in the expensive price range",
+      "match": false
+    },
+    {
+      "human": "thats all i need",
+      "bot": "how about restaurant meze_bar_restaurant?",
+      "target": "I am sorry but there is no other turkish restaurant in the expensive price range",
+      "match": false
+    },
+    {
+      "human": "okay good bye",
+      "bot": " you are welcome",
+      "target": " you are welcome",
+      "match": true
+    }
+  ],
+  [
+    {
+      "human": "russian",
+      "bot": "I'm sorry but there is no restaurant serving russian food",
+      "target": "What kind of food would you like?",
+      "match": false
+    },
+    {
+      "human": "russian",
+      "bot": "You are looking for a russian restaurant right?",
+      "target": "You are looking for a restaurant serving any kind of food right?",
+      "match": true
+    },
+    {
+      "human": "i am looking for a british restaurant",
+      "bot": "in which area?",
+      "target": "Did you say you are looking for a restaurant in the west of town?",
+      "match": false
+    },
+    {
+      "human": "good bye",
+      "bot": " you are welcome",
+      "target": "There are restaurants serving british in the west of town . What price range would you like?",
+      "match": false
+    },
+    {
+      "human": "thank you good bye",
+      "bot": "in which area?",
+      "target": " you are welcome",
+      "match": false
+    }
+  ],
+  [
+    {
+      "human": "can i have moderately priced restaurant in the west part of town",
+      "bot": "saint_johns_chop_house is a nice place in the west of town and the prices are moderate",
+      "target": "There are restaurants in the moderate price range and the west of town . What type of food would you like?",
+      "match": false
+    },
+    {
+      "human": "any type of food",
+      "bot": "saint_johns_chop_house is a nice place in the west of town and the prices are moderate",
+      "target": "saint_johns_chop_house is a nice place in the west of town and the prices are moderate",
+      "match": true
+    },
+    {
+      "human": "can i have the address and phone number please",
+      "bot": "Sure , saint_johns_chop_house is on saint_johns_chop_house_address. The phone number of saint_johns_chop_house is saint_johns_chop_house_phone",
+      "target": "The phone number of saint_johns_chop_house is saint_johns_chop_house_phone",
+      "match": true
+    },
+    {
+      "human": "what is the address",
+      "bot": "Sure , saint_johns_chop_house is on saint_johns_chop_house_address",
+      "target": "Sure , saint_johns_chop_house is on saint_johns_chop_house_address",
+      "match": true
+    },
+    {
+      "human": "thank you good bye",
+      "bot": " you are welcome",
+      "target": " you are welcome",
+      "match": true
+    }
+  ],
+  [
+    {
+      "human": "im looking for cheap restaurants in the north part of town",
+      "bot": "da_vinci_pizzeria is a nice place in the north of town and the prices are cheap",
+      "target": "There are restaurants in the cheap price range and the north of town . What type of food would you like?",
+      "match": false
+    },
+    {
+      "human": "any kind of food",
+      "bot": "da_vinci_pizzeria is a nice place in the north of town and the prices are cheap",
+      "target": "You are looking for a restaurant serving any kind of food right?",
+      "match": false
+    },
+    {
+      "human": "yes",
+      "bot": "da_vinci_pizzeria is a nice place in the north of town and the prices are cheap",
+      "target": "da_vinci_pizzeria is a nice place in the north of town and the prices are cheap",
+      "match": true
+    },
+    {
+      "human": "can i have the address please",
+      "bot": "Sure , da_vinci_pizzeria is on da_vinci_pizzeria_address",
+      "target": "Sure , da_vinci_pizzeria is on da_vinci_pizzeria_address",
+      "match": true
+    },
+    {
+      "human": "thank you good bye",
+      "bot": " you are welcome",
+      "target": " you are welcome",
+      "match": true
+    }
+  ],
+  [
+    {
+      "human": "looking for a moderately priced restaurant in the east part of town",
+      "bot": "curry_prince is a nice place in the east of town and the prices are moderate",
+      "target": "There are restaurants in the east of town . What type of food do you want?",
+      "match": false
+    },
+    {
+      "human": "any kind of food",
+      "bot": "curry_prince is a nice place in the east of town and the prices are moderate",
+      "target": "Let me confirm , You are looking for a restaurant in the moderate price range right?",
+      "match": false
+    },
+    {
+      "human": "yes",
+      "bot": "curry_prince is a nice place in the east of town and the prices are moderate",
+      "target": "curry_prince is a nice place in the east of town and the prices are moderate",
+      "match": true
+    },
+    {
+      "human": "what kind of food",
+      "bot": "curry_prince serves indian food",
+      "target": "curry_prince serves indian food",
+      "match": true
+    },
+    {
+      "human": "could i have the address and phone number",
+      "bot": "Sure , curry_prince is on curry_prince_address. The phone number of curry_prince is curry_prince_phone",
+      "target": "The phone number of curry_prince is curry_prince_phone",
+      "match": true
+    },
+    {
+      "human": "could i have the address",
+      "bot": "Sure , curry_prince is on curry_prince_address",
+      "target": "Sure , curry_prince is on curry_prince_address",
+      "match": true
+    },
+    {
+      "human": "thank you good bye",
+      "bot": " you are welcome",
+      "target": " you are welcome",
+      "match": true
+    }
+  ],
+  [
+    {
+      "human": "i am looking for an expensive restaurant that serves swedish food",
+      "bot": "in which area?",
+      "target": "I'm sorry but there is no restaurant serving swedish food",
+      "match": false
+    },
+    {
+      "human": "im looking for a korean restaurant",
+      "bot": "in which area?",
+      "target": "You are looking for a korean restaurant right?",
+      "match": false
+    },
+    {
+      "human": "right",
+      "bot": "how about restaurant little_seoul?",
+      "target": "little_seoul serves korean food",
+      "match": false
+    },
+    {
+      "human": "what is the address and area",
+      "bot": "Can I help you with anything else?",
+      "target": "Sure , little_seoul is on little_seoul_address",
+      "match": false
+    },
+    {
+      "human": "what is the area",
+      "bot": " you are welcome",
+      "target": "little_seoul is a nice place in the centre of town",
+      "match": false
+    }
+  ],
+  [
+    {
+      "human": "im looking for an expensive restaurant in the south part of town",
+      "bot": "frankie_and_bennys is a nice place in the south of town and the prices are expensive",
+      "target": "There are restaurants in the expensive price range and the south of town . What type of food would you like?",
+      "match": false
+    },
+    {
+      "human": "i dont care",
+      "bot": " you are welcome",
+      "target": "frankie_and_bennys is a nice place in the south of town and the prices are expensive",
+      "match": false
+    },
+    {
+      "human": "is there anything else",
+      "bot": "how about restaurant chiquito_restaurant_bar?",
+      "target": "the good luck chinese food takeaway is a nice place in the south of town and the prices are expensive",
+      "match": false
+    },
+    {
+      "human": "what is the phone number and post code",
+      "bot": "The phone number of chiquito_restaurant_bar is chiquito_restaurant_bar_phone. The post code of chiquito_restaurant_bar is chiquito_restaurant_bar_post_code",
+      "target": "The phone number of the good luck chinese food takeaway is the_good_luck_chinese_food_takeaway_phone",
+      "match": true
+    },
+    {
+      "human": "thank you good bye",
+      "bot": " you are welcome",
+      "target": " you are welcome",
+      "match": true
+    }
+  ],
+  [
+    {
+      "human": "basque",
+      "bot": "I'm sorry but there is no restaurant serving basque food",
+      "target": "I'm sorry but there is no restaurant serving basque food",
+      "match": true
+    },
+    {
+      "human": "italian",
+      "bot": "You are looking for a italian restaurant right?",
+      "target": "There are restaurants serving italian food . What area do you want?",
+      "match": false
+    },
+    {
+      "human": "the west part of town",
+      "bot": "la_margherita is a nice place in the west of town serving tasty italian food",
+      "target": "There are restaurants serving italian in the west of town . What price range would you like?",
+      "match": false
+    },
+    {
+      "human": "i dont care",
+      "bot": " you are welcome",
+      "target": "prezzo is a nice place in the west of town serving tasty italian food",
+      "match": false
+    },
+    {
+      "human": "whats the phone number",
+      "bot": "The phone number of la_margherita is la_margherita_phone",
+      "target": "The phone number of prezzo is prezzo_phone",
+      "match": true
+    },
+    {
+      "human": "thank you good bye",
+      "bot": " you are welcome",
+      "target": " you are welcome",
+      "match": true
+    }
+  ],
+  [
+    {
+      "human": "how about italian food",
+      "bot": "how about restaurant frankie_and_bennys?",
+      "target": "I'm sorry but there is no international restaurant in the north of town",
+      "match": false
+    },
+    {
+      "human": "id like italian food",
+      "bot": "You are looking for a italian restaurant right?",
+      "target": "da_vinci_pizzeria is a nice place in the north of town serving tasty italian food",
+      "match": false
+    },
+    {
+      "human": "what is the address and phone number",
+      "bot": "Sure , frankie_and_bennys is on frankie_and_bennys_address. The phone number of frankie_and_bennys is frankie_and_bennys_phone",
+      "target": "The phone number of da_vinci_pizzeria is da_vinci_pizzeria_phone",
+      "match": true
+    },
+    {
+      "human": "thank you good bye",
+      "bot": " you are welcome",
+      "target": " you are welcome",
+      "match": true
+    }
+  ],
+  [
+    {
+      "human": "im looking for a moderately priced restaurant in the south part of town",
+      "bot": "pizza_hut_cherry_hinton is a nice place in the south of town and the prices are moderate",
+      "target": "There are restaurants in the moderate price range and the south of town . What type of food would you like?",
+      "match": false
+    },
+    {
+      "human": "i dont care",
+      "bot": " you are welcome",
+      "target": "pizza_hut_cherry_hinton is a nice place in the south of town and the prices are moderate",
+      "match": false
+    },
+    {
+      "human": "whats the phone number",
+      "bot": "in which area?",
+      "target": "The phone number of pizza_hut_cherry_hinton is pizza_hut_cherry_hinton_phone",
+      "match": false
+    },
+    {
+      "human": "thank you good bye",
+      "bot": " you are welcome",
+      "target": " you are welcome",
+      "match": true
+    }
+  ],
+  [
+    {
+      "human": "im looking for a moderately priced restaurant in the east part of town",
+      "bot": "curry_prince is a nice place in the east of town and the prices are moderate",
+      "target": "There are restaurants in the moderate price range and the east of town . What type of food would you like?",
+      "match": false
+    },
+    {
+      "human": "i dont care",
+      "bot": " you are welcome",
+      "target": "curry_prince is a nice place in the east of town and the prices are moderate",
+      "match": false
+    },
+    {
+      "human": "what is the address",
+      "bot": "in which area?",
+      "target": "Sure , curry_prince is on curry_prince_address",
+      "match": false
+    },
+    {
+      "human": "what is the post code",
+      "bot": "The post code of curry_prince is curry_prince_post_code",
+      "target": "The post code of curry_prince is curry_prince_post_code",
+      "match": true
+    },
+    {
+      "human": "thank you good bye",
+      "bot": " you are welcome",
+      "target": " you are welcome",
+      "match": true
+    }
+  ],
+  [
+    {
+      "human": "european food",
+      "bot": "how about restaurant eraina?",
+      "target": "You are looking for a european restaurant right?",
+      "match": false
+    },
+    {
+      "human": "yes",
+      "bot": "You are looking for a european restaurant right?",
+      "target": "What part of town do you have in mind?",
+      "match": false
+    },
+    {
+      "human": "uh dont care",
+      "bot": "You are looking for a european restaurant right?",
+      "target": "There are restaurants serving european food in any part of town . What price range would you like?",
+      "match": false
+    },
+    {
+      "human": "um dont care",
+      "bot": "You are looking for a european restaurant right?",
+      "target": "cambridge_lodge_restaurant serves european food",
+      "match": false
+    },
+    {
+      "human": "uh is there anything else",
+      "bot": "how about restaurant darrys_cookhouse_and_wine_shop?",
+      "target": "galleria serves european food",
+      "match": false
+    },
+    {
+      "human": "and the address",
+      "bot": "Sure , darrys_cookhouse_and_wine_shop is on darrys_cookhouse_and_wine_shop_address",
+      "target": "michaelhouse_cafe serves european food",
+      "match": true
+    },
+    {
+      "human": "address",
+      "bot": "Sure , darrys_cookhouse_and_wine_shop is on darrys_cookhouse_and_wine_shop_address",
+      "target": "eraina serves european food",
+      "match": true
+    },
+    {
+      "human": "address",
+      "bot": "Sure , darrys_cookhouse_and_wine_shop is on darrys_cookhouse_and_wine_shop_address",
+      "target": "eraina is a great restaurant",
+      "match": false
+    },
+    {
+      "human": "address",
+      "bot": "Sure , darrys_cookhouse_and_wine_shop is on darrys_cookhouse_and_wine_shop_address",
+      "target": "hotel_du_vin_and_bistro serves european food",
+      "match": true
+    },
+    {
+      "human": "address",
+      "bot": "Sure , darrys_cookhouse_and_wine_shop is on darrys_cookhouse_and_wine_shop_address",
+      "target": "I am sorry but there is no other european restaurant that matches your request",
+      "match": false
+    },
+    {
+      "human": "address",
+      "bot": "Sure , darrys_cookhouse_and_wine_shop is on darrys_cookhouse_and_wine_shop_address",
+      "target": "cambridge_lodge_restaurant serves european food",
+      "match": true
+    },
+    {
+      "human": "address",
+      "bot": "Sure , darrys_cookhouse_and_wine_shop is on darrys_cookhouse_and_wine_shop_address",
+      "target": "cambridge_lodge_restaurant is a great restaurant",
+      "match": false
+    },
+    {
+      "human": "thank you good bye",
+      "bot": " you are welcome",
+      "target": " you are welcome",
+      "match": true
+    }
+  ],
+  [
+    {
+      "human": "moderately priced",
+      "bot": "in which area?",
+      "target": "What kind of food would you like?",
+      "match": false
+    },
+    {
+      "human": "french",
+      "bot": "I'm sorry but there is no restaurant serving moderate french food",
+      "target": "You are looking for a french restaurant right?",
+      "match": false
+    },
+    {
+      "human": "yes",
+      "bot": "I'm sorry but there is no restaurant serving moderate french food",
+      "target": "What part of town do you have in mind?",
+      "match": false
+    },
+    {
+      "human": "dont care",
+      "bot": "how about restaurant cote?",
+      "target": "There are restaurants serving french food in any part of town . What price range would you like?",
+      "match": false
+    },
+    {
+      "human": "cheap",
+      "bot": "I'm sorry but there is no restaurant serving cheap french food",
+      "target": "Would you like something in the cheap , moderate , or expensive price range?",
+      "match": false
+    },
+    {
+      "human": "moderate",
+      "bot": "I'm sorry but there is no restaurant serving moderate french food",
+      "target": "I'm sorry but there is no restaurant serving cheap french food",
+      "match": true
+    },
+    {
+      "human": "moderate",
+      "bot": "I'm sorry but there is no restaurant serving moderate french food",
+      "target": "You are looking for a french restaurant right?",
+      "match": false
+    },
+    {
+      "human": "yes",
+      "bot": "I'm sorry but there is no restaurant serving moderate french food",
+      "target": "I'm sorry but there is no restaurant serving cheap french food",
+      "match": true
+    },
+    {
+      "human": "moderate",
+      "bot": "I'm sorry but there is no restaurant serving moderate french food",
+      "target": "restaurant_two_two serves french food",
+      "match": false
+    },
+    {
+      "human": "telephone number",
+      "bot": "which restaurant are you talking about?",
+      "target": "Can I help you with anything else?",
+      "match": false
+    },
+    {
+      "human": "thank you goodbye",
+      "bot": " you are welcome",
+      "target": "restaurant_two_two is a great restaurant",
+      "match": false
+    },
+    {
+      "human": "phone number",
+      "bot": "which restaurant are you talking about?",
+      "target": "The phone number of restaurant_two_two is restaurant_two_two_phone",
+      "match": false
+    },
+    {
+      "human": "thank you goodbye",
+      "bot": " you are welcome",
+      "target": " you are welcome",
+      "match": true
+    }
+  ],
+  [
+    {
+      "human": "cheap restaurant in th east part of town",
+      "bot": "the_missing_sock is a nice place in the east of town and the prices are cheap",
+      "target": "the_missing_sock is a nice place in the east of town and the prices are cheap",
+      "match": true
+    },
+    {
+      "human": "what type of food does it have",
+      "bot": "the_missing_sock serves international food",
+      "target": "the_missing_sock serves international food",
+      "match": true
+    },
+    {
+      "human": "okay may i have the address",
+      "bot": "Sure , the_missing_sock is on the_missing_sock_address",
+      "target": "Can I help you with anything else?",
+      "match": false
+    },
+    {
+      "human": "may i have the address",
+      "bot": "Sure , the_missing_sock is on the_missing_sock_address",
+      "target": "Sure , the_missing_sock is on the_missing_sock_address",
+      "match": true
+    },
+    {
+      "human": "thank you good bye",
+      "bot": " you are welcome",
+      "target": " you are welcome",
+      "match": true
+    }
+  ],
+  [
+    {
+      "human": "i want a restaurant in the north part of town that serves moroccan food",
+      "bot": "Would you like something in the cheap , moderate , or expensive price range?",
+      "target": "I'm sorry but there is no restaurant serving moroccan food",
+      "match": false
+    },
+    {
+      "human": "i want a restaurant in the north part of town that serves french food",
+      "bot": "Would you like something in the cheap , moderate , or expensive price range?",
+      "target": "restaurant_two_two is a nice place in the north of town serving tasty french food",
+      "match": false
+    },
+    {
+      "human": "and whats the phone number",
+      "bot": "which restaurant are you talking about?",
+      "target": "The phone number of restaurant_two_two is restaurant_two_two_phone",
+      "match": false
+    },
+    {
+      "human": "thank you good bye",
+      "bot": " you are welcome",
+      "target": " you are welcome",
+      "match": true
+    }
+  ],
+  [
+    {
+      "human": "i want an indonesian restaurant in the north part of town",
+      "bot": "Would you like something in the cheap , moderate , or expensive price range?",
+      "target": "There are restaurants in the north of town . What type of food do you want?",
+      "match": false
+    },
+    {
+      "human": "asian",
+      "bot": "Would you like something in the cheap , moderate , or expensive price range?",
+      "target": "I'm sorry but there is no restaurant serving indonesian food",
+      "match": false
+    },
+    {
+      "human": "asian restaurant",
+      "bot": "Would you like something in the cheap , moderate , or expensive price range?",
+      "target": "I'm sorry but there is no restaurant serving indonesian food",
+      "match": false
+    },
+    {
+      "human": "asian_oriental food in the north part of town",
+      "bot": "Would you like something in the cheap , moderate , or expensive price range?",
+      "target": "You are looking for a asian_oriental restaurant right?",
+      "match": false
+    },
+    {
+      "human": "yes",
+      "bot": "saigon_city is a nice place in the north of town serving tasty asian_oriental food",
+      "target": "saigon_city is a nice place in the north of town serving tasty asian_oriental food",
+      "match": true
+    },
+    {
+      "human": "what is the address and phone number",
+      "bot": "Sure , saigon_city is on saigon_city_address. The phone number of saigon_city is saigon_city_phone",
+      "target": "The phone number of saigon_city is saigon_city_phone",
+      "match": true
+    },
+    {
+      "human": "thank you good bye",
+      "bot": " you are welcome",
+      "target": " you are welcome",
+      "match": true
+    }
+  ],
+  [
+    {
+      "human": "unusual food",
+      "bot": "I'm sorry but there is no restaurant serving unusual food",
+      "target": "I'm sorry but there is no restaurant serving world food",
+      "match": true
+    },
+    {
+      "human": "unusual food",
+      "bot": "You are looking for a unusual restaurant right?",
+      "target": "I'm sorry but there is no restaurant serving world food",
+      "match": false
+    },
+    {
+      "human": "asian_oriental food",
+      "bot": "in which area?",
+      "target": "There are restaurants serving asian_oriental food . What area do you want?",
+      "match": false
+    },
+    {
+      "human": "i dont care",
+      "bot": " you are welcome",
+      "target": "There are restaurants serving asian_oriental food in any part of town . What price range would you like?",
+      "match": false
+    },
+    {
+      "human": "i dont care",
+      "bot": "in which area?",
+      "target": "dojo_noodle_bar serves asian_oriental food",
+      "match": false
+    },
+    {
+      "human": "address",
+      "bot": "in which area?",
+      "target": "Sure , dojo_noodle_bar is on dojo_noodle_bar_address",
+      "match": false
+    },
+    {
+      "human": "postcode",
+      "bot": "which restaurant are you talking about?",
+      "target": "The post code of dojo_noodle_bar is dojo_noodle_bar_post_code",
+      "match": false
+    },
+    {
+      "human": "thank you goodbye",
+      "bot": " you are welcome",
+      "target": " you are welcome",
+      "match": true
+    }
+  ]
+]

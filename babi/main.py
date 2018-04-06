@@ -4,8 +4,9 @@ from rasa_core import utils
 import os
 from rasa_core.interpreter import RasaNLUInterpreter
 from rasa_core.agent import Agent
-from rasa_core.channels.console import ConsoleInputChannel, ConsoleOutputChannel
+from rasa_core.channels.console import ConsoleInputChannel
 from rasa_core.policies.keras_policy import KerasPolicy
+from fabot.custom.ensemble import FabotPolicy
 from rasa_core.policies.memoization import MemoizationPolicy
 
 logger = logging.getLogger(__name__)
@@ -27,8 +28,8 @@ BABI_PATH = 'data/test/dialog-bAbI-tasks/'
 
 
 def init():
-    utils.configure_colored_logging(loglevel="DEBUG")
-    logging.basicConfig(level="DEBUG")
+    utils.configure_colored_logging(loglevel="INFO")
+    logging.basicConfig(level="INFO")
     os.environ["TF_CPP_MIN_LOG_LEVEL"] = "2"
 
 
@@ -57,12 +58,13 @@ def train_dialogue(domain_file=DOMAIN_FILE,
                    model_path=DIALOGUE_MODEL_PATH,
                    training_data_file=RASA_TRAIN_PATH + 'stories.md'):
     agent = Agent(domain_file,
-                  policies=[MemoizationPolicy(), KerasPolicy()])
+                  # policies=[MemoizationPolicy(), KerasPolicy()])
                   # policies=[KerasPolicy()])
+                  policies=[FabotPolicy()])
 
     agent.train(
             training_data_file,
-            max_history=3,
+            max_history=4,
             epochs=400,
             batch_size=100,
             validation_split=0.2

@@ -4,11 +4,117 @@ from json import load as json_load
 import copy
 import logging
 from main import RASA_TRAIN_PATH, DSTC2_TRN_DEV_DATA_PATH, DSTCT2_TRN_LIST_FILE
+import re
 
 logger = logging.getLogger(__name__)
-logging.basicConfig(level="DEBUG")
+logging.basicConfig(level="INFO")
 
 REQUESTED_ENTITY_FLAG = '_REQUESTED_'
+
+BOT_DAS = {
+            'welcome_msg': [
+                '^Hello , welcome to the Cambridge restaurant system\?? (\. )?You can ask for restaurants by area , '
+                'price range or food type \.'
+            ],
+            'repeat': [
+                '^Sorry, I can\'t hear you$',
+                '^Sorry I am a bit confused ; please tell me again what you are looking for \.$',
+                '^Could you please repeat that\?$'
+            ],
+            'utter_request_food': [
+                '^What kind of food would you like\?$'
+            ],
+            'utter_request_area': [
+                '^What part of town do you have in mind\?$'
+            ],
+            'no_more_options': [
+                '^(I am sorry|Sorry) but there is no other .*restaurant',
+                # in the centre of town$', that matches your request
+            ],
+            'offer_phone': [
+                '^The phone number of .+ is .+$',
+                '.*Their phone number is .* \.$'
+            ],
+            'canthelp': [
+                '^(Sorry|I am sorry but|I\'m sorry but) there is no(?! other) .*restaurant'
+            ],
+            'offer_restaurant': [
+                '^.+ serves .+ food',  # in the \w+ price range',
+                '^.+ is a nice (place|restaurant) in the \w+ of town',
+                '^.+ is a great restaurant serving \w+ .+ food in the \w+ of town .$',
+                '^.+ is a nice place in the \w+ of town serving tasty .+ food',
+            ],
+            'confirm_ask_price': [
+                # '^There are restaurants serving .+ food in (the \w+|any part) of town .
+                # What price range would you like\?$',
+                # ^There are restaurants in all parts of town . What type of pricerange do you want\?$',
+                # ^There are restaurants if you don\'t care about the area or the type of food . What price range
+                # would you like?$',
+                '^There are restaurants .+ What (type of )?price ?range (do you want|would you like)\?$'
+            ],
+            'confirm_ask_area': [
+                # There are restaurants serving .+ food (in any price range)?. What area do you want?
+                '^There are  ?restaurants .+ What area (do you want\?|would you like\?)$',
+                '^There are  restaurants \. That area would you like\?$'
+            ],
+            'confirm_ask_food': [
+                '^There are  ?restaurants .+ What type of food (do you want|would you like)\?$'
+            ],
+            'offer_postcode': [
+                '^The post code of .+ is .+$'
+            ],
+            'offer_address': [
+                '^(Sure , )?.+ is on .+$',
+                '^The address of .* is .* \.$'
+            ],
+            'offer_pricerange': [
+                '.+ is in the \w+ price range',
+                '^The price range at .* is \w+$',
+                '^The price range at .* is \w+ \.$'
+            ],
+            'confirm_food': [
+                '^You are looking for a .*restaurant .*right\?$'
+            ],
+            'futile_offer_restaurant': [
+                '.+ is a great restaurant$'
+            ],
+            'utter_offer_area': [
+                '.+ is a nice place in the \w+ of town$',
+                '.* is in the \w+ part of town \.$',
+                '.* is in the \w+ ,'
+            ],
+            'confirm_summary': [
+                '^Let me confirm , You are looking for a restaurant .* right\?$'
+            ],
+            'confirm_area': [
+                '^Did you say you are looking for a restaurant in the \w+ of town\?$',
+                '^Ok , a restaurant in any part of town is that right\?$'
+            ],
+            'utter_anything_else': [
+                '^Can I help you with anything else\?$'
+            ],
+            'utter_bye': [
+                '^ you are welcome$'
+            ],
+            'utter_select_price': [
+                '^Would you like something in the cheap , moderate , or expensive price range\?$',
+                '^Sorry would you like something in the \w+ price range or'
+            ],
+            'utter_select_food': [
+                '^Sorry would you like .* or .* food\?$',
+                '^Sorry would you like .* food or you dont care$'
+            ],
+            'utter_select_area': [
+                '^Sorry would you like something in the \w+ or in the \w+$',
+                'Sorry would you like the \w+ of town or you dont care$'
+            ],
+            'api_call': [
+                '^api_call \w+ \w+ \w+$'
+            ]
+        }
+
+for da in BOT_DAS:
+    BOT_DAS[da] = [re.compile(pattern) for pattern in BOT_DAS[da]]
 
 
 def iter_dstc2_files(dstc2_data_path='data/'):
@@ -79,62 +185,18 @@ def compress_semantics(semantics):
     return compressed_semantics
 
 
-def get_bot_da(das):
+def get_bot_da(text):
     """
-    Extract the right Dialog Act uttered by the bot. These are the rules:
-    accumulation rule:
-    - {x(*slots1), x(*slots2), ...} => {x(*slots1, *slots2), ...}
-    regular mappings
-    - {welcomemsg} => WELCOME_ERROR
-    - {repeat} => REPEAT_ERROR
-    - {offer, inform} => offer_detailed
-        search with current filters, offer one retrieved option listing all the filters used.
-        e.g. 'thanh binh is a nice place in the west of town serving tasty vietnamese food'
-    - {request(informable)} => request_informable
-        one action per informable, except name. i.e. request_area, request_pricerange, request_food
-    - {canthelp, canthelp.exception} => canthelp
-        canthelp.exception clauses have no effect on output
-    - {request(informable), impl-conf} => request_informable_detailed
-        like request_informable, but lists the filters used
-        e.g. 'There are  restaurants serving tuscan in the expensive price range . What area would you like?'
-    identity mappings:
-    {canthelp}
-    {reqmore}
-    {expl-conf}
-    {select}
-    {confirm-domain}
-    {offer}
-    :param das: a dialogue act list as present in the dstc2 log.json files (a list of dictionaries, each with an 'act'
-    key. This comes from the log.json files, in log_turn['output']['dialog-acts'])
+    Extract the right Dialog Act uttered by the bot.
+    :param text: bot transcript text
     :return: a str indicating the bot da
     """
-    das = copy.deepcopy(das)
-    compressed_semantics = compress_semantics(das)
-    acts = {da['act'] for da in compressed_semantics}
-    if acts == {'welcomemsg'}:  # {welcomemsg} => WELCOME_ERROR
-        return 'WELCOME_ERROR'
-    elif acts == {'repeat'}:  # {repeat} => REPEAT_ERROR
-        return 'REPEAT_ERROR'
-    elif acts == {'offer', 'inform'}:  # {offer, inform} => offer_detailed
-        return 'offer_detailed'
-    elif acts == {'request'}:  # {request(informable)} => request_requestable
-        assert len(compressed_semantics[0]['slots']) == 1, 'request bot da with more than one informable:  {}'.\
-            format(compressed_semantics)
-        return 'utter_request_' + compressed_semantics[0]['slots'][0][1]
-    elif acts == {'canthelp', 'canthelp.exception'}:  # {canthelp, canthelp.exception} => canthelp
-        return 'canthelp'
-    elif acts == {'request', 'impl-conf'} or acts == {'request', 'inform', 'impl-conf'}:
-        # {request(informable), impl-conf} => request_informable_detailed
-        request = next(semantic for semantic in compressed_semantics if semantic['act'] == 'request')
-        assert len(request['slots']) == 1, 'request bot da with more than one informable:  {}'. \
-            format(compressed_semantics)
-        return 'request_' + request['slots'][0][1] + '_detailed'
-    elif len(acts) == 1:  # identity mappings
-        if list(acts)[0] in ['reqmore', 'confirm-domain']:
-            return 'utter_' + list(acts)[0]
-        return list(acts)[0]
-    else:
-        raise ValueError('unknown bot da configuration: {}'.format(acts))
+    matched = False
+    for da in BOT_DAS:
+        matches = [pattern.match(text) for pattern in BOT_DAS[da]]
+        if any(matches):
+            return da
+    raise ValueError('unknown da: {}'.format(text))
 
 
 def get_user_intent(semantics):
@@ -170,7 +232,7 @@ def get_user_intent(semantics):
     - {inform(*informables)} => inform(*informables)
     - {negate, inform(*informables)} => {correct(*informables)}
         clean all slots collected thus far. This inform should never contain the 'this' slot
-    - {request(*requestables), inform(*informables)} => {query(*requestables, *informables)}
+    - {request(*requestables), inform(*informables)} => {request(*requestables, *informables)}
     - {affirm, inform(*informables)} => {include_filter(*informables)}
     - {negate, reqalts} => {reqalts}
     - {affirm, request(*requestables)} => {request(*requestables)}
@@ -244,9 +306,9 @@ def get_user_intent(semantics):
     elif acts == {'negate', 'inform'}:  # {negate, inform(*informables)} = > {correct(*informables)}
         return change_and_filter(compressed_semantics, oldname='inform', newname='correct')
     elif acts == {'request', 'inform'}:
-        # {request(*requestables), inform(*informables)} => {query(*requestables, *informables)}
+        # {request(*requestables), inform(*informables)} => {request(*requestables, *informables)}
         requestables = next(semantic for semantic in compressed_semantics if semantic['act'] == 'request')['slots']
-        result = change_and_filter(compressed_semantics, oldname="inform", newname="query")
+        result = change_and_filter(compressed_semantics, oldname="inform", newname="request")
         result['slots'] = [slot for slot in result['slots'] if 'this' not in slot]  # 'this' not allowed here
         result['slots'] += requestables
         return result
@@ -291,11 +353,11 @@ def _make_story(human, bot):
             bot_da = last_good_bot_utter
             last_good_bot_utter = None  # clean the flag
         else:
-            bot_da = get_bot_da(bot_turn['output']['dialog-acts'])  # else, take the current bot utter
-            if bot_da == 'REPEAT_ERROR':
+            bot_da = get_bot_da(bot_turn['output']['transcript'])  # else, take the current bot utter
+            if bot_da == 'repeat':
                 h_utterances.pop()  # delete last user utterance, since it was unclear
                 # this bot da is also useless, later we check and discard it
-            elif bot_da == 'WELCOME_ERROR':  # nothing to do, it gets deleted at the end. Why is this if even here?
+            elif bot_da == 'welcome_msg':  # nothing to do, it gets deleted at the end. Why is this if even here?
                 pass
         user_intent = get_user_intent(human_turn['semantics']['json'])
         if isinstance(user_intent, dict):  # normal intent, just convert to rasa string
@@ -307,7 +369,7 @@ def _make_story(human, bot):
                     slot_name, slot_value = slot[0], slot[1]
                     user_utter += ', "{}": "{}"'.format(slot_name, slot_value)
                 user_utter += '}'
-            if bot_da != 'REPEAT_ERROR':
+            if bot_da != 'repeat':
                 b_utterances.append(bot_da)  # else, we only save the user utterance
             h_utterances.append(user_utter)
         elif isinstance(user_intent, str):  # error signal that requires story correction
@@ -360,7 +422,8 @@ def process_dstc2_files(process, files_list=None, path_prefix='', only_success=F
                                format(label_dic['task-information']['feedback']['questionnaire'][0][1],
                                       quality_filters, json_label))
                 continue
-            process(label_dic, log_dic, story_path=label.replace(path_prefix, '').replace('/Mar', 'Mar')[:-11])
+            process(label_dic=label_dic, log_dic=log_dic,
+                    story_path=label.replace(path_prefix, '').replace('/Mar', 'Mar')[:-11])
 
 
 def produce_rasa_file(files_list=None, path_prefix='', only_success=False,
@@ -390,6 +453,19 @@ def produce_rasa_file(files_list=None, path_prefix='', only_success=False,
 
     process_dstc2_files(process=process_story, files_list=files_list, path_prefix=path_prefix,
                         only_success=only_success, quality_filters=quality_filters)
+
+
+def collect_all_bot_utterances(*args, **kwargs):
+    """Collect all bot sentences in DSTC2. All arguments are passed to process_dstc2_files, except the process argument,
+    which shouldn't be provided to this function
+    :return: set with all sentences observed"""
+    sentences = set()
+
+    def sentences_collector(log_dic, *args, **kwargs):
+        for turn in log_dic['turns']:
+            sentences.add(turn['output']['transcript'])
+    process_dstc2_files(process=sentences_collector, *args, **kwargs)
+    return sentences
 
 
 if __name__ == '__main__':

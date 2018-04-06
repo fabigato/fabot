@@ -4,8 +4,6 @@ import pandas as pd
 BABI2FABOT_SLOT = {b: f for b, f in zip(['R_cuisine', 'R_location', 'R_price', 'R_address', 'R_phone', 'R_post_code'],
                                         ['food', 'area', 'pricerange', 'address', 'phone', 'postcode'])}
 
-NOT_PREFIX = 'NOT|||'
-
 BABI_MESSAGES = {
     'no_more_options': [
         'I am sorry but there is no other [\w ]+ restaurant that matches your request',
@@ -161,10 +159,7 @@ class BabiDB(object):
         """
         result = self.restaurants
         for var, value in kwargs.items():  # go through each condition
-            if value.startswith(NOT_PREFIX):  # search all but those with this value
-                result = result[result[var] != value]
-            else:
-                result = result[result[var].str.contains(value)] if var == 'name' else result[result[var] == value]
+            result = result[result[var].str.contains(value)] if var == 'name' else result[result[var] == value]
         return result
 
     def num_results(self, **kwargs):

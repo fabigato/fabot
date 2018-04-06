@@ -1,9 +1,0 @@
-Mar13_S0A0/voip-f22c2bf9c7-20130328_121125/ bot mistakes food type and reasons based on that several turns
-Mar13_S0A1/voip-15d8a89cec-20130327_015432/ is an example of a "bot understood me" = agree but pretty bad conversation
-Mar13_S0A1/voip-fce37b0ccb-20130328_145418/ {affirm, inform} with void affirm, should map to inform, not include_filter
-Mar13_S1A0/voip-ddcaad92a1-20130325_234752/ user gives null act (coughs) but still bot suggest a nice restaurant. Then user asks phone. Our policy throws away this (incidentally good) bot reply to the user null and so, seems like user ask for the phone of a restaurant that was never suggested
-Mar13_S1A1/voip-d645d56d23-20130401_204424/ starts with noise, then bot asks location, human says east. Our rule for null utterances is to delete them and the following bot reply. Applied here, this means the conversation will start with human saying "east" out of the blue
-Mar13_S1A1/voip-d645d56d23-20130401_204424/ bot does not understand the request(phone) utterance and simply offers the restaurant again. Then the user repeats 'type of food does pizza hut serves' which is turned into a query{"name": "pizza hut city centre", "requested_food": "True"} da
-Mar13_S1A1/voip-e8997b10da-20130401_152019/ user starts asking for a persian restaurant and not caring about the price. This latter intent produces an inform(this=dontcare) da where the this is clearly an error and should be price. To top it all, the affirm is also empty
-Mar13_S0A0/voip-e2a895cfe5-20130326_232742/ user refers to 'west' as address, instead of area, which confuses my regex
-Mar13_S2A1/voip-1b51204ef5-20130401_145857/ on turn index 2, bot says 'Sorry, I can't hear you', but the da was annotated as expl-conf{food: irish}

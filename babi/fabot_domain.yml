@@ -43,37 +43,48 @@ intents:
  - negate
  - affirm
  - correct
- - query
  - include_filter
  - deny
  - ack
 
 templates:
-  utter_reqmore:
-    - "Can I help you with anything else?"
   utter_request_food:
     - "What kind of food would you like?"
   utter_request_area:
-    - text: "in which area?"
-  utter_request_pricerange:
-    - text: "Would you like something in the cheap , moderate , or expensive price range?"
-  utter_confirm-domain:
-    - "You are looking for a restaurant is that right?"
+    - "What part of town do you have in mind?"
+  utter_anything_else:
+    - "Can I help you with anything else?"
   utter_bye:
     - " you are welcome"
+  utter_select_price:
+    - "Would you like something in the cheap , moderate , or expensive price range?"
+  utter_select_food:
+    - "Sorry would you like <food1> or <food2> food?"
+  utter_select_area:
+    - "Sorry would you like something in the <area1> or in the <area2>"
+  utter_offer_area:
+    - "{name} is in the {area} part of town ."
 
 actions:
-- fabot.actions.ActionCantHelp
-- fabot.actions.ActionOfferDetailed
-- utter_reqmore
 - utter_request_food
 - utter_request_area
-- utter_request_pricerange
-- fabot.actions.ActionExplConf
-- fabot.actions.ActionSelect
-- utter_confirm-domain
-- fabot.actions.ActionOffer
-- fabot.actions.ActionRequestFoodDetailed
-- fabot.actions.ActionRequestPricerangeDetailed
-- fabot.actions.ActionRequestAreaDetailed
+- utter_anything_else
 - utter_bye
+- utter_select_price
+- utter_select_food
+- utter_select_area
+- utter_offer_area
+- fabot.actions.ActionCantHelp
+- fabot.actions.ActionOfferRestaurant
+- fabot.actions.ActionNoMoreOptions
+- fabot.actions.ActionOfferPhone
+- fabot.actions.ActionConfirmAskPrice
+- fabot.actions.ActionConfirmAskArea
+- fabot.actions.ActionConfirmAskFood
+- fabot.actions.ActionOfferPostcode
+- fabot.actions.ActionOfferAddress
+- fabot.actions.ActionOfferPricerange
+- fabot.actions.ActionConfirmFood
+- fabot.actions.ActionConfirmArea
+- fabot.actions.ActionConfirmSummary
+- fabot.actions.ActionFutileOfferRestaurant

@@ -1,9 +1,13 @@
 from unittest import TestCase
 import data.dialogue_processor as processor
+from data.dialogue_processor import BOT_DAS as bot_das
 from json import load as json_load
-from main import DSTC2_TRN_DEV_DATA_PATH, DSTC2_TST_DATA_PATH
+from main import DSTC2_TRN_DEV_DATA_PATH
 import re
-
+from data.test.babi_reader import babi_dialogue_iterator
+from os.path import join
+from main import BABI_PATH
+from data.test.babi_reader import BabiComparatorV2
 
 
 class TestDialogueProcessor(TestCase):
@@ -312,3 +316,32 @@ class TestDialogueProcessor(TestCase):
         print('das: {}'.format(Counter(das)))
         print('user acts: {}'.format(Counter(user_acts)))
                     # if hasimplconf and hasrequest and len(turn['output']['dialog-acts']) > 2:
+
+    def test_all_bot_utterances(self):
+        sentences_babi_all = set()
+        for story in babi_dialogue_iterator(babi_filename=join(BABI_PATH, 'dialog-babi-task6-dstc2-tst.txt')):
+            clean_story = BabiComparatorV2.story_cleaner(story)
+            sentences_babi_all.update([turn['bot'] for turn in clean_story])
+        # for da in bot_das:
+        #     bot_das[da] = [re.compile(pattern) for pattern in bot_das[da]]
+        for utterance in sentences_babi_all:
+            matched = False
+            for da in bot_das:
+                matches = [pattern.match(utterance) for pattern in bot_das[da]]
+                if any(matches):
+                    matched = True
+                    break
+            if not matched:
+                print('troublesome bAbI: {}'.format(utterance))
+
+        sentences_dstc2_trn_dev = processor.collect_all_bot_utterances(path_prefix=DSTC2_TRN_DEV_DATA_PATH,
+                                                                       only_success=False)
+        for utterance in sentences_dstc2_trn_dev:
+            matched = False
+            for da in bot_das:
+                matches = [pattern.match(utterance) for pattern in bot_das[da]]
+                if any(matches):
+                    matched = True
+                    break
+            if not matched:
+                print('troublesome DSTC2: {}'.format(utterance))

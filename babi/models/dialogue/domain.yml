@@ -1,0 +1,120 @@
+action_factory: null
+action_names:
+- utter_request_food
+- utter_request_area
+- utter_anything_else
+- utter_bye
+- utter_select_price
+- utter_select_area
+- utter_offer_area
+- canthelp
+- offer_restaurant
+- no_more_options
+- offer_phone
+- confirm_ask_price
+- confirm_ask_area
+- confirm_ask_food
+- offer_postcode
+- offer_address
+- offer_pricerange
+- confirm_food
+- confirm_area
+- confirm_summary
+- futile_offer_restaurant
+actions:
+- utter_request_food
+- utter_request_area
+- utter_anything_else
+- utter_bye
+- utter_select_price
+- utter_select_area
+- utter_offer_area
+- fabot.actions.ActionCantHelp
+- fabot.actions.ActionOfferRestaurant
+- fabot.actions.ActionNoMoreOptions
+- fabot.actions.ActionOfferPhone
+- fabot.actions.ActionConfirmAskPrice
+- fabot.actions.ActionConfirmAskArea
+- fabot.actions.ActionConfirmAskFood
+- fabot.actions.ActionOfferPostcode
+- fabot.actions.ActionOfferAddress
+- fabot.actions.ActionOfferPricerange
+- fabot.actions.ActionConfirmFood
+- fabot.actions.ActionConfirmArea
+- fabot.actions.ActionConfirmSummary
+- fabot.actions.ActionFutileOfferRestaurant
+config:
+  store_entities_as_slots: true
+entities:
+- address
+- area
+- food
+- phone
+- pricerange
+- postcode
+- signature
+- name
+intents:
+- request
+- confirm
+- inform
+- reqalts
+- bye
+- inform_dontcare
+- thankyou
+- negate
+- affirm
+- correct
+- include_filter
+- deny
+- ack
+slots:
+  address:
+    initial_value: null
+    type: rasa_core.slots.TextSlot
+  area:
+    initial_value: null
+    type: rasa_core.slots.TextSlot
+  current_slot:
+    initial_value: null
+    type: rasa_core.slots.UnfeaturizedSlot
+  food:
+    initial_value: null
+    type: rasa_core.slots.TextSlot
+  last_offer_index:
+    initial_value: null
+    type: rasa_core.slots.UnfeaturizedSlot
+  name:
+    initial_value: null
+    type: rasa_core.slots.UnfeaturizedSlot
+  phone:
+    initial_value: null
+    type: rasa_core.slots.TextSlot
+  postcode:
+    initial_value: null
+    type: rasa_core.slots.TextSlot
+  pricerange:
+    initial_value: null
+    type: rasa_core.slots.TextSlot
+  results:
+    initial_value: null
+    type: rasa_core.slots.UnfeaturizedSlot
+  signature:
+    initial_value: null
+    type: rasa_core.slots.TextSlot
+templates:
+  utter_anything_else:
+  - text: Can I help you with anything else?
+  utter_bye:
+  - text: ' you are welcome'
+  utter_offer_area:
+  - text: '{name} is in the {area} part of town .'
+  utter_request_area:
+  - text: What part of town do you have in mind?
+  utter_request_food:
+  - text: What kind of food would you like?
+  utter_select_area:
+  - text: Sorry would you like something in the <area1> or in the <area2>
+  utter_select_price:
+  - text: Would you like something in the cheap , moderate , or expensive price range?
+topics: []

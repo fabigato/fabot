@@ -1,0 +1,22 @@
+{
+  "action_fingerprints": {
+    "action_listen": {
+      "slots": [
+        "area",
+        "name",
+        "phone",
+        "food",
+        "postcode",
+        "pricerange",
+        "address",
+        "signature"
+      ]
+    }
+  },
+  "rasa_core": "0.8.3",
+  "max_history": 3,
+  "ensemble_name": "rasa_core.policies.ensemble.SimplePolicyEnsemble",
+  "policy_names": [
+    "fabot.custom.ensemble.FabotPolicy"
+  ]
+}

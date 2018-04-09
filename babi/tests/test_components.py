@@ -1,5 +1,5 @@
 from unittest import TestCase
-from main import RASA_TRAIN_PATH, NLU_TRAIN_CONFIG_FILE, NLU_MODEL_PATH, NLU_TEST_CONFIG_FILE
+from globals import RASA_TRAIN_PATH, NLU_TRAIN_CONFIG_FILE, NLU_MODEL_PATH, NLU_TEST_CONFIG_FILE
 
 
 class TestNLU(TestCase):

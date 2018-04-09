@@ -58,8 +58,6 @@ templates:
     - " you are welcome"
   utter_select_price:
     - "Would you like something in the cheap , moderate , or expensive price range?"
-  utter_select_food:
-    - "Sorry would you like <food1> or <food2> food?"
   utter_select_area:
     - "Sorry would you like something in the <area1> or in the <area2>"
   utter_offer_area:
@@ -71,7 +69,6 @@ actions:
 - utter_anything_else
 - utter_bye
 - utter_select_price
-- utter_select_food
 - utter_select_area
 - utter_offer_area
 - fabot.actions.ActionCantHelp

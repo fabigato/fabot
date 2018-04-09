@@ -42,7 +42,7 @@
 * inform{"food": "world"}
  - canthelp
 * inform{"food": "mediterranean"}
- - utter_select_food
+ - offer_restaurant
 * inform{"food": "mediterranean"}
  - offer_restaurant
 * reqalts
@@ -1038,7 +1038,7 @@
 * inform{"food": "indian"}
  - canthelp
 * inform{"food": "indian"}
- - utter_select_food
+ - offer_restaurant
 * inform{"food": "indian"}
  - utter_select_price
 * inform_dontcare
@@ -1132,11 +1132,11 @@
 * inform_dontcare
  - utter_request_food
 * inform{"food": "eritrean"}
- - utter_select_food
+ - offer_restaurant
 * negate
- - utter_select_food
+ - offer_restaurant
 * inform{"food": "eritrean"}
- - utter_select_food
+ - offer_restaurant
 * deny{"food": "vietnamese"}
  - utter_select_price
 * inform{"pricerange": "dontcare"}
@@ -1634,7 +1634,7 @@
 * inform{"food": "danish"}
  - canthelp
 * correct{"food": "danish"}
- - utter_select_food
+ - offer_restaurant
 * inform{"food": "danish"}
  - canthelp
 * inform{"food": "italian"}
@@ -1716,7 +1716,7 @@
 * inform{"food": "vegetarian"}
  - canthelp
 * inform{"food": "turkish"}
- - utter_select_food
+ - offer_restaurant
 * inform{"food": "turkish"}
  - utter_request_area
 * inform_dontcare
@@ -5252,7 +5252,7 @@
 * inform{"food": "cantonese"}
  - canthelp
 * affirm
- - utter_select_food
+ - offer_restaurant
 * inform{"food": "cantonese"}
  - canthelp
 * inform{"food": "chinese"}
@@ -6004,7 +6004,7 @@
 * affirm
  - confirm_food
 * inform{"food": "mediterranean"}
- - utter_select_food
+ - offer_restaurant
 * inform{"food": "mediterranean"}
  - confirm_summary
 * affirm
@@ -6632,7 +6632,7 @@
 * inform{"food": "venetian"}
  - canthelp
 * inform{"food": "asian oriental"}
- - utter_select_food
+ - offer_restaurant
 * inform{"food": "asian oriental"}
  - utter_request_area
 * inform{"area": "dontcare"}
@@ -6844,7 +6844,7 @@
 * request{"address": "_REQUESTED_"}
  - offer_address
 * inform{"food": "gastropub", "area": "east"}
- - utter_select_food
+ - offer_restaurant
 * inform{"food": "gastropub"}
  - offer_restaurant
 * request{"address": "_REQUESTED_"}
@@ -8092,7 +8092,7 @@
 * inform{"food": "mexican", "pricerange": "cheap"}
  - canthelp
 * inform{"food": "asian oriental", "pricerange": "cheap"}
- - utter_select_food
+ - offer_restaurant
 * inform{"food": "asian oriental"}
  - offer_restaurant
 * request{"phone": "_REQUESTED_", "address": "_REQUESTED_"}
@@ -8866,7 +8866,7 @@
 * inform{"food": "british"}
  - futile_offer_restaurant
 * inform{"pricerange": "expensive"}
- - utter_select_food
+ - offer_restaurant
 * inform{"food": "british"}
  - offer_restaurant
 * request{"phone": "_REQUESTED_"}
@@ -9948,7 +9948,7 @@
 * inform{"food": "korean"}
  - canthelp
 * inform{"food": "korean"}
- - utter_select_food
+ - offer_restaurant
 * inform{"food": "korean"}
  - offer_restaurant
 * request{"address": "_REQUESTED_"}
@@ -10182,7 +10182,7 @@
 * affirm
  - canthelp
 * inform{"food": "asian oriental"}
- - utter_select_food
+ - offer_restaurant
 * bye
  - offer_restaurant
 * request{"address": "_REQUESTED_", "phone": "_REQUESTED_"}
@@ -12208,7 +12208,7 @@
 * inform{"food": "jamaican"}
  - utter_request_food
 * inform{"food": "jamaican"}
- - utter_select_food
+ - offer_restaurant
 * inform{"food": "jamaican"}
  - canthelp
 * inform{"food": "chinese"}
@@ -12216,9 +12216,9 @@
 * inform{"food": "chinese", "area": "south"}
  - canthelp
 * inform{"food": "chinese", "area": "south"}
- - utter_select_food
+ - offer_restaurant
 * correct{"food": "chinese"}
- - utter_select_food
+ - offer_restaurant
 * inform{"food": "chinese"}
  - confirm_food
 * affirm
@@ -12516,9 +12516,9 @@
 * inform{"food": "creative"}
  - canthelp
 * inform{"food": "thai"}
- - utter_select_food
+ - offer_restaurant
 * inform{"food": "thai"}
- - utter_select_food
+ - offer_restaurant
 * inform{"food": "thai"}
  - offer_restaurant
 * request{"address": "_REQUESTED_"}
@@ -12528,7 +12528,7 @@
 * request{"phone": "_REQUESTED_"}
  - futile_offer_restaurant
 * inform{"name": "prezzo"}
- - utter_select_food
+ - offer_restaurant
 * inform{"food": "creative"}
  - canthelp
 * inform{"food": "thai"}
@@ -12892,17 +12892,17 @@
 * inform{"food": "modern european"}
  - confirm_area
 * inform{"food": "modern european"}
- - utter_select_food
+ - offer_restaurant
 * inform{"food": "modern european"}
- - utter_select_food
+ - offer_restaurant
 * inform{"food": "modern european"}
- - utter_select_food
+ - offer_restaurant
 * inform{"food": "european"}
- - utter_select_food
+ - offer_restaurant
 * inform{"food": "modern european"}
- - utter_select_food
+ - offer_restaurant
 * inform{"food": "modern european"}
- - utter_select_food
+ - offer_restaurant
 * bye
  - confirm_food
 * negate
@@ -13960,7 +13960,7 @@
 * inform{"food": "modern european"}
  - confirm_area
 * affirm
- - utter_select_food
+ - offer_restaurant
 * inform{"food": "modern european"}
  - offer_restaurant
 * request{"phone": "_REQUESTED_"}
@@ -14242,7 +14242,7 @@
 * inform{"food": "mediterranean"}
  - canthelp
 * inform{"food": "mediterranean"}
- - utter_select_food
+ - offer_restaurant
 * inform{"food": "mediterranean"}
  - confirm_summary
 * affirm
@@ -14598,7 +14598,7 @@
 * inform{"food": "korean"}
  - canthelp
 * inform{"food": "korean"}
- - utter_select_food
+ - offer_restaurant
 * inform{"food": "korean"}
  - offer_restaurant
 * request{"address": "_REQUESTED_"}
@@ -14902,7 +14902,7 @@
 * inform{"food": "thai"}
  - confirm_area
 * affirm
- - utter_select_food
+ - offer_restaurant
 * inform{"food": "thai"}
  - offer_restaurant
 * inform{"food": "thai"}
@@ -15158,7 +15158,7 @@
 * inform{"food": "chinese"}
  - confirm_area
 * inform{"area": "east"}
- - utter_select_food
+ - offer_restaurant
 * inform{"food": "chinese"}
  - offer_restaurant
 * request{"address": "_REQUESTED_", "phone": "_REQUESTED_", "postcode": "_REQUESTED_"}
@@ -15414,7 +15414,7 @@
 * inform{"food": "modern european"}
  - offer_pricerange
 * inform{"food": "european", "pricerange": "moderate"}
- - utter_select_food
+ - offer_restaurant
 * affirm
  - offer_pricerange
 * inform{"food": "modern european"}
@@ -16102,7 +16102,7 @@
 * inform{"food": "corsica"}
  - canthelp
 * inform{"food": "asian oriental"}
- - utter_select_food
+ - offer_restaurant
 * inform{"food": "asian oriental"}
  - offer_restaurant
 * affirm
@@ -17126,7 +17126,7 @@
 * inform{"food": "basque"}
  - canthelp
 * inform{"food": "spanish"}
- - utter_select_food
+ - offer_restaurant
 * inform{"food": "spanish"}
  - utter_request_area
 * inform_dontcare
@@ -19622,7 +19622,7 @@
 * inform{"food": "chinese"}
  - confirm_food
 * correct{"food": "chinese"}
- - utter_select_food
+ - offer_restaurant
 * inform{"food": "chinese"}
  - confirm_summary
 * affirm
@@ -20246,7 +20246,7 @@
 * inform{"food": "russian"}
  - canthelp
 * inform{"food": "korean"}
- - utter_select_food
+ - offer_restaurant
 * inform{"food": "korean"}
  - offer_restaurant
 * request{"address": "_REQUESTED_"}
@@ -20980,7 +20980,7 @@
 * confirm{"food": "chinese"}
  - offer_restaurant
 * inform{"pricerange": "cheap"}
- - utter_select_food
+ - offer_restaurant
 * inform{"food": "russian"}
  - offer_pricerange
 * request{"food": "_REQUESTED_"}
@@ -20988,7 +20988,7 @@
 * request{"food": "_REQUESTED_"}
  - offer_restaurant
 * inform{"pricerange": "cheap"}
- - utter_select_food
+ - offer_restaurant
 * inform{"food": "chinese"}
  - utter_request_area
 * inform_dontcare
@@ -22768,7 +22768,7 @@
 * inform{"food": "french"}
  - canthelp
 * inform{"food": "french", "area": "north"}
- - utter_select_food
+ - offer_restaurant
 * inform{"food": "french"}
  - offer_restaurant
 * request{"phone": "_REQUESTED_"}

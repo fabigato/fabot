@@ -5,8 +5,6 @@ import re
 from rasa_core.interpreter import RasaNLUInterpreter
 from rasa_core.agent import Agent
 from rasa_core.channels.direct import CollectingOutputChannel
-from rasa_core.channels import UserMessage
-from rasa_core.events import Restarted
 import json
 import progressbar
 
@@ -67,31 +65,21 @@ class BabiComparator(object):
         interpreter = RasaNLUInterpreter(nlu_model_path)
         agent = Agent.load(dialogue_model_path, interpreter=interpreter)
         results = []
-        # counter = 0
         output_channel = CollectingOutputChannel()
         bar = progressbar.ProgressBar(max_value=1117)
         for story in bar(babi_dialogue_iterator(test_conversation_filename)):
-            # counter += 1
             conversation = []
             clean_story = cls.story_cleaner(story)
             output_channel.messages.clear()
             for human_says in [turn['human'] for turn in clean_story]:
                 bot_said = agent.handle_message(human_says, output_channel=output_channel)
             agent.tracker_store = Agent.create_tracker_store(store=None, domain=agent.domain)
-            if len(bot_said) != len(clean_story):
-                print('ajá!!')
-            # tracker = agent.tracker_store.get_or_create_tracker(UserMessage.DEFAULT_SENDER_ID)
-            # tracker.update(Restarted())
-            # agent.tracker_store.save(tracker)
-            # agent = Agent.load(dialogue_model_path, interpreter=interpreter)
             for human, target, actual in zip([turn['human'] for turn in clean_story],
                                              [turn['bot'] for turn in clean_story],
                                              bot_said):
                 match = cls.sentence_match(target, actual)
                 conversation.append({'human': human, 'bot': actual, 'target': target, 'match': match})
             results.append(conversation)
-            # if counter == 100:
-            #     break
             if output_filename:
                 with open(output_filename, 'w') as result_output:
                     json.dump(results, result_output, indent=2)
@@ -171,6 +159,17 @@ class BabiComparatorV2(BabiComparator):
         if '<SILENCE>' in [turn['human'] for turn in cleaned_story]:
             print('missed this motherfucker')
         return cleaned_story
+
+    @staticmethod
+    def get_da(utterance):
+        """Returns the da associated to a bot utterance, or None if no match exists"""
+        for da in BOT_DAS:
+            for pattern in BOT_DAS[da]:
+                match = pattern.match(utterance)
+                if match:
+                    return da
+        return None
+
 
     @classmethod
     def sentence_match(cls, target, prediction):

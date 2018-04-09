@@ -2,11 +2,10 @@ from unittest import TestCase
 import data.dialogue_processor as processor
 from data.dialogue_processor import BOT_DAS as bot_das
 from json import load as json_load
-from main import DSTC2_TRN_DEV_DATA_PATH
+from globals import DSTC2_TRN_DEV_DATA_PATH, BABI_PATH
 import re
 from data.test.babi_reader import babi_dialogue_iterator
 from os.path import join
-from main import BABI_PATH
 from data.test.babi_reader import BabiComparatorV2
 
 

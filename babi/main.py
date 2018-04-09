@@ -8,28 +8,14 @@ from rasa_core.channels.console import ConsoleInputChannel
 from rasa_core.policies.keras_policy import KerasPolicy
 from fabot.custom.ensemble import FabotPolicy
 from rasa_core.policies.memoization import MemoizationPolicy
+from globals import *
 
 logger = logging.getLogger(__name__)
 
-RASA_TRAIN_PATH = 'data/trndev/rasa/'
-RASA_TST_PATH = 'data/test/rasa/'
-NLU_TRAIN_CONFIG_FILE = "nlu_model_config.json"
-NLU_MODEL_PATH = 'models/nlu/'
-DIALOGUE_MODEL_PATH = 'models/dialogue/'
-NLU_TEST_CONFIG_FILE = 'tests/data/nlu_model_test_config.json'
-DSTC2_TRN_DEV_DATA_PATH = 'data/trndev/dstc2/data/'
-DSTC2_ONTOLOGY_FILE = 'data/trndev/dstc2/scripts/config/ontology_dstc2.json'
-DSTC2_TST_DATA_PATH = 'data/test/dstc2/data/'
-DSTCT2_TRN_LIST_FILE = 'data/trndev/dstc2/scripts/config/dstc2_train.flist'
-DSTCT2_DEV_LIST_FILE = 'data/trndev/dstc2/scripts/config/dstc2_dev.flist'
-DSTCT2_TST_LIST_FILE = 'data/test/dstc2/scripts/config/dstc2_test.flist'
-DOMAIN_FILE = 'fabot_domain.yml'
-BABI_PATH = 'data/test/dialog-bAbI-tasks/'
-
 
 def init():
-    utils.configure_colored_logging(loglevel="INFO")
-    logging.basicConfig(level="INFO")
+    utils.configure_colored_logging(loglevel="DEBUG")
+    logging.basicConfig(level="DEBUG")
     os.environ["TF_CPP_MIN_LOG_LEVEL"] = "2"
 
 
@@ -64,7 +50,7 @@ def train_dialogue(domain_file=DOMAIN_FILE,
 
     agent.train(
             training_data_file,
-            max_history=4,
+            max_history=3,
             epochs=400,
             batch_size=100,
             validation_split=0.2

@@ -1,11 +1,10 @@
 from rasa_core.actions import Action
 from rasa_core.events import SlotSet
 from data.database import BabiDB
-from main import BABI_PATH
+from globals import BABI_PATH, DSTC2_ONTOLOGY_FILE
 from os.path import join
 import logging
 from numpy.random import choice, seed
-from main import DSTC2_ONTOLOGY_FILE
 import json
 from rasa_core import utils
 
@@ -445,8 +444,8 @@ class ActionFutileOfferRestaurant(Action):
         results = tracker.current_slot_values()['results']
         name = '<name>'
         if results is not None:
-            name = tracker.current_slot_values()['results'].iloc[tracker.current_slot_values()['last_offer_index']]
-            ['name']
+            name = tracker.current_slot_values()['results'].\
+            iloc[tracker.current_slot_values()['last_offer_index']]['name']
         else:
             logger.warning('predicted futile_offer_restaurant when there is no restaurant to refer to')
         message = '{name} is a great restaurant'.format(name=name)

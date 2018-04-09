@@ -3,7 +3,7 @@ from os.path import join
 from json import load as json_load
 import copy
 import logging
-from main import RASA_TRAIN_PATH, DSTC2_TRN_DEV_DATA_PATH, DSTCT2_TRN_LIST_FILE
+from globals import RASA_TRAIN_PATH, DSTC2_TRN_DEV_DATA_PATH, DSTCT2_TRN_LIST_FILE
 import re
 
 logger = logging.getLogger(__name__)
@@ -195,6 +195,9 @@ def get_bot_da(text):
     for da in BOT_DAS:
         matches = [pattern.match(text) for pattern in BOT_DAS[da]]
         if any(matches):
+            if da == 'utter_select_food':  # appears only 44 times in trn/dev and 0 in tst
+                return 'offer_restaurant'
+                # return 'confirm_ask_food'
             return da
     raise ValueError('unknown da: {}'.format(text))
 

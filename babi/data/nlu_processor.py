@@ -6,7 +6,7 @@ from numpy import random
 from collections import defaultdict
 import logging
 from data.dialogue_processor import REQUESTED_ENTITY_FLAG, process_dstc2_files, get_user_intent
-from main import DSTC2_TRN_DEV_DATA_PATH, RASA_TRAIN_PATH, RASA_TST_PATH, DSTC2_TST_DATA_PATH, DSTC2_ONTOLOGY_FILE
+from globals import DSTC2_TRN_DEV_DATA_PATH, RASA_TRAIN_PATH, RASA_TST_PATH, DSTC2_TST_DATA_PATH, DSTC2_ONTOLOGY_FILE
 
 logger = logging.getLogger(__name__)
 logging.basicConfig(level="INFO")

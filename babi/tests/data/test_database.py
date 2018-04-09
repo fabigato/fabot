@@ -1,6 +1,6 @@
 from unittest import TestCase
 from data.database import BabiDB, BABI_MESSAGES
-from main import BABI_PATH
+from globals import BABI_PATH
 from os.path import join
 import re
 

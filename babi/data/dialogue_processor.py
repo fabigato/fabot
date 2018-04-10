@@ -84,7 +84,8 @@ BOT_DAS = {
                 '.* is in the \w+ ,'
             ],
             'confirm_summary': [
-                '^Let me confirm , You are looking for a restaurant .* right\?$'
+                '^Let me confirm , You are looking for a restaurant .* right\?$'  # only 32 times in test
+                # all of them missed and still produces 49 false positives. That's the size of the price if removing
             ],
             'confirm_area': [
                 '^Did you say you are looking for a restaurant in the \w+ of town\?$',
@@ -100,7 +101,7 @@ BOT_DAS = {
                 '^Would you like something in the cheap , moderate , or expensive price range\?$',
                 '^Sorry would you like something in the \w+ price range or'
             ],
-            'utter_select_food': [
+            'utter_select_food': [  # never observed in test data
                 '^Sorry would you like .* or .* food\?$',
                 '^Sorry would you like .* food or you dont care$'
             ],
@@ -198,6 +199,8 @@ def get_bot_da(text):
             if da == 'utter_select_food':  # appears only 44 times in trn/dev and 0 in tst
                 return 'offer_restaurant'
                 # return 'confirm_ask_food'
+            # if da == 'utter_select_area':  # only 26 times in trn/dev, 0 in tst
+            #     return 'confirm_ask_area'  # has similar behavior and is one of fabot's top sources of false negatives
             return da
     raise ValueError('unknown da: {}'.format(text))
 
@@ -425,7 +428,7 @@ def process_dstc2_files(process, files_list=None, path_prefix='', only_success=F
                                format(label_dic['task-information']['feedback']['questionnaire'][0][1],
                                       quality_filters, json_label))
                 continue
-            process(label_dic=label_dic, log_dic=log_dic,
+            process(human=label_dic, bot=log_dic,
                     story_path=label.replace(path_prefix, '').replace('/Mar', 'Mar')[:-11])
 
 
@@ -443,17 +446,18 @@ def produce_rasa_file(files_list=None, path_prefix='', only_success=False,
     (label['task-information']['feedback']['questionnaire'][0][1] is in this iterable)
     :param output_file: name of the output file
     """
-    def process_story(label_dic, log_dic, story_path):
+    def process_story(human, bot, story_path):
         with open(output_file, 'a') as output:
             try:
-                story = _make_story(label_dic, log_dic)
+                story = _make_story(human, bot)
                 output.write('## ' + story_path + '\n')
                 for turn in story:
                     output.write('* ' + turn[0] + '\n - ' + turn[1] + '\n')
                 output.write('\n')
             except AssertionError as e:
                 print('assertion error at story {}'.format(story_path))
-
+    with open(output_file, 'w') as output:
+        output.write('')  # just to clean it
     process_dstc2_files(process=process_story, files_list=files_list, path_prefix=path_prefix,
                         only_success=only_success, quality_filters=quality_filters)
 

@@ -27,7 +27,8 @@ def _text_is_troublesome(text):
         'ok if there is no restaurant serving indonesian food how about a '
         'restaurant serving chinese food',  # indonesian -> chinese
         'not european fusion',  # european -> fusion
-        'id like a restaurant that serves australian asian food'  # australian asian -> australian
+        'id like a restaurant that serves australian asian food',  # australian asian -> australian
+        'im looking for a restaurant in any area and it should serve pan asian food'  # panasian -> asian oriental
     ]
     # we don't want unintelligible text. Plus, only 32 instances in tst, 47 in trn/dev
     return text.find('noise') != -1 or text in troublesome_sentences

@@ -33,7 +33,7 @@ def train_nlu():
     from rasa_nlu.converters import load_data
     from rasa_nlu.config import RasaNLUConfig
     from rasa_nlu.model import Trainer
-    training_data = load_data(RASA_TRAIN_PATH)
+    training_data = load_data(os.path.join(RASA_TRAIN_PATH, 'dstc2_nlu_train.json'))
     trainer = Trainer(RasaNLUConfig(NLU_TRAIN_CONFIG_FILE))
     trainer.train(training_data)
     model_directory = trainer.persist(NLU_MODEL_PATH, project_name='fabot', fixed_model_name="current")

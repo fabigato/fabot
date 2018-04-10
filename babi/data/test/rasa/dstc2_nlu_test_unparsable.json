@@ -10958,29 +10958,6 @@
       ]
     },
     {
-      "text": "i want an expensive steak house",
-      "semantics": [
-        {
-          "slots": [
-            [
-              "food",
-              "steakhouse"
-            ]
-          ],
-          "act": "inform"
-        },
-        {
-          "slots": [
-            [
-              "pricerange",
-              "expensive"
-            ]
-          ],
-          "act": "inform"
-        }
-      ]
-    },
-    {
       "text": "central",
       "semantics": [
         {
@@ -11143,90 +11120,6 @@
       ]
     },
     {
-      "text": "pan asian food",
-      "semantics": [
-        {
-          "slots": [
-            [
-              "food",
-              "asian oriental"
-            ]
-          ],
-          "act": "inform"
-        }
-      ]
-    },
-    {
-      "text": "pan asian food",
-      "semantics": [
-        {
-          "slots": [
-            [
-              "food",
-              "asian oriental"
-            ]
-          ],
-          "act": "inform"
-        }
-      ]
-    },
-    {
-      "text": "im looking for a restaurant serving pan asian foo",
-      "semantics": [
-        {
-          "slots": [
-            [
-              "food",
-              "asian oriental"
-            ]
-          ],
-          "act": "inform"
-        }
-      ]
-    },
-    {
-      "text": "im looking for a restaurant serving pan asian foo",
-      "semantics": [
-        {
-          "slots": [
-            [
-              "food",
-              "asian oriental"
-            ]
-          ],
-          "act": "inform"
-        }
-      ]
-    },
-    {
-      "text": "im looking for a restaurant serving pan asian foo",
-      "semantics": [
-        {
-          "slots": [
-            [
-              "food",
-              "asian oriental"
-            ]
-          ],
-          "act": "inform"
-        }
-      ]
-    },
-    {
-      "text": "im looking for a restaurant serving pan asian foo",
-      "semantics": [
-        {
-          "slots": [
-            [
-              "food",
-              "asian oriental"
-            ]
-          ],
-          "act": "inform"
-        }
-      ]
-    },
-    {
       "text": "how about portugeuse food",
       "semantics": [
         {
@@ -11350,34 +11243,6 @@
       ]
     },
     {
-      "text": "steak house",
-      "semantics": [
-        {
-          "slots": [
-            [
-              "food",
-              "steakhouse"
-            ]
-          ],
-          "act": "inform"
-        }
-      ]
-    },
-    {
-      "text": "steak house",
-      "semantics": [
-        {
-          "slots": [
-            [
-              "food",
-              "steakhouse"
-            ]
-          ],
-          "act": "inform"
-        }
-      ]
-    },
-    {
       "text": "venesian",
       "semantics": [
         {
@@ -11422,62 +11287,6 @@
             [
               "pricerange",
               "moderate"
-            ]
-          ],
-          "act": "inform"
-        }
-      ]
-    },
-    {
-      "text": "pan asian food",
-      "semantics": [
-        {
-          "slots": [
-            [
-              "food",
-              "asian oriental"
-            ]
-          ],
-          "act": "inform"
-        }
-      ]
-    },
-    {
-      "text": "pan asian food",
-      "semantics": [
-        {
-          "slots": [
-            [
-              "food",
-              "asian oriental"
-            ]
-          ],
-          "act": "inform"
-        }
-      ]
-    },
-    {
-      "text": "pan asian food",
-      "semantics": [
-        {
-          "slots": [
-            [
-              "food",
-              "asian oriental"
-            ]
-          ],
-          "act": "inform"
-        }
-      ]
-    },
-    {
-      "text": "pan asian food",
-      "semantics": [
-        {
-          "slots": [
-            [
-              "food",
-              "asian oriental"
             ]
           ],
           "act": "inform"
@@ -13958,6 +13767,29 @@
       ]
     },
     {
+      "text": "okay can i have the rest of the address for da vinci",
+      "semantics": [
+        {
+          "slots": [
+            [
+              "slot",
+              "addr"
+            ]
+          ],
+          "act": "request"
+        },
+        {
+          "slots": [
+            [
+              "name",
+              "da vinci pizzeria"
+            ]
+          ],
+          "act": "inform"
+        }
+      ]
+    },
+    {
       "text": "what is the addre",
       "semantics": [
         {
@@ -14486,42 +14318,6 @@
   ],
   "correct": [
     {
-      "text": "no steak house",
-      "semantics": [
-        {
-          "slots": [],
-          "act": "negate"
-        },
-        {
-          "slots": [
-            [
-              "food",
-              "steakhouse"
-            ]
-          ],
-          "act": "inform"
-        }
-      ]
-    },
-    {
-      "text": "no steak house",
-      "semantics": [
-        {
-          "slots": [],
-          "act": "negate"
-        },
-        {
-          "slots": [
-            [
-              "food",
-              "steakhouse"
-            ]
-          ],
-          "act": "inform"
-        }
-      ]
-    },
-    {
       "text": "no air tran food",
       "semantics": [
         {
@@ -14587,42 +14383,6 @@
             [
               "food",
               "eritrean"
-            ]
-          ],
-          "act": "inform"
-        }
-      ]
-    },
-    {
-      "text": "no pan asian food",
-      "semantics": [
-        {
-          "slots": [],
-          "act": "negate"
-        },
-        {
-          "slots": [
-            [
-              "food",
-              "asian oriental"
-            ]
-          ],
-          "act": "inform"
-        }
-      ]
-    },
-    {
-      "text": "no pan asian food",
-      "semantics": [
-        {
-          "slots": [],
-          "act": "negate"
-        },
-        {
-          "slots": [
-            [
-              "food",
-              "asian oriental"
             ]
           ],
           "act": "inform"
@@ -14713,31 +14473,6 @@
             [
               "food",
               "asian oriental"
-            ]
-          ],
-          "act": "inform"
-        }
-      ]
-    }
-  ],
-  "query": [
-    {
-      "text": "okay can i have the rest of the address for da vinci",
-      "semantics": [
-        {
-          "slots": [
-            [
-              "slot",
-              "addr"
-            ]
-          ],
-          "act": "request"
-        },
-        {
-          "slots": [
-            [
-              "name",
-              "da vinci pizzeria"
             ]
           ],
           "act": "inform"

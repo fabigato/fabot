@@ -128,7 +128,7 @@
   [
     {
       "human": "i dont care in the north part of town",
-      "bot": "api_call R_cuisine north R_price",
+      "bot": "What kind of food would you like?",
       "target": "There are restaurants in the north of town serving any kind of food . What price range would you like?",
       "match": false
     },
@@ -172,19 +172,19 @@
     },
     {
       "human": "what else is there",
-      "bot": "{name} serves <food> food",
+      "bot": "frankie_and_bennys serves italian food",
       "target": "the_lucky_star is a great restaurant",
       "match": false
     },
     {
       "human": "anything else",
-      "bot": "{name} serves <food> food",
+      "bot": "chiquito_restaurant_bar serves mexican food",
       "target": "The post code of the_lucky_star is the_lucky_star_post_code",
       "match": false
     },
     {
       "human": "is there anything else",
-      "bot": "{name} serves <food> food",
+      "bot": "pizza_hut_cherry_hinton serves italian food",
       "target": "Sorry but there is no other restaurant in the cheap price range and the south of town",
       "match": false
     },
@@ -196,7 +196,7 @@
     },
     {
       "human": "what type of food is it",
-      "bot": "peking_restaurant is a nice place in the south of town serving tasty _REQUESTED_ food",
+      "bot": "the_lucky_star is a nice place in the south of town serving tasty chinese food",
       "target": " you are welcome",
       "match": false
     }
@@ -328,19 +328,19 @@
     },
     {
       "human": "background_speech",
-      "bot": "darrys_cookhouse_and_wine_shop serves background_speech food",
+      "bot": "eraina is a great restaurant",
       "target": "hotel_du_vin_and_bistro serves european food",
-      "match": true
+      "match": false
     },
     {
       "human": "whats the phone number",
-      "bot": "The phone number of darrys_cookhouse_and_wine_shop is darrys_cookhouse_and_wine_shop_phone",
+      "bot": "The phone number of eraina is eraina_phone",
       "target": "The phone number of hotel_du_vin_and_bistro is hotel_du_vin_and_bistro_phone",
       "match": true
     },
     {
       "human": "background_speech",
-      "bot": "restaurant_alimentum serves background_speech food",
+      "bot": "eraina is a great restaurant",
       "target": "Can I help you with anything else?",
       "match": false
     },
@@ -416,7 +416,7 @@
     },
     {
       "human": "is there anything else",
-      "bot": "rajmahal is a nice place in the east of town serving tasty indian food",
+      "bot": "curry_prince is a nice place in the east of town serving tasty indian food",
       "target": "sitar_tandoori is a nice place in the east of town serving tasty indian food",
       "match": true
     },
@@ -1336,7 +1336,7 @@
     },
     {
       "human": "what kind of food do they serve",
-      "bot": "restaurant_alimentum is a great restaurant serving moderate _REQUESTED_ food in the south of town .",
+      "bot": "pizza_hut_cherry_hinton is a great restaurant serving moderate italian food in the south of town .",
       "target": "restaurant_alimentum serves modern_european food",
       "match": true
     },
@@ -1746,7 +1746,7 @@
     },
     {
       "human": "and what type of food",
-      "bot": "prezzo is a great restaurant serving moderate _REQUESTED_ food in the west of town .",
+      "bot": "saint_johns_chop_house is a great restaurant serving moderate british food in the west of town .",
       "target": "saint_johns_chop_house is a nice place in the west of town and the prices are moderate",
       "match": true
     },
@@ -1872,7 +1872,7 @@
   [
     {
       "human": "is that a cheap restaurant",
-      "bot": "What kind of food would you like?",
+      "bot": "api_call R_cuisine R_location cheap",
       "target": "There are restaurants in the cheap price range . What type of food do you want?",
       "match": false
     },
@@ -1978,7 +1978,7 @@
     },
     {
       "human": "do you have anything else",
-      "bot": "the_nirala is a nice place in the north of town and the prices are moderate",
+      "bot": "golden_wok is a nice place in the north of town and the prices are moderate",
       "target": "meghna is a nice place in the north of town and the prices are moderate",
       "match": true
     },
@@ -2004,7 +2004,7 @@
   [
     {
       "human": "i need",
-      "bot": "api_call R_cuisine R_location R_price",
+      "bot": "Would you like something in the cheap , moderate , or expensive price range?",
       "target": "What kind of food would you like?",
       "match": false
     },
@@ -2708,7 +2708,7 @@
     },
     {
       "human": "what type of food",
-      "bot": "prezzo is a great restaurant serving moderate _REQUESTED_ food in the west of town .",
+      "bot": "saint_johns_chop_house is a great restaurant serving moderate british food in the west of town .",
       "target": "saint_johns_chop_house serves british food",
       "match": true
     },
@@ -2846,7 +2846,7 @@
     },
     {
       "human": "anything else",
-      "bot": "rajmahal is a nice place in the east of town and the prices are moderate",
+      "bot": "curry_prince is a nice place in the east of town and the prices are moderate",
       "target": "rajmahal is a nice place in the east of town and the prices are moderate",
       "match": true
     },
@@ -3088,7 +3088,7 @@
     },
     {
       "human": "anything else",
-      "bot": "chiquito_restaurant_bar is a nice place in the south of town and the prices are expensive",
+      "bot": "frankie_and_bennys is a nice place in the south of town and the prices are expensive",
       "target": "taj_tandoori is a nice place in the south of town and the prices are expensive",
       "match": true
     },
@@ -3106,7 +3106,7 @@
     },
     {
       "human": "type of food",
-      "bot": "peking_restaurant is a great restaurant serving expensive _REQUESTED_ food in the south of town .",
+      "bot": "chiquito_restaurant_bar is a great restaurant serving expensive mexican food in the south of town .",
       "target": "taj_tandoori is a great restaurant",
       "match": false
     },
@@ -3304,7 +3304,7 @@
     },
     {
       "human": "what type of food do they serve",
-      "bot": "chiquito_restaurant_bar is a nice place in the south of town serving tasty _REQUESTED_ food",
+      "bot": "frankie_and_bennys is a nice place in the south of town serving tasty italian food",
       "target": "frankie_and_bennys serves italian food",
       "match": true
     },
@@ -3380,7 +3380,7 @@
     },
     {
       "human": "uh anything else",
-      "bot": "chiquito_restaurant_bar is a nice place in the south of town and the prices are expensive",
+      "bot": "frankie_and_bennys is a nice place in the south of town and the prices are expensive",
       "target": "the good luck chinese food takeaway is a nice place in the south of town and the prices are expensive",
       "match": true
     },
@@ -3762,7 +3762,7 @@
     },
     {
       "human": "what type of food does it serve",
-      "bot": "thanh_binh is a nice place in the west of town serving tasty _REQUESTED_ food",
+      "bot": "venue is a nice place in the west of town serving tasty vietnamese food",
       "target": "la_margherita serves italian food",
       "match": true
     },
@@ -3954,13 +3954,13 @@
     },
     {
       "human": "anything else",
-      "bot": "chiquito_restaurant_bar is a nice place in the south of town and the prices are expensive",
+      "bot": "frankie_and_bennys is a nice place in the south of town and the prices are expensive",
       "target": "taj_tandoori is a nice place in the south of town and the prices are expensive",
       "match": true
     },
     {
       "human": "uh what type of food",
-      "bot": "peking_restaurant is a great restaurant serving expensive _REQUESTED_ food in the south of town .",
+      "bot": "chiquito_restaurant_bar is a great restaurant serving expensive mexican food in the south of town .",
       "target": "taj_tandoori serves indian food",
       "match": true
     },
@@ -3972,7 +3972,7 @@
     },
     {
       "human": "what type of food",
-      "bot": "taj_tandoori is a great restaurant serving expensive _REQUESTED_ food in the south of town .",
+      "bot": "peking_restaurant is a great restaurant serving expensive chinese food in the south of town .",
       "target": "frankie_and_bennys serves italian food",
       "match": true
     },
@@ -4278,7 +4278,7 @@
     },
     {
       "human": "what kind of food",
-      "bot": "rajmahal is a great restaurant serving moderate _REQUESTED_ food in the east of town .",
+      "bot": "curry_prince is a great restaurant serving moderate indian food in the east of town .",
       "target": "curry_prince serves indian food",
       "match": true
     },
@@ -4354,7 +4354,7 @@
     },
     {
       "human": "is there anything else",
-      "bot": "{name} serves <food> food",
+      "bot": "frankie_and_bennys serves italian food",
       "target": "the good luck chinese food takeaway is a nice place in the south of town and the prices are expensive",
       "match": true
     },
@@ -4532,7 +4532,7 @@
     },
     {
       "human": "uh is there anything else",
-      "bot": "darrys_cookhouse_and_wine_shop serves european food",
+      "bot": "eraina serves european food",
       "target": "galleria serves european food",
       "match": true
     },
@@ -5212,7 +5212,7 @@
     },
     {
       "human": "is there anything else",
-      "bot": "rajmahal serves indian food",
+      "bot": "curry_prince serves indian food",
       "target": "meghna serves indian food in the moderate price range",
       "match": true
     },
@@ -5486,7 +5486,7 @@
     },
     {
       "human": "anything else",
-      "bot": "restaurant_alimentum is a nice place in the south of town and the prices are moderate",
+      "bot": "pizza_hut_cherry_hinton is a nice place in the south of town and the prices are moderate",
       "target": "pizza_hut_cherry_hinton is a nice place in the south of town and the prices are moderate",
       "match": true
     },
@@ -5824,7 +5824,7 @@
     },
     {
       "human": "anything else",
-      "bot": "{name} serves <food> food",
+      "bot": "travellers_rest serves british food",
       "target": "la_margherita is a nice place in the west of town and the prices are cheap",
       "match": true
     },
@@ -5850,7 +5850,7 @@
   [
     {
       "human": "hi im looking for a restaurant that servers",
-      "bot": "I'm sorry but there is no restaurant serving servers food",
+      "bot": "api_call R_cuisine R_location R_price",
       "target": "You are looking for a thai restaurant right?",
       "match": false
     },
@@ -6040,7 +6040,7 @@
     },
     {
       "human": "type of food",
-      "bot": "thanh_binh is a great restaurant serving cheap _REQUESTED_ food in the west of town .",
+      "bot": "la_margherita is a great restaurant serving cheap italian food in the west of town .",
       "target": "thanh_binh is a nice place in the west of town and the prices are cheap",
       "match": true
     },
@@ -6146,7 +6146,7 @@
     },
     {
       "human": "something else",
-      "bot": "rajmahal is a nice place in the east of town and the prices are moderate",
+      "bot": "curry_prince is a nice place in the east of town and the prices are moderate",
       "target": "pizza_hut_fen_ditton is a nice place in the east of town and the prices are moderate",
       "match": true
     },
@@ -6334,7 +6334,7 @@
     },
     {
       "human": "anything else",
-      "bot": "{name} serves <food> food",
+      "bot": "royal_standard serves gastropub food",
       "target": "curry_prince is a nice place in the east of town and the prices are moderate",
       "match": true
     },
@@ -6464,7 +6464,7 @@
     },
     {
       "human": "what about the other restaurant",
-      "bot": "{name} serves <food> food",
+      "bot": "frankie_and_bennys serves italian food",
       "target": "restaurant_alimentum is a great restaurant",
       "match": false
     },
@@ -6516,7 +6516,7 @@
     },
     {
       "human": "is there anything else",
-      "bot": "{name} serves <food> food",
+      "bot": "royal_standard serves gastropub food",
       "target": "curry_prince is a nice place in the east of town and the prices are moderate",
       "match": true
     },
@@ -6852,13 +6852,13 @@
     },
     {
       "human": "anything else",
-      "bot": "the_nirala is a nice place in the north of town and the prices are moderate",
+      "bot": "golden_wok is a nice place in the north of town and the prices are moderate",
       "target": "the_nirala is a nice place in the north of town and the prices are moderate",
       "match": true
     },
     {
       "human": "anything else",
-      "bot": "meghna is a nice place in the north of town and the prices are moderate",
+      "bot": "the_nirala is a nice place in the north of town and the prices are moderate",
       "target": "the_nirala is a great restaurant",
       "match": false
     },
@@ -7060,13 +7060,13 @@
     },
     {
       "human": "phone number and area",
-      "bot": "golden_house is a nice place in the _REQUESTED_ of town and the prices are cheap",
+      "bot": "j_restaurant is a nice place in the centre of town and the prices are cheap",
       "target": "The phone number of nandos is nandos_phone",
       "match": false
     },
     {
       "human": "area",
-      "bot": "la_margherita is a nice place in the _REQUESTED_ of town and the prices are cheap",
+      "bot": "golden_house is a nice place in the centre of town and the prices are cheap",
       "target": "nandos is a nice place in the south of town",
       "match": true
     },
@@ -7286,7 +7286,7 @@
     },
     {
       "human": "what type of food does it serve",
-      "bot": "chiquito_restaurant_bar is a nice place in the south of town serving tasty _REQUESTED_ food",
+      "bot": "frankie_and_bennys is a nice place in the south of town serving tasty italian food",
       "target": "nandos serves portuguese food",
       "match": true
     },
@@ -7428,7 +7428,7 @@
     },
     {
       "human": "is there anything else",
-      "bot": "the_nirala is a nice place in the north of town and the prices are moderate",
+      "bot": "golden_wok is a nice place in the north of town and the prices are moderate",
       "target": "meghna is a nice place in the north of town and the prices are moderate",
       "match": true
     },
@@ -7596,7 +7596,7 @@
     },
     {
       "human": "what type of food does it serve",
-      "bot": "golden_wok is a nice place in the north of town serving tasty _REQUESTED_ food",
+      "bot": "the_hotpot is a nice place in the north of town serving tasty chinese food",
       "target": "da_vinci_pizzeria serves italian food",
       "match": true
     },
@@ -8018,7 +8018,7 @@
     },
     {
       "human": "what area is it in",
-      "bot": "la_raza is a nice place in the _REQUESTED_ of town serving tasty spanish food",
+      "bot": "la_tasca is a nice place in the centre of town serving tasty spanish food",
       "target": "la_raza is a nice place in the centre of town",
       "match": true
     },
@@ -8454,7 +8454,7 @@
     },
     {
       "human": "is there anything else",
-      "bot": "royal_spice is a nice place in the north of town and the prices are cheap",
+      "bot": "da_vinci_pizzeria is a nice place in the north of town and the prices are cheap",
       "target": "royal_spice is a nice place in the north of town and the prices are cheap",
       "match": true
     },
@@ -8586,7 +8586,7 @@
     },
     {
       "human": "what kind of food does it serve",
-      "bot": "restaurant_alimentum is a great restaurant serving moderate _REQUESTED_ food in the south of town .",
+      "bot": "pizza_hut_cherry_hinton is a great restaurant serving moderate italian food in the south of town .",
       "target": "restaurant_alimentum serves modern_european food",
       "match": true
     },
@@ -8682,7 +8682,7 @@
     },
     {
       "human": "is there anything else",
-      "bot": "restaurant_alimentum is a nice place in the south of town and the prices are moderate",
+      "bot": "pizza_hut_cherry_hinton is a nice place in the south of town and the prices are moderate",
       "target": "restaurant_alimentum is a nice place in the south of town and the prices are moderate",
       "match": true
     },
@@ -9188,7 +9188,7 @@
     },
     {
       "human": "yes fusion",
-      "bot": "loch_fyne is a nice place in the centre of town serving tasty fusion food",
+      "bot": "restaurant_one_seven is a nice place in the centre of town serving tasty british food",
       "target": "I'm sorry but there is no restaurant serving fusion food",
       "match": false
     },
@@ -9306,7 +9306,7 @@
     },
     {
       "human": "anything else",
-      "bot": "prezzo is a nice place in the west of town and the prices are moderate",
+      "bot": "saint_johns_chop_house is a nice place in the west of town and the prices are moderate",
       "target": "prezzo is a nice place in the west of town and the prices are moderate",
       "match": true
     },
@@ -9552,7 +9552,7 @@
     },
     {
       "human": "make a suggestion",
-      "bot": "restaurant_alimentum is a nice place in the south of town and the prices are moderate",
+      "bot": "pizza_hut_cherry_hinton is a nice place in the south of town and the prices are moderate",
       "target": "You are looking for a restaurant serving any kind of food right?",
       "match": false
     },
@@ -9564,7 +9564,7 @@
     },
     {
       "human": "is there anything else",
-      "bot": "restaurant_alimentum is a nice place in the south of town and the prices are moderate",
+      "bot": "pizza_hut_cherry_hinton is a nice place in the south of town and the prices are moderate",
       "target": "restaurant_alimentum is a nice place in the south of town and the prices are moderate",
       "match": true
     },
@@ -9590,7 +9590,7 @@
     },
     {
       "human": "suggestion",
-      "bot": "chiquito_restaurant_bar is a great restaurant serving expensive suggestion food in the south of town .",
+      "bot": "I'm sorry but there is no restaurant with the provided criteria",
       "target": "You are looking for a restaurant serving any kind of food right?",
       "match": false
     },
@@ -10102,7 +10102,7 @@
     },
     {
       "human": "is there anything else",
-      "bot": "chiquito_restaurant_bar is a nice place in the south of town and the prices are expensive",
+      "bot": "frankie_and_bennys is a nice place in the south of town and the prices are expensive",
       "target": "chiquito_restaurant_bar is a nice place in the south of town and the prices are expensive",
       "match": true
     },
@@ -10114,13 +10114,13 @@
     },
     {
       "human": "what is the type of food",
-      "bot": "peking_restaurant is a great restaurant serving expensive _REQUESTED_ food in the south of town .",
+      "bot": "chiquito_restaurant_bar is a great restaurant serving expensive mexican food in the south of town .",
       "target": "chiquito_restaurant_bar is a great restaurant",
       "match": false
     },
     {
       "human": "what type of food do they serve",
-      "bot": "taj_tandoori is a great restaurant serving expensive _REQUESTED_ food in the south of town .",
+      "bot": "peking_restaurant is a great restaurant serving expensive chinese food in the south of town .",
       "target": "chiquito_restaurant_bar serves mexican food",
       "match": true
     },
@@ -10450,7 +10450,7 @@
     },
     {
       "human": "is there anything else",
-      "bot": "royal_spice is a nice place in the north of town and the prices are cheap",
+      "bot": "da_vinci_pizzeria is a nice place in the north of town and the prices are cheap",
       "target": "nandos_city_centre is a great restaurant",
       "match": false
     },
@@ -10538,7 +10538,7 @@
     },
     {
       "human": "asian_oriental type of food",
-      "bot": "api_call asian_oriental R_location R_price",
+      "bot": "j_restaurant serves asian_oriental food",
       "target": "You are looking for a asian_oriental restaurant right?",
       "match": false
     },
@@ -11298,13 +11298,13 @@
     },
     {
       "human": "is there anything else",
-      "bot": "the_nirala is a nice place in the north of town and the prices are moderate",
+      "bot": "golden_wok is a nice place in the north of town and the prices are moderate",
       "target": "the_nirala is a nice place in the north of town and the prices are moderate",
       "match": true
     },
     {
       "human": "is there anything else",
-      "bot": "meghna is a nice place in the north of town and the prices are moderate",
+      "bot": "the_nirala is a nice place in the north of town and the prices are moderate",
       "target": "meghna is a nice place in the north of town and the prices are moderate",
       "match": true
     },
@@ -11560,19 +11560,19 @@
     },
     {
       "human": "do you have another",
-      "bot": "the_hotpot serves chinese food",
+      "bot": "sesame_restaurant_and_bar serves chinese food",
       "target": "rice_house is a great restaurant",
       "match": false
     },
     {
       "human": "anything else",
-      "bot": "golden_wok serves chinese food",
+      "bot": "the_hotpot serves chinese food",
       "target": "golden_house serves chinese food in the cheap price range",
       "match": true
     },
     {
       "human": "and anything else",
-      "bot": "golden_house serves chinese food",
+      "bot": "golden_wok serves chinese food",
       "target": "the_lucky_star serves chinese food in the cheap price range",
       "match": true
     },
@@ -11642,13 +11642,13 @@
     },
     {
       "human": "what else",
-      "bot": "sitar_tandoori is a nice place in the east of town and the prices are expensive",
+      "bot": "royal_standard is a nice place in the east of town and the prices are expensive",
       "target": "sitar_tandoori is a great restaurant",
       "match": false
     },
     {
       "human": "whats another one",
-      "bot": "grafton_hotel_restaurant is a nice place in the east of town and the prices are expensive",
+      "bot": "sitar_tandoori is a nice place in the east of town and the prices are expensive",
       "target": "royal_standard is a nice place in the east of town and the prices are expensive",
       "match": true
     },
@@ -11660,7 +11660,7 @@
     },
     {
       "human": "another one",
-      "bot": "sitar_tandoori is a nice place in the east of town and the prices are expensive",
+      "bot": "royal_standard is a nice place in the east of town and the prices are expensive",
       "target": "grafton_hotel_restaurant is a great restaurant",
       "match": false
     },
@@ -11812,7 +11812,7 @@
     },
     {
       "human": "anything else",
-      "bot": "thanh_binh serves vietnamese food",
+      "bot": "venue serves vietnamese food",
       "target": "I am sorry but there is no other vietnamese restaurant that matches your request",
       "match": false
     },
@@ -12116,13 +12116,13 @@
     },
     {
       "human": "care",
-      "bot": "the_nirala is a great restaurant serving moderate care food in the north of town .",
+      "bot": "golden_wok is a nice place in the north of town and the prices are moderate",
       "target": "You are looking for a restaurant serving any kind of food right?",
       "match": false
     },
     {
       "human": "part of town",
-      "bot": "meghna is a great restaurant serving moderate care food in the _REQUESTED_ of town .",
+      "bot": "the_nirala is a nice place in the north of town and the prices are moderate",
       "target": "There are restaurants if you don't care about the area or the type of food . What price range would you like?",
       "match": false
     },
@@ -12134,49 +12134,49 @@
     },
     {
       "human": "moderate",
-      "bot": "The price range at meghna is moderate",
+      "bot": "I'm sorry but there is no restaurant with the provided criteria",
       "target": "api_call R_cuisine north moderate",
       "match": false
     },
     {
       "human": "part of town is it in",
-      "bot": "The price range at meghna is moderate",
+      "bot": "I'm sorry but there is no restaurant with the provided criteria",
       "target": "hotel_du_vin_and_bistro is a great restaurant",
       "match": false
     },
     {
       "human": "what part of town",
-      "bot": "The price range at meghna is moderate",
+      "bot": "I'm sorry but there is no restaurant with the provided criteria",
       "target": "hotel_du_vin_and_bistro serves european food",
       "match": false
     },
     {
       "human": "is it in the north part of tow",
-      "bot": "I'm sorry but there is no restaurant with the provided criteria",
+      "bot": "api_call R_cuisine north moderate",
       "target": "hotel_du_vin_and_bistro is a great restaurant",
       "match": false
     },
     {
       "human": "the north part of tow",
-      "bot": "I'm sorry but there is no restaurant with the provided criteria",
+      "bot": "api_call R_cuisine north moderate",
       "target": "hotel_du_vin_and_bistro is a nice place in the centre of town",
       "match": false
     },
     {
       "human": "i need the nor",
-      "bot": "I'm sorry but there is no restaurant with the provided criteria",
+      "bot": "golden_wok is a nice place in the north of town and the prices are moderate",
       "target": "meghna is a nice place in the north of town and the prices are moderate",
-      "match": false
+      "match": true
     },
     {
       "human": "what is the address and phone number",
-      "bot": "The phone number of UNSET is UNSET",
+      "bot": "The phone number of the_nirala is the_nirala_phone",
       "target": "The phone number of meghna is meghna_phone",
       "match": true
     },
     {
       "human": "what is the post code",
-      "bot": "The post code of UNSET is UNSET",
+      "bot": "The post code of the_nirala is the_nirala_post_code",
       "target": "The post code of meghna is meghna_post_code",
       "match": true
     },
@@ -12276,7 +12276,7 @@
     },
     {
       "human": "restaurant there",
-      "bot": "I am sorry but there is no other restaurant that matches your request",
+      "bot": "pizza_hut_cherry_hinton is a great restaurant",
       "target": "pizza_hut_cherry_hinton is a great restaurant serving moderate italian food in the south of town .",
       "match": false
     },
@@ -12400,7 +12400,7 @@
     },
     {
       "human": "ah where is it",
-      "bot": "kymmoy is a great restaurant serving expensive asian_oriental food in the _REQUESTED_ of town .",
+      "bot": "I'm sorry but there is no restaurant with the provided criteria",
       "target": "Sure , saigon_city is on saigon_city_address",
       "match": false
     },
@@ -13024,7 +13024,7 @@
     },
     {
       "human": "what type of food does it have",
-      "bot": "prezzo is a great restaurant serving moderate _REQUESTED_ food in the west of town .",
+      "bot": "saint_johns_chop_house is a great restaurant serving moderate british food in the west of town .",
       "target": "saint_johns_chop_house is a great restaurant",
       "match": false
     },
@@ -13204,7 +13204,7 @@
     },
     {
       "human": "anything else",
-      "bot": "chiquito_restaurant_bar is a nice place in the south of town and the prices are expensive",
+      "bot": "frankie_and_bennys is a nice place in the south of town and the prices are expensive",
       "target": "taj_tandoori is a nice place in the south of town and the prices are expensive",
       "match": true
     },
@@ -13216,7 +13216,7 @@
     },
     {
       "human": "the food",
-      "bot": "peking_restaurant is a nice place in the south of town and the prices are expensive",
+      "bot": "chiquito_restaurant_bar is a nice place in the south of town and the prices are expensive",
       "target": "the good luck chinese food takeaway is a nice place in the south of town and the prices are expensive",
       "match": true
     },
@@ -13360,7 +13360,7 @@
     },
     {
       "human": "anything else",
-      "bot": "rice_boat is a nice place in the west of town serving tasty indian food",
+      "bot": "maharajah_tandoori_restaurant is a nice place in the west of town serving tasty indian food",
       "target": "maharajah_tandoori_restaurant is a nice place in the west of town serving tasty indian food",
       "match": true
     },
@@ -13498,7 +13498,7 @@
     },
     {
       "human": "is there anything else",
-      "bot": "la_raza serves spanish food",
+      "bot": "la_tasca serves spanish food",
       "target": "la_raza serves spanish food",
       "match": true
     },
@@ -13944,33 +13944,33 @@
     },
     {
       "human": "i need asian food",
-      "bot": "The price range at UNSET is UNSET",
+      "bot": "I'm sorry but there is no restaurant serving expensive oriental food",
       "target": "Could you please repeat that?",
       "match": false
     },
     {
       "human": "asian food",
-      "bot": "The price range at UNSET is UNSET",
+      "bot": "I'm sorry but there is no restaurant serving expensive asian food",
       "target": "You are looking for a fusion restaurant right?",
       "match": false
     },
     {
       "human": "no",
-      "bot": "The price range at UNSET is UNSET",
+      "bot": "I'm sorry but there is no restaurant serving expensive asian food",
       "target": "I'm sorry but there is no restaurant serving fusion food",
-      "match": false
+      "match": true
     },
     {
       "human": "asian_oriental food",
-      "bot": "The price range at UNSET is UNSET",
+      "bot": "api_call asian_oriental R_location expensive",
       "target": "Could you please repeat that?",
       "match": false
     },
     {
       "human": "thank you good bye",
-      "bot": "Can I help you with anything else?",
+      "bot": " you are welcome",
       "target": " you are welcome",
-      "match": false
+      "match": true
     }
   ],
   [
@@ -14504,7 +14504,7 @@
     },
     {
       "human": "anything else",
-      "bot": "{name} serves <food> food",
+      "bot": "frankie_and_bennys serves italian food",
       "target": "sitar_tandoori is a nice place in the east of town and the prices are expensive",
       "match": true
     },
@@ -14642,7 +14642,7 @@
     },
     {
       "human": "is there anything else",
-      "bot": "golden_wok is a nice place in the north of town serving tasty chinese food",
+      "bot": "the_hotpot is a nice place in the north of town serving tasty chinese food",
       "target": "the_hotpot is a nice place in the north of town serving tasty chinese food",
       "match": true
     },
@@ -14680,7 +14680,7 @@
     },
     {
       "human": "is there anything else",
-      "bot": "the_nirala is a nice place in the north of town and the prices are moderate",
+      "bot": "golden_wok is a nice place in the north of town and the prices are moderate",
       "target": "the_nirala is a nice place in the north of town and the prices are moderate",
       "match": true
     },
@@ -15462,7 +15462,7 @@
     },
     {
       "human": "what type of food do they serve",
-      "bot": "golden_wok is a nice place in the north of town serving tasty _REQUESTED_ food",
+      "bot": "the_hotpot is a nice place in the north of town serving tasty chinese food",
       "target": "meghna serves indian food",
       "match": true
     },
@@ -15644,13 +15644,13 @@
     },
     {
       "human": "and what type of food do they serve",
-      "bot": "rajmahal is a great restaurant serving moderate _REQUESTED_ food in the east of town .",
+      "bot": "curry_prince is a great restaurant serving moderate indian food in the east of town .",
       "target": "The post code of rajmahal is rajmahal_post_code",
       "match": false
     },
     {
       "human": "what type of food do they have",
-      "bot": "pizza_hut_fen_ditton is a great restaurant serving moderate _REQUESTED_ food in the east of town .",
+      "bot": "rajmahal is a great restaurant serving moderate indian food in the east of town .",
       "target": "rajmahal serves indian food",
       "match": true
     },
@@ -15756,7 +15756,7 @@
     },
     {
       "human": "is there any thing else",
-      "bot": "darrys_cookhouse_and_wine_shop serves european food",
+      "bot": "eraina serves european food",
       "target": "michaelhouse_cafe serves european food in the expensive price range",
       "match": true
     },
@@ -15768,7 +15768,7 @@
     },
     {
       "human": "and the area",
-      "bot": "restaurant_alimentum is a great restaurant serving expensive european food in the _REQUESTED_ of town .",
+      "bot": "darrys_cookhouse_and_wine_shop is a great restaurant serving expensive european food in the centre of town .",
       "target": "Can I help you with anything else?",
       "match": false
     },
@@ -15780,7 +15780,7 @@
     },
     {
       "human": "what area is that",
-      "bot": "michaelhouse_cafe is a great restaurant serving expensive european food in the _REQUESTED_ of town .",
+      "bot": "restaurant_alimentum is a great restaurant serving moderate european food in the south of town .",
       "target": "michaelhouse_cafe is a nice place in the centre of town",
       "match": true
     },
@@ -15866,7 +15866,7 @@
     },
     {
       "human": "is there anything else",
-      "bot": "chiquito_restaurant_bar is a nice place in the south of town and the prices are expensive",
+      "bot": "frankie_and_bennys is a nice place in the south of town and the prices are expensive",
       "target": "api_call R_cuisine south expensive",
       "match": false
     },
@@ -15884,13 +15884,13 @@
     },
     {
       "human": "what type of food",
-      "bot": "peking_restaurant is a great restaurant serving expensive _REQUESTED_ food in the south of town .",
+      "bot": "chiquito_restaurant_bar is a great restaurant serving expensive mexican food in the south of town .",
       "target": "frankie_and_bennys serves italian food",
       "match": true
     },
     {
       "human": "do they have",
-      "bot": "taj_tandoori is a great restaurant serving expensive _REQUESTED_ food in the south of town .",
+      "bot": "peking_restaurant is a great restaurant serving expensive chinese food in the south of town .",
       "target": "the good luck chinese food takeaway is a nice place in the south of town and the prices are expensive",
       "match": true
     },
@@ -16374,7 +16374,7 @@
     },
     {
       "human": "location",
-      "bot": "la_raza is a nice place in the _REQUESTED_ of town serving tasty spanish food",
+      "bot": "la_tasca is a nice place in the centre of town serving tasty spanish food",
       "target": "api_call spanish R_location R_price",
       "match": false
     },
@@ -16524,7 +16524,7 @@
     },
     {
       "human": "another restaurant",
-      "bot": "royal_standard serves gastropub food",
+      "bot": "the_slug_and_lettuce serves gastropub food",
       "target": "royal_standard is a great restaurant",
       "match": false
     },
@@ -17070,7 +17070,7 @@
     },
     {
       "human": "is there anything else",
-      "bot": "thanh_binh is a nice place in the west of town and the prices are cheap",
+      "bot": "la_margherita is a nice place in the west of town and the prices are cheap",
       "target": "la_margherita is a nice place in the west of town and the prices are cheap",
       "match": true
     },
@@ -17392,7 +17392,7 @@
     },
     {
       "human": "is there anything else",
-      "bot": "{name} serves <food> food",
+      "bot": "royal_standard serves gastropub food",
       "target": "rajmahal is a nice place in the east of town",
       "match": true
     },
@@ -17654,7 +17654,7 @@
     },
     {
       "human": "kay what is the addre",
-      "bot": "mahal_of_cambridge serves indian food",
+      "bot": "kohinoor serves indian food",
       "target": "Sure , the_gandhi is on the_gandhi_address",
       "match": false
     },
@@ -18010,7 +18010,7 @@
     },
     {
       "human": "what are the price ranges available",
-      "bot": "saint_johns_chop_house is a nice place in the west of town serving tasty british food",
+      "bot": "travellers_rest is a nice place in the west of town serving tasty british food",
       "target": "Would you like something in the cheap , moderate , or expensive price range?",
       "match": false
     },
@@ -18066,7 +18066,7 @@
     },
     {
       "human": "what kind of food do they serve",
-      "bot": "thanh_binh is a great restaurant serving cheap _REQUESTED_ food in the west of town .",
+      "bot": "la_margherita is a great restaurant serving cheap italian food in the west of town .",
       "target": "thanh_binh serves vietnamese food",
       "match": true
     },
@@ -18138,7 +18138,7 @@
     },
     {
       "human": "is there anything else",
-      "bot": "{name} serves <food> food",
+      "bot": "travellers_rest serves british food",
       "target": "la_margherita is a nice place in the west of town and the prices are cheap",
       "match": true
     },
@@ -18150,13 +18150,13 @@
     },
     {
       "human": "type of food do they serve",
-      "bot": "saint_johns_chop_house is a nice place in the west of town serving tasty _REQUESTED_ food",
+      "bot": "maharajah_tandoori_restaurant is a nice place in the west of town serving tasty indian food",
       "target": "la_margherita is a great restaurant",
       "match": false
     },
     {
       "human": "what kind of food",
-      "bot": "venue is a nice place in the west of town serving tasty _REQUESTED_ food",
+      "bot": "saint_johns_chop_house is a nice place in the west of town serving tasty british food",
       "target": "la_margherita serves italian food",
       "match": true
     },
@@ -18224,7 +18224,7 @@
     },
     {
       "human": "peking_restaurant",
-      "bot": "peking_restaurant is a nice place in the south of town serving tasty chinese food",
+      "bot": "the_lucky_star is a nice place in the south of town serving tasty chinese food",
       "target": "peking_restaurant is a nice place in the south of town serving tasty chinese food",
       "match": true
     },
@@ -18304,7 +18304,7 @@
     },
     {
       "human": "what type of food do they serve",
-      "bot": "shanghai_family_restaurant serves _REQUESTED_ food",
+      "bot": "golden_wok serves chinese food",
       "target": "yippee_noodle_bar serves asian_oriental food",
       "match": true
     },
@@ -18402,7 +18402,7 @@
     },
     {
       "human": "um anything else",
-      "bot": "sitar_tandoori is a nice place in the east of town and the prices are expensive",
+      "bot": "royal_standard is a nice place in the east of town and the prices are expensive",
       "target": "sitar_tandoori is a nice place in the east of town and the prices are expensive",
       "match": true
     },
@@ -18446,7 +18446,7 @@
     },
     {
       "human": "type of food",
-      "bot": "efes_restaurant serves _REQUESTED_ food",
+      "bot": "restaurant_one_seven serves british food",
       "target": "golden_wok serves chinese food",
       "match": true
     },
@@ -18646,7 +18646,7 @@
     },
     {
       "human": "what type of food do they serve",
-      "bot": "maharajah_tandoori_restaurant is a nice place in the west of town serving tasty _REQUESTED_ food",
+      "bot": "travellers_rest is a nice place in the west of town serving tasty british food",
       "target": "la_margherita serves italian food",
       "match": true
     },
@@ -18790,7 +18790,7 @@
     },
     {
       "human": "is there anything else",
-      "bot": "la_margherita serves italian food",
+      "bot": "frankie_and_bennys serves italian food",
       "target": "la_margherita serves italian food in the cheap price range",
       "match": true
     },
@@ -18810,7 +18810,7 @@
   [
     {
       "human": "hello and welcome to the cambridge",
-      "bot": "Would you like something in the cheap , moderate , or expensive price range?",
+      "bot": "api_call R_cuisine R_location R_price",
       "target": "What kind of food would you like?",
       "match": false
     },
@@ -18840,7 +18840,7 @@
     },
     {
       "human": "is their anything else",
-      "bot": "restaurant_alimentum is a nice place in the south of town and the prices are moderate",
+      "bot": "pizza_hut_cherry_hinton is a nice place in the south of town and the prices are moderate",
       "target": "pizza_hut_cherry_hinton is a nice place in the south of town and the prices are moderate",
       "match": true
     },
@@ -18890,9 +18890,9 @@
     },
     {
       "human": "gastro",
-      "bot": "I'm sorry but there is no restaurant serving corsica food",
+      "bot": "<name> is a great restaurant",
       "target": "I'm sorry but there is no restaurant serving corsica food",
-      "match": true
+      "match": false
     },
     {
       "human": "how about gastropub food",
@@ -19166,7 +19166,7 @@
     },
     {
       "human": "is there anything else",
-      "bot": "chiquito_restaurant_bar is a nice place in the south of town and the prices are expensive",
+      "bot": "frankie_and_bennys is a nice place in the south of town and the prices are expensive",
       "target": "sitar_tandoori is in the expensive price range",
       "match": false
     },
@@ -19202,7 +19202,7 @@
     },
     {
       "human": "what is the type of food",
-      "bot": "chiquito_restaurant_bar is a great restaurant serving expensive _REQUESTED_ food in the south of town .",
+      "bot": "frankie_and_bennys is a great restaurant serving expensive italian food in the south of town .",
       "target": "sitar_tandoori serves indian food",
       "match": true
     },
@@ -19246,7 +19246,7 @@
     },
     {
       "human": "what is the type of food",
-      "bot": "rajmahal is a great restaurant serving moderate _REQUESTED_ food in the east of town .",
+      "bot": "curry_prince is a great restaurant serving moderate indian food in the east of town .",
       "target": "pizza_hut_fen_ditton serves italian food",
       "match": true
     },
@@ -19528,7 +19528,7 @@
     },
     {
       "human": "what are the price ranges",
-      "bot": "peking_restaurant is a nice place in the south of town serving tasty chinese food",
+      "bot": "the_lucky_star is a nice place in the south of town serving tasty chinese food",
       "target": "Would you like something in the cheap , moderate , or expensive price range?",
       "match": false
     },
@@ -19678,7 +19678,7 @@
     },
     {
       "human": "is there anything else",
-      "bot": "{name} serves <food> food",
+      "bot": "travellers_rest serves british food",
       "target": "la_margherita is a nice place in the west of town and the prices are cheap",
       "match": true
     },
@@ -20402,7 +20402,7 @@
     },
     {
       "human": "is there anything else",
-      "bot": "la_raza serves spanish food",
+      "bot": "la_tasca serves spanish food",
       "target": "la_tasca serves spanish food",
       "match": true
     },
@@ -20802,7 +20802,7 @@
     },
     {
       "human": "type of food",
-      "bot": "maharajah_tandoori_restaurant is a nice place in the west of town serving tasty _REQUESTED_ food",
+      "bot": "travellers_rest is a nice place in the west of town serving tasty british food",
       "target": "prezzo serves italian food",
       "match": true
     },
@@ -21030,7 +21030,7 @@
     },
     {
       "human": "is there anything else",
-      "bot": "restaurant_alimentum is a nice place in the south of town and the prices are moderate",
+      "bot": "pizza_hut_cherry_hinton is a nice place in the south of town and the prices are moderate",
       "target": "restaurant_alimentum is a nice place in the south of town and the prices are moderate",
       "match": true
     },
@@ -21112,7 +21112,7 @@
     },
     {
       "human": "how about canape",
-      "bot": "api_call R_cuisine east R_price",
+      "bot": "Would you like something in the cheap , moderate , or expensive price range?",
       "target": "Could you please repeat that?",
       "match": false
     },
@@ -21592,7 +21592,7 @@
     },
     {
       "human": "and what type of food do they serve",
-      "bot": "restaurant_alimentum is a great restaurant serving moderate _REQUESTED_ food in the south of town .",
+      "bot": "pizza_hut_cherry_hinton is a great restaurant serving moderate italian food in the south of town .",
       "target": "The post code of restaurant_alimentum is restaurant_alimentum_post_code",
       "match": false
     },
@@ -22226,7 +22226,7 @@
     },
     {
       "human": "anything else",
-      "bot": "chiquito_restaurant_bar is a nice place in the south of town and the prices are expensive",
+      "bot": "frankie_and_bennys is a nice place in the south of town and the prices are expensive",
       "target": "the good luck chinese food takeaway is a nice place in the south of town and the prices are expensive",
       "match": true
     },
@@ -22276,7 +22276,7 @@
     },
     {
       "human": "anything else",
-      "bot": "{name} serves <food> food",
+      "bot": "frankie_and_bennys serves italian food",
       "target": "the good luck chinese food takeaway is a nice place in the south of town and the prices are expensive",
       "match": true
     },
@@ -22294,7 +22294,7 @@
     },
     {
       "human": "type of food",
-      "bot": "pizza_hut_cherry_hinton is a nice place in the south of town serving tasty _REQUESTED_ food",
+      "bot": "chiquito_restaurant_bar is a nice place in the south of town serving tasty mexican food",
       "target": "the good luck chinese food takeaway serves chinese food",
       "match": true
     },
@@ -22332,7 +22332,7 @@
     },
     {
       "human": "what kind of food do they serve",
-      "bot": "curry_prince is a nice place in the east of town serving tasty _REQUESTED_ food",
+      "bot": "royal_standard is a nice place in the east of town serving tasty gastropub food",
       "target": "rajmahal serves indian food",
       "match": true
     },
@@ -22772,7 +22772,7 @@
     },
     {
       "human": "what kind of food does it serve",
-      "bot": "golden_wok is a nice place in the north of town serving tasty _REQUESTED_ food",
+      "bot": "the_hotpot is a nice place in the north of town serving tasty chinese food",
       "target": "golden_wok serves chinese food",
       "match": true
     },
@@ -22810,7 +22810,7 @@
     },
     {
       "human": "is there another restaurant",
-      "bot": "restaurant_two_two serves french food",
+      "bot": "cote serves french food",
       "target": "cote is a great restaurant",
       "match": false
     },
@@ -22988,21 +22988,21 @@
     },
     {
       "human": "and",
-      "bot": "api_call R_cuisine R_location expensive",
+      "bot": "<name> is a great restaurant",
       "target": "What kind of food would you like?",
       "match": false
     },
     {
       "human": "what about european food",
-      "bot": "api_call european R_location expensive",
+      "bot": "<name> is a great restaurant",
       "target": "I'm sorry but there is no restaurant serving german food",
       "match": false
     },
     {
       "human": "how about european food",
-      "bot": "The price range at eraina is expensive",
+      "bot": "api_call european R_location expensive",
       "target": "api_call european R_location expensive",
-      "match": false
+      "match": true
     },
     {
       "human": "whats the address and phone number",
@@ -23012,7 +23012,7 @@
     },
     {
       "human": "what area of town is it",
-      "bot": "darrys_cookhouse_and_wine_shop is a great restaurant serving expensive european food in the _REQUESTED_ of town .",
+      "bot": "eraina is a great restaurant serving expensive european food in the centre of town .",
       "target": "cambridge_lodge_restaurant is a nice place in the west of town",
       "match": true
     },
@@ -23242,7 +23242,7 @@
     },
     {
       "human": "is there anything else",
-      "bot": "la_mimosa serves mediterranean food",
+      "bot": "the_gardenia serves mediterranean food",
       "target": "la_mimosa serves mediterranean food",
       "match": true
     },
@@ -23352,7 +23352,7 @@
     },
     {
       "human": "inaudible",
-      "bot": "api_call european centre R_price",
+      "bot": "eraina is a great restaurant",
       "target": "eraina is a nice place in the centre of town serving tasty european food",
       "match": false
     },
@@ -23530,13 +23530,13 @@
     },
     {
       "human": "how much is the food",
-      "bot": "the_nirala is a nice place in the north of town and the prices are moderate",
+      "bot": "golden_wok is a nice place in the north of town and the prices are moderate",
       "target": "da_vinci_pizzeria is a great restaurant",
       "match": false
     },
     {
       "human": "where is it",
-      "bot": "meghna is a nice place in the north of town and the prices are moderate",
+      "bot": "the_nirala is a nice place in the north of town and the prices are moderate",
       "target": "da_vinci_pizzeria is a nice place in the north of town",
       "match": true
     },
@@ -23648,7 +23648,7 @@
     },
     {
       "human": "part of town",
-      "bot": "prezzo is a nice place in the _REQUESTED_ of town and the prices are moderate",
+      "bot": "saint_johns_chop_house is a nice place in the west of town and the prices are moderate",
       "target": "I'm sorry but there is no restaurant serving eritrean food",
       "match": false
     },
@@ -23848,7 +23848,7 @@
     },
     {
       "human": "yea the area",
-      "bot": "darrys_cookhouse_and_wine_shop is a great restaurant serving expensive european food in the _REQUESTED_ of town .",
+      "bot": "eraina is a great restaurant serving expensive european food in the centre of town .",
       "target": "Can I help you with anything else?",
       "match": false
     },
@@ -23874,15 +23874,15 @@
     },
     {
       "human": "freakin",
-      "bot": "api_call R_cuisine west cheap",
+      "bot": "la_margherita is a nice place in the west of town and the prices are cheap",
       "target": "api_call R_cuisine west cheap",
-      "match": true
+      "match": false
     },
     {
       "human": "anything else",
-      "bot": "thanh_binh is a nice place in the west of town and the prices are cheap",
+      "bot": "I am sorry but there is no other restaurant that matches your request",
       "target": "la_margherita is a nice place in the west of town and the prices are cheap",
-      "match": true
+      "match": false
     },
     {
       "human": "can i get the address and post code",
@@ -23930,7 +23930,7 @@
     },
     {
       "human": "is there anything else",
-      "bot": "{name} serves <food> food",
+      "bot": "royal_standard serves gastropub food",
       "target": "royal_standard is a nice place in the east of town",
       "match": true
     },
@@ -24122,7 +24122,7 @@
     },
     {
       "human": "okay just pick one for me then",
-      "bot": "I am sorry but there is no other restaurant that matches your request",
+      "bot": "api_call italian west cheap",
       "target": "Could you please repeat that?",
       "match": false
     },
@@ -24208,7 +24208,7 @@
     },
     {
       "human": "uh is there anything else",
-      "bot": "shiraz_restaurant is a great restaurant serving expensive mediterranean food in the centre of town .",
+      "bot": "la_mimosa is a great restaurant serving expensive mediterranean food in the centre of town .",
       "target": "shiraz_restaurant is a great restaurant serving expensive mediterranean food in the centre of town .",
       "match": true
     },
@@ -24244,7 +24244,7 @@
     },
     {
       "human": "can i get the next one",
-      "bot": "shiraz_restaurant is a great restaurant serving expensive mediterranean food in the centre of town .",
+      "bot": "la_mimosa is a great restaurant serving expensive mediterranean food in the centre of town .",
       "target": "Could you please repeat that?",
       "match": false
     },
@@ -24464,7 +24464,7 @@
     },
     {
       "human": "is there anything else",
-      "bot": "{name} serves <food> food",
+      "bot": "travellers_rest serves british food",
       "target": "la_margherita is a nice place in the west of town and the prices are cheap",
       "match": true
     },
@@ -24496,7 +24496,7 @@
     },
     {
       "human": "what type of food",
-      "bot": "chiquito_restaurant_bar is a nice place in the south of town serving tasty _REQUESTED_ food",
+      "bot": "frankie_and_bennys is a nice place in the south of town serving tasty italian food",
       "target": "pizza_hut_cherry_hinton serves italian food",
       "match": true
     },
@@ -24694,7 +24694,7 @@
     },
     {
       "human": "is there anything else",
-      "bot": "thanh_binh is a nice place in the west of town and the prices are cheap",
+      "bot": "la_margherita is a nice place in the west of town and the prices are cheap",
       "target": "thanh_binh is a nice place in the west of town and the prices are cheap",
       "match": true
     },
@@ -24772,7 +24772,7 @@
     },
     {
       "human": "any area is fine with me",
-      "bot": "restaurant_two_two serves french food",
+      "bot": "cote serves french food",
       "target": "You are looking for a french restaurant right?",
       "match": false
     },
@@ -24892,7 +24892,7 @@
     },
     {
       "human": "is there anything else",
-      "bot": "the_lucky_star serves chinese food",
+      "bot": "golden_house serves chinese food",
       "target": "charlie_chan serves chinese food in the cheap price range",
       "match": true
     },
@@ -25086,7 +25086,7 @@
     },
     {
       "human": "what type of food is it",
-      "bot": "chiquito_restaurant_bar is a nice place in the south of town serving tasty _REQUESTED_ food",
+      "bot": "frankie_and_bennys is a nice place in the south of town serving tasty italian food",
       "target": "the_lucky_star serves chinese food",
       "match": true
     },
@@ -25298,7 +25298,7 @@
     },
     {
       "human": "is there anything else",
-      "bot": "anatolia serves turkish food",
+      "bot": "efes_restaurant serves turkish food",
       "target": "I am sorry but there is no other turkish restaurant that matches your request",
       "match": false
     },
@@ -25328,15 +25328,15 @@
     },
     {
       "human": "can you repeat that",
-      "bot": "anatolia is a great restaurant",
+      "bot": "I'm sorry but there is no turkish restaurant in the _REQUESTED_ of town",
       "target": "Can I help you with anything else?",
       "match": false
     },
     {
       "human": "what kind of food do they serve",
-      "bot": "meze_bar_restaurant is a nice place in the _REQUESTED_ of town serving tasty _REQUESTED_ food",
+      "bot": "I'm sorry but there is no _REQUESTED_ restaurant in the _REQUESTED_ of town",
       "target": "meze_bar_restaurant serves turkish food",
-      "match": true
+      "match": false
     },
     {
       "human": "thank you good bye",
@@ -25588,7 +25588,7 @@
     },
     {
       "human": "what",
-      "bot": "{name} serves <food> food",
+      "bot": "j_restaurant serves asian_oriental food",
       "target": "api_call R_cuisine R_location cheap",
       "match": false
     },
@@ -25900,7 +25900,7 @@
     },
     {
       "human": "anything else",
-      "bot": "royal_spice is a nice place in the north of town and the prices are cheap",
+      "bot": "da_vinci_pizzeria is a nice place in the north of town and the prices are cheap",
       "target": "da_vinci_pizzeria is a nice place in the north of town and the prices are cheap",
       "match": true
     },
@@ -26356,7 +26356,7 @@
     },
     {
       "human": "is there anything else",
-      "bot": "darrys_cookhouse_and_wine_shop serves european food",
+      "bot": "eraina serves european food",
       "target": "galleria serves european food",
       "match": true
     },
@@ -26842,7 +26842,7 @@
     },
     {
       "human": "how about north_american food",
-      "bot": "backstreet_bistro is a nice place in the centre of town serving tasty north_american food",
+      "bot": "hotel_du_vin_and_bistro is a nice place in the centre of town serving tasty bistro food",
       "target": "Could you please repeat that?",
       "match": false
     },
@@ -26916,7 +26916,7 @@
     },
     {
       "human": "what is the signature dish",
-      "bot": "la_raza serves spanish food",
+      "bot": "la_tasca serves spanish food",
       "target": "la_raza is a great restaurant",
       "match": false
     },
@@ -26946,7 +26946,7 @@
     },
     {
       "human": "what is the signature dish",
-      "bot": "la_raza serves spanish food",
+      "bot": "la_tasca serves spanish food",
       "target": "Can I help you with anything else?",
       "match": false
     },
@@ -27042,7 +27042,7 @@
     },
     {
       "human": "is there anything else",
-      "bot": "royal_spice is a nice place in the north of town and the prices are cheap",
+      "bot": "da_vinci_pizzeria is a nice place in the north of town and the prices are cheap",
       "target": "You are looking for a restaurant serving any kind of food right?",
       "match": false
     },
@@ -27066,7 +27066,7 @@
     },
     {
       "human": "what type of food do they serve",
-      "bot": "royal_spice is a great restaurant serving cheap _REQUESTED_ food in the north of town .",
+      "bot": "da_vinci_pizzeria is a great restaurant serving cheap italian food in the north of town .",
       "target": "The post code of royal_spice is royal_spice_post_code",
       "match": false
     },
@@ -27644,7 +27644,7 @@
     },
     {
       "human": "is there anything else",
-      "bot": "curry_prince is a nice place in the east of town and the prices are moderate",
+      "bot": "royal_standard is a nice place in the east of town and the prices are expensive",
       "target": "rajmahal is a nice place in the east of town and the prices are moderate",
       "match": true
     },
@@ -27656,7 +27656,7 @@
     },
     {
       "human": "what type of food is it",
-      "bot": "rajmahal is a great restaurant serving moderate _REQUESTED_ food in the east of town .",
+      "bot": "curry_prince is a great restaurant serving moderate indian food in the east of town .",
       "target": "rajmahal serves indian food",
       "match": true
     },
@@ -27876,7 +27876,7 @@
     },
     {
       "human": "what area is it in",
-      "bot": "darrys_cookhouse_and_wine_shop is a great restaurant serving expensive european food in the _REQUESTED_ of town .",
+      "bot": "eraina is a great restaurant serving expensive european food in the centre of town .",
       "target": "eraina is a nice place in the centre of town",
       "match": true
     },
@@ -28160,7 +28160,7 @@
     },
     {
       "human": "is there anything else",
-      "bot": "{name} serves <food> food",
+      "bot": "frankie_and_bennys serves italian food",
       "target": "api_call R_cuisine south expensive",
       "match": false
     },
@@ -28640,7 +28640,7 @@
     },
     {
       "human": "what kind of food do they serve",
-      "bot": "the_nirala is a great restaurant serving moderate _REQUESTED_ food in the north of town .",
+      "bot": "golden_wok is a great restaurant serving moderate chinese food in the north of town .",
       "target": "golden_wok serves chinese food",
       "match": true
     },
@@ -28892,7 +28892,7 @@
     },
     {
       "human": "anything else",
-      "bot": "{name} serves <food> food",
+      "bot": "frankie_and_bennys serves italian food",
       "target": "nandos is a nice place in the south of town and the prices are cheap",
       "match": true
     },
@@ -28986,7 +28986,7 @@
     },
     {
       "human": "is there anything else",
-      "bot": "sitar_tandoori is a nice place in the east of town and the prices are expensive",
+      "bot": "royal_standard is a nice place in the east of town and the prices are expensive",
       "target": "sitar_tandoori is a nice place in the east of town and the prices are expensive",
       "match": true
     },
@@ -28998,7 +28998,7 @@
     },
     {
       "human": "and type of food",
-      "bot": "grafton_hotel_restaurant is a great restaurant serving expensive _REQUESTED_ food in the east of town .",
+      "bot": "sitar_tandoori is a great restaurant serving expensive indian food in the east of town .",
       "target": "grafton_hotel_restaurant is a nice place in the east of town and the prices are expensive",
       "match": true
     },
@@ -29250,7 +29250,7 @@
     },
     {
       "human": "type of food",
-      "bot": "thanh_binh is a great restaurant serving cheap _REQUESTED_ food in the west of town .",
+      "bot": "la_margherita is a great restaurant serving cheap italian food in the west of town .",
       "target": "thanh_binh is a nice place in the west of town and the prices are cheap",
       "match": true
     },
@@ -29554,7 +29554,7 @@
     },
     {
       "human": "first one",
-      "bot": "restaurant_two_two serves french food",
+      "bot": "cote serves french food",
       "target": "What part of town do you have in mind?",
       "match": false
     },
@@ -29572,7 +29572,7 @@
     },
     {
       "human": "whats the name",
-      "bot": "restaurant_two_two serves french food",
+      "bot": "cote serves french food",
       "target": "cote is a great restaurant",
       "match": false
     },
@@ -29610,7 +29610,7 @@
     },
     {
       "human": "oh anything",
-      "bot": "the_nirala is a nice place in the north of town and the prices are moderate",
+      "bot": "golden_wok is a nice place in the north of town and the prices are moderate",
       "target": "You are looking for a restaurant serving any kind of food right?",
       "match": false
     },
@@ -29622,13 +29622,13 @@
     },
     {
       "human": "anything else",
-      "bot": "the_nirala is a nice place in the north of town and the prices are moderate",
+      "bot": "golden_wok is a nice place in the north of town and the prices are moderate",
       "target": "the_nirala is a nice place in the north of town and the prices are moderate",
       "match": true
     },
     {
       "human": "anything else",
-      "bot": "meghna is a nice place in the north of town and the prices are moderate",
+      "bot": "the_nirala is a nice place in the north of town and the prices are moderate",
       "target": "golden_wok is a nice place in the north of town and the prices are moderate",
       "match": true
     },
@@ -29710,7 +29710,7 @@
     },
     {
       "human": "anything else",
-      "bot": "restaurant_alimentum is a nice place in the south of town and the prices are moderate",
+      "bot": "pizza_hut_cherry_hinton is a nice place in the south of town and the prices are moderate",
       "target": "pizza_hut_cherry_hinton is a nice place in the south of town and the prices are moderate",
       "match": true
     },
@@ -29992,7 +29992,7 @@
     },
     {
       "human": "any price",
-      "bot": "The price range at bloomsbury_restaurant is moderate",
+      "bot": "api_call international centre R_price",
       "target": "api_call international R_location R_price",
       "match": false
     },
@@ -30042,13 +30042,13 @@
     },
     {
       "human": "anything else",
-      "bot": "the_nirala is a nice place in the north of town and the prices are moderate",
+      "bot": "golden_wok is a nice place in the north of town and the prices are moderate",
       "target": "meghna is a nice place in the north of town and the prices are moderate",
       "match": true
     },
     {
       "human": "anything else",
-      "bot": "meghna is a nice place in the north of town and the prices are moderate",
+      "bot": "the_nirala is a nice place in the north of town and the prices are moderate",
       "target": "golden_wok is a nice place in the north of town and the prices are moderate",
       "match": true
     },
@@ -30092,7 +30092,7 @@
     },
     {
       "human": "anything else",
-      "bot": "the_nirala is a nice place in the north of town and the prices are moderate",
+      "bot": "golden_wok is a nice place in the north of town and the prices are moderate",
       "target": "the_nirala is a nice place in the north of town and the prices are moderate",
       "match": true
     },
@@ -30680,7 +30680,7 @@
     },
     {
       "human": "anything else",
-      "bot": "restaurant_alimentum is a nice place in the south of town and the prices are moderate",
+      "bot": "pizza_hut_cherry_hinton is a nice place in the south of town and the prices are moderate",
       "target": "the_oak_bistro is in the moderate price range",
       "match": false
     },
@@ -31232,13 +31232,13 @@
     },
     {
       "human": "moderately price",
-      "bot": "The price range at restaurant_one_seven is moderate",
+      "bot": "api_call R_cuisine R_location moderate",
       "target": "I'm sorry but there is no restaurant serving moderate vietnamese food",
       "match": false
     },
     {
       "human": "moderately priced any foo",
-      "bot": "The price range at restaurant_one_seven is moderate",
+      "bot": "api_call R_cuisine R_location moderate",
       "target": "Could you please repeat that?",
       "match": false
     },
@@ -31434,13 +31434,13 @@
     },
     {
       "human": "is there anything else",
-      "bot": "{name} serves <food> food",
+      "bot": "the_hotpot serves chinese food",
       "target": "da_vinci_pizzeria is a great restaurant",
       "match": false
     },
     {
       "human": "is there anything else",
-      "bot": "{name} serves <food> food",
+      "bot": "golden_wok serves chinese food",
       "target": "royal_spice is a nice place in the north of town and the prices are cheap",
       "match": true
     },
@@ -31534,7 +31534,7 @@
     },
     {
       "human": "is there anything else",
-      "bot": "{name} serves <food> food",
+      "bot": "frankie_and_bennys serves italian food",
       "target": "pizza_hut_cherry_hinton is a nice place in the south of town and the prices are moderate",
       "match": true
     },
@@ -31546,7 +31546,7 @@
     },
     {
       "human": "what type of food do they serve",
-      "bot": "pizza_hut_cherry_hinton is a nice place in the south of town serving tasty _REQUESTED_ food",
+      "bot": "chiquito_restaurant_bar is a nice place in the south of town serving tasty mexican food",
       "target": "pizza_hut_cherry_hinton serves italian food",
       "match": true
     },
@@ -31604,7 +31604,7 @@
     },
     {
       "human": "what else",
-      "bot": "{name} serves <food> food",
+      "bot": "frankie_and_bennys serves italian food",
       "target": "pizza_hut_cherry_hinton is a great restaurant",
       "match": false
     },
@@ -31700,7 +31700,7 @@
     },
     {
       "human": "um anything else",
-      "bot": "royal_spice is a nice place in the north of town and the prices are cheap",
+      "bot": "da_vinci_pizzeria is a nice place in the north of town and the prices are cheap",
       "target": "da_vinci_pizzeria is a nice place in the north of town and the prices are cheap",
       "match": true
     },
@@ -31922,7 +31922,7 @@
     },
     {
       "human": "type of food",
-      "bot": "hakka is a great restaurant serving expensive _REQUESTED_ food in the north of town .",
+      "bot": "the_hotpot is a great restaurant serving expensive chinese food in the north of town .",
       "target": "the_hotpot is a great restaurant",
       "match": false
     },
@@ -32112,13 +32112,13 @@
     },
     {
       "human": "anything else",
-      "bot": "riverside_brasserie serves european food",
+      "bot": "restaurant_alimentum serves european food",
       "target": "hotel_du_vin_and_bistro is a great restaurant",
       "match": false
     },
     {
       "human": "is there anything else",
-      "bot": "de_luca_cucina_and_bar serves european food",
+      "bot": "riverside_brasserie serves european food",
       "target": "galleria serves european food in the moderate price range",
       "match": true
     },
@@ -32206,7 +32206,7 @@
     },
     {
       "human": "what is the type of food",
-      "bot": "chiquito_restaurant_bar is a nice place in the south of town serving tasty _REQUESTED_ food",
+      "bot": "frankie_and_bennys is a nice place in the south of town serving tasty italian food",
       "target": "frankie_and_bennys serves italian food",
       "match": true
     },
@@ -32338,7 +32338,7 @@
     },
     {
       "human": "what about your signa",
-      "bot": "{name} serves <food> food",
+      "bot": "royal_standard serves gastropub food",
       "target": "the_missing_sock is a great restaurant",
       "match": false
     },
@@ -32376,25 +32376,25 @@
     },
     {
       "human": "yes part of town",
-      "bot": "I'm sorry but there is no restaurant with the provided criteria",
+      "bot": "api_call R_cuisine R_location moderate",
       "target": "There are restaurants in the moderate price range and the west of town . What type of food would you like?",
       "match": false
     },
     {
       "human": "dont care",
-      "bot": "The price range at UNSET is UNSET",
+      "bot": "api_call R_cuisine R_location R_price",
       "target": "api_call R_cuisine R_location moderate",
       "match": false
     },
     {
       "human": "address and phone number",
-      "bot": "The phone number of UNSET is UNSET",
+      "bot": "The phone number of frankie_and_bennys is frankie_and_bennys_phone",
       "target": "Sure , prezzo is on prezzo_address",
       "match": false
     },
     {
       "human": "phone number",
-      "bot": "The phone number of UNSET is UNSET",
+      "bot": "The phone number of frankie_and_bennys is frankie_and_bennys_phone",
       "target": "The phone number of prezzo is prezzo_phone",
       "match": true
     },
@@ -32432,7 +32432,7 @@
     },
     {
       "human": "is their anything else",
-      "bot": "{name} serves <food> food",
+      "bot": "frankie_and_bennys serves italian food",
       "target": "pizza_hut_cherry_hinton is a nice place in the south of town and the prices are moderate",
       "match": true
     },
@@ -32628,7 +32628,7 @@
     },
     {
       "human": "what type of food",
-      "bot": "thanh_binh is a great restaurant serving cheap _REQUESTED_ food in the west of town .",
+      "bot": "la_margherita is a great restaurant serving cheap italian food in the west of town .",
       "target": "thanh_binh serves vietnamese food",
       "match": true
     },
@@ -33248,7 +33248,7 @@
     },
     {
       "human": "anything else",
-      "bot": "sitar_tandoori is a nice place in the east of town and the prices are expensive",
+      "bot": "royal_standard is a nice place in the east of town and the prices are expensive",
       "target": "sitar_tandoori is a great restaurant",
       "match": false
     },
@@ -33510,31 +33510,31 @@
     },
     {
       "human": "type of food",
-      "bot": "maharajah_tandoori_restaurant is a nice place in the west of town serving tasty _REQUESTED_ food",
+      "bot": "travellers_rest is a nice place in the west of town serving tasty british food",
       "target": "thanh_binh serves vietnamese food",
       "match": true
     },
     {
       "human": "repeat",
-      "bot": "saint_johns_chop_house is a nice place in the west of town serving tasty _REQUESTED_ food",
+      "bot": "maharajah_tandoori_restaurant is a nice place in the west of town serving tasty indian food",
       "target": "Can I help you with anything else?",
       "match": false
     },
     {
       "human": "type of food",
-      "bot": "venue is a nice place in the west of town serving tasty _REQUESTED_ food",
+      "bot": "saint_johns_chop_house is a nice place in the west of town serving tasty british food",
       "target": "thanh_binh is a nice place in the west of town and the prices are cheap",
       "match": true
     },
     {
       "human": "type of food",
-      "bot": "la_margherita is a nice place in the west of town serving tasty _REQUESTED_ food",
+      "bot": "venue is a nice place in the west of town serving tasty vietnamese food",
       "target": "thanh_binh is a great restaurant",
       "match": false
     },
     {
       "human": "type of food",
-      "bot": "sala_thong is a nice place in the west of town serving tasty _REQUESTED_ food",
+      "bot": "la_margherita is a nice place in the west of town serving tasty italian food",
       "target": "thanh_binh serves vietnamese food",
       "match": true
     },
@@ -33918,7 +33918,7 @@
     },
     {
       "human": "what is the addre",
-      "bot": "saigon_city serves asian_oriental food",
+      "bot": "j_restaurant serves asian_oriental food",
       "target": "Sure , j_restaurant is on j_restaurant_address",
       "match": false
     },
@@ -33950,19 +33950,19 @@
     },
     {
       "human": "anything else",
-      "bot": "{name} serves <food> food",
+      "bot": "royal_standard serves gastropub food",
       "target": "grafton_hotel_restaurant is a nice place in the east of town and the prices are expensive",
       "match": true
     },
     {
       "human": "uh anything else",
-      "bot": "{name} serves <food> food",
+      "bot": "curry_prince serves indian food",
       "target": "grafton_hotel_restaurant is a great restaurant",
       "match": false
     },
     {
       "human": "next one",
-      "bot": "{name} serves <food> food",
+      "bot": "rajmahal serves indian food",
       "target": "sitar_tandoori is a nice place in the east of town and the prices are expensive",
       "match": true
     },
@@ -33980,7 +33980,7 @@
     },
     {
       "human": "type of food",
-      "bot": "pizza_hut_fen_ditton is a nice place in the east of town serving tasty _REQUESTED_ food",
+      "bot": "the_missing_sock is a nice place in the east of town serving tasty international food",
       "target": "sitar_tandoori serves indian food",
       "match": true
     },
@@ -34012,7 +34012,7 @@
     },
     {
       "human": "south of the town",
-      "bot": "api_call R_cuisine south R_price",
+      "bot": "frankie_and_bennys serves italian food",
       "target": "Sorry, I can't hear you",
       "match": false
     },
@@ -34024,19 +34024,19 @@
     },
     {
       "human": "next",
-      "bot": "{name} serves <food> food",
+      "bot": "frankie_and_bennys serves italian food",
       "target": "the_lucky_star is a nice place in the south of town and the prices are cheap",
       "match": true
     },
     {
       "human": "next",
-      "bot": "{name} serves <food> food",
+      "bot": "chiquito_restaurant_bar serves mexican food",
       "target": "nandos is a nice place in the south of town and the prices are cheap",
       "match": true
     },
     {
       "human": "next",
-      "bot": "{name} serves <food> food",
+      "bot": "pizza_hut_cherry_hinton serves italian food",
       "target": "Sorry but there is no other restaurant in the cheap price range and the south of town",
       "match": false
     },
@@ -34280,7 +34280,7 @@
     },
     {
       "human": "is there anything else",
-      "bot": "bangkok_city serves thai food",
+      "bot": "sala_thong serves thai food",
       "target": "bangkok_city serves thai food",
       "match": true
     },
@@ -34730,9 +34730,9 @@
     },
     {
       "human": "any price",
-      "bot": "The price range at maharajah_tandoori_restaurant is expensive",
+      "bot": "api_call indian west R_price",
       "target": "api_call indian west R_price",
-      "match": false
+      "match": true
     },
     {
       "human": "what is the address",
@@ -34780,7 +34780,7 @@
     },
     {
       "human": "what type of food is it",
-      "bot": "golden_house serves _REQUESTED_ food",
+      "bot": "j_restaurant serves asian_oriental food",
       "target": "royal_spice serves indian food",
       "match": true
     },
@@ -34794,7 +34794,7 @@
   [
     {
       "human": "how about",
-      "bot": "Would you like something in the cheap , moderate , or expensive price range?",
+      "bot": "api_call R_cuisine R_location R_price",
       "target": "I'm sorry but there is no restaurant serving swiss food",
       "match": false
     },
@@ -34832,7 +34832,7 @@
     },
     {
       "human": "is there anything else",
-      "bot": "restaurant_alimentum is a nice place in the south of town and the prices are moderate",
+      "bot": "pizza_hut_cherry_hinton is a nice place in the south of town and the prices are moderate",
       "target": "You are looking for a restaurant serving any kind of food right?",
       "match": false
     },
@@ -34844,7 +34844,7 @@
     },
     {
       "human": "is there anything else",
-      "bot": "restaurant_alimentum is a nice place in the south of town and the prices are moderate",
+      "bot": "pizza_hut_cherry_hinton is a nice place in the south of town and the prices are moderate",
       "target": "pizza_hut_cherry_hinton is a nice place in the south of town and the prices are moderate",
       "match": true
     },
@@ -34958,7 +34958,7 @@
     },
     {
       "human": "care",
-      "bot": "prezzo is a great restaurant serving moderate care food in the west of town .",
+      "bot": "saint_johns_chop_house is a nice place in the west of town and the prices are moderate",
       "target": "You are looking for a restaurant serving any kind of food right?",
       "match": false
     },
@@ -36124,7 +36124,7 @@
     },
     {
       "human": "anything else",
-      "bot": "royal_spice is a nice place in the north of town and the prices are cheap",
+      "bot": "da_vinci_pizzeria is a nice place in the north of town and the prices are cheap",
       "target": "royal_spice is a nice place in the north of town and the prices are cheap",
       "match": true
     },
@@ -36410,7 +36410,7 @@
     },
     {
       "human": "type of food",
-      "bot": "royal_spice is a great restaurant serving cheap _REQUESTED_ food in the north of town .",
+      "bot": "da_vinci_pizzeria is a great restaurant serving cheap italian food in the north of town .",
       "target": "royal_spice is a great restaurant",
       "match": false
     },
@@ -36512,7 +36512,7 @@
     },
     {
       "human": "is there anything else",
-      "bot": "{name} serves <food> food",
+      "bot": "travellers_rest serves british food",
       "target": "saint_johns_chop_house is a nice place in the west of town and the prices are moderate",
       "match": true
     },
@@ -36556,7 +36556,7 @@
     },
     {
       "human": "what type of food does it serve",
-      "bot": "curry_prince is a great restaurant serving cheap _REQUESTED_ food in the east of town .",
+      "bot": "royal_standard is a great restaurant serving expensive gastropub food in the east of town .",
       "target": "the_missing_sock serves international food",
       "match": true
     },
@@ -36952,7 +36952,7 @@
     },
     {
       "human": "oh is there anything else",
-      "bot": "{name} serves <food> food",
+      "bot": "frankie_and_bennys serves italian food",
       "target": "taj_tandoori is a nice place in the south of town and the prices are expensive",
       "match": true
     },
@@ -37098,7 +37098,7 @@
     },
     {
       "human": "is there anything else",
-      "bot": "{name} serves <food> food",
+      "bot": "restaurant_one_seven serves british food",
       "target": "meghna is a nice place in the north of town and the prices are moderate",
       "match": true
     },
@@ -37136,7 +37136,7 @@
     },
     {
       "human": "is there anything else",
-      "bot": "{name} serves <food> food",
+      "bot": "j_restaurant serves asian_oriental food",
       "target": "thanh_binh is a nice place in the west of town and the prices are cheap",
       "match": true
     },
@@ -37336,7 +37336,7 @@
     },
     {
       "human": "is there anything else",
-      "bot": "rajmahal is a nice place in the east of town and the prices are moderate",
+      "bot": "curry_prince is a nice place in the east of town and the prices are moderate",
       "target": "curry_prince is a nice place in the east of town and the prices are moderate",
       "match": true
     },
@@ -37354,7 +37354,7 @@
     },
     {
       "human": "what type of food do they serve",
-      "bot": "pizza_hut_fen_ditton is a great restaurant serving moderate _REQUESTED_ food in the east of town .",
+      "bot": "rajmahal is a great restaurant serving moderate indian food in the east of town .",
       "target": "curry_prince serves indian food",
       "match": true
     },
@@ -37386,7 +37386,7 @@
     },
     {
       "human": "is there anything else",
-      "bot": "royal_spice is a nice place in the north of town and the prices are cheap",
+      "bot": "da_vinci_pizzeria is a nice place in the north of town and the prices are cheap",
       "target": "da_vinci_pizzeria is a nice place in the north of town and the prices are cheap",
       "match": true
     },
@@ -38596,13 +38596,13 @@
     },
     {
       "human": "is there another one",
-      "bot": "the_nirala is a nice place in the north of town and the prices are moderate",
+      "bot": "golden_wok is a nice place in the north of town and the prices are moderate",
       "target": "golden_wok is a nice place in the north of town and the prices are moderate",
       "match": true
     },
     {
       "human": "anything else",
-      "bot": "meghna is a nice place in the north of town and the prices are moderate",
+      "bot": "the_nirala is a nice place in the north of town and the prices are moderate",
       "target": "the_nirala is a nice place in the north of town and the prices are moderate",
       "match": true
     },
@@ -38658,7 +38658,7 @@
     },
     {
       "human": "anything else",
-      "bot": "restaurant_alimentum is a nice place in the south of town and the prices are moderate",
+      "bot": "pizza_hut_cherry_hinton is a nice place in the south of town and the prices are moderate",
       "target": "restaurant_alimentum is a nice place in the south of town and the prices are moderate",
       "match": true
     },
@@ -38720,7 +38720,7 @@
     },
     {
       "human": "and whats the other one",
-      "bot": "royal_spice is a nice place in the north of town and the prices are cheap",
+      "bot": "da_vinci_pizzeria is a nice place in the north of town and the prices are cheap",
       "target": "da_vinci_pizzeria is a great restaurant",
       "match": false
     },
@@ -39060,7 +39060,7 @@
     },
     {
       "human": "is there anything else",
-      "bot": "{name} serves <food> food",
+      "bot": "travellers_rest serves british food",
       "target": "saint_johns_chop_house is a nice place in the west of town and the prices are moderate",
       "match": true
     },
@@ -39236,7 +39236,7 @@
     },
     {
       "human": "of the restaurant please",
-      "bot": "saint_johns_chop_house is a nice place in the west of town serving tasty british food",
+      "bot": "travellers_rest is a nice place in the west of town serving tasty british food",
       "target": "graffiti is a great restaurant",
       "match": false
     },
@@ -39522,15 +39522,15 @@
     },
     {
       "human": "part of town cheap restaurant",
-      "bot": "I'm sorry but there is no restaurant with the provided criteria",
+      "bot": "api_call R_cuisine R_location cheap",
       "target": "There are restaurants in the south of town . What type of food do you want?",
       "match": false
     },
     {
       "human": "anything else",
-      "bot": "I'm sorry but there is no restaurant with the provided criteria",
+      "bot": "j_restaurant serves asian_oriental food",
       "target": "saigon_city is a nice place in the north of town",
-      "match": false
+      "match": true
     },
     {
       "human": "thank you good bye",
@@ -39708,7 +39708,7 @@
     },
     {
       "human": "is there anything else",
-      "bot": "{name} serves <food> food",
+      "bot": "frankie_and_bennys serves italian food",
       "target": "nandos is a nice place in the south of town and the prices are cheap",
       "match": true
     },
@@ -39720,7 +39720,7 @@
     },
     {
       "human": "and type of food",
-      "bot": "pizza_hut_cherry_hinton is a nice place in the south of town serving tasty _REQUESTED_ food",
+      "bot": "chiquito_restaurant_bar is a nice place in the south of town serving tasty mexican food",
       "target": "Sorry but there is no other restaurant in the cheap price range and the south of town",
       "match": false
     },
@@ -39732,7 +39732,7 @@
     },
     {
       "human": "what type of food do they serve",
-      "bot": "the_lucky_star is a nice place in the south of town serving tasty _REQUESTED_ food",
+      "bot": "pizza_hut_cherry_hinton is a nice place in the south of town serving tasty italian food",
       "target": "nandos serves portuguese food",
       "match": true
     },
@@ -39932,7 +39932,7 @@
     },
     {
       "human": "what type of food do they serve",
-      "bot": "sitar_tandoori is a great restaurant serving expensive _REQUESTED_ food in the east of town .",
+      "bot": "royal_standard is a great restaurant serving expensive gastropub food in the east of town .",
       "target": "the_missing_sock serves international food",
       "match": true
     },
@@ -40056,9 +40056,9 @@
     },
     {
       "human": "how about",
-      "bot": "<name> is a great restaurant",
+      "bot": "I'm sorry but there is no restaurant serving swiss food",
       "target": "I'm sorry but there is no restaurant serving swiss food",
-      "match": false
+      "match": true
     },
     {
       "human": "vietnamese",
@@ -40074,7 +40074,7 @@
     },
     {
       "human": "whats the",
-      "bot": "thanh_binh serves vietnamese food",
+      "bot": "venue serves vietnamese food",
       "target": "Can I help you with anything else?",
       "match": false
     },
@@ -40284,7 +40284,7 @@
     },
     {
       "human": "anything else",
-      "bot": "sitar_tandoori is a nice place in the east of town and the prices are expensive",
+      "bot": "royal_standard is a nice place in the east of town and the prices are expensive",
       "target": "yu_garden is a nice place in the east of town and the prices are expensive",
       "match": true
     },
@@ -40408,13 +40408,13 @@
     },
     {
       "human": "the food",
-      "bot": "{name} serves <food> food",
+      "bot": "travellers_rest serves british food",
       "target": "saint_johns_chop_house is a great restaurant",
       "match": false
     },
     {
       "human": "type of food",
-      "bot": "saint_johns_chop_house is a nice place in the west of town serving tasty _REQUESTED_ food",
+      "bot": "maharajah_tandoori_restaurant is a nice place in the west of town serving tasty indian food",
       "target": "Sorry, I can't hear you",
       "match": false
     },
@@ -40620,7 +40620,7 @@
     },
     {
       "human": "anything else",
-      "bot": "la_mimosa serves mediterranean food",
+      "bot": "the_gardenia serves mediterranean food",
       "target": "shiraz_restaurant serves mediterranean food",
       "match": true
     },
@@ -40690,7 +40690,7 @@
     },
     {
       "human": "is there anything else",
-      "bot": "{name} serves <food> food",
+      "bot": "royal_standard serves gastropub food",
       "target": "yu_garden is a nice place in the east of town and the prices are expensive",
       "match": true
     },
@@ -40814,7 +40814,7 @@
     },
     {
       "human": "is there anything else",
-      "bot": "{name} serves <food> food",
+      "bot": "the_hotpot serves chinese food",
       "target": "da_vinci_pizzeria is a nice place in the north of town and the prices are cheap",
       "match": true
     },
@@ -40966,7 +40966,7 @@
     },
     {
       "human": "anything else",
-      "bot": "la_raza serves spanish food",
+      "bot": "la_tasca serves spanish food",
       "target": "la_tasca serves spanish food",
       "match": true
     },
@@ -41004,7 +41004,7 @@
     },
     {
       "human": "anything else",
-      "bot": "{name} serves <food> food",
+      "bot": "royal_standard serves gastropub food",
       "target": "curry_prince is a nice place in the east of town and the prices are moderate",
       "match": true
     },
@@ -41124,7 +41124,7 @@
     },
     {
       "human": "anything else",
-      "bot": "{name} serves <food> food",
+      "bot": "travellers_rest serves british food",
       "target": "la_margherita is a nice place in the west of town and the prices are cheap",
       "match": true
     },
@@ -41168,7 +41168,7 @@
     },
     {
       "human": "could i have the area please",
-      "bot": "darrys_cookhouse_and_wine_shop is a nice place in the _REQUESTED_ of town serving tasty european food",
+      "bot": "eraina is a nice place in the centre of town serving tasty european food",
       "target": "michaelhouse_cafe is a nice place in the centre of town",
       "match": true
     },
@@ -41320,13 +41320,13 @@
     },
     {
       "human": "type of food",
-      "bot": "chiquito_restaurant_bar is a nice place in the south of town serving tasty _REQUESTED_ food",
+      "bot": "frankie_and_bennys is a nice place in the south of town serving tasty italian food",
       "target": "nandos is a great restaurant",
       "match": false
     },
     {
       "human": "type of food",
-      "bot": "pizza_hut_cherry_hinton is a nice place in the south of town serving tasty _REQUESTED_ food",
+      "bot": "chiquito_restaurant_bar is a nice place in the south of town serving tasty mexican food",
       "target": "nandos serves portuguese food",
       "match": true
     },
@@ -41736,7 +41736,7 @@
     },
     {
       "human": "is there anything else",
-      "bot": "la_raza serves spanish food",
+      "bot": "la_tasca serves spanish food",
       "target": "la_raza serves spanish food",
       "match": true
     },
@@ -42330,7 +42330,7 @@
     },
     {
       "human": "anything else",
-      "bot": "royal_spice is a nice place in the north of town and the prices are cheap",
+      "bot": "da_vinci_pizzeria is a nice place in the north of town and the prices are cheap",
       "target": "royal_spice is a nice place in the north of town and the prices are cheap",
       "match": true
     },
@@ -42576,7 +42576,7 @@
     },
     {
       "human": "anything else",
-      "bot": "chiquito_restaurant_bar is a nice place in the south of town and the prices are expensive",
+      "bot": "frankie_and_bennys is a nice place in the south of town and the prices are expensive",
       "target": "chiquito_restaurant_bar is a nice place in the south of town and the prices are expensive",
       "match": true
     },
@@ -42940,7 +42940,7 @@
     },
     {
       "human": "how about",
-      "bot": "The price range at UNSET is UNSET",
+      "bot": "api_call european R_location expensive",
       "target": "I'm sorry but there is no european restaurant in the south of town",
       "match": false
     },
@@ -43014,13 +43014,13 @@
     },
     {
       "human": "how about a castro pub type of food",
-      "bot": "The price range at UNSET is UNSET",
+      "bot": "<name> is a great restaurant",
       "target": "You are looking for a gastropub restaurant right?",
       "match": false
     },
     {
       "human": "yes",
-      "bot": "The price range at UNSET is UNSET",
+      "bot": "I'm sorry but there is no restaurant serving moderate pub food",
       "target": "the cow pizza kitchen and bar serves gastropub food in the moderate price range",
       "match": false
     },
@@ -43144,7 +43144,7 @@
     },
     {
       "human": "any is okay",
-      "bot": "{name} serves <food> food",
+      "bot": "the_golden_curry serves indian food",
       "target": "Would you like something in the cheap , moderate , or expensive price range?",
       "match": false
     },
@@ -43718,7 +43718,7 @@
     },
     {
       "human": "anything else",
-      "bot": "{name} serves <food> food",
+      "bot": "restaurant_one_seven serves british food",
       "target": "pizza_hut_fen_ditton is a nice place in the east of town and the prices are moderate",
       "match": true
     },
@@ -43736,13 +43736,13 @@
     },
     {
       "human": "type of food",
-      "bot": "cotto serves _REQUESTED_ food",
+      "bot": "efes_restaurant serves turkish food",
       "target": "pizza_hut_fen_ditton is a great restaurant",
       "match": false
     },
     {
       "human": "type of food",
-      "bot": "ali_baba serves _REQUESTED_ food",
+      "bot": "cotto serves british food",
       "target": "pizza_hut_fen_ditton serves italian food",
       "match": true
     },
@@ -44458,7 +44458,7 @@
     },
     {
       "human": "is there anything else",
-      "bot": "la_raza is a nice place in the centre of town serving tasty spanish food",
+      "bot": "la_tasca is a nice place in the centre of town serving tasty spanish food",
       "target": "la_tasca is a nice place in the centre of town serving tasty spanish food",
       "match": true
     },
@@ -44552,7 +44552,7 @@
     },
     {
       "human": "whats the area",
-      "bot": "restaurant_two_two is a nice place in the _REQUESTED_ of town serving tasty french food",
+      "bot": "cote is a nice place in the centre of town serving tasty french food",
       "target": "cote is a nice place in the centre of town",
       "match": true
     },
@@ -45090,7 +45090,7 @@
     },
     {
       "human": "anything else",
-      "bot": "restaurant_alimentum is a nice place in the south of town and the prices are moderate",
+      "bot": "pizza_hut_cherry_hinton is a nice place in the south of town and the prices are moderate",
       "target": "pizza_hut_cherry_hinton is a nice place in the south of town and the prices are moderate",
       "match": true
     },
@@ -45260,7 +45260,7 @@
     },
     {
       "human": "where is it",
-      "bot": "restaurant_alimentum is a nice place in the south of town and the prices are moderate",
+      "bot": "pizza_hut_cherry_hinton is a nice place in the south of town and the prices are moderate",
       "target": "Sure , restaurant_alimentum is on restaurant_alimentum_address",
       "match": false
     },
@@ -45284,7 +45284,7 @@
     },
     {
       "human": "oh where is it",
-      "bot": "restaurant_alimentum is a nice place in the south of town and the prices are moderate",
+      "bot": "pizza_hut_cherry_hinton is a nice place in the south of town and the prices are moderate",
       "target": "Sure , anatolia is on anatolia_address",
       "match": false
     },
@@ -45302,7 +45302,7 @@
     },
     {
       "human": "is there anything else",
-      "bot": "restaurant_alimentum is a nice place in the south of town and the prices are moderate",
+      "bot": "pizza_hut_cherry_hinton is a nice place in the south of town and the prices are moderate",
       "target": "anatolia is a great restaurant",
       "match": false
     },
@@ -45352,7 +45352,7 @@
     },
     {
       "human": "what is one of them",
-      "bot": "restaurant_two_two serves french food",
+      "bot": "cote serves french food",
       "target": "What part of town do you have in mind?",
       "match": false
     },
@@ -45370,7 +45370,7 @@
     },
     {
       "human": "is there anything else",
-      "bot": "restaurant_two_two serves french food",
+      "bot": "cote serves french food",
       "target": "restaurant_two_two serves french food",
       "match": true
     },
@@ -45794,7 +45794,7 @@
     },
     {
       "human": "what type of food",
-      "bot": "royal_standard serves _REQUESTED_ food",
+      "bot": "the_slug_and_lettuce serves gastropub food",
       "target": "anatolia serves turkish food",
       "match": true
     },
@@ -45904,7 +45904,7 @@
     },
     {
       "human": "any anything else",
-      "bot": "{name} serves <food> food",
+      "bot": "efes_restaurant serves turkish food",
       "target": "anatolia serves turkish food in the moderate price range",
       "match": true
     },
@@ -46108,7 +46108,7 @@
     },
     {
       "human": "is their anything else",
-      "bot": "{name} serves <food> food",
+      "bot": "frankie_and_bennys serves italian food",
       "target": "api_call R_cuisine south expensive",
       "match": false
     },
@@ -46126,7 +46126,7 @@
     },
     {
       "human": "and what type of food do they serve",
-      "bot": "pizza_hut_cherry_hinton is a nice place in the south of town serving tasty _REQUESTED_ food",
+      "bot": "chiquito_restaurant_bar is a nice place in the south of town serving tasty mexican food",
       "target": "peking_restaurant serves chinese food",
       "match": true
     },
@@ -46170,7 +46170,7 @@
     },
     {
       "human": "is there anything else",
-      "bot": "chiquito_restaurant_bar is a nice place in the south of town and the prices are expensive",
+      "bot": "frankie_and_bennys is a nice place in the south of town and the prices are expensive",
       "target": "frankie_and_bennys is a nice place in the south of town and the prices are expensive",
       "match": true
     },
@@ -46208,7 +46208,7 @@
     },
     {
       "human": "is there anything else",
-      "bot": "royal_spice is a nice place in the north of town and the prices are cheap",
+      "bot": "da_vinci_pizzeria is a nice place in the north of town and the prices are cheap",
       "target": "da_vinci_pizzeria is a nice place in the north of town and the prices are cheap",
       "match": true
     },
@@ -46674,31 +46674,31 @@
     },
     {
       "human": "restaurant and it should be",
-      "bot": "api_call R_cuisine R_location moderate",
+      "bot": "The price range at UNSET is UNSET",
       "target": "You are looking for a restaurant serving any kind of food right?",
       "match": false
     },
     {
       "human": "yea",
-      "bot": "api_call R_cuisine R_location moderate",
+      "bot": "The price range at UNSET is UNSET",
       "target": "What part of town do you have in mind?",
       "match": false
     },
     {
       "human": "north",
-      "bot": "api_call R_cuisine north moderate",
+      "bot": "The price range at UNSET is UNSET",
       "target": "api_call R_cuisine north moderate",
-      "match": true
+      "match": false
     },
     {
       "human": "is there anything else",
-      "bot": "the_nirala is a nice place in the north of town and the prices are moderate",
+      "bot": "The price range at UNSET is UNSET",
       "target": "the_nirala is a nice place in the north of town and the prices are moderate",
-      "match": true
+      "match": false
     },
     {
       "human": "whats the phone number",
-      "bot": "The phone number of the_nirala is the_nirala_phone",
+      "bot": "The phone number of UNSET is UNSET",
       "target": "The phone number of the_nirala is the_nirala_phone",
       "match": true
     },
@@ -46994,7 +46994,7 @@
     },
     {
       "human": "whats the other one",
-      "bot": "thanh_binh is a nice place in the west of town and the prices are cheap",
+      "bot": "la_margherita is a nice place in the west of town and the prices are cheap",
       "target": "la_margherita is a nice place in the west of town and the prices are cheap",
       "match": true
     },
@@ -47174,13 +47174,13 @@
     },
     {
       "human": "what area",
-      "bot": "<name> is a great restaurant",
+      "bot": "I'm sorry but there is no restaurant with the provided criteria",
       "target": "the cow pizza kitchen and bar serves gastropub food in the moderate price range",
       "match": false
     },
     {
       "human": "what area is it located",
-      "bot": "<name> is a great restaurant",
+      "bot": "I'm sorry but there is no restaurant with the provided criteria",
       "target": "the cow pizza kitchen and bar is a nice place in the centre of town",
       "match": false
     },
@@ -47728,7 +47728,7 @@
     },
     {
       "human": "what type of food",
-      "bot": "chiquito_restaurant_bar is a nice place in the south of town serving tasty _REQUESTED_ food",
+      "bot": "frankie_and_bennys is a nice place in the south of town serving tasty italian food",
       "target": "nandos serves portuguese food",
       "match": true
     },
@@ -47798,9 +47798,9 @@
     },
     {
       "human": "the addre",
-      "bot": "api_call turkish R_location expensive",
+      "bot": "The address of UNSET is UNSET .",
       "target": "Sure , meze_bar_restaurant is on meze_bar_restaurant_address",
-      "match": false
+      "match": true
     },
     {
       "human": "thank you goodbye",
@@ -47932,31 +47932,31 @@
   [
     {
       "human": "inaudible",
-      "bot": "Would you like something in the cheap , moderate , or expensive price range?",
+      "bot": "api_call R_cuisine R_location R_price",
       "target": "What kind of food would you like?",
       "match": false
     },
     {
       "human": "cheap restaurant",
-      "bot": "api_call R_cuisine R_location cheap",
+      "bot": "The price range at frankie_and_bennys is expensive",
       "target": "There are restaurants in the cheap price range . What type of food do you want?",
       "match": false
     },
     {
       "human": "it does not matter",
-      "bot": "api_call R_cuisine R_location cheap",
+      "bot": "The price range at frankie_and_bennys is expensive",
       "target": "You are looking for a restaurant serving any kind of food right?",
       "match": false
     },
     {
       "human": "yes in the west part of town",
-      "bot": "api_call R_cuisine west cheap",
+      "bot": "The price range at frankie_and_bennys is expensive",
       "target": "api_call R_cuisine west cheap",
-      "match": true
+      "match": false
     },
     {
       "human": "ah whats the phone number",
-      "bot": "The phone number of la_margherita is la_margherita_phone",
+      "bot": "The phone number of frankie_and_bennys is frankie_and_bennys_phone",
       "target": "The phone number of la_margherita is la_margherita_phone",
       "match": true
     },
@@ -48322,7 +48322,7 @@
     },
     {
       "human": "is there anything else",
-      "bot": "{name} serves <food> food",
+      "bot": "the_hotpot serves chinese food",
       "target": "royal_spice is a nice place in the north of town and the prices are cheap",
       "match": true
     },
@@ -48806,7 +48806,7 @@
     },
     {
       "human": "is there anything else",
-      "bot": "{name} serves <food> food",
+      "bot": "royal_standard serves gastropub food",
       "target": "yu_garden is a nice place in the east of town and the prices are expensive",
       "match": true
     },
@@ -48818,7 +48818,7 @@
     },
     {
       "human": "what kind of food does you garden serve",
-      "bot": "rajmahal is a nice place in the east of town serving tasty _REQUESTED_ food",
+      "bot": "curry_prince is a nice place in the east of town serving tasty indian food",
       "target": "yu_garden serves chinese food",
       "match": true
     },
@@ -48912,7 +48912,7 @@
     },
     {
       "human": "what area of town",
-      "bot": "stazione_restaurant_and_coffee_bar is a great restaurant serving expensive italian food in the _REQUESTED_ of town .",
+      "bot": "frankie_and_bennys is a great restaurant serving expensive italian food in the south of town .",
       "target": "clowns_cafe is a nice place in the centre of town",
       "match": true
     },
@@ -49000,37 +49000,37 @@
     },
     {
       "human": "nt care",
-      "bot": "I'm sorry but there is no restaurant serving nt care french food",
+      "bot": "api_call french R_location expensive",
       "target": "What part of town do you have in mind?",
       "match": false
     },
     {
       "human": "dont care",
-      "bot": "The price range at UNSET is UNSET",
+      "bot": "The price range at cote is expensive",
       "target": "api_call french R_location expensive",
       "match": false
     },
     {
       "human": "anything else",
-      "bot": "api_call french R_location R_price",
+      "bot": "cote serves french food",
       "target": "cote serves french food in the expensive price range",
-      "match": false
+      "match": true
     },
     {
       "human": "address",
-      "bot": "The address of cote is cote_address .",
+      "bot": "The address of restaurant_two_two is restaurant_two_two_address .",
       "target": "cote is a great restaurant",
       "match": false
     },
     {
       "human": "address",
-      "bot": "The address of cote is cote_address .",
+      "bot": "The address of restaurant_two_two is restaurant_two_two_address .",
       "target": "Sure , cote is on cote_address",
       "match": true
     },
     {
       "human": "phone number",
-      "bot": "The phone number of cote is cote_phone",
+      "bot": "The phone number of restaurant_two_two is restaurant_two_two_phone",
       "target": "The phone number of cote is cote_phone",
       "match": true
     },
@@ -49346,7 +49346,7 @@
     },
     {
       "human": "is there anything else",
-      "bot": "{name} serves <food> food",
+      "bot": "travellers_rest serves british food",
       "target": "saint_johns_chop_house is a nice place in the west of town and the prices are moderate",
       "match": true
     },
@@ -49434,7 +49434,7 @@
     },
     {
       "human": "is there anything else",
-      "bot": "sitar_tandoori is a nice place in the east of town and the prices are expensive",
+      "bot": "royal_standard is a nice place in the east of town and the prices are expensive",
       "target": "royal_standard is a nice place in the east of town and the prices are expensive",
       "match": true
     },
@@ -49542,7 +49542,7 @@
     },
     {
       "human": "is there anything else",
-      "bot": "{name} serves <food> food",
+      "bot": "the_hotpot serves chinese food",
       "target": "meghna is a nice place in the north of town and the prices are moderate",
       "match": true
     },
@@ -49752,7 +49752,7 @@
     },
     {
       "human": "and okay and vietnamese food thank you",
-      "bot": "I'm sorry but there is no restaurant with the provided criteria",
+      "bot": "the_lucky_star is a great restaurant",
       "target": "api_call vietnamese R_location cheap",
       "match": false
     },
@@ -49784,7 +49784,7 @@
     },
     {
       "human": "um do you have anything else",
-      "bot": "the_nirala is a nice place in the north of town and the prices are moderate",
+      "bot": "golden_wok is a nice place in the north of town and the prices are moderate",
       "target": "the_nirala is a great restaurant",
       "match": false
     },
@@ -49910,7 +49910,7 @@
     },
     {
       "human": "okay ill be there one sec",
-      "bot": "{name} serves <food> food",
+      "bot": "frankie_and_bennys serves italian food",
       "target": "frankie_and_bennys is a great restaurant",
       "match": false
     },
@@ -50066,7 +50066,7 @@
     },
     {
       "human": "what area",
-      "bot": "darrys_cookhouse_and_wine_shop is a great restaurant serving expensive european food in the _REQUESTED_ of town .",
+      "bot": "eraina is a great restaurant serving expensive european food in the centre of town .",
       "target": "eraina is a nice place in the centre of town",
       "match": true
     },
@@ -50592,7 +50592,7 @@
     },
     {
       "human": "breath okay uh thats great how bout the address",
-      "bot": "efes_restaurant is a great restaurant",
+      "bot": "The address of efes_restaurant is efes_restaurant_address .",
       "target": "Can I help you with anything else?",
       "match": false
     },
@@ -51126,7 +51126,7 @@
     },
     {
       "human": "what area is it in",
-      "bot": "cotto is a nice place in the _REQUESTED_ of town serving tasty british food",
+      "bot": "restaurant_one_seven is a nice place in the centre of town serving tasty british food",
       "target": "the_copper_kettle is a nice place in the centre of town",
       "match": true
     },
@@ -51206,7 +51206,7 @@
     },
     {
       "human": "and the area",
-      "bot": "la_margherita is a great restaurant serving expensive italian food in the _REQUESTED_ of town .",
+      "bot": "frankie_and_bennys is a great restaurant serving expensive italian food in the south of town .",
       "target": "frankie_and_bennys is a nice place in the south of town",
       "match": true
     },
@@ -51238,7 +51238,7 @@
     },
     {
       "human": "is there anything else",
-      "bot": "{name} serves <food> food",
+      "bot": "the_hotpot serves chinese food",
       "target": "royal_spice is a nice place in the north of town and the prices are cheap",
       "match": true
     },
@@ -51420,7 +51420,7 @@
     },
     {
       "human": "is there anything else",
-      "bot": "{name} serves <food> food",
+      "bot": "frankie_and_bennys serves italian food",
       "target": "restaurant_alimentum is a nice place in the south of town and the prices are moderate",
       "match": true
     },
@@ -51522,9 +51522,9 @@
   [
     {
       "human": "im looking for a restaurant in any area that servess",
-      "bot": "The address of UNSET is UNSET .",
+      "bot": "What kind of food would you like?",
       "target": "What kind of food would you like?",
-      "match": false
+      "match": true
     },
     {
       "human": "irish food",
@@ -51634,7 +51634,7 @@
   [
     {
       "human": "looking for a restaurant",
-      "bot": "api_call R_cuisine R_location R_price",
+      "bot": "Would you like something in the cheap , moderate , or expensive price range?",
       "target": "What kind of food would you like?",
       "match": false
     },
@@ -51652,7 +51652,7 @@
     },
     {
       "human": "is there anything else",
-      "bot": "thanh_binh is a nice place in the west of town and the prices are cheap",
+      "bot": "la_margherita is a nice place in the west of town and the prices are cheap",
       "target": "la_margherita is a nice place in the west of town and the prices are cheap",
       "match": true
     },
@@ -51752,9 +51752,9 @@
     },
     {
       "human": "id like the phone number of the restaurant you just told me",
-      "bot": "taj_tandoori is a great restaurant",
+      "bot": "The phone number of taj_tandoori is taj_tandoori_phone",
       "target": "The phone number of taj_tandoori is taj_tandoori_phone",
-      "match": false
+      "match": true
     },
     {
       "human": "thank you good bye",
@@ -51922,7 +51922,7 @@
     },
     {
       "human": "anything else",
-      "bot": "the_nirala is a nice place in the north of town and the prices are moderate",
+      "bot": "golden_wok is a nice place in the north of town and the prices are moderate",
       "target": "meghna is a nice place in the north of town and the prices are moderate",
       "match": true
     },
@@ -52154,19 +52154,19 @@
     },
     {
       "human": "anything else",
-      "bot": "{name} serves <food> food",
+      "bot": "frankie_and_bennys serves italian food",
       "target": "la_raza serves spanish food",
       "match": true
     },
     {
       "human": "is there anything else",
-      "bot": "{name} serves <food> food",
+      "bot": "sesame_restaurant_and_bar serves chinese food",
       "target": "la_raza is a great restaurant",
       "match": false
     },
     {
       "human": "do you have any other restaurants",
-      "bot": "{name} serves <food> food",
+      "bot": "travellers_rest serves british food",
       "target": "I am sorry but there is no other spanish restaurant that matches your request",
       "match": false
     },
@@ -52570,7 +52570,7 @@
     },
     {
       "human": "anything else",
-      "bot": "sitar_tandoori is a nice place in the east of town and the prices are expensive",
+      "bot": "royal_standard is a nice place in the east of town and the prices are expensive",
       "target": "sitar_tandoori is a nice place in the east of town and the prices are expensive",
       "match": true
     },
@@ -53108,7 +53108,7 @@
     },
     {
       "human": "uh no price range whats the",
-      "bot": "pizza_hut_cherry_hinton is a nice place in the south of town serving tasty italian food",
+      "bot": "frankie_and_bennys is a nice place in the south of town serving tasty italian food",
       "target": "Would you like something in the cheap , moderate , or expensive price range?",
       "match": false
     },
@@ -53158,7 +53158,7 @@
     },
     {
       "human": "what type of food is it",
-      "bot": "golden_house serves _REQUESTED_ food",
+      "bot": "j_restaurant serves asian_oriental food",
       "target": "la_margherita serves italian food",
       "match": true
     },
@@ -53510,7 +53510,7 @@
     },
     {
       "human": "is there anything else",
-      "bot": "la_mimosa serves mediterranean food",
+      "bot": "the_gardenia serves mediterranean food",
       "target": "la_mimosa serves mediterranean food",
       "match": true
     },
@@ -53580,7 +53580,7 @@
     },
     {
       "human": "what type of food does it serve",
-      "bot": "curry_prince is a nice place in the east of town serving tasty _REQUESTED_ food",
+      "bot": "royal_standard is a nice place in the east of town serving tasty gastropub food",
       "target": "yu_garden serves chinese food",
       "match": true
     },
@@ -53948,7 +53948,7 @@
     },
     {
       "human": "anything else",
-      "bot": "restaurant_two_two serves french food",
+      "bot": "cote serves french food",
       "target": "cote serves french food in the expensive price range",
       "match": true
     },

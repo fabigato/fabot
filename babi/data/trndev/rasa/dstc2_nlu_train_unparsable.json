@@ -13777,6 +13777,29 @@
       ]
     },
     {
+      "text": "no not indian scandinavian food",
+      "semantics": [
+        {
+          "slots": [
+            [
+              "food",
+              "indian"
+            ]
+          ],
+          "act": "deny"
+        },
+        {
+          "slots": [
+            [
+              "food",
+              "scandinavian"
+            ]
+          ],
+          "act": "inform"
+        }
+      ]
+    },
+    {
       "text": "canopy",
       "semantics": [
         {
@@ -14075,13 +14098,13 @@
       ]
     },
     {
-      "text": "and asian",
+      "text": "chinese food im looking for sea food",
       "semantics": [
         {
           "slots": [
             [
               "food",
-              "asian oriental"
+              "seafood"
             ]
           ],
           "act": "inform"
@@ -14103,7 +14126,7 @@
       ]
     },
     {
-      "text": "pan asian",
+      "text": "and asian",
       "semantics": [
         {
           "slots": [
@@ -14117,13 +14140,13 @@
       ]
     },
     {
-      "text": "pan asian",
+      "text": "was that in the east part of town west part of town",
       "semantics": [
         {
           "slots": [
             [
-              "food",
-              "asian oriental"
+              "area",
+              "west"
             ]
           ],
           "act": "inform"
@@ -14182,6 +14205,20 @@
       ]
     },
     {
+      "text": "i am looking for kitalian food",
+      "semantics": [
+        {
+          "slots": [
+            [
+              "food",
+              "catalan"
+            ]
+          ],
+          "act": "inform"
+        }
+      ]
+    },
+    {
       "text": "katalian food",
       "semantics": [
         {
@@ -14386,13 +14423,153 @@
       ]
     },
     {
-      "text": "im looking for a restaurant in the east part of town serving pan asian food",
+      "text": "id like a restaurant that serves australian asian food",
+      "semantics": [
+        {
+          "slots": [
+            [
+              "food",
+              "australian"
+            ]
+          ],
+          "act": "inform"
+        }
+      ]
+    },
+    {
+      "text": "modereate",
+      "semantics": [
+        {
+          "slots": [
+            [
+              "pricerange",
+              "moderate"
+            ]
+          ],
+          "act": "inform"
+        }
+      ]
+    },
+    {
+      "text": "modereate",
+      "semantics": [
+        {
+          "slots": [
+            [
+              "pricerange",
+              "moderate"
+            ]
+          ],
+          "act": "inform"
+        }
+      ]
+    },
+    {
+      "text": "asian",
       "semantics": [
         {
           "slots": [
             [
               "food",
               "asian oriental"
+            ]
+          ],
+          "act": "inform"
+        }
+      ]
+    },
+    {
+      "text": "asian",
+      "semantics": [
+        {
+          "slots": [
+            [
+              "food",
+              "asian oriental"
+            ]
+          ],
+          "act": "inform"
+        }
+      ]
+    },
+    {
+      "text": "asian",
+      "semantics": [
+        {
+          "slots": [
+            [
+              "food",
+              "asian oriental"
+            ]
+          ],
+          "act": "inform"
+        }
+      ]
+    },
+    {
+      "text": "asian",
+      "semantics": [
+        {
+          "slots": [
+            [
+              "food",
+              "asian oriental"
+            ]
+          ],
+          "act": "inform"
+        }
+      ]
+    },
+    {
+      "text": "steak",
+      "semantics": [
+        {
+          "slots": [
+            [
+              "food",
+              "steakhouse"
+            ]
+          ],
+          "act": "inform"
+        }
+      ]
+    },
+    {
+      "text": "steak",
+      "semantics": [
+        {
+          "slots": [
+            [
+              "food",
+              "steakhouse"
+            ]
+          ],
+          "act": "inform"
+        }
+      ]
+    },
+    {
+      "text": "i dont give a damn about chinese food i want thai food",
+      "semantics": [
+        {
+          "slots": [
+            [
+              "food",
+              "thai"
+            ]
+          ],
+          "act": "inform"
+        }
+      ]
+    },
+    {
+      "text": "i dont give a fuck if hk fusion serves chinese food im looking for thai food",
+      "semantics": [
+        {
+          "slots": [
+            [
+              "food",
+              "thai"
             ]
           ],
           "act": "inform"
@@ -14400,123 +14577,11 @@
         {
           "slots": [
             [
-              "area",
-              "east"
+              "name",
+              "hk fusion"
             ]
           ],
-          "act": "inform"
-        }
-      ]
-    },
-    {
-      "text": "modereate",
-      "semantics": [
-        {
-          "slots": [
-            [
-              "pricerange",
-              "moderate"
-            ]
-          ],
-          "act": "inform"
-        }
-      ]
-    },
-    {
-      "text": "modereate",
-      "semantics": [
-        {
-          "slots": [
-            [
-              "pricerange",
-              "moderate"
-            ]
-          ],
-          "act": "inform"
-        }
-      ]
-    },
-    {
-      "text": "asian",
-      "semantics": [
-        {
-          "slots": [
-            [
-              "food",
-              "asian oriental"
-            ]
-          ],
-          "act": "inform"
-        }
-      ]
-    },
-    {
-      "text": "asian",
-      "semantics": [
-        {
-          "slots": [
-            [
-              "food",
-              "asian oriental"
-            ]
-          ],
-          "act": "inform"
-        }
-      ]
-    },
-    {
-      "text": "asian",
-      "semantics": [
-        {
-          "slots": [
-            [
-              "food",
-              "asian oriental"
-            ]
-          ],
-          "act": "inform"
-        }
-      ]
-    },
-    {
-      "text": "asian",
-      "semantics": [
-        {
-          "slots": [
-            [
-              "food",
-              "asian oriental"
-            ]
-          ],
-          "act": "inform"
-        }
-      ]
-    },
-    {
-      "text": "steak",
-      "semantics": [
-        {
-          "slots": [
-            [
-              "food",
-              "steakhouse"
-            ]
-          ],
-          "act": "inform"
-        }
-      ]
-    },
-    {
-      "text": "steak",
-      "semantics": [
-        {
-          "slots": [
-            [
-              "food",
-              "steakhouse"
-            ]
-          ],
-          "act": "inform"
+          "act": "deny"
         }
       ]
     },
@@ -14754,6 +14819,29 @@
       ]
     },
     {
+      "text": "not chinese food thai food",
+      "semantics": [
+        {
+          "slots": [
+            [
+              "food",
+              "chinese"
+            ]
+          ],
+          "act": "deny"
+        },
+        {
+          "slots": [
+            [
+              "food",
+              "thai"
+            ]
+          ],
+          "act": "inform"
+        }
+      ]
+    },
+    {
       "text": "a restaurant in the center of town serving carraibean food",
       "semantics": [
         {
@@ -14821,34 +14909,6 @@
             [
               "area",
               "south"
-            ]
-          ],
-          "act": "inform"
-        }
-      ]
-    },
-    {
-      "text": "steak house",
-      "semantics": [
-        {
-          "slots": [
-            [
-              "food",
-              "steakhouse"
-            ]
-          ],
-          "act": "inform"
-        }
-      ]
-    },
-    {
-      "text": "steak house",
-      "semantics": [
-        {
-          "slots": [
-            [
-              "food",
-              "steakhouse"
             ]
           ],
           "act": "inform"
@@ -14992,34 +15052,6 @@
             [
               "food",
               "korean"
-            ]
-          ],
-          "act": "inform"
-        }
-      ]
-    },
-    {
-      "text": "steak house",
-      "semantics": [
-        {
-          "slots": [
-            [
-              "food",
-              "steakhouse"
-            ]
-          ],
-          "act": "inform"
-        }
-      ]
-    },
-    {
-      "text": "steak house",
-      "semantics": [
-        {
-          "slots": [
-            [
-              "food",
-              "steakhouse"
             ]
           ],
           "act": "inform"
@@ -15328,52 +15360,6 @@
       ]
     },
     {
-      "text": "im looking for a restaurant in the south part of town that serves pan asian food",
-      "semantics": [
-        {
-          "slots": [
-            [
-              "food",
-              "asian oriental"
-            ]
-          ],
-          "act": "inform"
-        },
-        {
-          "slots": [
-            [
-              "area",
-              "south"
-            ]
-          ],
-          "act": "inform"
-        }
-      ]
-    },
-    {
-      "text": "a restaurant in the south part of town serving pan asian food",
-      "semantics": [
-        {
-          "slots": [
-            [
-              "food",
-              "asian oriental"
-            ]
-          ],
-          "act": "inform"
-        },
-        {
-          "slots": [
-            [
-              "area",
-              "south"
-            ]
-          ],
-          "act": "inform"
-        }
-      ]
-    },
-    {
       "text": "the turkiesh",
       "semantics": [
         {
@@ -15423,34 +15409,6 @@
             [
               "food",
               "turkish"
-            ]
-          ],
-          "act": "inform"
-        }
-      ]
-    },
-    {
-      "text": "restaurant and it should serve steak house food",
-      "semantics": [
-        {
-          "slots": [
-            [
-              "food",
-              "steakhouse"
-            ]
-          ],
-          "act": "inform"
-        }
-      ]
-    },
-    {
-      "text": "restaurant and it should serve steak house food",
-      "semantics": [
-        {
-          "slots": [
-            [
-              "food",
-              "steakhouse"
             ]
           ],
           "act": "inform"
@@ -15913,6 +15871,24 @@
       ]
     },
     {
+      "text": "ok if there is no restaurant serving indonesian food how about a restaurant serving chinese food",
+      "semantics": [
+        {
+          "slots": [],
+          "act": "reqalts"
+        },
+        {
+          "slots": [
+            [
+              "food",
+              "chinese"
+            ]
+          ],
+          "act": "inform"
+        }
+      ]
+    },
+    {
       "text": "noise um in the east part of town",
       "semantics": [
         {
@@ -15969,90 +15945,6 @@
       ]
     },
     {
-      "text": "pan asian food",
-      "semantics": [
-        {
-          "slots": [
-            [
-              "food",
-              "asian oriental"
-            ]
-          ],
-          "act": "inform"
-        }
-      ]
-    },
-    {
-      "text": "pan asian food",
-      "semantics": [
-        {
-          "slots": [
-            [
-              "food",
-              "asian oriental"
-            ]
-          ],
-          "act": "inform"
-        }
-      ]
-    },
-    {
-      "text": "pan asian food",
-      "semantics": [
-        {
-          "slots": [
-            [
-              "food",
-              "asian oriental"
-            ]
-          ],
-          "act": "inform"
-        }
-      ]
-    },
-    {
-      "text": "pan asian food",
-      "semantics": [
-        {
-          "slots": [
-            [
-              "food",
-              "asian oriental"
-            ]
-          ],
-          "act": "inform"
-        }
-      ]
-    },
-    {
-      "text": "pan asian food",
-      "semantics": [
-        {
-          "slots": [
-            [
-              "food",
-              "asian oriental"
-            ]
-          ],
-          "act": "inform"
-        }
-      ]
-    },
-    {
-      "text": "pan asian food",
-      "semantics": [
-        {
-          "slots": [
-            [
-              "food",
-              "asian oriental"
-            ]
-          ],
-          "act": "inform"
-        }
-      ]
-    },
-    {
       "text": "malyasian",
       "semantics": [
         {
@@ -16074,57 +15966,6 @@
             [
               "food",
               "malaysian"
-            ]
-          ],
-          "act": "inform"
-        }
-      ]
-    },
-    {
-      "text": "im looking for a cheap pan asian food",
-      "semantics": [
-        {
-          "slots": [
-            [
-              "food",
-              "asian oriental"
-            ]
-          ],
-          "act": "inform"
-        },
-        {
-          "slots": [
-            [
-              "pricerange",
-              "cheap"
-            ]
-          ],
-          "act": "inform"
-        }
-      ]
-    },
-    {
-      "text": "pan asian food",
-      "semantics": [
-        {
-          "slots": [
-            [
-              "food",
-              "asian oriental"
-            ]
-          ],
-          "act": "inform"
-        }
-      ]
-    },
-    {
-      "text": "pan asian food",
-      "semantics": [
-        {
-          "slots": [
-            [
-              "food",
-              "asian oriental"
             ]
           ],
           "act": "inform"
@@ -16319,29 +16160,6 @@
             [
               "food",
               "crossover"
-            ]
-          ],
-          "act": "inform"
-        }
-      ]
-    },
-    {
-      "text": "looking for a cheap restaurant that serves steak house food",
-      "semantics": [
-        {
-          "slots": [
-            [
-              "food",
-              "steakhouse"
-            ]
-          ],
-          "act": "inform"
-        },
-        {
-          "slots": [
-            [
-              "pricerange",
-              "cheap"
             ]
           ],
           "act": "inform"
@@ -16604,146 +16422,6 @@
       ]
     },
     {
-      "text": "id like a pan asian restaurant",
-      "semantics": [
-        {
-          "slots": [
-            [
-              "food",
-              "asian oriental"
-            ]
-          ],
-          "act": "inform"
-        }
-      ]
-    },
-    {
-      "text": "id like a pan asian restaurant",
-      "semantics": [
-        {
-          "slots": [
-            [
-              "food",
-              "asian oriental"
-            ]
-          ],
-          "act": "inform"
-        }
-      ]
-    },
-    {
-      "text": "pan asian",
-      "semantics": [
-        {
-          "slots": [
-            [
-              "food",
-              "asian oriental"
-            ]
-          ],
-          "act": "inform"
-        }
-      ]
-    },
-    {
-      "text": "pan asian",
-      "semantics": [
-        {
-          "slots": [
-            [
-              "food",
-              "asian oriental"
-            ]
-          ],
-          "act": "inform"
-        }
-      ]
-    },
-    {
-      "text": "pan asian food",
-      "semantics": [
-        {
-          "slots": [
-            [
-              "food",
-              "asian oriental"
-            ]
-          ],
-          "act": "inform"
-        }
-      ]
-    },
-    {
-      "text": "pan asian food",
-      "semantics": [
-        {
-          "slots": [
-            [
-              "food",
-              "asian oriental"
-            ]
-          ],
-          "act": "inform"
-        }
-      ]
-    },
-    {
-      "text": "pan asian",
-      "semantics": [
-        {
-          "slots": [
-            [
-              "food",
-              "asian oriental"
-            ]
-          ],
-          "act": "inform"
-        }
-      ]
-    },
-    {
-      "text": "pan asian",
-      "semantics": [
-        {
-          "slots": [
-            [
-              "food",
-              "asian oriental"
-            ]
-          ],
-          "act": "inform"
-        }
-      ]
-    },
-    {
-      "text": "pan asian",
-      "semantics": [
-        {
-          "slots": [
-            [
-              "food",
-              "asian oriental"
-            ]
-          ],
-          "act": "inform"
-        }
-      ]
-    },
-    {
-      "text": "pan asian",
-      "semantics": [
-        {
-          "slots": [
-            [
-              "food",
-              "asian oriental"
-            ]
-          ],
-          "act": "inform"
-        }
-      ]
-    },
-    {
       "text": "malyasian",
       "semantics": [
         {
@@ -16962,6 +16640,20 @@
       ]
     },
     {
+      "text": "north east",
+      "semantics": [
+        {
+          "slots": [
+            [
+              "area",
+              "east"
+            ]
+          ],
+          "act": "inform"
+        }
+      ]
+    },
+    {
       "text": "central",
       "semantics": [
         {
@@ -17133,34 +16825,6 @@
       ]
     },
     {
-      "text": "steak house",
-      "semantics": [
-        {
-          "slots": [
-            [
-              "food",
-              "steakhouse"
-            ]
-          ],
-          "act": "inform"
-        }
-      ]
-    },
-    {
-      "text": "steak house",
-      "semantics": [
-        {
-          "slots": [
-            [
-              "food",
-              "steakhouse"
-            ]
-          ],
-          "act": "inform"
-        }
-      ]
-    },
-    {
       "text": "what about asian food",
       "semantics": [
         {
@@ -17366,6 +17030,29 @@
             [
               "pricerange",
               "moderate"
+            ]
+          ],
+          "act": "inform"
+        }
+      ]
+    },
+    {
+      "text": "not european fusion",
+      "semantics": [
+        {
+          "slots": [
+            [
+              "food",
+              "european"
+            ]
+          ],
+          "act": "deny"
+        },
+        {
+          "slots": [
+            [
+              "food",
+              "fusion"
             ]
           ],
           "act": "inform"
@@ -17507,85 +17194,6 @@
       ]
     },
     {
-      "text": "im looking for a pan asian food in the south of town",
-      "semantics": [
-        {
-          "slots": [
-            [
-              "food",
-              "asian oriental"
-            ]
-          ],
-          "act": "inform"
-        },
-        {
-          "slots": [
-            [
-              "area",
-              "south"
-            ]
-          ],
-          "act": "inform"
-        }
-      ]
-    },
-    {
-      "text": "pan asian",
-      "semantics": [
-        {
-          "slots": [
-            [
-              "food",
-              "asian oriental"
-            ]
-          ],
-          "act": "inform"
-        }
-      ]
-    },
-    {
-      "text": "pan asian",
-      "semantics": [
-        {
-          "slots": [
-            [
-              "food",
-              "asian oriental"
-            ]
-          ],
-          "act": "inform"
-        }
-      ]
-    },
-    {
-      "text": "pan asian",
-      "semantics": [
-        {
-          "slots": [
-            [
-              "food",
-              "asian oriental"
-            ]
-          ],
-          "act": "inform"
-        }
-      ]
-    },
-    {
-      "text": "pan asian",
-      "semantics": [
-        {
-          "slots": [
-            [
-              "food",
-              "asian oriental"
-            ]
-          ],
-          "act": "inform"
-        }
-      ]
-    },
-    {
       "text": "find a moderately priced restaurant that serves bask food",
       "semantics": [
         {
@@ -17602,34 +17210,6 @@
             [
               "pricerange",
               "moderate"
-            ]
-          ],
-          "act": "inform"
-        }
-      ]
-    },
-    {
-      "text": "uh is there a steak house",
-      "semantics": [
-        {
-          "slots": [
-            [
-              "food",
-              "steakhouse"
-            ]
-          ],
-          "act": "inform"
-        }
-      ]
-    },
-    {
-      "text": "uh is there a steak house",
-      "semantics": [
-        {
-          "slots": [
-            [
-              "food",
-              "steakhouse"
             ]
           ],
           "act": "inform"
@@ -17920,34 +17500,6 @@
       ]
     },
     {
-      "text": "high priced",
-      "semantics": [
-        {
-          "slots": [
-            [
-              "pricerange",
-              "expensive"
-            ]
-          ],
-          "act": "inform"
-        }
-      ]
-    },
-    {
-      "text": "high priced",
-      "semantics": [
-        {
-          "slots": [
-            [
-              "pricerange",
-              "expensive"
-            ]
-          ],
-          "act": "inform"
-        }
-      ]
-    },
-    {
       "text": "expensive noise",
       "semantics": [
         {
@@ -18010,57 +17562,6 @@
             [
               "area",
               "west"
-            ]
-          ],
-          "act": "inform"
-        }
-      ]
-    },
-    {
-      "text": "steak house",
-      "semantics": [
-        {
-          "slots": [
-            [
-              "food",
-              "steakhouse"
-            ]
-          ],
-          "act": "inform"
-        }
-      ]
-    },
-    {
-      "text": "steak house",
-      "semantics": [
-        {
-          "slots": [
-            [
-              "food",
-              "steakhouse"
-            ]
-          ],
-          "act": "inform"
-        }
-      ]
-    },
-    {
-      "text": "can i get a steak house restaurant in any area",
-      "semantics": [
-        {
-          "slots": [
-            [
-              "food",
-              "steakhouse"
-            ]
-          ],
-          "act": "inform"
-        },
-        {
-          "slots": [
-            [
-              "area",
-              "dontcare"
             ]
           ],
           "act": "inform"
@@ -18131,90 +17632,6 @@
             [
               "pricerange",
               "moderate"
-            ]
-          ],
-          "act": "inform"
-        }
-      ]
-    },
-    {
-      "text": "pan asian food",
-      "semantics": [
-        {
-          "slots": [
-            [
-              "food",
-              "asian oriental"
-            ]
-          ],
-          "act": "inform"
-        }
-      ]
-    },
-    {
-      "text": "pan asian food",
-      "semantics": [
-        {
-          "slots": [
-            [
-              "food",
-              "asian oriental"
-            ]
-          ],
-          "act": "inform"
-        }
-      ]
-    },
-    {
-      "text": "pan asian food",
-      "semantics": [
-        {
-          "slots": [
-            [
-              "food",
-              "asian oriental"
-            ]
-          ],
-          "act": "inform"
-        }
-      ]
-    },
-    {
-      "text": "pan asian food",
-      "semantics": [
-        {
-          "slots": [
-            [
-              "food",
-              "asian oriental"
-            ]
-          ],
-          "act": "inform"
-        }
-      ]
-    },
-    {
-      "text": "pan asian",
-      "semantics": [
-        {
-          "slots": [
-            [
-              "food",
-              "asian oriental"
-            ]
-          ],
-          "act": "inform"
-        }
-      ]
-    },
-    {
-      "text": "pan asian",
-      "semantics": [
-        {
-          "slots": [
-            [
-              "food",
-              "asian oriental"
             ]
           ],
           "act": "inform"
@@ -18428,62 +17845,6 @@
             [
               "area",
               "dontcare"
-            ]
-          ],
-          "act": "inform"
-        }
-      ]
-    },
-    {
-      "text": "pan asian",
-      "semantics": [
-        {
-          "slots": [
-            [
-              "food",
-              "asian oriental"
-            ]
-          ],
-          "act": "inform"
-        }
-      ]
-    },
-    {
-      "text": "pan asian",
-      "semantics": [
-        {
-          "slots": [
-            [
-              "food",
-              "asian oriental"
-            ]
-          ],
-          "act": "inform"
-        }
-      ]
-    },
-    {
-      "text": "pan asian",
-      "semantics": [
-        {
-          "slots": [
-            [
-              "food",
-              "asian oriental"
-            ]
-          ],
-          "act": "inform"
-        }
-      ]
-    },
-    {
-      "text": "pan asian",
-      "semantics": [
-        {
-          "slots": [
-            [
-              "food",
-              "asian oriental"
             ]
           ],
           "act": "inform"
@@ -18806,6 +18167,52 @@
             ]
           ],
           "act": "request"
+        }
+      ]
+    },
+    {
+      "text": "i need a special restaurant serving christmas food",
+      "semantics": [
+        {
+          "slots": [
+            [
+              "slot",
+              "signature"
+            ]
+          ],
+          "act": "request"
+        },
+        {
+          "slots": [
+            [
+              "food",
+              "christmas"
+            ]
+          ],
+          "act": "inform"
+        }
+      ]
+    },
+    {
+      "text": "the phone number for bloomsbury",
+      "semantics": [
+        {
+          "slots": [
+            [
+              "slot",
+              "phone"
+            ]
+          ],
+          "act": "request"
+        },
+        {
+          "slots": [
+            [
+              "name",
+              "bloomsbury restaurant"
+            ]
+          ],
+          "act": "inform"
         }
       ]
     },
@@ -19813,6 +19220,38 @@
       ]
     },
     {
+      "text": "what part of town is chiquito mexican restaurant in",
+      "semantics": [
+        {
+          "slots": [
+            [
+              "slot",
+              "area"
+            ]
+          ],
+          "act": "request"
+        },
+        {
+          "slots": [
+            [
+              "food",
+              "mexican"
+            ]
+          ],
+          "act": "inform"
+        },
+        {
+          "slots": [
+            [
+              "name",
+              "chiquito restaurant bar"
+            ]
+          ],
+          "act": "inform"
+        }
+      ]
+    },
+    {
       "text": "what type of venue",
       "semantics": [
         {
@@ -19968,86 +19407,6 @@
       ]
     }
   ],
-  "query": [
-    {
-      "text": "i need a special restaurant serving christmas food",
-      "semantics": [
-        {
-          "slots": [
-            [
-              "slot",
-              "signature"
-            ]
-          ],
-          "act": "request"
-        },
-        {
-          "slots": [
-            [
-              "food",
-              "christmas"
-            ]
-          ],
-          "act": "inform"
-        }
-      ]
-    },
-    {
-      "text": "the phone number for bloomsbury",
-      "semantics": [
-        {
-          "slots": [
-            [
-              "slot",
-              "phone"
-            ]
-          ],
-          "act": "request"
-        },
-        {
-          "slots": [
-            [
-              "name",
-              "bloomsbury restaurant"
-            ]
-          ],
-          "act": "inform"
-        }
-      ]
-    },
-    {
-      "text": "what part of town is chiquito mexican restaurant in",
-      "semantics": [
-        {
-          "slots": [
-            [
-              "slot",
-              "area"
-            ]
-          ],
-          "act": "request"
-        },
-        {
-          "slots": [
-            [
-              "food",
-              "mexican"
-            ]
-          ],
-          "act": "inform"
-        },
-        {
-          "slots": [
-            [
-              "name",
-              "chiquito restaurant bar"
-            ]
-          ],
-          "act": "inform"
-        }
-      ]
-    }
-  ],
   "bye": [
     {
       "text": "noise thank you good bye",
@@ -20185,78 +19544,6 @@
           "act": "inform"
         }
       ]
-    },
-    {
-      "text": "no im looking for pan asian food",
-      "semantics": [
-        {
-          "slots": [],
-          "act": "negate"
-        },
-        {
-          "slots": [
-            [
-              "food",
-              "asian oriental"
-            ]
-          ],
-          "act": "inform"
-        }
-      ]
-    },
-    {
-      "text": "no im looking for pan asian food",
-      "semantics": [
-        {
-          "slots": [],
-          "act": "negate"
-        },
-        {
-          "slots": [
-            [
-              "food",
-              "asian oriental"
-            ]
-          ],
-          "act": "inform"
-        }
-      ]
-    },
-    {
-      "text": "no im looking for pan asian",
-      "semantics": [
-        {
-          "slots": [],
-          "act": "negate"
-        },
-        {
-          "slots": [
-            [
-              "food",
-              "asian oriental"
-            ]
-          ],
-          "act": "inform"
-        }
-      ]
-    },
-    {
-      "text": "no im looking for pan asian",
-      "semantics": [
-        {
-          "slots": [],
-          "act": "negate"
-        },
-        {
-          "slots": [
-            [
-              "food",
-              "asian oriental"
-            ]
-          ],
-          "act": "inform"
-        }
-      ]
     }
   ],
   "confirm": [
@@ -20366,35 +19653,6 @@
         {
           "slots": [],
           "act": "affirm"
-        }
-      ]
-    }
-  ],
-  "include_filter": [
-    {
-      "text": "yea im wondering if theres a steak house restaurant in the north part of",
-      "semantics": [
-        {
-          "slots": [],
-          "act": "affirm"
-        },
-        {
-          "slots": [
-            [
-              "food",
-              "steakhouse"
-            ]
-          ],
-          "act": "inform"
-        },
-        {
-          "slots": [
-            [
-              "area",
-              "north"
-            ]
-          ],
-          "act": "inform"
         }
       ]
     }

@@ -12280,7 +12280,7 @@
         "text": "price range"
       },
       {
-        "intent": "query",
+        "intent": "request",
         "entities": [
           {
             "start": 25,
@@ -17728,7 +17728,7 @@
         "text": "thank you good bye"
       },
       {
-        "intent": "query",
+        "intent": "request",
         "entities": [
           {
             "start": 36,
@@ -18334,7 +18334,7 @@
         "text": "the phone number"
       },
       {
-        "intent": "query",
+        "intent": "request",
         "entities": [
           {
             "start": 4,
@@ -21275,7 +21275,7 @@
         "text": "the south part of town"
       },
       {
-        "intent": "query",
+        "intent": "request",
         "entities": [
           {
             "start": 5,
@@ -28435,7 +28435,7 @@
         "text": "is there anything else"
       },
       {
-        "intent": "query",
+        "intent": "request",
         "entities": [
           {
             "start": 23,
@@ -32182,7 +32182,7 @@
         "text": "type of food"
       },
       {
-        "intent": "query",
+        "intent": "request",
         "entities": [
           {
             "start": 0,
@@ -54399,7 +54399,7 @@
         "text": "im looking for a cheap restaurant in the west part of town"
       },
       {
-        "intent": "query",
+        "intent": "request",
         "entities": [
           {
             "start": 12,
@@ -56116,7 +56116,7 @@
         "text": "anything else"
       },
       {
-        "intent": "query",
+        "intent": "request",
         "entities": [
           {
             "start": 21,
@@ -62004,7 +62004,7 @@
         "text": "i want to find a restaurant that serves french food"
       },
       {
-        "intent": "query",
+        "intent": "request",
         "entities": [
           {
             "start": 2,
@@ -81401,7 +81401,7 @@
         "text": "phone number"
       },
       {
-        "intent": "query",
+        "intent": "request",
         "entities": [
           {
             "start": 19,
@@ -90129,24 +90129,6 @@
         "intent": "inform",
         "entities": [
           {
-            "start": 60,
-            "end": 69,
-            "value": "asian oriental",
-            "entity": "food"
-          },
-          {
-            "start": 31,
-            "end": 34,
-            "value": "dontcare",
-            "entity": "area"
-          }
-        ],
-        "text": "im looking for a restaurant in any area and it should serve pan asian food"
-      },
-      {
-        "intent": "inform",
-        "entities": [
-          {
             "start": 11,
             "end": 24,
             "value": "international",
@@ -94006,7 +93988,7 @@
         "text": "type of food they served"
       },
       {
-        "intent": "query",
+        "intent": "request",
         "entities": [
           {
             "start": 18,
@@ -101500,7 +101482,7 @@
         "text": "what is the address"
       },
       {
-        "intent": "query",
+        "intent": "request",
         "entities": [
           {
             "start": 20,
@@ -101518,7 +101500,7 @@
         "text": "breath curry prince address"
       },
       {
-        "intent": "query",
+        "intent": "request",
         "entities": [
           {
             "start": 13,
@@ -103252,7 +103234,7 @@
         "text": "what is the address and postcode"
       },
       {
-        "intent": "query",
+        "intent": "request",
         "entities": [
           {
             "start": 12,
@@ -109526,7 +109508,7 @@
         "text": "in the west of town"
       },
       {
-        "intent": "query",
+        "intent": "request",
         "entities": [
           {
             "start": 5,
@@ -109556,7 +109538,7 @@
         "text": "what food is available in this area"
       },
       {
-        "intent": "query",
+        "intent": "request",
         "entities": [
           {
             "start": 5,
@@ -119239,7 +119221,7 @@
         "text": "and whats its phone number"
       },
       {
-        "intent": "query",
+        "intent": "request",
         "entities": [
           {
             "start": 9,
@@ -124296,7 +124278,7 @@
         "text": "cheap food in the east part of town"
       },
       {
-        "intent": "query",
+        "intent": "request",
         "entities": [
           {
             "start": 5,
@@ -127782,7 +127764,7 @@
         "text": "what part of town is it in"
       },
       {
-        "intent": "query",
+        "intent": "request",
         "entities": [
           {
             "start": 5,
@@ -139583,7 +139565,7 @@
         "text": "thank you good bye"
       },
       {
-        "intent": "query",
+        "intent": "request",
         "entities": [
           {
             "start": 10,

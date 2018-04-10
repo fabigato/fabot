@@ -12281,7 +12281,7 @@
       },
       {
         "text": "so i dont care whats the address",
-        "intent": "query",
+        "intent": "request",
         "entities": [
           {
             "start": 25,
@@ -14972,24 +14972,6 @@
           {
             "start": 0,
             "end": 12,
-            "value": "scandinavian",
-            "entity": "food"
-          }
-        ]
-      },
-      {
-        "text": "no not indian scandinavian food",
-        "intent": "inform",
-        "entities": [
-          {
-            "start": 7,
-            "end": 13,
-            "value": "indian",
-            "entity": "food"
-          },
-          {
-            "start": 7,
-            "end": 13,
             "value": "scandinavian",
             "entity": "food"
           }
@@ -17747,7 +17729,7 @@
       },
       {
         "text": "i need a special restaurant serving christmas food",
-        "intent": "query",
+        "intent": "request",
         "entities": [
           {
             "start": 36,
@@ -18353,7 +18335,7 @@
       },
       {
         "text": "the phone number for bloomsbury",
-        "intent": "query",
+        "intent": "request",
         "entities": [
           {
             "start": 4,
@@ -21294,7 +21276,7 @@
       },
       {
         "text": "what food is available in the south part of town",
-        "intent": "query",
+        "intent": "request",
         "entities": [
           {
             "start": 5,
@@ -23624,18 +23606,6 @@
         ]
       },
       {
-        "text": "chinese food im looking for sea food",
-        "intent": "inform",
-        "entities": [
-          {
-            "start": 0,
-            "end": 7,
-            "value": "seafood",
-            "entity": "food"
-          }
-        ]
-      },
-      {
         "text": "sea food",
         "intent": "inform",
         "entities": [
@@ -25013,6 +24983,18 @@
         ]
       },
       {
+        "text": "pan asian",
+        "intent": "inform",
+        "entities": [
+          {
+            "start": 0,
+            "end": 9,
+            "value": "asian oriental",
+            "entity": "food"
+          }
+        ]
+      },
+      {
         "text": "may i have the address",
         "intent": "request",
         "entities": [
@@ -26132,18 +26114,6 @@
             "start": 48,
             "end": 52,
             "value": "_REQUESTED_",
-            "entity": "area"
-          }
-        ]
-      },
-      {
-        "text": "was that in the east part of town west part of town",
-        "intent": "inform",
-        "entities": [
-          {
-            "start": 16,
-            "end": 20,
-            "value": "west",
             "entity": "area"
           }
         ]
@@ -28466,7 +28436,7 @@
       },
       {
         "text": "what is la margheritas address",
-        "intent": "query",
+        "intent": "request",
         "entities": [
           {
             "start": 23,
@@ -28990,18 +28960,6 @@
         "text": "yes",
         "intent": "affirm",
         "entities": []
-      },
-      {
-        "text": "i am looking for kitalian food",
-        "intent": "inform",
-        "entities": [
-          {
-            "start": 18,
-            "end": 25,
-            "value": "catalan",
-            "entity": "food"
-          }
-        ]
       },
       {
         "text": "i am looking for italian",
@@ -32225,7 +32183,7 @@
       },
       {
         "text": "type of food does pizza hut serve",
-        "intent": "query",
+        "intent": "request",
         "entities": [
           {
             "start": 0,
@@ -35142,9 +35100,27 @@
         ]
       },
       {
+        "text": "no im looking for pan asian food",
+        "intent": "correct",
+        "entities": [
+          {
+            "start": 18,
+            "end": 27,
+            "value": "asian oriental",
+            "entity": "food"
+          }
+        ]
+      },
+      {
         "text": "im looking for a restaurant in the east part of town serving pan asian food",
         "intent": "inform",
         "entities": [
+          {
+            "start": 61,
+            "end": 70,
+            "value": "asian oriental",
+            "entity": "food"
+          },
           {
             "start": 35,
             "end": 39,
@@ -39924,18 +39900,6 @@
         "entities": []
       },
       {
-        "text": "id like a restaurant that serves australian asian food",
-        "intent": "inform",
-        "entities": [
-          {
-            "start": 33,
-            "end": 43,
-            "value": "australian",
-            "entity": "food"
-          }
-        ]
-      },
-      {
         "text": "could i have a restaurant that serves turkish food",
         "intent": "inform",
         "entities": [
@@ -43964,18 +43928,6 @@
         ]
       },
       {
-        "text": "i dont give a damn about chinese food i want thai food",
-        "intent": "inform",
-        "entities": [
-          {
-            "start": 25,
-            "end": 32,
-            "value": "thai",
-            "entity": "food"
-          }
-        ]
-      },
-      {
         "text": "address",
         "intent": "request",
         "entities": [
@@ -43996,24 +43948,6 @@
             "end": 44,
             "value": "thai",
             "entity": "food"
-          }
-        ]
-      },
-      {
-        "text": "i dont give a fuck if hk fusion serves chinese food im looking for thai food",
-        "intent": "inform",
-        "entities": [
-          {
-            "start": 25,
-            "end": 31,
-            "value": "thai",
-            "entity": "food"
-          },
-          {
-            "start": 22,
-            "end": 31,
-            "value": "hk fusion",
-            "entity": "name"
           }
         ]
       },
@@ -47452,24 +47386,6 @@
           {
             "start": 0,
             "end": 4,
-            "value": "thai",
-            "entity": "food"
-          }
-        ]
-      },
-      {
-        "text": "not chinese food thai food",
-        "intent": "inform",
-        "entities": [
-          {
-            "start": 4,
-            "end": 11,
-            "value": "chinese",
-            "entity": "food"
-          },
-          {
-            "start": 4,
-            "end": 11,
             "value": "thai",
             "entity": "food"
           }
@@ -54009,6 +53925,18 @@
         ]
       },
       {
+        "text": "steak house",
+        "intent": "inform",
+        "entities": [
+          {
+            "start": 0,
+            "end": 11,
+            "value": "steakhouse",
+            "entity": "food"
+          }
+        ]
+      },
+      {
         "text": "indian",
         "intent": "inform",
         "entities": [
@@ -54472,7 +54400,7 @@
       },
       {
         "text": "west is the address and phone number",
-        "intent": "query",
+        "intent": "request",
         "entities": [
           {
             "start": 12,
@@ -56189,7 +56117,7 @@
       },
       {
         "text": "okay do you have the address for da vinci pizzeria",
-        "intent": "query",
+        "intent": "request",
         "entities": [
           {
             "start": 21,
@@ -59215,6 +59143,18 @@
         "entities": []
       },
       {
+        "text": "steak house",
+        "intent": "inform",
+        "entities": [
+          {
+            "start": 0,
+            "end": 11,
+            "value": "steakhouse",
+            "entity": "food"
+          }
+        ]
+      },
+      {
         "text": "british food",
         "intent": "inform",
         "entities": [
@@ -62065,7 +62005,7 @@
       },
       {
         "text": "i dont care about the price range what is the address",
-        "intent": "query",
+        "intent": "request",
         "entities": [
           {
             "start": 2,
@@ -71968,6 +71908,12 @@
         "intent": "inform",
         "entities": [
           {
+            "start": 66,
+            "end": 75,
+            "value": "asian oriental",
+            "entity": "food"
+          },
+          {
             "start": 35,
             "end": 40,
             "value": "south",
@@ -71979,6 +71925,12 @@
         "text": "a restaurant in the south part of town serving pan asian food",
         "intent": "inform",
         "entities": [
+          {
+            "start": 47,
+            "end": 56,
+            "value": "asian oriental",
+            "entity": "food"
+          },
           {
             "start": 20,
             "end": 25,
@@ -73294,6 +73246,18 @@
             "end": 19,
             "value": "moderate",
             "entity": "pricerange"
+          }
+        ]
+      },
+      {
+        "text": "restaurant and it should serve steak house food",
+        "intent": "inform",
+        "entities": [
+          {
+            "start": 31,
+            "end": 42,
+            "value": "steakhouse",
+            "entity": "food"
           }
         ]
       },
@@ -81438,7 +81402,7 @@
       },
       {
         "text": "restaurant two two phone number",
-        "intent": "query",
+        "intent": "request",
         "entities": [
           {
             "start": 19,
@@ -84488,18 +84452,6 @@
         ]
       },
       {
-        "text": "ok if there is no restaurant serving indonesian food how about a restaurant serving chinese food",
-        "intent": "inform",
-        "entities": [
-          {
-            "start": 37,
-            "end": 47,
-            "value": "chinese",
-            "entity": "food"
-          }
-        ]
-      },
-      {
         "text": "ok is there any restaurant that serves chinese food in the east part of town",
         "intent": "inform",
         "entities": [
@@ -87371,6 +87323,42 @@
         ]
       },
       {
+        "text": "pan asian food",
+        "intent": "inform",
+        "entities": [
+          {
+            "start": 0,
+            "end": 9,
+            "value": "asian oriental",
+            "entity": "food"
+          }
+        ]
+      },
+      {
+        "text": "pan asian food",
+        "intent": "inform",
+        "entities": [
+          {
+            "start": 0,
+            "end": 9,
+            "value": "asian oriental",
+            "entity": "food"
+          }
+        ]
+      },
+      {
+        "text": "pan asian food",
+        "intent": "inform",
+        "entities": [
+          {
+            "start": 0,
+            "end": 9,
+            "value": "asian oriental",
+            "entity": "food"
+          }
+        ]
+      },
+      {
         "text": "yes",
         "intent": "affirm",
         "entities": []
@@ -89136,6 +89124,12 @@
         "intent": "inform",
         "entities": [
           {
+            "start": 23,
+            "end": 32,
+            "value": "asian oriental",
+            "entity": "food"
+          },
+          {
             "start": 17,
             "end": 22,
             "value": "cheap",
@@ -89147,6 +89141,18 @@
         "text": "yes",
         "intent": "affirm",
         "entities": []
+      },
+      {
+        "text": "pan asian food",
+        "intent": "inform",
+        "entities": [
+          {
+            "start": 0,
+            "end": 9,
+            "value": "asian oriental",
+            "entity": "food"
+          }
+        ]
       },
       {
         "text": "what kind of food is it",
@@ -90118,18 +90124,6 @@
         "text": "thank you good bye",
         "intent": "bye",
         "entities": []
-      },
-      {
-        "text": "im looking for a restaurant in any area and it should serve pan asian food",
-        "intent": "inform",
-        "entities": [
-          {
-            "start": 31,
-            "end": 34,
-            "value": "dontcare",
-            "entity": "area"
-          }
-        ]
       },
       {
         "text": "what about international food",
@@ -93427,6 +93421,12 @@
         "intent": "inform",
         "entities": [
           {
+            "start": 43,
+            "end": 54,
+            "value": "steakhouse",
+            "entity": "food"
+          },
+          {
             "start": 14,
             "end": 19,
             "value": "cheap",
@@ -93989,7 +93989,7 @@
       },
       {
         "text": "nandos restaurant type of food",
-        "intent": "query",
+        "intent": "request",
         "entities": [
           {
             "start": 18,
@@ -97819,6 +97819,18 @@
         "entities": []
       },
       {
+        "text": "id like a pan asian restaurant",
+        "intent": "inform",
+        "entities": [
+          {
+            "start": 10,
+            "end": 19,
+            "value": "asian oriental",
+            "entity": "food"
+          }
+        ]
+      },
+      {
         "text": "any part",
         "intent": "inform",
         "entities": [
@@ -97827,6 +97839,66 @@
             "end": 3,
             "value": "dontcare",
             "entity": "area"
+          }
+        ]
+      },
+      {
+        "text": "pan asian",
+        "intent": "inform",
+        "entities": [
+          {
+            "start": 0,
+            "end": 9,
+            "value": "asian oriental",
+            "entity": "food"
+          }
+        ]
+      },
+      {
+        "text": "pan asian food",
+        "intent": "inform",
+        "entities": [
+          {
+            "start": 0,
+            "end": 9,
+            "value": "asian oriental",
+            "entity": "food"
+          }
+        ]
+      },
+      {
+        "text": "pan asian",
+        "intent": "inform",
+        "entities": [
+          {
+            "start": 0,
+            "end": 9,
+            "value": "asian oriental",
+            "entity": "food"
+          }
+        ]
+      },
+      {
+        "text": "pan asian",
+        "intent": "inform",
+        "entities": [
+          {
+            "start": 0,
+            "end": 9,
+            "value": "asian oriental",
+            "entity": "food"
+          }
+        ]
+      },
+      {
+        "text": "no im looking for pan asian",
+        "intent": "correct",
+        "entities": [
+          {
+            "start": 18,
+            "end": 27,
+            "value": "asian oriental",
+            "entity": "food"
           }
         ]
       },
@@ -101411,7 +101483,7 @@
       },
       {
         "text": "breath curry prince address",
-        "intent": "query",
+        "intent": "request",
         "entities": [
           {
             "start": 20,
@@ -101429,7 +101501,7 @@
       },
       {
         "text": "curry prince address and phone number",
-        "intent": "query",
+        "intent": "request",
         "entities": [
           {
             "start": 13,
@@ -103163,7 +103235,7 @@
       },
       {
         "text": "what is the address of prezzo",
-        "intent": "query",
+        "intent": "request",
         "entities": [
           {
             "start": 12,
@@ -108557,18 +108629,6 @@
         ]
       },
       {
-        "text": "north east",
-        "intent": "inform",
-        "entities": [
-          {
-            "start": 0,
-            "end": 5,
-            "value": "east",
-            "entity": "area"
-          }
-        ]
-      },
-      {
         "text": "west",
         "intent": "inform",
         "entities": [
@@ -109449,7 +109509,7 @@
       },
       {
         "text": "what food is in the west part of town",
-        "intent": "query",
+        "intent": "request",
         "entities": [
           {
             "start": 5,
@@ -109479,7 +109539,7 @@
       },
       {
         "text": "what food is in the west part of town",
-        "intent": "query",
+        "intent": "request",
         "entities": [
           {
             "start": 5,
@@ -116089,6 +116149,18 @@
         "entities": []
       },
       {
+        "text": "steak house",
+        "intent": "inform",
+        "entities": [
+          {
+            "start": 0,
+            "end": 11,
+            "value": "steakhouse",
+            "entity": "food"
+          }
+        ]
+      },
+      {
         "text": "european food",
         "intent": "inform",
         "entities": [
@@ -119150,7 +119222,7 @@
       },
       {
         "text": "and what type of food do they serve at pizza hutt",
-        "intent": "query",
+        "intent": "request",
         "entities": [
           {
             "start": 9,
@@ -119711,24 +119783,6 @@
             "end": 39,
             "value": "west",
             "entity": "area"
-          }
-        ]
-      },
-      {
-        "text": "not european fusion",
-        "intent": "inform",
-        "entities": [
-          {
-            "start": 4,
-            "end": 12,
-            "value": "european",
-            "entity": "food"
-          },
-          {
-            "start": 4,
-            "end": 12,
-            "value": "fusion",
-            "entity": "food"
           }
         ]
       },
@@ -122407,10 +122461,40 @@
         "intent": "inform",
         "entities": [
           {
+            "start": 17,
+            "end": 26,
+            "value": "asian oriental",
+            "entity": "food"
+          },
+          {
             "start": 39,
             "end": 44,
             "value": "south",
             "entity": "area"
+          }
+        ]
+      },
+      {
+        "text": "pan asian",
+        "intent": "inform",
+        "entities": [
+          {
+            "start": 0,
+            "end": 9,
+            "value": "asian oriental",
+            "entity": "food"
+          }
+        ]
+      },
+      {
+        "text": "pan asian",
+        "intent": "inform",
+        "entities": [
+          {
+            "start": 0,
+            "end": 9,
+            "value": "asian oriental",
+            "entity": "food"
           }
         ]
       },
@@ -124195,7 +124279,7 @@
       },
       {
         "text": "what type of food does the missing sock serve",
-        "intent": "query",
+        "intent": "request",
         "entities": [
           {
             "start": 5,
@@ -124601,7 +124685,7 @@
         "entities": [
           {
             "start": 13,
-            "end": 23,
+            "end": 29,
             "value": "australasian",
             "entity": "food"
           }
@@ -124613,7 +124697,7 @@
         "entities": [
           {
             "start": 11,
-            "end": 21,
+            "end": 27,
             "value": "australasian",
             "entity": "food"
           }
@@ -124718,10 +124802,28 @@
         "intent": "include_filter",
         "entities": [
           {
+            "start": 29,
+            "end": 40,
+            "value": "steakhouse",
+            "entity": "food"
+          },
+          {
             "start": 59,
             "end": 64,
             "value": "north",
             "entity": "area"
+          }
+        ]
+      },
+      {
+        "text": "uh is there a steak house",
+        "intent": "inform",
+        "entities": [
+          {
+            "start": 14,
+            "end": 25,
+            "value": "steakhouse",
+            "entity": "food"
           }
         ]
       },
@@ -127663,7 +127765,7 @@
       },
       {
         "text": "what part of town is chiquito mexican restaurant in",
-        "intent": "query",
+        "intent": "request",
         "entities": [
           {
             "start": 5,
@@ -127740,6 +127842,18 @@
             "start": 0,
             "end": 8,
             "value": "moderate",
+            "entity": "pricerange"
+          }
+        ]
+      },
+      {
+        "text": "high priced",
+        "intent": "inform",
+        "entities": [
+          {
+            "start": 0,
+            "end": 11,
+            "value": "expensive",
             "entity": "pricerange"
           }
         ]
@@ -130501,9 +130615,27 @@
         "entities": []
       },
       {
+        "text": "steak house",
+        "intent": "inform",
+        "entities": [
+          {
+            "start": 0,
+            "end": 11,
+            "value": "steakhouse",
+            "entity": "food"
+          }
+        ]
+      },
+      {
         "text": "can i get a steak house restaurant in any area",
         "intent": "inform",
         "entities": [
+          {
+            "start": 12,
+            "end": 23,
+            "value": "steakhouse",
+            "entity": "food"
+          },
           {
             "start": 38,
             "end": 41,
@@ -132355,6 +132487,42 @@
             "end": 22,
             "value": "east",
             "entity": "area"
+          }
+        ]
+      },
+      {
+        "text": "pan asian food",
+        "intent": "inform",
+        "entities": [
+          {
+            "start": 0,
+            "end": 9,
+            "value": "asian oriental",
+            "entity": "food"
+          }
+        ]
+      },
+      {
+        "text": "pan asian food",
+        "intent": "inform",
+        "entities": [
+          {
+            "start": 0,
+            "end": 9,
+            "value": "asian oriental",
+            "entity": "food"
+          }
+        ]
+      },
+      {
+        "text": "pan asian",
+        "intent": "inform",
+        "entities": [
+          {
+            "start": 0,
+            "end": 9,
+            "value": "asian oriental",
+            "entity": "food"
           }
         ]
       },
@@ -139398,7 +139566,7 @@
       },
       {
         "text": "whats the address for moderately priced restaurants in the south part of town",
-        "intent": "query",
+        "intent": "request",
         "entities": [
           {
             "start": 10,
@@ -141033,6 +141201,30 @@
         "text": "good bye",
         "intent": "bye",
         "entities": []
+      },
+      {
+        "text": "pan asian",
+        "intent": "inform",
+        "entities": [
+          {
+            "start": 0,
+            "end": 9,
+            "value": "asian oriental",
+            "entity": "food"
+          }
+        ]
+      },
+      {
+        "text": "pan asian",
+        "intent": "inform",
+        "entities": [
+          {
+            "start": 0,
+            "end": 9,
+            "value": "asian oriental",
+            "entity": "food"
+          }
+        ]
       },
       {
         "text": "south part of town",
@@ -144896,6 +145088,12 @@
         ]
       },
       {
+        "value": "expensive",
+        "synonyms": [
+          "high priced"
+        ]
+      },
+      {
         "value": "middle eastern",
         "synonyms": [
           "middle-eastern",
@@ -144948,6 +145146,24 @@
         "synonyms": [
           "barbecue"
         ]
+      },
+      {
+        "value": "panasian",
+        "synonyms": [
+          "pan asian"
+        ]
+      },
+      {
+        "value": "steakhouse",
+        "synonyms": [
+          "steak house"
+        ]
+      },
+      {
+        "value": "australasian",
+        "synonyms": [
+          "australian asian"
+        ]
       }
     ],
     "regex_features": [
@@ -144994,6 +145210,870 @@
       {
         "name": "signature",
         "pattern": "signature plate|special dish|special plate|specialty|signature dish|specialized"
+      },
+      {
+        "name": "informed_centre",
+        "pattern": "centre|center"
+      },
+      {
+        "name": "informed_north",
+        "pattern": "north"
+      },
+      {
+        "name": "informed_west",
+        "pattern": "west"
+      },
+      {
+        "name": "informed_south",
+        "pattern": "south"
+      },
+      {
+        "name": "informed_east",
+        "pattern": "east"
+      },
+      {
+        "name": "informed_dontcare",
+        "pattern": "dontcare|dont care|don't care|do not care|does not matter|doesnt matter|doesn't matter|not important|anywhere|any|dont mind"
+      },
+      {
+        "name": "informed_afghan",
+        "pattern": "afghan"
+      },
+      {
+        "name": "informed_african",
+        "pattern": "african"
+      },
+      {
+        "name": "informed_afternoon tea",
+        "pattern": "afternoon tea"
+      },
+      {
+        "name": "informed_asian oriental",
+        "pattern": "asian oriental"
+      },
+      {
+        "name": "informed_australasian",
+        "pattern": "australasian|australian asian"
+      },
+      {
+        "name": "informed_australian",
+        "pattern": "australian"
+      },
+      {
+        "name": "informed_austrian",
+        "pattern": "austrian"
+      },
+      {
+        "name": "informed_barbeque",
+        "pattern": "barbeque|barbecue"
+      },
+      {
+        "name": "informed_basque",
+        "pattern": "basque"
+      },
+      {
+        "name": "informed_belgian",
+        "pattern": "belgian|belgium"
+      },
+      {
+        "name": "informed_bistro",
+        "pattern": "bistro"
+      },
+      {
+        "name": "informed_brazilian",
+        "pattern": "brazilian"
+      },
+      {
+        "name": "informed_british",
+        "pattern": "british"
+      },
+      {
+        "name": "informed_canapes",
+        "pattern": "canapes"
+      },
+      {
+        "name": "informed_cantonese",
+        "pattern": "cantonese"
+      },
+      {
+        "name": "informed_caribbean",
+        "pattern": "caribbean"
+      },
+      {
+        "name": "informed_catalan",
+        "pattern": "catalan"
+      },
+      {
+        "name": "informed_chinese",
+        "pattern": "chinese"
+      },
+      {
+        "name": "informed_christmas",
+        "pattern": "christmas"
+      },
+      {
+        "name": "informed_corsica",
+        "pattern": "corsica"
+      },
+      {
+        "name": "informed_creative",
+        "pattern": "creative"
+      },
+      {
+        "name": "informed_crossover",
+        "pattern": "crossover"
+      },
+      {
+        "name": "informed_cuban",
+        "pattern": "cuban"
+      },
+      {
+        "name": "informed_danish",
+        "pattern": "danish"
+      },
+      {
+        "name": "informed_eastern european",
+        "pattern": "eastern european"
+      },
+      {
+        "name": "informed_english",
+        "pattern": "english"
+      },
+      {
+        "name": "informed_eritrean",
+        "pattern": "eritrean"
+      },
+      {
+        "name": "informed_european",
+        "pattern": "european"
+      },
+      {
+        "name": "informed_french",
+        "pattern": "french"
+      },
+      {
+        "name": "informed_fusion",
+        "pattern": "fusion"
+      },
+      {
+        "name": "informed_gastropub",
+        "pattern": "gastropub"
+      },
+      {
+        "name": "informed_german",
+        "pattern": "german"
+      },
+      {
+        "name": "informed_greek",
+        "pattern": "greek"
+      },
+      {
+        "name": "informed_halal",
+        "pattern": "halal"
+      },
+      {
+        "name": "informed_hungarian",
+        "pattern": "hungarian"
+      },
+      {
+        "name": "informed_indian",
+        "pattern": "indian"
+      },
+      {
+        "name": "informed_indonesian",
+        "pattern": "indonesian"
+      },
+      {
+        "name": "informed_international",
+        "pattern": "international"
+      },
+      {
+        "name": "informed_irish",
+        "pattern": "irish"
+      },
+      {
+        "name": "informed_italian",
+        "pattern": "italian"
+      },
+      {
+        "name": "informed_jamaican",
+        "pattern": "jamaican"
+      },
+      {
+        "name": "informed_japanese",
+        "pattern": "japanese"
+      },
+      {
+        "name": "informed_korean",
+        "pattern": "korean"
+      },
+      {
+        "name": "informed_kosher",
+        "pattern": "kosher"
+      },
+      {
+        "name": "informed_latin american",
+        "pattern": "latin american"
+      },
+      {
+        "name": "informed_lebanese",
+        "pattern": "lebanese"
+      },
+      {
+        "name": "informed_light bites",
+        "pattern": "light bites"
+      },
+      {
+        "name": "informed_malaysian",
+        "pattern": "malaysian"
+      },
+      {
+        "name": "informed_mediterranean",
+        "pattern": "mediterranean"
+      },
+      {
+        "name": "informed_mexican",
+        "pattern": "mexican"
+      },
+      {
+        "name": "informed_middle eastern",
+        "pattern": "middle eastern|middle-eastern|middleeastern"
+      },
+      {
+        "name": "informed_modern american",
+        "pattern": "modern american"
+      },
+      {
+        "name": "informed_modern eclectic",
+        "pattern": "modern eclectic"
+      },
+      {
+        "name": "informed_modern european",
+        "pattern": "modern european"
+      },
+      {
+        "name": "informed_modern global",
+        "pattern": "modern global"
+      },
+      {
+        "name": "informed_molecular gastronomy",
+        "pattern": "molecular gastronomy"
+      },
+      {
+        "name": "informed_moroccan",
+        "pattern": "moroccan"
+      },
+      {
+        "name": "informed_new zealand",
+        "pattern": "new zealand"
+      },
+      {
+        "name": "informed_north african",
+        "pattern": "north african"
+      },
+      {
+        "name": "informed_north american",
+        "pattern": "north american|american|USA|US"
+      },
+      {
+        "name": "informed_north indian",
+        "pattern": "north indian"
+      },
+      {
+        "name": "informed_northern european",
+        "pattern": "northern european"
+      },
+      {
+        "name": "informed_panasian",
+        "pattern": "panasian|pan asian"
+      },
+      {
+        "name": "informed_persian",
+        "pattern": "persian"
+      },
+      {
+        "name": "informed_polish",
+        "pattern": "polish"
+      },
+      {
+        "name": "informed_polynesian",
+        "pattern": "polynesian"
+      },
+      {
+        "name": "informed_portuguese",
+        "pattern": "portuguese"
+      },
+      {
+        "name": "informed_romanian",
+        "pattern": "romanian"
+      },
+      {
+        "name": "informed_russian",
+        "pattern": "russian"
+      },
+      {
+        "name": "informed_scandinavian",
+        "pattern": "scandinavian"
+      },
+      {
+        "name": "informed_scottish",
+        "pattern": "scottish"
+      },
+      {
+        "name": "informed_seafood",
+        "pattern": "seafood|sea food"
+      },
+      {
+        "name": "informed_singaporean",
+        "pattern": "singaporean"
+      },
+      {
+        "name": "informed_south african",
+        "pattern": "south african"
+      },
+      {
+        "name": "informed_south indian",
+        "pattern": "south indian"
+      },
+      {
+        "name": "informed_spanish",
+        "pattern": "spanish"
+      },
+      {
+        "name": "informed_sri lankan",
+        "pattern": "sri lankan"
+      },
+      {
+        "name": "informed_steakhouse",
+        "pattern": "steakhouse|steak house"
+      },
+      {
+        "name": "informed_swedish",
+        "pattern": "swedish"
+      },
+      {
+        "name": "informed_swiss",
+        "pattern": "swiss"
+      },
+      {
+        "name": "informed_thai",
+        "pattern": "thai"
+      },
+      {
+        "name": "informed_the americas",
+        "pattern": "the americas"
+      },
+      {
+        "name": "informed_traditional",
+        "pattern": "traditional"
+      },
+      {
+        "name": "informed_turkish",
+        "pattern": "turkish"
+      },
+      {
+        "name": "informed_tuscan",
+        "pattern": "tuscan"
+      },
+      {
+        "name": "informed_unusual",
+        "pattern": "unusual"
+      },
+      {
+        "name": "informed_vegetarian",
+        "pattern": "vegetarian"
+      },
+      {
+        "name": "informed_venetian",
+        "pattern": "venetian"
+      },
+      {
+        "name": "informed_vietnamese",
+        "pattern": "vietnamese"
+      },
+      {
+        "name": "informed_welsh",
+        "pattern": "welsh"
+      },
+      {
+        "name": "informed_world",
+        "pattern": "world"
+      },
+      {
+        "name": "informed_dontcare",
+        "pattern": "dontcare|dont care|don't care|do not care|does not matter|doesnt matter|doesn't matter|not important|anywhere|any|dont mind"
+      },
+      {
+        "name": "informed_cheap",
+        "pattern": "cheap"
+      },
+      {
+        "name": "informed_moderate",
+        "pattern": "moderate|affordable|not too expensive|moderately"
+      },
+      {
+        "name": "informed_expensive",
+        "pattern": "expensive|high priced"
+      },
+      {
+        "name": "informed_dontcare",
+        "pattern": "dontcare|dont care|don't care|do not care|does not matter|doesnt matter|doesn't matter|not important|anywhere|any|dont mind"
+      },
+      {
+        "name": "informed_ali baba",
+        "pattern": "ali baba"
+      },
+      {
+        "name": "informed_anatolia",
+        "pattern": "anatolia"
+      },
+      {
+        "name": "informed_ask",
+        "pattern": "ask"
+      },
+      {
+        "name": "informed_backstreet bistro",
+        "pattern": "backstreet bistro"
+      },
+      {
+        "name": "informed_bangkok city",
+        "pattern": "bangkok city"
+      },
+      {
+        "name": "informed_bedouin",
+        "pattern": "bedouin"
+      },
+      {
+        "name": "informed_bloomsbury restaurant",
+        "pattern": "bloomsbury restaurant"
+      },
+      {
+        "name": "informed_caffe uno",
+        "pattern": "caffe uno"
+      },
+      {
+        "name": "informed_cambridge lodge restaurant",
+        "pattern": "cambridge lodge restaurant"
+      },
+      {
+        "name": "informed_charlie chan",
+        "pattern": "charlie chan"
+      },
+      {
+        "name": "informed_chiquito restaurant bar",
+        "pattern": "chiquito restaurant bar"
+      },
+      {
+        "name": "informed_city stop restaurant",
+        "pattern": "city stop restaurant"
+      },
+      {
+        "name": "informed_clowns cafe",
+        "pattern": "clowns cafe"
+      },
+      {
+        "name": "informed_cocum",
+        "pattern": "cocum"
+      },
+      {
+        "name": "informed_cote",
+        "pattern": "cote"
+      },
+      {
+        "name": "informed_cotto",
+        "pattern": "cotto"
+      },
+      {
+        "name": "informed_curry garden",
+        "pattern": "curry garden"
+      },
+      {
+        "name": "informed_curry king",
+        "pattern": "curry king"
+      },
+      {
+        "name": "informed_curry prince",
+        "pattern": "curry prince"
+      },
+      {
+        "name": "informed_curry queen",
+        "pattern": "curry queen"
+      },
+      {
+        "name": "informed_da vinci pizzeria",
+        "pattern": "da vinci pizzeria"
+      },
+      {
+        "name": "informed_da vince pizzeria",
+        "pattern": "da vince pizzeria"
+      },
+      {
+        "name": "informed_darrys cookhouse and wine shop",
+        "pattern": "darrys cookhouse and wine shop"
+      },
+      {
+        "name": "informed_de luca cucina and bar",
+        "pattern": "de luca cucina and bar"
+      },
+      {
+        "name": "informed_dojo noodle bar",
+        "pattern": "dojo noodle bar"
+      },
+      {
+        "name": "informed_don pasquale pizzeria",
+        "pattern": "don pasquale pizzeria"
+      },
+      {
+        "name": "informed_efes restaurant",
+        "pattern": "efes restaurant"
+      },
+      {
+        "name": "informed_eraina",
+        "pattern": "eraina"
+      },
+      {
+        "name": "informed_fitzbillies restaurant",
+        "pattern": "fitzbillies restaurant"
+      },
+      {
+        "name": "informed_frankie and bennys",
+        "pattern": "frankie and bennys"
+      },
+      {
+        "name": "informed_galleria",
+        "pattern": "galleria"
+      },
+      {
+        "name": "informed_golden house",
+        "pattern": "golden house"
+      },
+      {
+        "name": "informed_golden wok",
+        "pattern": "golden wok"
+      },
+      {
+        "name": "informed_gourmet burger kitchen",
+        "pattern": "gourmet burger kitchen"
+      },
+      {
+        "name": "informed_graffiti",
+        "pattern": "graffiti"
+      },
+      {
+        "name": "informed_grafton hotel restaurant",
+        "pattern": "grafton hotel restaurant"
+      },
+      {
+        "name": "informed_hakka",
+        "pattern": "hakka"
+      },
+      {
+        "name": "informed_hk fusion",
+        "pattern": "hk fusion"
+      },
+      {
+        "name": "informed_hotel du vin and bistro",
+        "pattern": "hotel du vin and bistro"
+      },
+      {
+        "name": "informed_india house",
+        "pattern": "india house"
+      },
+      {
+        "name": "informed_j restaurant",
+        "pattern": "j restaurant"
+      },
+      {
+        "name": "informed_jinling noodle bar",
+        "pattern": "jinling noodle bar"
+      },
+      {
+        "name": "informed_kohinoor",
+        "pattern": "kohinoor"
+      },
+      {
+        "name": "informed_kymmoy",
+        "pattern": "kymmoy"
+      },
+      {
+        "name": "informed_la margherita",
+        "pattern": "la margherita"
+      },
+      {
+        "name": "informed_la mimosa",
+        "pattern": "la mimosa"
+      },
+      {
+        "name": "informed_la raza",
+        "pattern": "la raza"
+      },
+      {
+        "name": "informed_la tasca",
+        "pattern": "la tasca"
+      },
+      {
+        "name": "informed_lan hong house",
+        "pattern": "lan hong house"
+      },
+      {
+        "name": "informed_little seoul",
+        "pattern": "little seoul"
+      },
+      {
+        "name": "informed_loch fyne",
+        "pattern": "loch fyne"
+      },
+      {
+        "name": "informed_mahal of cambridge",
+        "pattern": "mahal of cambridge"
+      },
+      {
+        "name": "informed_maharajah tandoori restaurant",
+        "pattern": "maharajah tandoori restaurant"
+      },
+      {
+        "name": "informed_meghna",
+        "pattern": "meghna"
+      },
+      {
+        "name": "informed_meze bar restaurant",
+        "pattern": "meze bar restaurant"
+      },
+      {
+        "name": "informed_michaelhouse cafe",
+        "pattern": "michaelhouse cafe"
+      },
+      {
+        "name": "informed_midsummer house restaurant",
+        "pattern": "midsummer house restaurant"
+      },
+      {
+        "name": "informed_nandos",
+        "pattern": "nandos"
+      },
+      {
+        "name": "informed_nandos city centre",
+        "pattern": "nandos city centre"
+      },
+      {
+        "name": "informed_panahar",
+        "pattern": "panahar"
+      },
+      {
+        "name": "informed_peking restaurant",
+        "pattern": "peking restaurant"
+      },
+      {
+        "name": "informed_pipasha restaurant",
+        "pattern": "pipasha restaurant"
+      },
+      {
+        "name": "informed_pizza express",
+        "pattern": "pizza express"
+      },
+      {
+        "name": "informed_pizza express fen ditton",
+        "pattern": "pizza express fen ditton"
+      },
+      {
+        "name": "informed_pizza hut",
+        "pattern": "pizza hut"
+      },
+      {
+        "name": "informed_pizza hut city centre",
+        "pattern": "pizza hut city centre"
+      },
+      {
+        "name": "informed_pizza hut cherry hinton",
+        "pattern": "pizza hut cherry hinton"
+      },
+      {
+        "name": "informed_pizza hut fen ditton",
+        "pattern": "pizza hut fen ditton"
+      },
+      {
+        "name": "informed_prezzo",
+        "pattern": "prezzo"
+      },
+      {
+        "name": "informed_rajmahal",
+        "pattern": "rajmahal"
+      },
+      {
+        "name": "informed_restaurant alimentum",
+        "pattern": "restaurant alimentum"
+      },
+      {
+        "name": "informed_restaurant one seven",
+        "pattern": "restaurant one seven"
+      },
+      {
+        "name": "informed_restaurant two two",
+        "pattern": "restaurant two two"
+      },
+      {
+        "name": "informed_rice boat",
+        "pattern": "rice boat"
+      },
+      {
+        "name": "informed_rice house",
+        "pattern": "rice house"
+      },
+      {
+        "name": "informed_riverside brasserie",
+        "pattern": "riverside brasserie"
+      },
+      {
+        "name": "informed_royal spice",
+        "pattern": "royal spice"
+      },
+      {
+        "name": "informed_royal standard",
+        "pattern": "royal standard"
+      },
+      {
+        "name": "informed_saffron brasserie",
+        "pattern": "saffron brasserie"
+      },
+      {
+        "name": "informed_saigon city",
+        "pattern": "saigon city"
+      },
+      {
+        "name": "informed_saint johns chop house",
+        "pattern": "saint johns chop house"
+      },
+      {
+        "name": "informed_sala thong",
+        "pattern": "sala thong"
+      },
+      {
+        "name": "informed_sesame restaurant and bar",
+        "pattern": "sesame restaurant and bar"
+      },
+      {
+        "name": "informed_shanghai family restaurant",
+        "pattern": "shanghai family restaurant"
+      },
+      {
+        "name": "informed_shiraz restaurant",
+        "pattern": "shiraz restaurant"
+      },
+      {
+        "name": "informed_sitar tandoori",
+        "pattern": "sitar tandoori"
+      },
+      {
+        "name": "informed_stazione restaurant and coffee bar",
+        "pattern": "stazione restaurant and coffee bar"
+      },
+      {
+        "name": "informed_taj tandoori",
+        "pattern": "taj tandoori"
+      },
+      {
+        "name": "informed_tandoori palace",
+        "pattern": "tandoori palace"
+      },
+      {
+        "name": "informed_tang chinese",
+        "pattern": "tang chinese"
+      },
+      {
+        "name": "informed_thanh binh",
+        "pattern": "thanh binh"
+      },
+      {
+        "name": "informed_the cambridge chop house",
+        "pattern": "the cambridge chop house"
+      },
+      {
+        "name": "informed_the copper kettle",
+        "pattern": "the copper kettle"
+      },
+      {
+        "name": "informed_the cow pizza kitchen and bar",
+        "pattern": "the cow pizza kitchen and bar"
+      },
+      {
+        "name": "informed_the gandhi",
+        "pattern": "the gandhi"
+      },
+      {
+        "name": "informed_the gardenia",
+        "pattern": "the gardenia"
+      },
+      {
+        "name": "informed_the golden curry",
+        "pattern": "the golden curry"
+      },
+      {
+        "name": "informed_the good luck chinese food takeaway",
+        "pattern": "the good luck chinese food takeaway"
+      },
+      {
+        "name": "informed_the hotpot",
+        "pattern": "the hotpot"
+      },
+      {
+        "name": "informed_the lucky star",
+        "pattern": "the lucky star"
+      },
+      {
+        "name": "informed_the missing sock",
+        "pattern": "the missing sock"
+      },
+      {
+        "name": "informed_the nirala",
+        "pattern": "the nirala"
+      },
+      {
+        "name": "informed_the oak bistro",
+        "pattern": "the oak bistro"
+      },
+      {
+        "name": "informed_the river bar steakhouse and grill",
+        "pattern": "the river bar steakhouse and grill"
+      },
+      {
+        "name": "informed_the slug and lettuce",
+        "pattern": "the slug and lettuce"
+      },
+      {
+        "name": "informed_the varsity restaurant",
+        "pattern": "the varsity restaurant"
+      },
+      {
+        "name": "informed_travellers rest",
+        "pattern": "travellers rest"
+      },
+      {
+        "name": "informed_ugly duckling",
+        "pattern": "ugly duckling"
+      },
+      {
+        "name": "informed_venue",
+        "pattern": "venue"
+      },
+      {
+        "name": "informed_wagamama",
+        "pattern": "wagamama"
+      },
+      {
+        "name": "informed_yippee noodle bar",
+        "pattern": "yippee noodle bar"
+      },
+      {
+        "name": "informed_yu garden",
+        "pattern": "yu garden"
+      },
+      {
+        "name": "informed_zizzi cambridge",
+        "pattern": "zizzi cambridge"
+      },
+      {
+        "name": "informed_dontcare",
+        "pattern": "dontcare|dont care|don't care|do not care|does not matter|doesnt matter|doesn't matter|not important|anywhere|any|dont mind"
       }
     ]
   }

@@ -65,27 +65,28 @@ def _produce_unsuccessful_search_message(filters):
     return message
 
 
-def _produce_offer_restaurant_message(filters, name):
+def _produce_offer_restaurant_message(tracker):
+    filters = {var: value for var, value in tracker.current_slot_values().items() if
+               var in ['food', 'pricerange', 'area'] and value not in [None, 'dontcare']}
     filter_names = set(filters.keys())
+    restaurant = _get_current_restaurant(tracker)
     if filter_names == {'area', 'pricerange'}:
         message = '{name} is a nice place in the {area} of town and the prices are {pricerange}'.format(
-            name=name,
-            area=filters['area'],
-            pricerange=filters['pricerange'])
+            name=restaurant['name'],
+            area=restaurant['area'],
+            pricerange=restaurant['pricerange'])
     elif filter_names == {'area', 'food'}:
         message = '{name} is a nice place in the {area} of town serving tasty {food} food'.format(
-            name=name, area=filters['area'], food=filters['food']
+            name=restaurant['name'], area=restaurant['area'], food=restaurant['food']
         )
     elif filter_names == {'area', 'food', 'pricerange'}:
         message = '{name} is a great restaurant serving {pricerange} {food} food in the {area} of town .'.format(
-            name=name, pricerange=filters['pricerange'], food=filters['food'], area=filters['area']
+            name=restaurant['name'], pricerange=restaurant['pricerange'], food=restaurant['food'],
+            area=restaurant['area']
         )
     else:
         logger.info('unknown filter combination when producing offer restaurant message: {}'.format(filter_names))
-        if 'food' in filters:
-            message = '{name} serves {food} food'.format(name=name, food=filters['food'])
-        else:
-            message = '{name} serves <food> food'
+        message = '{name} serves {food} food'.format(name=restaurant['name'], food=restaurant['food'])
     return message
 
 
@@ -103,7 +104,7 @@ def _search_and_inform(tracker, dispatcher):
         if len(results) == 0:
             message = _produce_unsuccessful_search_message(filters)
         else:
-            # message = _produce_offer_restaurant_message(filters, results.iloc[0]['name'])
+            # message = _produce_offer_restaurant_message(tracker)
             food = filters['food'].lower().replace(' ', '_') if ('food' in filters and filters['food'] != 'dontcare') \
                 else 'R_cuisine'
             area = filters['area'].lower() if ('area' in filters and filters['area'] != 'dontcare') else 'R_location'
@@ -125,7 +126,7 @@ def _search_and_inform(tracker, dispatcher):
         if results is not None:
             current_index = tracker.current_slot_values()['last_offer_index'] + 1
             if current_index < len(results):
-                message = _produce_offer_restaurant_message(filters, results.iloc[current_index]['name'])
+                message = _produce_offer_restaurant_message(tracker)
                 dispatcher.utter_message(message)
                 return [SlotSet("last_offer_index", current_index)]
             else:

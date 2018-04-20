@@ -1,0 +1,107 @@
+user das:
+18340  all trn
+18000  - good morning
+12596  - <SILENCE>
+12580  - '^i\'d like to book a table with (?P<food>\w+) food$'
+12324  - '^in (?P<location>\w+)$'
+12146  - '^for (?P<number>\w+) people please$'
+11902  - '^in a (?p<price>\w+) price range please$'
+11761  - '^actually i would prefer for (?P<number>\w+) people$'
+11487  - '^instead could it be in (?P<location>\w+)$'
+11360  - '^instead could it be with (?P<cuisine>\w+) food$'
+10360  - '^no$'
+9879   - '^no this does not work for me$'
+9404   - '^do you have something else$'
+9168   - '^it\'s perfect$'
+8913   - '^may i have the phone number of the restaurant$'
+8571   - '^thanks$'
+8080   - '^no thank you$'
+7749   - '^hello$'
+7744   - '^may i have a table in (?P<location>\w+) for (?P<number>\w+) in a (?P<price>\w+) price range$'
+7565   - '^i love (?P<cuisine>\w+) food$'
+7324   - '^actually i would prefer in (?P<location>\w+)$'
+7213   - '^actually i would prefer with (?P<cuisine>\w+) cuisine$'
+6765   - '^no i don\'t like that$'
+6524   - '^i love that$'
+6015   - '^no thanks$'
+5686   - '^hi$'
+5685   - '^i\'d like to book a table with (?P<cuisine>\w+) cuisine in a moderate (?P<price>\w+) range for (?P<number>\w+) people$'
+5429   - '^(?P<cuisine>\w+) please$'
+5312   - '^actually i would prefer with (?P<cuisine>\w+) food$'
+5064   - '^actually i would prefer in a (?P<price>\w+) price range$'
+4818   - '^let\'s do it$'
+4556   - '^may i have the address of the restaurant$'
+4220   - '^thank you$'
+4216   - '^i\'d like to book a table for (?P<number>\w+) in (?P<location>\w+) in a (?P<price>\w+) price range$'
+4065   - '^with (?P<cuisine>\w+) cuisine$'
+3819   - '^what is the phone number of the restaurant$'
+3817   - '^can you make a restaurant reservation in (?P<location>\w+) in a (?P<price>\w+) price range with (?P<cuisine>\w+) food$'
+3678   - '^instead could it be with (?P<cuisine>\w+) cuisine$'
+3544   - '^instead could it be for (?P<number>\w+)$'
+3267   - '^that looks great$'
+3013   - '^do you have its phone number$'
+2691   - '^you rock$'
+2689   - '^may i have a table in a (?P<price>\w+) price range for (?P<number>\w+)$'
+2685   - '^i\'d like to book a table for (?P<number>\w+) in a (?P<price>\w+) price range$'
+2681   - '^may i have a table in a (?P<price>\w+) price range in (?P<location>\w+) with (?P<cuisine>\w+) food$'
+2532   - '^for (?P<number>\w+) please$'
+2516   - '^may i have a table for (?P<number>\w+)$'
+2266   - '^i am looking for a (?P<price>\w+) restaurant$'
+2014   - '^do you have its address$'
+2012   - '^can you book a table with (?P<cuisine>\w+) food in (?P<location>\w+) in a (?P<price>\w+) price range$'
+1766   - '^instead could it be in a (?P<price>\w+) price range$'
+1763   - '^may i have a table for (?P<number>\w+) with (?P<cuisine>\w+) food in a (?P<price>\w+) price range$'
+1762   - '^i\'d like to book a table for (?P<number>\w+) people in a (?P<price>\w+) price range with (?P<cuisine>\w+) food$'
+418    - '^(i\'d like to book a table|may i have a table|instead could it be|actually i would prefer|can you make a restaurant reservation|can you book a table)?(( ?with (?P<cuisine>\w+) (cuisine|food))?( ?in a (?P<price>\w+) price range)?( ?for (?P<number>\w+)( people)?)?( ?in (?P<location>\w+))?)+( please)?$'
+        (with that mega regex, no need any more of:
+        '^i\'d like to book a table with (?P<cuisine>\w+) food$',
+        '^in (?P<location>\w+)$',
+        '^for (?P<number>\w+) people please$',
+        '^in a (?P<price>\w+) price range please$',
+        '^actually i would prefer for (?P<number>\w+) people$',
+        '^instead could it be in (?P<location>\w+)$',
+        '^instead could it be with (?P<cuisine>\w+) food$',
+        '^may i have a table in (?P<location>\w+) for (?P<number>\w+) in a (?P<price>\w+) price range$',
+        '^actually i would prefer in (?P<location>\w+)$',
+        '^actually i would prefer with (?P<cuisine>\w+) cuisine$',
+        '^i\'d like to book a table with (?P<cuisine>\w+) cuisine in a (?P<price>\w+) range for '
+        '(?P<number>\w+) people$',
+        '^actually i would prefer with (?P<cuisine>\w+) food$',
+        '^actually i would prefer in a (?P<price>\w+) price range$',
+        '^i\'d like to book a table for (?P<number>\w+) in (?P<location>\w+) in a (?P<price>\w+) price range$',
+        '^with (?P<cuisine>\w+) cuisine$',
+        '^can you make a restaurant reservation in (?P<location>\w+) in a (?P<price>\w+) price range with '
+        '(?P<cuisine>\w+) food$',
+        '^instead could it be with (?P<cuisine>\w+) cuisine$',
+        '^instead could it be for (?P<number>\w+)$',
+        '^may i have a table in a (?P<price>\w+) price range for (?P<number>\w+)$',
+        '^i\'d like to book a table for (?P<number>\w+) in a (?P<price>\w+) price range$',
+        '^may i have a table in a (?P<price>\w+) price range in (?P<location>\w+) with (?P<cuisine>\w+) food$',
+        '^for (?P<number>\w+) please$',
+        '^may i have a table for (?P<number>\w+)$',
+        '^can you book a table with (?P<cuisine>\w+) food in (?P<location>\w+) in a (?P<price>\w+) price range$',
+        '^instead could it be in a (?P<price>\w+) price range$',
+        '^may i have a table for (?P<number>\w+) with (?P<cuisine>\w+) food in a (?P<price>\w+) price range$',
+        '^i\'d like to book a table for (?P<number>\w+) people in a (?P<price>\w+) price range with (?P<cuisine>\w+)'
+        ' food$',
+153    - '^can you provide the address$'
+0      - '^we will be (?P<number>\w+)$'
+
+bot das:
+73563  all trn/dev/tst
+70572  - '^here it is \w+phone$'
+60779  - '^what do you think of this option: \w+$'
+57781  - '^here it is \w+address$'
+49781  - '^ok let me look into some options for you$'
+41739  - '^sure is there anything else to update$'
+35946  - '^sure let me find an other option for you$'
+27946  - '^api_call \w+ \w+ \w+ \w+$'
+23946  - '^great let me do the reservation$'
+19946  - '^hello what can i help you with today$'
+15946  - '^i\'m on it$'
+13932  - '^where should it be$'
+11976  - '^how many people would be in your party$'
+9968   - '^which price range are looking for$'
+5968   - '^is there anything i can help you with$'
+1968   - '^you\'re welcome$'
+0      - ^any preference on a type of cuisine$'

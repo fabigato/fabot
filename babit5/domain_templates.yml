@@ -1,0 +1,78 @@
+slots:
+  cuisine:
+    type: text
+  number:
+    type: text
+  location:
+    type: text
+  price:
+    type: text
+
+entities:
+- cuisine
+- location
+- number
+- price
+
+intents:
+ - greet
+ - inform
+ - deny
+ - affirm
+ - request_phone
+ - request_address
+ - thankyou
+ - bye
+ - silence
+
+templates:
+  utter_give_phone:
+    - 'here it is _phone'
+  utter_give_address:
+    - 'here it is _address'
+  utter_suggest_restaurant:
+    - 'what do you think of this option: _restaurant'
+  utter_announce_search:
+    - 'ok let me look into some options for you'
+  utter_request_updates:
+    - 'sure is there anything else to update'
+  utter_announce_keep_searching:
+    - 'sure let me find an other option for you'
+  utter_api_call:
+    - 'api_call {cuisine} {location} {number} {price}'
+  utter_reserve:
+    - 'great let me do the reservation'
+  utter_greet:
+    - 'hello what can i help you with today'
+  utter_on_it:
+    - "i'm on it"
+  utter_ask_location:
+    - 'where should it be'
+  utter_ask_number_of_people:
+    - 'how many people would be in your party'
+  utter_ask_price:
+    - 'which price range are looking for'
+  utter_ask_cuisine:
+    - 'any preference on a type of cuisine'
+  utter_ask_anything_else:
+    - 'is there anything i can help you with'
+  utter_bye:
+    - "you're welcome"
+
+actions:
+- utter_greet
+- utter_on_it
+- utter_announce_search
+- utter_api_call
+- utter_suggest_restaurant
+- utter_reserve
+- utter_announce_keep_searching
+- utter_request_updates
+- utter_give_phone
+- utter_give_address
+- utter_ask_location
+- utter_ask_number_of_people
+- utter_ask_price
+- utter_ask_cuisine
+- utter_ask_anything_else
+- utter_bye

@@ -1,5 +1,5 @@
 from unittest import TestCase
-from globals import NLU_DEV_CONFIG_FILE, PERSISTED_NLU_PATH, NLU_MODEL_NAME, BABI_TST_DIALOG_FILE, \
+from globals import NLU_DEV_CONFIG_FILE, PERSISTED_NLU_PATH, NLU_T5_MODEL_NAME, BABI_TST_DIALOG_FILE, \
     PERSISTED_DIALOG_UTTERS_PATH, BABI_TST_OOV_DIALOG_FILE
 from data.babi_reader import babi_dialogue_iterator, get_bot_act
 from rasa_core.interpreter import RasaNLUInterpreter
@@ -15,7 +15,7 @@ class TestBabiReader(TestCase):
         logging.basicConfig(level=logging.INFO)
         from rasa_nlu.evaluate import run_evaluation
         from rasa_nlu.config import RasaNLUConfig
-        run_evaluation(config=RasaNLUConfig(NLU_DEV_CONFIG_FILE), model_path=join(PERSISTED_NLU_PATH, NLU_MODEL_NAME))
+        run_evaluation(config=RasaNLUConfig(NLU_DEV_CONFIG_FILE), model_path=join(PERSISTED_NLU_PATH, NLU_T5_MODEL_NAME))
 
     def test_entities(self):
         logging.basicConfig(level=logging.INFO)
@@ -24,7 +24,7 @@ class TestBabiReader(TestCase):
         from rasa_nlu.model import Interpreter
         from rasa_nlu.evaluate import get_targets, get_predictions, get_entity_extractors, evaluate_entities
         config = RasaNLUConfig(NLU_DEV_CONFIG_FILE)
-        model_path = join(PERSISTED_NLU_PATH, NLU_MODEL_NAME)
+        model_path = join(PERSISTED_NLU_PATH, NLU_T5_MODEL_NAME)
         # get the metadata config from the package data
         test_data = load_data(config['data'], config['language'])
         interpreter = Interpreter.load(model_path, config, None)
@@ -37,7 +37,7 @@ class TestBabiReader(TestCase):
     def test_bot_template_based(self):
         logging.basicConfig(level=logging.DEBUG)
         results = []
-        interpreter = RasaNLUInterpreter(join(PERSISTED_NLU_PATH, NLU_MODEL_NAME))
+        interpreter = RasaNLUInterpreter(join(PERSISTED_NLU_PATH, NLU_T5_MODEL_NAME))
         agent = Agent.load(PERSISTED_DIALOG_UTTERS_PATH, interpreter=interpreter)
         output = CollectingOutputChannel()
         # counter = 0

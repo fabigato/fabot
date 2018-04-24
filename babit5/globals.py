@@ -13,7 +13,7 @@ with open(NLU_CONFIG_FILE) as ncf:
     nlu_config_data = load(ncf)
 NLU_TRAINING_DATA_FILE = nlu_config_data['data']
 PERSISTED_NLU_PATH = nlu_config_data['path']
-NLU_MODEL_NAME = 'rasa'
+NLU_T5_MODEL_NAME = 'babi_t5'
 DOMAIN_TEMPLATES_FILE = 'domain_templates.yml'
 DOMAIN_CODE_FILE = 'domain_code.yml'
 

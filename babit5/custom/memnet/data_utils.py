@@ -52,7 +52,7 @@ def _turn_to_binary(turn, bits):
     return list(map(lambda x: int(x), list(format(turn, format_string)[2:])))
 
 
-def _featurize_bot_act(bot_act, turn, padding=0):
+def featurize_bot_act(bot_act, turn, padding=0):
     """
     Featurizes a bot message
     :param bot_act: str indicating the bot action
@@ -66,11 +66,11 @@ def _featurize_bot_act(bot_act, turn, padding=0):
     [1, turn, 0, ... action, 0..., 0...]
     """
     bot_vec = [0] * len(act2id)
-    bot_vec[act2id[bot_act]] = 1
+    bot_vec[act2id[bot_act.replace("utter_", "")]] = 1  # just in case they include the utter_ rasa prefix
     return [1] + [turn] + bot_vec + [0] * padding
 
 
-def _featurize_user_act(intent, entities, turn, padding=0):
+def featurize_user_act(intent, entities, turn, padding=0):
     """
     Featurizes a user message
     :param intent: str indicating the user intent
@@ -95,7 +95,7 @@ def _featurize_user_act(intent, entities, turn, padding=0):
     return [0] + [turn] + intent_vec + entity_vec + [0] * padding
 
 
-def _featurize_query(intent, entities):
+def featurize_query(intent, entities):
     """
     produces a vector of features representing the query in the MemNet
     :param intent: user intent, as a string
@@ -124,11 +124,11 @@ def _format_label(bot_act):
     return bot_vec
 
 
-def _len_user_featurized_vec():
+def len_user_featurized_vec():
     return len(entity2id) + len(intent2id) + 2
 
 
-def _len_bot_featurized_vec():
+def len_bot_featurized_vec():
     return len(act2id) + 2
 
 
@@ -151,14 +151,14 @@ def format_babi_data(filename):
     l: 1 hot vector indicating the bot action at the current turn
     """
     data = []
-    bot_padding = max(0, _len_user_featurized_vec() - _len_bot_featurized_vec())
-    user_padding = max(0, _len_bot_featurized_vec() - _len_user_featurized_vec())
+    bot_padding = max(0, len_user_featurized_vec() - len_bot_featurized_vec())
+    user_padding = max(0, len_bot_featurized_vec() - len_user_featurized_vec())
     for story in babi_dialogue_iterator(filename):
         h = []
         for i, turn in enumerate(story):
-            bot_said = _featurize_bot_act(get_bot_act(turn['bot']), i, bot_padding)
-            user_said = _featurize_user_act(*get_user_act(turn['human']), i, user_padding)
-            data.append({'history': copy(h), 'query': _featurize_query(*get_user_act(turn['human'])),
+            bot_said = featurize_bot_act(get_bot_act(turn['bot']), i, bot_padding)
+            user_said = featurize_user_act(*get_user_act(turn['human']), i, user_padding)
+            data.append({'history': copy(h), 'query': featurize_query(*get_user_act(turn['human'])),
                          'label': _format_label(get_bot_act(turn['bot']))})
             h.append(user_said)
             h.append(bot_said)
@@ -166,10 +166,10 @@ def format_babi_data(filename):
 
 
 def utterance_len():
-    return max(_len_bot_featurized_vec(), _len_user_featurized_vec())
+    return max(len_bot_featurized_vec(), len_user_featurized_vec())
 
 
-def build_batches(data, batch_size, max_memory_size, utterance_length):
+def build_batches(data, utterance_length, batch_size=32, max_memory_size=8):
     """
     Produces batch indexes of points with similar length of history and adds padding so that the history component of
     all points in a batch have the same length
@@ -183,7 +183,8 @@ def build_batches(data, batch_size, max_memory_size, utterance_length):
     directly, so it gets modified by this function
     :param batch_size: number of elements in a batch, unless there are not enough elements, then a batch will have the
     remaining points, with len < batch_size
-    :param max_memory_size:
+    :param max_memory_size: max number of previous utterances (bot and user alike) to keep in history for a single
+    data point
     :param utterance_length: length of user/bot utterances (they must have same length in any case). Short histories
     will be padded by adding uterrances made of utterance_length 0s so that every history has max_memory_size
     :return: data (modified by sorting it by decreasing length of history and adding padding so all histories in a batch

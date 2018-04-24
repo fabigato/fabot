@@ -1,7 +1,8 @@
+adjacent weight tying
 hops: 1
 actions = 16
-h_len = utterance_len()
-q_len = query_len()
+h_len = 18
+q_len = 14
 embedding_size = 10
 batch = 32
 mem_size = 40
@@ -428,3 +429,1260 @@ epoch: 59	batch: 300	loss: 0.2243877798318863	accuracy:0.9375
 epoch: 59	batch: 400	loss: 0.0009978745365515351	accuracy:1.0
 epoch: 59	batch: 500	loss: 0.0013766742777079344	accuracy:1.0
 epoch: 59	dev loss: 0.130054771900177	dev accuracy: 0.911740779876709	train accuracy: 0.9560427665710449
+
+Config: (best)
+hops: 2
+actions: 16
+history utterance length: 18
+query length: 14
+embedding size: 10
+batch size: 32
+memory size: 40
+epochs: 60
+gradient clip norm: 40
+
+2018-04-20 15:41:38.956719: I tensorflow/core/platform/cpu_feature_guard.cc:140] Your CPU supports instructions that this TensorFlow binary was not compiled to use: AVX2 FMA
+INFO:root:epoch: 0	batch: 0	loss: 3.136075973510742	accuracy:0.0
+INFO:root:epoch: 0	batch: 100	loss: 1.899182677268982	accuracy:0.59375
+INFO:root:epoch: 0	batch: 200	loss: 1.4090378284454346	accuracy:0.78125
+INFO:root:epoch: 0	batch: 300	loss: 2.166346788406372	accuracy:0.09375
+INFO:root:epoch: 0	batch: 400	loss: 1.3667974472045898	accuracy:0.25
+INFO:root:epoch: 0	batch: 500	loss: 2.957059860229492	accuracy:0.0
+INFO:root:epoch: 0	dev loss: 2.4913535118103027	dev accuracy: 0.25540444254875183	train accuracy: 0.3296247720718384
+INFO:root:epoch: 1	batch: 0	loss: 3.7782487869262695	accuracy:0.03125
+INFO:root:epoch: 1	batch: 100	loss: 1.324707269668579	accuracy:0.4375
+INFO:root:epoch: 1	batch: 200	loss: 0.9105207920074463	accuracy:0.875
+INFO:root:epoch: 1	batch: 300	loss: 1.4632933139801025	accuracy:0.4375
+INFO:root:epoch: 1	batch: 400	loss: 1.140758752822876	accuracy:0.6875
+INFO:root:epoch: 1	batch: 500	loss: 3.031938314437866	accuracy:0.0
+INFO:root:epoch: 1	dev loss: 2.2725775241851807	dev accuracy: 0.29208430647850037	train accuracy: 0.46918630599975586
+INFO:root:epoch: 2	batch: 0	loss: 4.473723411560059	accuracy:0.0
+INFO:root:epoch: 2	batch: 100	loss: 0.6145464777946472	accuracy:0.875
+INFO:root:epoch: 2	batch: 200	loss: 0.45328444242477417	accuracy:0.96875
+INFO:root:epoch: 2	batch: 300	loss: 1.2503398656845093	accuracy:0.4375
+INFO:root:epoch: 2	batch: 400	loss: 0.8645554780960083	accuracy:0.6875
+INFO:root:epoch: 2	batch: 500	loss: 2.7198104858398438	accuracy:0.0
+INFO:root:epoch: 2	dev loss: 1.7333017587661743	dev accuracy: 0.3587256968021393	train accuracy: 0.6932809948921204
+INFO:root:epoch: 3	batch: 0	loss: 2.622305154800415	accuracy:0.28125
+INFO:root:epoch: 3	batch: 100	loss: 0.3357425332069397	accuracy:0.875
+INFO:root:epoch: 3	batch: 200	loss: 0.2836993336677551	accuracy:0.96875
+INFO:root:epoch: 3	batch: 300	loss: 1.1373100280761719	accuracy:0.5
+INFO:root:epoch: 3	batch: 400	loss: 0.844901442527771	accuracy:0.6875
+INFO:root:epoch: 3	batch: 500	loss: 2.5828704833984375	accuracy:0.0
+INFO:root:epoch: 3	dev loss: 1.3749687671661377	dev accuracy: 0.48529013991355896	train accuracy: 0.7480366230010986
+INFO:root:epoch: 4	batch: 0	loss: 1.1187732219696045	accuracy:0.25
+INFO:root:epoch: 4	batch: 100	loss: 0.24583835899829865	accuracy:0.875
+INFO:root:epoch: 4	batch: 200	loss: 0.28098416328430176	accuracy:0.96875
+INFO:root:epoch: 4	batch: 300	loss: 0.9901098012924194	accuracy:0.59375
+INFO:root:epoch: 4	batch: 400	loss: 0.9649479985237122	accuracy:0.6875
+INFO:root:epoch: 4	batch: 500	loss: 3.185481071472168	accuracy:0.0
+INFO:root:epoch: 4	dev loss: 1.1375970840454102	dev accuracy: 0.5509562492370605	train accuracy: 0.7799956202507019
+INFO:root:epoch: 5	batch: 0	loss: 0.36202847957611084	accuracy:0.96875
+INFO:root:epoch: 5	batch: 100	loss: 0.17707885801792145	accuracy:0.9375
+INFO:root:epoch: 5	batch: 200	loss: 0.16054083406925201	accuracy:0.96875
+INFO:root:epoch: 5	batch: 300	loss: 0.8773667216300964	accuracy:0.625
+INFO:root:epoch: 5	batch: 400	loss: 0.8686007261276245	accuracy:0.6875
+INFO:root:epoch: 5	batch: 500	loss: 2.901054859161377	accuracy:0.0
+INFO:root:epoch: 5	dev loss: 1.0191971063613892	dev accuracy: 0.6382943987846375	train accuracy: 0.8024105429649353
+INFO:root:epoch: 6	batch: 0	loss: 0.09614503383636475	accuracy:1.0
+INFO:root:epoch: 6	batch: 100	loss: 0.2237567901611328	accuracy:0.875
+INFO:root:epoch: 6	batch: 200	loss: 0.19261133670806885	accuracy:0.96875
+INFO:root:epoch: 6	batch: 300	loss: 0.8774288892745972	accuracy:0.5625
+INFO:root:epoch: 6	batch: 400	loss: 0.7758489847183228	accuracy:0.6875
+INFO:root:epoch: 6	batch: 500	loss: 2.4656734466552734	accuracy:0.0
+INFO:root:epoch: 6	dev loss: 1.004660964012146	dev accuracy: 0.6576908230781555	train accuracy: 0.792484700679779
+INFO:root:epoch: 7	batch: 0	loss: 0.04717031866312027	accuracy:1.0
+INFO:root:epoch: 7	batch: 100	loss: 0.2048790007829666	accuracy:0.875
+INFO:root:epoch: 7	batch: 200	loss: 0.25306063890457153	accuracy:0.96875
+INFO:root:epoch: 7	batch: 300	loss: 0.9321619868278503	accuracy:0.53125
+INFO:root:epoch: 7	batch: 400	loss: 0.8253352642059326	accuracy:0.6875
+INFO:root:epoch: 7	batch: 500	loss: 2.295044183731079	accuracy:0.0
+INFO:root:epoch: 7	dev loss: 1.0545920133590698	dev accuracy: 0.6343934535980225	train accuracy: 0.792702853679657
+INFO:root:epoch: 8	batch: 0	loss: 0.10004115104675293	accuracy:1.0
+INFO:root:epoch: 8	batch: 100	loss: 0.18386030197143555	accuracy:0.875
+INFO:root:epoch: 8	batch: 200	loss: 0.2435285747051239	accuracy:0.96875
+INFO:root:epoch: 8	batch: 300	loss: 0.9349921345710754	accuracy:0.53125
+INFO:root:epoch: 8	batch: 400	loss: 0.8042292594909668	accuracy:0.6875
+INFO:root:epoch: 8	batch: 500	loss: 2.0419468879699707	accuracy:0.0
+INFO:root:epoch: 8	dev loss: 1.0438069105148315	dev accuracy: 0.6323345899581909	train accuracy: 0.7960842251777649
+INFO:root:epoch: 9	batch: 0	loss: 0.06258518993854523	accuracy:1.0
+INFO:root:epoch: 9	batch: 100	loss: 0.19135966897010803	accuracy:0.875
+INFO:root:epoch: 9	batch: 200	loss: 0.2048841416835785	accuracy:0.96875
+INFO:root:epoch: 9	batch: 300	loss: 0.8852523565292358	accuracy:0.59375
+INFO:root:epoch: 9	batch: 400	loss: 0.7327441573143005	accuracy:0.6875
+INFO:root:epoch: 9	batch: 500	loss: 2.093445062637329	accuracy:0.0
+INFO:root:epoch: 9	dev loss: 1.0409859418869019	dev accuracy: 0.660724937915802	train accuracy: 0.7991928458213806
+INFO:root:epoch: 10	batch: 0	loss: 0.036828696727752686	accuracy:1.0
+INFO:root:epoch: 10	batch: 100	loss: 0.20086249709129333	accuracy:0.875
+INFO:root:epoch: 10	batch: 200	loss: 0.1710054725408554	accuracy:0.96875
+INFO:root:epoch: 10	batch: 300	loss: 0.8645764589309692	accuracy:0.59375
+INFO:root:epoch: 10	batch: 400	loss: 0.6709331274032593	accuracy:0.6875
+INFO:root:epoch: 10	batch: 500	loss: 2.038745403289795	accuracy:0.0
+INFO:root:epoch: 10	dev loss: 1.0502408742904663	dev accuracy: 0.6622961759567261	train accuracy: 0.8065553903579712
+INFO:root:epoch: 11	batch: 0	loss: 0.0105161527171731	accuracy:1.0
+INFO:root:epoch: 11	batch: 100	loss: 0.21048253774642944	accuracy:0.875
+INFO:root:epoch: 11	batch: 200	loss: 0.20334835350513458	accuracy:0.96875
+INFO:root:epoch: 11	batch: 300	loss: 0.8872134685516357	accuracy:0.59375
+INFO:root:epoch: 11	batch: 400	loss: 0.6405069828033447	accuracy:0.6875
+INFO:root:epoch: 11	batch: 500	loss: 1.6339569091796875	accuracy:0.34375
+INFO:root:epoch: 11	dev loss: 0.9994004368782043	dev accuracy: 0.6622961759567261	train accuracy: 0.8194262385368347
+INFO:root:epoch: 12	batch: 0	loss: 0.0023871934972703457	accuracy:1.0
+INFO:root:epoch: 12	batch: 100	loss: 0.19513507187366486	accuracy:0.875
+INFO:root:epoch: 12	batch: 200	loss: 0.24072739481925964	accuracy:0.96875
+INFO:root:epoch: 12	batch: 300	loss: 0.8561217784881592	accuracy:0.65625
+INFO:root:epoch: 12	batch: 400	loss: 0.6197099089622498	accuracy:0.6875
+INFO:root:epoch: 12	batch: 500	loss: 1.3307384252548218	accuracy:0.34375
+INFO:root:epoch: 12	dev loss: 0.9812076687812805	dev accuracy: 0.6881399750709534	train accuracy: 0.833060622215271
+INFO:root:epoch: 13	batch: 0	loss: 0.0033500322606414557	accuracy:1.0
+INFO:root:epoch: 13	batch: 100	loss: 0.16285189986228943	accuracy:0.875
+INFO:root:epoch: 13	batch: 200	loss: 0.20333531498908997	accuracy:0.96875
+INFO:root:epoch: 13	batch: 300	loss: 0.8511276245117188	accuracy:0.6875
+INFO:root:epoch: 13	batch: 400	loss: 0.5650171637535095	accuracy:0.6875
+INFO:root:epoch: 13	batch: 500	loss: 0.7244738340377808	accuracy:0.84375
+INFO:root:epoch: 13	dev loss: 1.405513882637024	dev accuracy: 0.711166501045227	train accuracy: 0.8518215417861938
+INFO:root:epoch: 14	batch: 0	loss: 0.00426681712269783	accuracy:1.0
+INFO:root:epoch: 14	batch: 100	loss: 0.1236582100391388	accuracy:0.875
+INFO:root:epoch: 14	batch: 200	loss: 0.1390138864517212	accuracy:0.96875
+INFO:root:epoch: 14	batch: 300	loss: 0.8703352808952332	accuracy:0.625
+INFO:root:epoch: 14	batch: 400	loss: 0.48799067735671997	accuracy:0.6875
+INFO:root:epoch: 14	batch: 500	loss: 0.2953187823295593	accuracy:1.0
+INFO:root:epoch: 14	dev loss: 1.154681921005249	dev accuracy: 0.7195643782615662	train accuracy: 0.8662739992141724
+INFO:root:epoch: 15	batch: 0	loss: 0.0013827306684106588	accuracy:1.0
+INFO:root:epoch: 15	batch: 100	loss: 0.07524669915437698	accuracy:1.0
+INFO:root:epoch: 15	batch: 200	loss: 0.12205301970243454	accuracy:0.96875
+INFO:root:epoch: 15	batch: 300	loss: 0.8354195356369019	accuracy:0.625
+INFO:root:epoch: 15	batch: 400	loss: 0.48507291078567505	accuracy:0.6875
+INFO:root:epoch: 15	batch: 500	loss: 0.14642053842544556	accuracy:1.0
+INFO:root:epoch: 15	dev loss: 1.0461851358413696	dev accuracy: 0.7146340012550354	train accuracy: 0.8833987712860107
+INFO:root:epoch: 16	batch: 0	loss: 0.001813260605558753	accuracy:1.0
+INFO:root:epoch: 16	batch: 100	loss: 0.0504094623029232	accuracy:1.0
+INFO:root:epoch: 16	batch: 200	loss: 0.1262967735528946	accuracy:0.96875
+INFO:root:epoch: 16	batch: 300	loss: 0.8006460666656494	accuracy:0.625
+INFO:root:epoch: 16	batch: 400	loss: 0.4876931607723236	accuracy:0.6875
+INFO:root:epoch: 16	batch: 500	loss: 0.09165405482053757	accuracy:1.0
+INFO:root:epoch: 16	dev loss: 1.018418312072754	dev accuracy: 0.7146340012550354	train accuracy: 0.8875981569290161
+INFO:root:epoch: 17	batch: 0	loss: 0.0015176585875451565	accuracy:1.0
+INFO:root:epoch: 17	batch: 100	loss: 0.03802650421857834	accuracy:1.0
+INFO:root:epoch: 17	batch: 200	loss: 0.1296318918466568	accuracy:0.96875
+INFO:root:epoch: 17	batch: 300	loss: 0.7761791348457336	accuracy:0.65625
+INFO:root:epoch: 17	batch: 400	loss: 0.5049900412559509	accuracy:0.6875
+INFO:root:epoch: 17	batch: 500	loss: 0.061326321214437485	accuracy:1.0
+INFO:root:epoch: 17	dev loss: 0.9651238322257996	dev accuracy: 0.7169095873832703	train accuracy: 0.8905432224273682
+INFO:root:epoch: 18	batch: 0	loss: 0.0006496740970760584	accuracy:1.0
+INFO:root:epoch: 18	batch: 100	loss: 0.03190922737121582	accuracy:1.0
+INFO:root:epoch: 18	batch: 200	loss: 0.1319803148508072	accuracy:0.96875
+INFO:root:epoch: 18	batch: 300	loss: 0.6055107116699219	accuracy:0.71875
+INFO:root:epoch: 18	batch: 400	loss: 0.16896846890449524	accuracy:0.96875
+INFO:root:epoch: 18	batch: 500	loss: 0.040186911821365356	accuracy:1.0
+INFO:root:epoch: 18	dev loss: 0.6877409219741821	dev accuracy: 0.8042477369308472	train accuracy: 0.9110493063926697
+INFO:root:epoch: 19	batch: 0	loss: 0.01238631084561348	accuracy:1.0
+INFO:root:epoch: 19	batch: 100	loss: 0.03252039849758148	accuracy:1.0
+INFO:root:epoch: 19	batch: 200	loss: 0.13168327510356903	accuracy:0.96875
+INFO:root:epoch: 19	batch: 300	loss: 0.23582127690315247	accuracy:0.90625
+INFO:root:epoch: 19	batch: 400	loss: 0.044175658375024796	accuracy:1.0
+INFO:root:epoch: 19	batch: 500	loss: 0.031501781195402145	accuracy:1.0
+INFO:root:epoch: 19	dev loss: 0.6497985124588013	dev accuracy: 0.8181719779968262	train accuracy: 0.926810622215271
+INFO:root:epoch: 20	batch: 0	loss: 0.013046564534306526	accuracy:1.0
+INFO:root:epoch: 20	batch: 100	loss: 0.029923534020781517	accuracy:1.0
+INFO:root:epoch: 20	batch: 200	loss: 0.13231989741325378	accuracy:0.96875
+INFO:root:epoch: 20	batch: 300	loss: 0.222982257604599	accuracy:0.90625
+INFO:root:epoch: 20	batch: 400	loss: 0.03737208619713783	accuracy:1.0
+INFO:root:epoch: 20	batch: 500	loss: 0.025515899062156677	accuracy:1.0
+INFO:root:epoch: 20	dev loss: 0.6411650776863098	dev accuracy: 0.8249986171722412	train accuracy: 0.9288285374641418
+INFO:root:epoch: 21	batch: 0	loss: 0.002512597246095538	accuracy:1.0
+INFO:root:epoch: 21	batch: 100	loss: 0.028842128813266754	accuracy:1.0
+INFO:root:epoch: 21	batch: 200	loss: 0.13231146335601807	accuracy:0.96875
+INFO:root:epoch: 21	batch: 300	loss: 0.21744109690189362	accuracy:0.90625
+INFO:root:epoch: 21	batch: 400	loss: 0.034682147204875946	accuracy:1.0
+INFO:root:epoch: 21	batch: 500	loss: 0.020973369479179382	accuracy:1.0
+INFO:root:epoch: 21	dev loss: 0.6459592580795288	dev accuracy: 0.8251069784164429	train accuracy: 0.9334642291069031
+INFO:root:epoch: 22	batch: 0	loss: 0.0008216718561016023	accuracy:1.0
+INFO:root:epoch: 22	batch: 100	loss: 0.028582928702235222	accuracy:1.0
+INFO:root:epoch: 22	batch: 200	loss: 0.13224148750305176	accuracy:0.96875
+INFO:root:epoch: 22	batch: 300	loss: 0.21389752626419067	accuracy:0.90625
+INFO:root:epoch: 22	batch: 400	loss: 0.03555192053318024	accuracy:1.0
+INFO:root:epoch: 22	batch: 500	loss: 0.016584843397140503	accuracy:1.0
+INFO:root:epoch: 22	dev loss: 0.6273060441017151	dev accuracy: 0.8272200226783752	train accuracy: 0.9348822236061096
+INFO:root:epoch: 23	batch: 0	loss: 0.0001665527088334784	accuracy:1.0
+INFO:root:epoch: 23	batch: 100	loss: 0.03240007162094116	accuracy:1.0
+INFO:root:epoch: 23	batch: 200	loss: 0.131173774600029	accuracy:0.96875
+INFO:root:epoch: 23	batch: 300	loss: 0.21381816267967224	accuracy:0.90625
+INFO:root:epoch: 23	batch: 400	loss: 0.034660711884498596	accuracy:1.0
+INFO:root:epoch: 23	batch: 500	loss: 0.01692083477973938	accuracy:1.0
+INFO:root:epoch: 23	dev loss: 0.6339508891105652	dev accuracy: 0.8203933238983154	train accuracy: 0.9364637732505798
+INFO:root:epoch: 24	batch: 0	loss: 0.0002669558161869645	accuracy:1.0
+INFO:root:epoch: 24	batch: 100	loss: 0.033929243683815	accuracy:1.0
+INFO:root:epoch: 24	batch: 200	loss: 0.13050653040409088	accuracy:0.96875
+INFO:root:epoch: 24	batch: 300	loss: 0.2132430374622345	accuracy:0.90625
+INFO:root:epoch: 24	batch: 400	loss: 0.03432271629571915	accuracy:1.0
+INFO:root:epoch: 24	batch: 500	loss: 0.015335382893681526	accuracy:1.0
+INFO:root:epoch: 24	dev loss: 0.6377398371696472	dev accuracy: 0.8247277736663818	train accuracy: 0.9407176971435547
+INFO:root:epoch: 25	batch: 0	loss: 9.894468530546874e-05	accuracy:1.0
+INFO:root:epoch: 25	batch: 100	loss: 0.03632538393139839	accuracy:1.0
+INFO:root:epoch: 25	batch: 200	loss: 0.1300586313009262	accuracy:0.96875
+INFO:root:epoch: 25	batch: 300	loss: 0.21286264061927795	accuracy:0.90625
+INFO:root:epoch: 25	batch: 400	loss: 0.034184396266937256	accuracy:1.0
+INFO:root:epoch: 25	batch: 500	loss: 0.011209292337298393	accuracy:1.0
+INFO:root:epoch: 25	dev loss: 0.6273730397224426	dev accuracy: 0.8259738683700562	train accuracy: 0.9405540823936462
+INFO:root:epoch: 26	batch: 0	loss: 4.376312062959187e-05	accuracy:1.0
+INFO:root:epoch: 26	batch: 100	loss: 0.039307594299316406	accuracy:1.0
+INFO:root:epoch: 26	batch: 200	loss: 0.12902040779590607	accuracy:0.96875
+INFO:root:epoch: 26	batch: 300	loss: 0.21276389062404633	accuracy:0.90625
+INFO:root:epoch: 26	batch: 400	loss: 0.03369533270597458	accuracy:1.0
+INFO:root:epoch: 26	batch: 500	loss: 0.008537901565432549	accuracy:1.0
+INFO:root:epoch: 26	dev loss: 0.6214906573295593	dev accuracy: 0.8259738683700562	train accuracy: 0.9400086998939514
+INFO:root:epoch: 27	batch: 0	loss: 4.0056816942524165e-05	accuracy:1.0
+INFO:root:epoch: 27	batch: 100	loss: 0.041833989322185516	accuracy:1.0
+INFO:root:epoch: 27	batch: 200	loss: 0.12801699340343475	accuracy:0.96875
+INFO:root:epoch: 27	batch: 300	loss: 0.21284887194633484	accuracy:0.90625
+INFO:root:epoch: 27	batch: 400	loss: 0.033503688871860504	accuracy:1.0
+INFO:root:epoch: 27	batch: 500	loss: 0.006597946863621473	accuracy:1.0
+INFO:root:epoch: 27	dev loss: 0.615831732749939	dev accuracy: 0.8259738683700562	train accuracy: 0.9401723146438599
+INFO:root:epoch: 28	batch: 0	loss: 4.6884684707038105e-05	accuracy:1.0
+INFO:root:epoch: 28	batch: 100	loss: 0.04424957558512688	accuracy:1.0
+INFO:root:epoch: 28	batch: 200	loss: 0.1274351179599762	accuracy:0.96875
+INFO:root:epoch: 28	batch: 300	loss: 0.21284180879592896	accuracy:0.90625
+INFO:root:epoch: 28	batch: 400	loss: 0.0336732342839241	accuracy:1.0
+INFO:root:epoch: 28	batch: 500	loss: 0.005116289481520653	accuracy:1.0
+INFO:root:epoch: 28	dev loss: 0.6098621487617493	dev accuracy: 0.8280869126319885	train accuracy: 0.939736008644104
+INFO:root:epoch: 29	batch: 0	loss: 5.0683571316767484e-05	accuracy:1.0
+INFO:root:epoch: 29	batch: 100	loss: 0.04666091129183769	accuracy:1.0
+INFO:root:epoch: 29	batch: 200	loss: 0.1291046440601349	accuracy:0.96875
+INFO:root:epoch: 29	batch: 300	loss: 0.21256469190120697	accuracy:0.90625
+INFO:root:epoch: 29	batch: 400	loss: 0.03473155200481415	accuracy:1.0
+INFO:root:epoch: 29	batch: 500	loss: 0.0038795536383986473	accuracy:1.0
+INFO:root:epoch: 29	dev loss: 0.604429304599762	dev accuracy: 0.8314460515975952	train accuracy: 0.9393543004989624
+INFO:root:epoch: 30	batch: 0	loss: 9.113268606597558e-05	accuracy:1.0
+INFO:root:epoch: 30	batch: 100	loss: 0.04848998039960861	accuracy:1.0
+INFO:root:epoch: 30	batch: 200	loss: 0.12897439301013947	accuracy:0.96875
+INFO:root:epoch: 30	batch: 300	loss: 0.211308091878891	accuracy:0.90625
+INFO:root:epoch: 30	batch: 400	loss: 0.03685197979211807	accuracy:1.0
+INFO:root:epoch: 30	batch: 500	loss: 0.0028071836568415165	accuracy:1.0
+INFO:root:epoch: 30	dev loss: 0.5828160047531128	dev accuracy: 0.8314460515975952	train accuracy: 0.939736008644104
+INFO:root:epoch: 31	batch: 0	loss: 0.004196693655103445	accuracy:1.0
+INFO:root:epoch: 31	batch: 100	loss: 0.019090157002210617	accuracy:1.0
+INFO:root:epoch: 31	batch: 200	loss: 0.10683676600456238	accuracy:0.96875
+INFO:root:epoch: 31	batch: 300	loss: 0.09173410385847092	accuracy:1.0
+INFO:root:epoch: 31	batch: 400	loss: 0.017859118059277534	accuracy:1.0
+INFO:root:epoch: 31	batch: 500	loss: 0.017801683396100998	accuracy:1.0
+INFO:root:epoch: 31	dev loss: 0.34085214138031006	dev accuracy: 0.8368640542030334	train accuracy: 0.9548429250717163
+INFO:root:epoch: 32	batch: 0	loss: 5.545291423914023e-05	accuracy:1.0
+INFO:root:epoch: 32	batch: 100	loss: 0.001291580032557249	accuracy:1.0
+INFO:root:epoch: 32	batch: 200	loss: 0.055325139313936234	accuracy:0.96875
+INFO:root:epoch: 32	batch: 300	loss: 0.030339060351252556	accuracy:1.0
+INFO:root:epoch: 32	batch: 400	loss: 0.009404934011399746	accuracy:1.0
+INFO:root:epoch: 32	batch: 500	loss: 0.006886298768222332	accuracy:1.0
+INFO:root:epoch: 32	dev loss: 0.06836363673210144	dev accuracy: 0.9743728637695312	train accuracy: 0.9848385453224182
+INFO:root:epoch: 33	batch: 0	loss: 4.179713869234547e-06	accuracy:1.0
+INFO:root:epoch: 33	batch: 100	loss: 3.1134153687162325e-05	accuracy:1.0
+INFO:root:epoch: 33	batch: 200	loss: 0.022946376353502274	accuracy:1.0
+INFO:root:epoch: 33	batch: 300	loss: 0.017669884487986565	accuracy:1.0
+INFO:root:epoch: 33	batch: 400	loss: 0.00698918616399169	accuracy:1.0
+INFO:root:epoch: 33	batch: 500	loss: 0.006061638239771128	accuracy:1.0
+INFO:root:epoch: 33	dev loss: 0.06251997500658035	dev accuracy: 0.9776236414909363	train accuracy: 0.9882744550704956
+INFO:root:epoch: 34	batch: 0	loss: 2.9883351089665666e-05	accuracy:1.0
+INFO:root:epoch: 34	batch: 100	loss: 1.722524939395953e-05	accuracy:1.0
+INFO:root:epoch: 34	batch: 200	loss: 0.016224253922700882	accuracy:1.0
+INFO:root:epoch: 34	batch: 300	loss: 0.01224430650472641	accuracy:1.0
+INFO:root:epoch: 34	batch: 400	loss: 0.0061185602098703384	accuracy:1.0
+INFO:root:epoch: 34	batch: 500	loss: 0.004747901577502489	accuracy:1.0
+INFO:root:epoch: 34	dev loss: 0.05982805788516998	dev accuracy: 0.9821206331253052	train accuracy: 0.9884926080703735
+INFO:root:epoch: 35	batch: 0	loss: 0.00022535955940838903	accuracy:1.0
+INFO:root:epoch: 35	batch: 100	loss: 1.1160707799717784e-05	accuracy:1.0
+INFO:root:epoch: 35	batch: 200	loss: 0.017455777153372765	accuracy:1.0
+INFO:root:epoch: 35	batch: 300	loss: 0.009039971977472305	accuracy:1.0
+INFO:root:epoch: 35	batch: 400	loss: 0.005561841651797295	accuracy:1.0
+INFO:root:epoch: 35	batch: 500	loss: 0.003859816351905465	accuracy:1.0
+INFO:root:epoch: 35	dev loss: 0.05872486159205437	dev accuracy: 0.9847754240036011	train accuracy: 0.9889288544654846
+INFO:root:epoch: 36	batch: 0	loss: 0.0012132986448705196	accuracy:1.0
+INFO:root:epoch: 36	batch: 100	loss: 7.282835213118233e-06	accuracy:1.0
+INFO:root:epoch: 36	batch: 200	loss: 0.021028386428952217	accuracy:1.0
+INFO:root:epoch: 36	batch: 300	loss: 0.007119794376194477	accuracy:1.0
+INFO:root:epoch: 36	batch: 400	loss: 0.004717403557151556	accuracy:1.0
+INFO:root:epoch: 36	batch: 500	loss: 0.003203227650374174	accuracy:1.0
+INFO:root:epoch: 36	dev loss: 0.10296181589365005	dev accuracy: 0.9683046936988831	train accuracy: 0.9977094531059265
+INFO:root:epoch: 37	batch: 0	loss: 0.02003084495663643	accuracy:1.0
+INFO:root:epoch: 37	batch: 100	loss: 4.578333573590498e-06	accuracy:1.0
+INFO:root:epoch: 37	batch: 200	loss: 0.019046826288104057	accuracy:1.0
+INFO:root:epoch: 37	batch: 300	loss: 0.0063545978628098965	accuracy:1.0
+INFO:root:epoch: 37	batch: 400	loss: 0.0016208012821152806	accuracy:1.0
+INFO:root:epoch: 37	batch: 500	loss: 0.0027059793937951326	accuracy:1.0
+INFO:root:epoch: 37	dev loss: 0.08734262734651566	dev accuracy: 0.9706886410713196	train accuracy: 0.999890923500061
+INFO:root:epoch: 38	batch: 0	loss: 0.0001448748807888478	accuracy:1.0
+INFO:root:epoch: 38	batch: 100	loss: 9.022394806379452e-06	accuracy:1.0
+INFO:root:epoch: 38	batch: 200	loss: 0.022475754842162132	accuracy:0.96875
+INFO:root:epoch: 38	batch: 300	loss: 0.00450059212744236	accuracy:1.0
+INFO:root:epoch: 38	batch: 400	loss: 0.001097043277695775	accuracy:1.0
+INFO:root:epoch: 38	batch: 500	loss: 0.002045657020062208	accuracy:1.0
+INFO:root:epoch: 38	dev loss: 0.08410157263278961	dev accuracy: 0.9706886410713196	train accuracy: 0.9998363852500916
+INFO:root:epoch: 39	batch: 0	loss: 0.00547083280980587	accuracy:1.0
+INFO:root:epoch: 39	batch: 100	loss: 3.095693955401657e-06	accuracy:1.0
+INFO:root:epoch: 39	batch: 200	loss: 0.020360980182886124	accuracy:1.0
+INFO:root:epoch: 39	batch: 300	loss: 0.0033341518137604	accuracy:1.0
+INFO:root:epoch: 39	batch: 400	loss: 0.0006832598010078073	accuracy:1.0
+INFO:root:epoch: 39	batch: 500	loss: 0.0015438573900610209	accuracy:1.0
+INFO:root:epoch: 39	dev loss: 0.07786957919597626	dev accuracy: 0.9706886410713196	train accuracy: 0.999890923500061
+INFO:root:epoch: 40	batch: 0	loss: 0.0026754201389849186	accuracy:1.0
+INFO:root:epoch: 40	batch: 100	loss: 2.45122600972536e-06	accuracy:1.0
+INFO:root:epoch: 40	batch: 200	loss: 0.020068831741809845	accuracy:1.0
+INFO:root:epoch: 40	batch: 300	loss: 0.0024538019206374884	accuracy:1.0
+INFO:root:epoch: 40	batch: 400	loss: 0.00045865250285714865	accuracy:1.0
+INFO:root:epoch: 40	batch: 500	loss: 0.0011805889662355185	accuracy:1.0
+INFO:root:epoch: 40	dev loss: 0.07297929376363754	dev accuracy: 0.9717180728912354	train accuracy: 0.999890923500061
+INFO:root:epoch: 41	batch: 0	loss: 0.007522436324506998	accuracy:1.0
+INFO:root:epoch: 41	batch: 100	loss: 1.0021010439231759e-06	accuracy:1.0
+INFO:root:epoch: 41	batch: 200	loss: 0.01762782409787178	accuracy:1.0
+INFO:root:epoch: 41	batch: 300	loss: 0.0018632300198078156	accuracy:1.0
+INFO:root:epoch: 41	batch: 400	loss: 0.00030859297839924693	accuracy:1.0
+INFO:root:epoch: 41	batch: 500	loss: 0.0009110077517107129	accuracy:1.0
+INFO:root:epoch: 41	dev loss: 0.06884633749723434	dev accuracy: 0.9690090417861938	train accuracy: 0.9999454617500305
+INFO:root:epoch: 42	batch: 0	loss: 0.0009373800712637603	accuracy:1.0
+INFO:root:epoch: 42	batch: 100	loss: 1.7955813973458135e-06	accuracy:1.0
+INFO:root:epoch: 42	batch: 200	loss: 0.018475713208317757	accuracy:1.0
+INFO:root:epoch: 42	batch: 300	loss: 0.0013606258435174823	accuracy:1.0
+INFO:root:epoch: 42	batch: 400	loss: 0.00021356108481995761	accuracy:1.0
+INFO:root:epoch: 42	batch: 500	loss: 0.0007066313992254436	accuracy:1.0
+INFO:root:epoch: 42	dev loss: 0.06517797708511353	dev accuracy: 0.9690090417861938	train accuracy: 0.9999454617500305
+INFO:root:epoch: 43	batch: 0	loss: 0.01029488816857338	accuracy:1.0
+INFO:root:epoch: 43	batch: 100	loss: 6.221226840352756e-07	accuracy:1.0
+INFO:root:epoch: 43	batch: 200	loss: 0.014683390036225319	accuracy:1.0
+INFO:root:epoch: 43	batch: 300	loss: 0.00114332209341228	accuracy:1.0
+INFO:root:epoch: 43	batch: 400	loss: 0.00015155234723351896	accuracy:1.0
+INFO:root:epoch: 43	batch: 500	loss: 0.0005568084307014942	accuracy:1.0
+INFO:root:epoch: 43	dev loss: 0.06218972057104111	dev accuracy: 0.969279944896698	train accuracy: 0.9999454617500305
+INFO:root:epoch: 44	batch: 0	loss: 0.00020190264331176877	accuracy:1.0
+INFO:root:epoch: 44	batch: 100	loss: 1.2107151405871264e-06	accuracy:1.0
+INFO:root:epoch: 44	batch: 200	loss: 0.017851434648036957	accuracy:1.0
+INFO:root:epoch: 44	batch: 300	loss: 0.0008728260872885585	accuracy:1.0
+INFO:root:epoch: 44	batch: 400	loss: 0.00011075289512518793	accuracy:1.0
+INFO:root:epoch: 44	batch: 500	loss: 0.0004379583988338709	accuracy:1.0
+INFO:root:epoch: 44	dev loss: 0.06023617461323738	dev accuracy: 0.9712846279144287	train accuracy: 0.9999454617500305
+INFO:root:epoch: 45	batch: 0	loss: 0.00466139754280448	accuracy:1.0
+INFO:root:epoch: 45	batch: 100	loss: 3.427264232414018e-07	accuracy:1.0
+INFO:root:epoch: 45	batch: 200	loss: 0.017291685566306114	accuracy:1.0
+INFO:root:epoch: 45	batch: 300	loss: 0.0007740961736999452	accuracy:1.0
+INFO:root:epoch: 45	batch: 400	loss: 8.189075015252456e-05	accuracy:1.0
+INFO:root:epoch: 45	batch: 500	loss: 0.00034296209923923016	accuracy:1.0
+INFO:root:epoch: 45	dev loss: 0.05925866588950157	dev accuracy: 0.9711220860481262	train accuracy: 0.9999454617500305
+INFO:root:epoch: 46	batch: 0	loss: 0.0009053433896042407	accuracy:1.0
+INFO:root:epoch: 46	batch: 100	loss: 6.370235041686101e-07	accuracy:1.0
+INFO:root:epoch: 46	batch: 200	loss: 0.021563757210969925	accuracy:1.0
+INFO:root:epoch: 46	batch: 300	loss: 0.0007318432908505201	accuracy:1.0
+INFO:root:epoch: 46	batch: 400	loss: 6.164889055071399e-05	accuracy:1.0
+INFO:root:epoch: 46	batch: 500	loss: 0.0002665497304406017	accuracy:1.0
+INFO:root:epoch: 46	dev loss: 0.06014607474207878	dev accuracy: 0.9691715836524963	train accuracy: 0.999890923500061
+INFO:root:epoch: 47	batch: 0	loss: 0.006649911403656006	accuracy:1.0
+INFO:root:epoch: 47	batch: 100	loss: 2.0116559085181507e-07	accuracy:1.0
+INFO:root:epoch: 47	batch: 200	loss: 0.024311617016792297	accuracy:0.96875
+INFO:root:epoch: 47	batch: 300	loss: 0.0009025596082210541	accuracy:1.0
+INFO:root:epoch: 47	batch: 400	loss: 4.327830538386479e-05	accuracy:1.0
+INFO:root:epoch: 47	batch: 500	loss: 0.00021214336447883397	accuracy:1.0
+INFO:root:epoch: 47	dev loss: 0.06170425936579704	dev accuracy: 0.9691715836524963	train accuracy: 0.9997818470001221
+INFO:root:epoch: 48	batch: 0	loss: 0.00039418507367372513	accuracy:1.0
+INFO:root:epoch: 48	batch: 100	loss: 4.880122901340656e-07	accuracy:1.0
+INFO:root:epoch: 48	batch: 200	loss: 0.03676652908325195	accuracy:0.96875
+INFO:root:epoch: 48	batch: 300	loss: 0.001116531202569604	accuracy:1.0
+INFO:root:epoch: 48	batch: 400	loss: 3.1452305847778916e-05	accuracy:1.0
+INFO:root:epoch: 48	batch: 500	loss: 0.00016415133723057806	accuracy:1.0
+INFO:root:epoch: 48	dev loss: 0.06292858719825745	dev accuracy: 0.9691715836524963	train accuracy: 0.9997818470001221
+INFO:root:epoch: 49	batch: 0	loss: 0.001984860049560666	accuracy:1.0
+INFO:root:epoch: 49	batch: 100	loss: 1.7508855876258167e-07	accuracy:1.0
+INFO:root:epoch: 49	batch: 200	loss: 0.04269326478242874	accuracy:0.96875
+INFO:root:epoch: 49	batch: 300	loss: 0.0012454139068722725	accuracy:1.0
+INFO:root:epoch: 49	batch: 400	loss: 2.270361437695101e-05	accuracy:1.0
+INFO:root:epoch: 49	batch: 500	loss: 0.00012522640463430434	accuracy:1.0
+INFO:root:epoch: 49	dev loss: 0.06251782178878784	dev accuracy: 0.9713388085365295	train accuracy: 0.9997818470001221
+INFO:root:epoch: 50	batch: 0	loss: 0.0006052429089322686	accuracy:1.0
+INFO:root:epoch: 50	batch: 100	loss: 2.309678421852368e-07	accuracy:1.0
+INFO:root:epoch: 50	batch: 200	loss: 0.045646991580724716	accuracy:0.96875
+INFO:root:epoch: 50	batch: 300	loss: 0.0012622983194887638	accuracy:1.0
+INFO:root:epoch: 50	batch: 400	loss: 1.6386573406634852e-05	accuracy:1.0
+INFO:root:epoch: 50	batch: 500	loss: 9.606302774045616e-05	accuracy:1.0
+INFO:root:epoch: 50	dev loss: 0.06221363693475723	dev accuracy: 0.9826081991195679	train accuracy: 0.9997818470001221
+INFO:root:epoch: 51	batch: 0	loss: 0.0013008624082431197	accuracy:1.0
+INFO:root:epoch: 51	batch: 100	loss: 1.0058280963676225e-07	accuracy:1.0
+INFO:root:epoch: 51	batch: 200	loss: 0.04448648542165756	accuracy:0.96875
+INFO:root:epoch: 51	batch: 300	loss: 0.0011976147070527077	accuracy:1.0
+INFO:root:epoch: 51	batch: 400	loss: 1.1939051546505652e-05	accuracy:1.0
+INFO:root:epoch: 51	batch: 500	loss: 7.415290747303516e-05	accuracy:1.0
+INFO:root:epoch: 51	dev loss: 0.0625162199139595	dev accuracy: 0.9826081991195679	train accuracy: 0.9997818470001221
+INFO:root:epoch: 52	batch: 0	loss: 0.00034812750527635217	accuracy:1.0
+INFO:root:epoch: 52	batch: 100	loss: 1.6763797816565784e-07	accuracy:1.0
+INFO:root:epoch: 52	batch: 200	loss: 0.04456614330410957	accuracy:0.96875
+INFO:root:epoch: 52	batch: 300	loss: 0.0011111663188785315	accuracy:1.0
+INFO:root:epoch: 52	batch: 400	loss: 8.742996215005405e-06	accuracy:1.0
+INFO:root:epoch: 52	batch: 500	loss: 5.763848457718268e-05	accuracy:1.0
+INFO:root:epoch: 52	dev loss: 0.06343525648117065	dev accuracy: 0.9826081991195679	train accuracy: 0.9997818470001221
+INFO:root:epoch: 53	batch: 0	loss: 0.000727424630895257	accuracy:1.0
+INFO:root:epoch: 53	batch: 100	loss: 7.450579175838357e-08	accuracy:1.0
+INFO:root:epoch: 53	batch: 200	loss: 0.04306631162762642	accuracy:0.96875
+INFO:root:epoch: 53	batch: 300	loss: 0.0010109124705195427	accuracy:1.0
+INFO:root:epoch: 53	batch: 400	loss: 6.422260867111618e-06	accuracy:1.0
+INFO:root:epoch: 53	batch: 500	loss: 4.544399416772649e-05	accuracy:1.0
+INFO:root:epoch: 53	dev loss: 0.06531397253274918	dev accuracy: 0.9826081991195679	train accuracy: 0.9997818470001221
+INFO:root:epoch: 54	batch: 0	loss: 0.0002375516196480021	accuracy:1.0
+INFO:root:epoch: 54	batch: 100	loss: 9.685751223287298e-08	accuracy:1.0
+INFO:root:epoch: 54	batch: 200	loss: 0.042859457433223724	accuracy:0.96875
+INFO:root:epoch: 54	batch: 300	loss: 0.0009159899782389402	accuracy:1.0
+INFO:root:epoch: 54	batch: 400	loss: 4.637914116756292e-06	accuracy:1.0
+INFO:root:epoch: 54	batch: 500	loss: 3.637417466961779e-05	accuracy:1.0
+INFO:root:epoch: 54	dev loss: 0.06813004612922668	dev accuracy: 0.9703635573387146	train accuracy: 0.9997818470001221
+INFO:root:epoch: 55	batch: 0	loss: 0.00037769609480164945	accuracy:1.0
+INFO:root:epoch: 55	batch: 100	loss: 5.960463056453591e-08	accuracy:1.0
+INFO:root:epoch: 55	batch: 200	loss: 0.04207258298993111	accuracy:0.96875
+INFO:root:epoch: 55	batch: 300	loss: 0.0008166022598743439	accuracy:1.0
+INFO:root:epoch: 55	batch: 400	loss: 3.3787996471801307e-06	accuracy:1.0
+INFO:root:epoch: 55	batch: 500	loss: 2.9591206839540973e-05	accuracy:1.0
+INFO:root:epoch: 55	dev loss: 0.07232300937175751	dev accuracy: 0.951833963394165	train accuracy: 0.9997818470001221
+INFO:root:epoch: 56	batch: 0	loss: 0.00016446704103145748	accuracy:1.0
+INFO:root:epoch: 56	batch: 100	loss: 5.960463766996327e-08	accuracy:1.0
+INFO:root:epoch: 56	batch: 200	loss: 0.04246335104107857	accuracy:0.96875
+INFO:root:epoch: 56	batch: 300	loss: 0.0007277241675183177	accuracy:1.0
+INFO:root:epoch: 56	batch: 400	loss: 2.428869265713729e-06	accuracy:1.0
+INFO:root:epoch: 56	batch: 500	loss: 2.4670574930496514e-05	accuracy:1.0
+INFO:root:epoch: 56	dev loss: 0.07779541611671448	dev accuracy: 0.951833963394165	train accuracy: 0.9997818470001221
+INFO:root:epoch: 57	batch: 0	loss: 0.00017992437642533332	accuracy:1.0
+INFO:root:epoch: 57	batch: 100	loss: 4.0978189730367376e-08	accuracy:1.0
+INFO:root:epoch: 57	batch: 200	loss: 0.04311181232333183	accuracy:0.96875
+INFO:root:epoch: 57	batch: 300	loss: 0.0006426617037504911	accuracy:1.0
+INFO:root:epoch: 57	batch: 400	loss: 1.7583266753717908e-06	accuracy:1.0
+INFO:root:epoch: 57	batch: 500	loss: 2.1135554561624303e-05	accuracy:1.0
+INFO:root:epoch: 57	dev loss: 0.08469356596469879	dev accuracy: 0.951833963394165	train accuracy: 0.9997818470001221
+INFO:root:epoch: 58	batch: 0	loss: 0.00010211701737716794	accuracy:1.0
+INFO:root:epoch: 58	batch: 100	loss: 3.725289943190546e-08	accuracy:1.0
+INFO:root:epoch: 58	batch: 200	loss: 0.04491738602519035	accuracy:0.96875
+INFO:root:epoch: 58	batch: 300	loss: 0.0005721368943341076	accuracy:1.0
+INFO:root:epoch: 58	batch: 400	loss: 1.2963954532096977e-06	accuracy:1.0
+INFO:root:epoch: 58	batch: 500	loss: 1.8863243894884363e-05	accuracy:1.0
+INFO:root:epoch: 58	dev loss: 0.09266144037246704	dev accuracy: 0.951833963394165	train accuracy: 0.9997818470001221
+INFO:root:epoch: 59	batch: 0	loss: 8.018080552574247e-05	accuracy:1.0
+INFO:root:epoch: 59	batch: 100	loss: 2.2351740014414645e-08	accuracy:1.0
+INFO:root:epoch: 59	batch: 200	loss: 0.047384969890117645	accuracy:0.96875
+INFO:root:epoch: 59	batch: 300	loss: 0.0005157703417353332	accuracy:1.0
+INFO:root:epoch: 59	batch: 400	loss: 9.275944421460736e-07	accuracy:1.0
+INFO:root:epoch: 59	batch: 500	loss: 1.7846165064838715e-05	accuracy:1.0
+INFO:root:epoch: 59	dev loss: 0.10154500603675842	dev accuracy: 0.951833963394165	train accuracy: 0.9997818470001221
+
+Config:
+hops: 3
+actions: 16
+history utterance length: 18
+query length: 14
+embedding size: 10
+batch size: 32
+memory size: 40
+epochs: 60
+gradient clip norm: 40
+
+INFO:root:epoch: 0	batch: 0	loss: 3.970839262008667	accuracy:0.0
+INFO:root:epoch: 0	batch: 100	loss: 1.9889366626739502	accuracy:0.1875
+INFO:root:epoch: 0	batch: 200	loss: 1.3243622779846191	accuracy:0.5
+INFO:root:epoch: 0	batch: 300	loss: 2.2431368827819824	accuracy:0.09375
+INFO:root:epoch: 0	batch: 400	loss: 1.049377679824829	accuracy:0.6875
+INFO:root:epoch: 0	batch: 500	loss: 2.7016496658325195	accuracy:0.0
+INFO:root:epoch: 0	dev loss: 2.9365432262420654	dev accuracy: 0.28547435998916626	train accuracy: 0.33382415771484375
+INFO:root:epoch: 1	batch: 0	loss: 9.471097946166992	accuracy:0.0
+INFO:root:epoch: 1	batch: 100	loss: 1.7060495615005493	accuracy:0.5
+INFO:root:epoch: 1	batch: 200	loss: 0.7882981300354004	accuracy:0.875
+INFO:root:epoch: 1	batch: 300	loss: 1.2325100898742676	accuracy:0.53125
+INFO:root:epoch: 1	batch: 400	loss: 0.9010049700737	accuracy:0.6875
+INFO:root:epoch: 1	batch: 500	loss: 2.0784852504730225	accuracy:0.34375
+INFO:root:epoch: 1	dev loss: 2.1405580043792725	dev accuracy: 0.3635477125644684	train accuracy: 0.613765299320221
+INFO:root:epoch: 2	batch: 0	loss: 5.450979232788086	accuracy:0.0
+INFO:root:epoch: 2	batch: 100	loss: 0.8108109831809998	accuracy:0.9375
+INFO:root:epoch: 2	batch: 200	loss: 0.276260644197464	accuracy:0.96875
+INFO:root:epoch: 2	batch: 300	loss: 0.8317053318023682	accuracy:0.71875
+INFO:root:epoch: 2	batch: 400	loss: 0.7896862626075745	accuracy:0.6875
+INFO:root:epoch: 2	batch: 500	loss: 1.7402392625808716	accuracy:0.34375
+INFO:root:epoch: 2	dev loss: 1.420424461364746	dev accuracy: 0.4998103678226471	train accuracy: 0.7158595323562622
+INFO:root:epoch: 3	batch: 0	loss: 3.6487746238708496	accuracy:0.03125
+INFO:root:epoch: 3	batch: 100	loss: 0.3831198811531067	accuracy:0.9375
+INFO:root:epoch: 3	batch: 200	loss: 0.16484114527702332	accuracy:0.96875
+INFO:root:epoch: 3	batch: 300	loss: 0.7144457697868347	accuracy:0.71875
+INFO:root:epoch: 3	batch: 400	loss: 0.6972610950469971	accuracy:0.6875
+INFO:root:epoch: 3	batch: 500	loss: 1.5066221952438354	accuracy:0.34375
+INFO:root:epoch: 3	dev loss: 1.135973572731018	dev accuracy: 0.6440916657447815	train accuracy: 0.8007744550704956
+INFO:root:epoch: 4	batch: 0	loss: 2.2585268020629883	accuracy:0.09375
+INFO:root:epoch: 4	batch: 100	loss: 0.21058762073516846	accuracy:0.9375
+INFO:root:epoch: 4	batch: 200	loss: 0.14150212705135345	accuracy:0.96875
+INFO:root:epoch: 4	batch: 300	loss: 0.6386967301368713	accuracy:0.78125
+INFO:root:epoch: 4	batch: 400	loss: 0.668161928653717	accuracy:0.6875
+INFO:root:epoch: 4	batch: 500	loss: 1.3962018489837646	accuracy:0.34375
+INFO:root:epoch: 4	dev loss: 1.0296789407730103	dev accuracy: 0.670423150062561	train accuracy: 0.8385143876075745
+INFO:root:epoch: 5	batch: 0	loss: 1.4609723091125488	accuracy:0.5625
+INFO:root:epoch: 5	batch: 100	loss: 0.14360716938972473	accuracy:0.9375
+INFO:root:epoch: 5	batch: 200	loss: 0.09343628585338593	accuracy:0.96875
+INFO:root:epoch: 5	batch: 300	loss: 0.6404209136962891	accuracy:0.75
+INFO:root:epoch: 5	batch: 400	loss: 0.6450968980789185	accuracy:0.6875
+INFO:root:epoch: 5	batch: 500	loss: 1.3494988679885864	accuracy:0.34375
+INFO:root:epoch: 5	dev loss: 0.9164239764213562	dev accuracy: 0.6840764880180359	train accuracy: 0.8570026159286499
+INFO:root:epoch: 6	batch: 0	loss: 0.849374532699585	accuracy:0.6875
+INFO:root:epoch: 6	batch: 100	loss: 0.11416897177696228	accuracy:0.9375
+INFO:root:epoch: 6	batch: 200	loss: 0.04882827401161194	accuracy:1.0
+INFO:root:epoch: 6	batch: 300	loss: 0.6775506734848022	accuracy:0.71875
+INFO:root:epoch: 6	batch: 400	loss: 0.6231034994125366	accuracy:0.6875
+INFO:root:epoch: 6	batch: 500	loss: 1.329511046409607	accuracy:0.34375
+INFO:root:epoch: 6	dev loss: 0.8230971693992615	dev accuracy: 0.750663697719574	train accuracy: 0.8638743162155151
+INFO:root:epoch: 7	batch: 0	loss: 0.5774115324020386	accuracy:0.78125
+INFO:root:epoch: 7	batch: 100	loss: 0.10292237251996994	accuracy:0.9375
+INFO:root:epoch: 7	batch: 200	loss: 0.031163733452558517	accuracy:1.0
+INFO:root:epoch: 7	batch: 300	loss: 0.7116389274597168	accuracy:0.71875
+INFO:root:epoch: 7	batch: 400	loss: 0.614359974861145	accuracy:0.6875
+INFO:root:epoch: 7	batch: 500	loss: 1.3174092769622803	accuracy:0.34375
+INFO:root:epoch: 7	dev loss: 0.7471548914909363	dev accuracy: 0.7492550015449524	train accuracy: 0.8652377724647522
+INFO:root:epoch: 8	batch: 0	loss: 0.5977141857147217	accuracy:0.78125
+INFO:root:epoch: 8	batch: 100	loss: 0.1042359247803688	accuracy:0.9375
+INFO:root:epoch: 8	batch: 200	loss: 0.022427085787057877	accuracy:1.0
+INFO:root:epoch: 8	batch: 300	loss: 0.7214411497116089	accuracy:0.71875
+INFO:root:epoch: 8	batch: 400	loss: 0.5933316946029663	accuracy:0.6875
+INFO:root:epoch: 8	batch: 500	loss: 1.310265302658081	accuracy:0.34375
+INFO:root:epoch: 8	dev loss: 0.6687154173851013	dev accuracy: 0.7469794750213623	train accuracy: 0.8667103052139282
+INFO:root:epoch: 9	batch: 0	loss: 0.5325620770454407	accuracy:0.78125
+INFO:root:epoch: 9	batch: 100	loss: 0.10644758492708206	accuracy:0.9375
+INFO:root:epoch: 9	batch: 200	loss: 0.01760450005531311	accuracy:1.0
+INFO:root:epoch: 9	batch: 300	loss: 0.6979392170906067	accuracy:0.71875
+INFO:root:epoch: 9	batch: 400	loss: 0.5490496158599854	accuracy:0.6875
+INFO:root:epoch: 9	batch: 500	loss: 1.3134095668792725	accuracy:0.34375
+INFO:root:epoch: 9	dev loss: 0.6124893426895142	dev accuracy: 0.7482798099517822	train accuracy: 0.8686190843582153
+INFO:root:epoch: 10	batch: 0	loss: 0.3372083306312561	accuracy:0.84375
+INFO:root:epoch: 10	batch: 100	loss: 0.10530515015125275	accuracy:0.9375
+INFO:root:epoch: 10	batch: 200	loss: 0.01576770842075348	accuracy:1.0
+INFO:root:epoch: 10	batch: 300	loss: 0.6591293811798096	accuracy:0.71875
+INFO:root:epoch: 10	batch: 400	loss: 0.45891764760017395	accuracy:0.6875
+INFO:root:epoch: 10	batch: 500	loss: 1.3213279247283936	accuracy:0.34375
+INFO:root:epoch: 10	dev loss: 0.6062337756156921	dev accuracy: 0.7742319703102112	train accuracy: 0.8767997622489929
+INFO:root:epoch: 11	batch: 0	loss: 0.18043701350688934	accuracy:1.0
+INFO:root:epoch: 11	batch: 100	loss: 0.10981203615665436	accuracy:0.9375
+INFO:root:epoch: 11	batch: 200	loss: 0.016503363847732544	accuracy:1.0
+INFO:root:epoch: 11	batch: 300	loss: 0.7510698437690735	accuracy:0.71875
+INFO:root:epoch: 11	batch: 400	loss: 0.5241652727127075	accuracy:0.6875
+INFO:root:epoch: 11	batch: 500	loss: 1.3023936748504639	accuracy:0.34375
+INFO:root:epoch: 11	dev loss: 0.5816120505332947	dev accuracy: 0.7758032083511353	train accuracy: 0.8763634562492371
+INFO:root:epoch: 12	batch: 0	loss: 0.20157767832279205	accuracy:0.96875
+INFO:root:epoch: 12	batch: 100	loss: 0.10567330569028854	accuracy:0.9375
+INFO:root:epoch: 12	batch: 200	loss: 0.02041415125131607	accuracy:1.0
+INFO:root:epoch: 12	batch: 300	loss: 0.7689718008041382	accuracy:0.71875
+INFO:root:epoch: 12	batch: 400	loss: 0.5123122334480286	accuracy:0.6875
+INFO:root:epoch: 12	batch: 500	loss: 1.295583963394165	accuracy:0.34375
+INFO:root:epoch: 12	dev loss: 0.5609687566757202	dev accuracy: 0.780083417892456	train accuracy: 0.876472532749176
+INFO:root:epoch: 13	batch: 0	loss: 0.14213727414608002	accuracy:1.0
+INFO:root:epoch: 13	batch: 100	loss: 0.10195130109786987	accuracy:0.9375
+INFO:root:epoch: 13	batch: 200	loss: 0.028171855956315994	accuracy:1.0
+INFO:root:epoch: 13	batch: 300	loss: 0.7931814193725586	accuracy:0.71875
+INFO:root:epoch: 13	batch: 400	loss: 0.4475439786911011	accuracy:0.6875
+INFO:root:epoch: 13	batch: 500	loss: 1.2988656759262085	accuracy:0.34375
+INFO:root:epoch: 13	dev loss: 0.5416606664657593	dev accuracy: 0.7782413363456726	train accuracy: 0.8758180737495422
+INFO:root:epoch: 14	batch: 0	loss: 0.056062016636133194	accuracy:1.0
+INFO:root:epoch: 14	batch: 100	loss: 0.09430228173732758	accuracy:0.9375
+INFO:root:epoch: 14	batch: 200	loss: 0.03323885798454285	accuracy:1.0
+INFO:root:epoch: 14	batch: 300	loss: 0.7787011861801147	accuracy:0.71875
+INFO:root:epoch: 14	batch: 400	loss: 0.4058724343776703	accuracy:0.71875
+INFO:root:epoch: 14	batch: 500	loss: 1.294316291809082	accuracy:0.34375
+INFO:root:epoch: 14	dev loss: 0.5255905985832214	dev accuracy: 0.7839844226837158	train accuracy: 0.8819262385368347
+INFO:root:epoch: 15	batch: 0	loss: 0.0662965476512909	accuracy:1.0
+INFO:root:epoch: 15	batch: 100	loss: 0.0914907455444336	accuracy:0.9375
+INFO:root:epoch: 15	batch: 200	loss: 0.027570124715566635	accuracy:1.0
+INFO:root:epoch: 15	batch: 300	loss: 0.7071012258529663	accuracy:0.84375
+INFO:root:epoch: 15	batch: 400	loss: 0.31550395488739014	accuracy:0.75
+INFO:root:epoch: 15	batch: 500	loss: 1.3028018474578857	accuracy:0.34375
+INFO:root:epoch: 15	dev loss: 0.4909602999687195	dev accuracy: 0.8041393756866455	train accuracy: 0.8997054696083069
+INFO:root:epoch: 16	batch: 0	loss: 0.052847325801849365	accuracy:1.0
+INFO:root:epoch: 16	batch: 100	loss: 0.0888248085975647	accuracy:0.9375
+INFO:root:epoch: 16	batch: 200	loss: 0.031369954347610474	accuracy:1.0
+INFO:root:epoch: 16	batch: 300	loss: 0.5687198042869568	accuracy:0.84375
+INFO:root:epoch: 16	batch: 400	loss: 0.12846069037914276	accuracy:1.0
+INFO:root:epoch: 16	batch: 500	loss: 1.3045833110809326	accuracy:0.34375
+INFO:root:epoch: 16	dev loss: 0.40441665053367615	dev accuracy: 0.826028048992157	train accuracy: 0.9198298454284668
+INFO:root:epoch: 17	batch: 0	loss: 0.005101047456264496	accuracy:1.0
+INFO:root:epoch: 17	batch: 100	loss: 0.08572083711624146	accuracy:0.9375
+INFO:root:epoch: 17	batch: 200	loss: 0.029563013464212418	accuracy:1.0
+INFO:root:epoch: 17	batch: 300	loss: 0.14535269141197205	accuracy:1.0
+INFO:root:epoch: 17	batch: 400	loss: 0.04494314640760422	accuracy:1.0
+INFO:root:epoch: 17	batch: 500	loss: 1.297943353652954	accuracy:0.34375
+INFO:root:epoch: 17	dev loss: 0.26854515075683594	dev accuracy: 0.8640082478523254	train accuracy: 0.939845085144043
+INFO:root:epoch: 18	batch: 0	loss: 0.033002421259880066	accuracy:1.0
+INFO:root:epoch: 18	batch: 100	loss: 0.0861821174621582	accuracy:0.9375
+INFO:root:epoch: 18	batch: 200	loss: 0.022847894579172134	accuracy:1.0
+INFO:root:epoch: 18	batch: 300	loss: 0.14870093762874603	accuracy:1.0
+INFO:root:epoch: 18	batch: 400	loss: 0.01769256591796875	accuracy:1.0
+INFO:root:epoch: 18	batch: 500	loss: 1.3034586906433105	accuracy:0.34375
+INFO:root:epoch: 18	dev loss: 0.2280498892068863	dev accuracy: 0.8895270228385925	train accuracy: 0.9420266151428223
+INFO:root:epoch: 19	batch: 0	loss: 0.004808926023542881	accuracy:1.0
+INFO:root:epoch: 19	batch: 100	loss: 0.08475276827812195	accuracy:0.9375
+INFO:root:epoch: 19	batch: 200	loss: 0.024771301075816154	accuracy:1.0
+INFO:root:epoch: 19	batch: 300	loss: 0.15978319942951202	accuracy:1.0
+INFO:root:epoch: 19	batch: 400	loss: 0.012276293709874153	accuracy:1.0
+INFO:root:epoch: 19	batch: 500	loss: 1.3082542419433594	accuracy:0.34375
+INFO:root:epoch: 19	dev loss: 0.2091183364391327	dev accuracy: 0.8894728422164917	train accuracy: 0.9408813118934631
+INFO:root:epoch: 20	batch: 0	loss: 0.0011323847575113177	accuracy:1.0
+INFO:root:epoch: 20	batch: 100	loss: 0.08410689979791641	accuracy:0.9375
+INFO:root:epoch: 20	batch: 200	loss: 0.027644719928503036	accuracy:1.0
+INFO:root:epoch: 20	batch: 300	loss: 0.17240838706493378	accuracy:1.0
+INFO:root:epoch: 20	batch: 400	loss: 0.009388902224600315	accuracy:1.0
+INFO:root:epoch: 20	batch: 500	loss: 1.31291925907135	accuracy:0.34375
+INFO:root:epoch: 20	dev loss: 0.20276565849781036	dev accuracy: 0.8894728422164917	train accuracy: 0.9396815299987793
+INFO:root:epoch: 21	batch: 0	loss: 0.0006199555937200785	accuracy:1.0
+INFO:root:epoch: 21	batch: 100	loss: 0.08330647647380829	accuracy:0.9375
+INFO:root:epoch: 21	batch: 200	loss: 0.028768818825483322	accuracy:1.0
+INFO:root:epoch: 21	batch: 300	loss: 0.15797346830368042	accuracy:1.0
+INFO:root:epoch: 21	batch: 400	loss: 0.008732965216040611	accuracy:1.0
+INFO:root:epoch: 21	batch: 500	loss: 1.3152527809143066	accuracy:0.34375
+INFO:root:epoch: 21	dev loss: 0.20149284601211548	dev accuracy: 0.8907189965248108	train accuracy: 0.9405540823936462
+INFO:root:epoch: 22	batch: 0	loss: 0.0002933797659352422	accuracy:1.0
+INFO:root:epoch: 22	batch: 100	loss: 0.08552758395671844	accuracy:0.9375
+INFO:root:epoch: 22	batch: 200	loss: 0.029299769550561905	accuracy:1.0
+INFO:root:epoch: 22	batch: 300	loss: 0.1858256608247757	accuracy:1.0
+INFO:root:epoch: 22	batch: 400	loss: 0.005375662352889776	accuracy:1.0
+INFO:root:epoch: 22	batch: 500	loss: 1.3228323459625244	accuracy:0.34375
+INFO:root:epoch: 22	dev loss: 0.20627357065677643	dev accuracy: 0.8907731771469116	train accuracy: 0.9381544589996338
+INFO:root:epoch: 23	batch: 0	loss: 0.0006124713690951467	accuracy:1.0
+INFO:root:epoch: 23	batch: 100	loss: 0.0788707435131073	accuracy:0.9375
+INFO:root:epoch: 23	batch: 200	loss: 0.02580597624182701	accuracy:1.0
+INFO:root:epoch: 23	batch: 300	loss: 0.13465216755867004	accuracy:1.0
+INFO:root:epoch: 23	batch: 400	loss: 0.007697560824453831	accuracy:1.0
+INFO:root:epoch: 23	batch: 500	loss: 1.3160204887390137	accuracy:0.34375
+INFO:root:epoch: 23	dev loss: 0.20185203850269318	dev accuracy: 0.8907731771469116	train accuracy: 0.943008303642273
+INFO:root:epoch: 24	batch: 0	loss: 0.00017836278129834682	accuracy:1.0
+INFO:root:epoch: 24	batch: 100	loss: 0.08756314218044281	accuracy:0.9375
+INFO:root:epoch: 24	batch: 200	loss: 0.025534464046359062	accuracy:1.0
+INFO:root:epoch: 24	batch: 300	loss: 0.16133272647857666	accuracy:1.0
+INFO:root:epoch: 24	batch: 400	loss: 0.004034979734569788	accuracy:1.0
+INFO:root:epoch: 24	batch: 500	loss: 1.3271393775939941	accuracy:0.34375
+INFO:root:epoch: 24	dev loss: 0.19626353681087494	dev accuracy: 0.8907731771469116	train accuracy: 0.9398996233940125
+INFO:root:epoch: 25	batch: 0	loss: 0.00027134164702147245	accuracy:1.0
+INFO:root:epoch: 25	batch: 100	loss: 0.08554698526859283	accuracy:0.9375
+INFO:root:epoch: 25	batch: 200	loss: 0.028941325843334198	accuracy:1.0
+INFO:root:epoch: 25	batch: 300	loss: 0.17986339330673218	accuracy:1.0
+INFO:root:epoch: 25	batch: 400	loss: 0.0032790296245366335	accuracy:1.0
+INFO:root:epoch: 25	batch: 500	loss: 1.3244749307632446	accuracy:0.34375
+INFO:root:epoch: 25	dev loss: 0.21065697073936462	dev accuracy: 0.8907731771469116	train accuracy: 0.9382089972496033
+INFO:root:epoch: 26	batch: 0	loss: 0.0003376670356374234	accuracy:1.0
+INFO:root:epoch: 26	batch: 100	loss: 0.07942414283752441	accuracy:0.9375
+INFO:root:epoch: 26	batch: 200	loss: 0.03354046493768692	accuracy:1.0
+INFO:root:epoch: 26	batch: 300	loss: 0.2078777551651001	accuracy:1.0
+INFO:root:epoch: 26	batch: 400	loss: 0.0028870704118162394	accuracy:1.0
+INFO:root:epoch: 26	batch: 500	loss: 1.3226783275604248	accuracy:0.34375
+INFO:root:epoch: 26	dev loss: 0.25078824162483215	dev accuracy: 0.8907731771469116	train accuracy: 0.9361910820007324
+INFO:root:epoch: 27	batch: 0	loss: 0.0005835704505443573	accuracy:1.0
+INFO:root:epoch: 27	batch: 100	loss: 0.0701988935470581	accuracy:0.9375
+INFO:root:epoch: 27	batch: 200	loss: 0.03846929594874382	accuracy:1.0
+INFO:root:epoch: 27	batch: 300	loss: 0.2439800351858139	accuracy:0.75
+INFO:root:epoch: 27	batch: 400	loss: 0.002947509754449129	accuracy:1.0
+INFO:root:epoch: 27	batch: 500	loss: 1.322826623916626	accuracy:0.34375
+INFO:root:epoch: 27	dev loss: 0.3214627802371979	dev accuracy: 0.8907731771469116	train accuracy: 0.9344459176063538
+INFO:root:epoch: 28	batch: 0	loss: 0.011599255725741386	accuracy:1.0
+INFO:root:epoch: 28	batch: 100	loss: 0.05455309525132179	accuracy:0.9375
+INFO:root:epoch: 28	batch: 200	loss: 0.004595629870891571	accuracy:1.0
+INFO:root:epoch: 28	batch: 300	loss: 0.15402713418006897	accuracy:1.0
+INFO:root:epoch: 28	batch: 400	loss: 0.0019084876403212547	accuracy:1.0
+INFO:root:epoch: 28	batch: 500	loss: 1.3161728382110596	accuracy:0.34375
+INFO:root:epoch: 28	dev loss: 0.2009197473526001	dev accuracy: 0.8908273577690125	train accuracy: 0.9458987712860107
+INFO:root:epoch: 29	batch: 0	loss: 0.0012359616812318563	accuracy:1.0
+INFO:root:epoch: 29	batch: 100	loss: 0.08423808962106705	accuracy:0.9375
+INFO:root:epoch: 29	batch: 200	loss: 0.030665166676044464	accuracy:1.0
+INFO:root:epoch: 29	batch: 300	loss: 0.1987452507019043	accuracy:1.0
+INFO:root:epoch: 29	batch: 400	loss: 0.0020236328709870577	accuracy:1.0
+INFO:root:epoch: 29	batch: 500	loss: 1.3280305862426758	accuracy:0.34375
+INFO:root:epoch: 29	dev loss: 0.21924510598182678	dev accuracy: 0.8907731771469116	train accuracy: 0.9367910027503967
+INFO:root:epoch: 30	batch: 0	loss: 0.0012758525554090738	accuracy:1.0
+INFO:root:epoch: 30	batch: 100	loss: 0.07740959525108337	accuracy:0.9375
+INFO:root:epoch: 30	batch: 200	loss: 0.041227564215660095	accuracy:1.0
+INFO:root:epoch: 30	batch: 300	loss: 0.2467430979013443	accuracy:0.75
+INFO:root:epoch: 30	batch: 400	loss: 0.002266693627461791	accuracy:1.0
+INFO:root:epoch: 30	batch: 500	loss: 1.3202378749847412	accuracy:0.34375
+INFO:root:epoch: 30	dev loss: 0.2961398661136627	dev accuracy: 0.8907189965248108	train accuracy: 0.9333551526069641
+INFO:root:epoch: 31	batch: 0	loss: 0.0021113725379109383	accuracy:1.0
+INFO:root:epoch: 31	batch: 100	loss: 0.060056161135435104	accuracy:0.9375
+INFO:root:epoch: 31	batch: 200	loss: 0.0031436197459697723	accuracy:1.0
+INFO:root:epoch: 31	batch: 300	loss: 0.18946406245231628	accuracy:1.0
+INFO:root:epoch: 31	batch: 400	loss: 0.0011864760890603065	accuracy:1.0
+INFO:root:epoch: 31	batch: 500	loss: 1.3239076137542725	accuracy:0.34375
+INFO:root:epoch: 31	dev loss: 0.2136850208044052	dev accuracy: 0.8907189965248108	train accuracy: 0.941426694393158
+INFO:root:epoch: 32	batch: 0	loss: 0.004715141840279102	accuracy:1.0
+INFO:root:epoch: 32	batch: 100	loss: 0.07562138140201569	accuracy:0.9375
+INFO:root:epoch: 32	batch: 200	loss: 0.0038034338504076004	accuracy:1.0
+INFO:root:epoch: 32	batch: 300	loss: 0.0736183449625969	accuracy:1.0
+INFO:root:epoch: 32	batch: 400	loss: 0.009317763149738312	accuracy:1.0
+INFO:root:epoch: 32	batch: 500	loss: 1.3307733535766602	accuracy:0.34375
+INFO:root:epoch: 32	dev loss: 0.3957206606864929	dev accuracy: 0.8856802582740784	train accuracy: 0.9438263773918152
+INFO:root:epoch: 33	batch: 0	loss: 0.5487419366836548	accuracy:0.71875
+INFO:root:epoch: 33	batch: 100	loss: 0.033089883625507355	accuracy:1.0
+INFO:root:epoch: 33	batch: 200	loss: 0.004143248312175274	accuracy:1.0
+INFO:root:epoch: 33	batch: 300	loss: 0.12838193774223328	accuracy:1.0
+INFO:root:epoch: 33	batch: 400	loss: 0.0011038192315027118	accuracy:1.0
+INFO:root:epoch: 33	batch: 500	loss: 1.315335750579834	accuracy:0.34375
+INFO:root:epoch: 33	dev loss: 0.26698967814445496	dev accuracy: 0.8907189965248108	train accuracy: 0.9528796076774597
+INFO:root:epoch: 34	batch: 0	loss: 5.614033943857066e-05	accuracy:1.0
+INFO:root:epoch: 34	batch: 100	loss: 0.06757562607526779	accuracy:0.9375
+INFO:root:epoch: 34	batch: 200	loss: 0.0057653398253023624	accuracy:1.0
+INFO:root:epoch: 34	batch: 300	loss: 0.11631059646606445	accuracy:1.0
+INFO:root:epoch: 34	batch: 400	loss: 0.003067291807383299	accuracy:1.0
+INFO:root:epoch: 34	batch: 500	loss: 1.320425033569336	accuracy:0.34375
+INFO:root:epoch: 34	dev loss: 0.3092506229877472	dev accuracy: 0.8907731771469116	train accuracy: 0.9449716210365295
+INFO:root:epoch: 35	batch: 0	loss: 0.0004001377965323627	accuracy:1.0
+INFO:root:epoch: 35	batch: 100	loss: 0.05316171050071716	accuracy:0.9375
+INFO:root:epoch: 35	batch: 200	loss: 0.005568870343267918	accuracy:1.0
+INFO:root:epoch: 35	batch: 300	loss: 0.13431021571159363	accuracy:1.0
+INFO:root:epoch: 35	batch: 400	loss: 0.001370430807583034	accuracy:1.0
+INFO:root:epoch: 35	batch: 500	loss: 1.3216333389282227	accuracy:0.34375
+INFO:root:epoch: 35	dev loss: 0.28213220834732056	dev accuracy: 0.8907731771469116	train accuracy: 0.9494982361793518
+INFO:root:epoch: 36	batch: 0	loss: 0.0003200481296516955	accuracy:1.0
+INFO:root:epoch: 36	batch: 100	loss: 0.06026487797498703	accuracy:0.9375
+INFO:root:epoch: 36	batch: 200	loss: 0.006371934898197651	accuracy:1.0
+INFO:root:epoch: 36	batch: 300	loss: 0.1338803470134735	accuracy:1.0
+INFO:root:epoch: 36	batch: 400	loss: 0.0015459777787327766	accuracy:1.0
+INFO:root:epoch: 36	batch: 500	loss: 1.323110818862915	accuracy:0.34375
+INFO:root:epoch: 36	dev loss: 0.2830894887447357	dev accuracy: 0.8907731771469116	train accuracy: 0.9466623067855835
+INFO:root:epoch: 37	batch: 0	loss: 0.000682745361700654	accuracy:1.0
+INFO:root:epoch: 37	batch: 100	loss: 0.05937828868627548	accuracy:0.9375
+INFO:root:epoch: 37	batch: 200	loss: 0.0070602865889668465	accuracy:1.0
+INFO:root:epoch: 37	batch: 300	loss: 0.14238221943378448	accuracy:1.0
+INFO:root:epoch: 37	batch: 400	loss: 0.0013616802170872688	accuracy:1.0
+INFO:root:epoch: 37	batch: 500	loss: 1.3224657773971558	accuracy:0.34375
+INFO:root:epoch: 37	dev loss: 0.2767433822154999	dev accuracy: 0.8907189965248108	train accuracy: 0.9461714625358582
+INFO:root:epoch: 38	batch: 0	loss: 0.000771474908106029	accuracy:1.0
+INFO:root:epoch: 38	batch: 100	loss: 0.06022805720567703	accuracy:0.9375
+INFO:root:epoch: 38	batch: 200	loss: 0.007674297317862511	accuracy:1.0
+INFO:root:epoch: 38	batch: 300	loss: 0.14938047528266907	accuracy:1.0
+INFO:root:epoch: 38	batch: 400	loss: 0.0012392414500936866	accuracy:1.0
+INFO:root:epoch: 38	batch: 500	loss: 1.322758674621582	accuracy:0.34375
+INFO:root:epoch: 38	dev loss: 0.26930806040763855	dev accuracy: 0.89066481590271	train accuracy: 0.9453533887863159
+INFO:root:epoch: 39	batch: 0	loss: 0.001066312426701188	accuracy:1.0
+INFO:root:epoch: 39	batch: 100	loss: 0.06153268367052078	accuracy:0.9375
+INFO:root:epoch: 39	batch: 200	loss: 0.008515706285834312	accuracy:1.0
+INFO:root:epoch: 39	batch: 300	loss: 0.15835237503051758	accuracy:1.0
+INFO:root:epoch: 39	batch: 400	loss: 0.0011731286067515612	accuracy:1.0
+INFO:root:epoch: 39	batch: 500	loss: 1.3224904537200928	accuracy:0.34375
+INFO:root:epoch: 39	dev loss: 0.2623402178287506	dev accuracy: 0.89066481590271	train accuracy: 0.9445353150367737
+INFO:root:epoch: 40	batch: 0	loss: 0.0011061078403145075	accuracy:1.0
+INFO:root:epoch: 40	batch: 100	loss: 0.0626329779624939	accuracy:0.9375
+INFO:root:epoch: 40	batch: 200	loss: 0.009536060504615307	accuracy:1.0
+INFO:root:epoch: 40	batch: 300	loss: 0.1690146028995514	accuracy:1.0
+INFO:root:epoch: 40	batch: 400	loss: 0.001119450549595058	accuracy:1.0
+INFO:root:epoch: 40	batch: 500	loss: 1.3222544193267822	accuracy:0.34375
+INFO:root:epoch: 40	dev loss: 0.25488409399986267	dev accuracy: 0.89066481590271	train accuracy: 0.9436627626419067
+INFO:root:epoch: 41	batch: 0	loss: 0.0009038463467732072	accuracy:1.0
+INFO:root:epoch: 41	batch: 100	loss: 0.06373688578605652	accuracy:0.9375
+INFO:root:epoch: 41	batch: 200	loss: 0.011049332097172737	accuracy:1.0
+INFO:root:epoch: 41	batch: 300	loss: 0.18230053782463074	accuracy:1.0
+INFO:root:epoch: 41	batch: 400	loss: 0.0010765793267637491	accuracy:1.0
+INFO:root:epoch: 41	batch: 500	loss: 1.3217785358428955	accuracy:0.34375
+INFO:root:epoch: 41	dev loss: 0.24893957376480103	dev accuracy: 0.89066481590271	train accuracy: 0.9419720768928528
+INFO:root:epoch: 42	batch: 0	loss: 0.0006213780725374818	accuracy:1.0
+INFO:root:epoch: 42	batch: 100	loss: 0.0643664002418518	accuracy:0.9375
+INFO:root:epoch: 42	batch: 200	loss: 0.013304198160767555	accuracy:1.0
+INFO:root:epoch: 42	batch: 300	loss: 0.19812554121017456	accuracy:1.0
+INFO:root:epoch: 42	batch: 400	loss: 0.0012007489567622542	accuracy:1.0
+INFO:root:epoch: 42	batch: 500	loss: 1.3207448720932007	accuracy:0.34375
+INFO:root:epoch: 42	dev loss: 0.24512284994125366	dev accuracy: 0.89066481590271	train accuracy: 0.9401723146438599
+INFO:root:epoch: 43	batch: 0	loss: 0.0004359660088084638	accuracy:1.0
+INFO:root:epoch: 43	batch: 100	loss: 0.06440501660108566	accuracy:0.9375
+INFO:root:epoch: 43	batch: 200	loss: 0.016713492572307587	accuracy:1.0
+INFO:root:epoch: 43	batch: 300	loss: 0.21605587005615234	accuracy:1.0
+INFO:root:epoch: 43	batch: 400	loss: 0.0012162185739725828	accuracy:1.0
+INFO:root:epoch: 43	batch: 500	loss: 1.319437861442566	accuracy:0.34375
+INFO:root:epoch: 43	dev loss: 0.2476755827665329	dev accuracy: 0.89066481590271	train accuracy: 0.937609076499939
+INFO:root:epoch: 44	batch: 0	loss: 0.00021783594274893403	accuracy:1.0
+INFO:root:epoch: 44	batch: 100	loss: 0.06358619034290314	accuracy:0.9375
+INFO:root:epoch: 44	batch: 200	loss: 0.0219100508838892	accuracy:1.0
+INFO:root:epoch: 44	batch: 300	loss: 0.23538775742053986	accuracy:1.0
+INFO:root:epoch: 44	batch: 400	loss: 0.0012938829604536295	accuracy:1.0
+INFO:root:epoch: 44	batch: 500	loss: 1.3163502216339111	accuracy:0.34375
+INFO:root:epoch: 44	dev loss: 0.24851574003696442	dev accuracy: 0.89066481590271	train accuracy: 0.9347186088562012
+INFO:root:epoch: 45	batch: 0	loss: 0.00017992386710830033	accuracy:1.0
+INFO:root:epoch: 45	batch: 100	loss: 0.062321048229932785	accuracy:0.9375
+INFO:root:epoch: 45	batch: 200	loss: 0.022558681666851044	accuracy:1.0
+INFO:root:epoch: 45	batch: 300	loss: 0.24084928631782532	accuracy:0.6875
+INFO:root:epoch: 45	batch: 400	loss: 0.000992271350696683	accuracy:1.0
+INFO:root:epoch: 45	batch: 500	loss: 1.3133249282836914	accuracy:0.34375
+INFO:root:epoch: 45	dev loss: 0.23302175104618073	dev accuracy: 0.89066481590271	train accuracy: 0.9335187673568726
+INFO:root:epoch: 46	batch: 0	loss: 0.00016170425806194544	accuracy:1.0
+INFO:root:epoch: 46	batch: 100	loss: 0.06317123770713806	accuracy:0.9375
+INFO:root:epoch: 46	batch: 200	loss: 0.02598755806684494	accuracy:1.0
+INFO:root:epoch: 46	batch: 300	loss: 0.24414223432540894	accuracy:0.65625
+INFO:root:epoch: 46	batch: 400	loss: 0.0020547707099467516	accuracy:1.0
+INFO:root:epoch: 46	batch: 500	loss: 1.3137116432189941	accuracy:0.34375
+INFO:root:epoch: 46	dev loss: 0.21351934969425201	dev accuracy: 0.89066481590271	train accuracy: 0.9315553903579712
+INFO:root:epoch: 47	batch: 0	loss: 0.0006403452716767788	accuracy:1.0
+INFO:root:epoch: 47	batch: 100	loss: 0.06466508656740189	accuracy:0.9375
+INFO:root:epoch: 47	batch: 200	loss: 0.042811743915081024	accuracy:1.0
+INFO:root:epoch: 47	batch: 300	loss: 0.2637404799461365	accuracy:0.65625
+INFO:root:epoch: 47	batch: 400	loss: 0.0016074668383225799	accuracy:1.0
+INFO:root:epoch: 47	batch: 500	loss: 1.310347080230713	accuracy:0.34375
+INFO:root:epoch: 47	dev loss: 0.21552100777626038	dev accuracy: 0.89066481590271	train accuracy: 0.9271378517150879
+INFO:root:epoch: 48	batch: 0	loss: 0.0003900603041984141	accuracy:1.0
+INFO:root:epoch: 48	batch: 100	loss: 0.06144445389509201	accuracy:0.9375
+INFO:root:epoch: 48	batch: 200	loss: 0.01373444963246584	accuracy:1.0
+INFO:root:epoch: 48	batch: 300	loss: 0.20601913332939148	accuracy:1.0
+INFO:root:epoch: 48	batch: 400	loss: 0.003637428395450115	accuracy:1.0
+INFO:root:epoch: 48	batch: 500	loss: 1.2618865966796875	accuracy:0.34375
+INFO:root:epoch: 48	dev loss: 0.286761999130249	dev accuracy: 0.8859511017799377	train accuracy: 0.9375
+INFO:root:epoch: 49	batch: 0	loss: 0.007785782217979431	accuracy:1.0
+INFO:root:epoch: 49	batch: 100	loss: 0.06384440511465073	accuracy:0.9375
+INFO:root:epoch: 49	batch: 200	loss: 0.010511700063943863	accuracy:1.0
+INFO:root:epoch: 49	batch: 300	loss: 0.17015300691127777	accuracy:1.0
+INFO:root:epoch: 49	batch: 400	loss: 0.0013836685102432966	accuracy:1.0
+INFO:root:epoch: 49	batch: 500	loss: 0.5322860479354858	accuracy:0.78125
+INFO:root:epoch: 49	dev loss: 0.3438943326473236	dev accuracy: 0.8498131036758423	train accuracy: 0.9531522393226624
+INFO:root:epoch: 50	batch: 0	loss: 0.011506784707307816	accuracy:1.0
+INFO:root:epoch: 50	batch: 100	loss: 0.06434890627861023	accuracy:0.9375
+INFO:root:epoch: 50	batch: 200	loss: 0.0159487072378397	accuracy:1.0
+INFO:root:epoch: 50	batch: 300	loss: 0.19252704083919525	accuracy:1.0
+INFO:root:epoch: 50	batch: 400	loss: 0.002695963717997074	accuracy:1.0
+INFO:root:epoch: 50	batch: 500	loss: 0.43691956996917725	accuracy:0.78125
+INFO:root:epoch: 50	dev loss: 0.21245843172073364	dev accuracy: 0.9009048342704773	train accuracy: 0.955933690071106
+INFO:root:epoch: 51	batch: 0	loss: 0.29314953088760376	accuracy:0.84375
+INFO:root:epoch: 51	batch: 100	loss: 0.06669746339321136	accuracy:0.9375
+INFO:root:epoch: 51	batch: 200	loss: 0.04097942262887955	accuracy:1.0
+INFO:root:epoch: 51	batch: 300	loss: 0.2640698552131653	accuracy:0.65625
+INFO:root:epoch: 51	batch: 400	loss: 0.001554302405565977	accuracy:1.0
+INFO:root:epoch: 51	batch: 500	loss: 0.22618481516838074	accuracy:0.9375
+INFO:root:epoch: 51	dev loss: 0.16530659794807434	dev accuracy: 0.9070813059806824	train accuracy: 0.954352080821991
+INFO:root:epoch: 52	batch: 0	loss: 0.0011039766250178218	accuracy:1.0
+INFO:root:epoch: 52	batch: 100	loss: 0.0634474828839302	accuracy:0.9375
+INFO:root:epoch: 52	batch: 200	loss: 0.05884827673435211	accuracy:1.0
+INFO:root:epoch: 52	batch: 300	loss: 0.2736126482486725	accuracy:0.65625
+INFO:root:epoch: 52	batch: 400	loss: 0.004110250622034073	accuracy:1.0
+INFO:root:epoch: 52	batch: 500	loss: 0.09623093903064728	accuracy:1.0
+INFO:root:epoch: 52	dev loss: 0.17825479805469513	dev accuracy: 0.913637101650238	train accuracy: 0.9528250694274902
+INFO:root:epoch: 53	batch: 0	loss: 0.0009007607586681843	accuracy:1.0
+INFO:root:epoch: 53	batch: 100	loss: 0.05937482416629791	accuracy:0.9375
+INFO:root:epoch: 53	batch: 200	loss: 0.03097444772720337	accuracy:1.0
+INFO:root:epoch: 53	batch: 300	loss: 0.24358513951301575	accuracy:0.71875
+INFO:root:epoch: 53	batch: 400	loss: 0.0021393941715359688	accuracy:1.0
+INFO:root:epoch: 53	batch: 500	loss: 0.04371584206819534	accuracy:1.0
+INFO:root:epoch: 53	dev loss: 0.16878443956375122	dev accuracy: 0.913637101650238	train accuracy: 0.9620963931083679
+INFO:root:epoch: 54	batch: 0	loss: 0.0003253390023019165	accuracy:1.0
+INFO:root:epoch: 54	batch: 100	loss: 0.06200656294822693	accuracy:0.9375
+INFO:root:epoch: 54	batch: 200	loss: 0.0819808691740036	accuracy:1.0
+INFO:root:epoch: 54	batch: 300	loss: 0.29189634323120117	accuracy:0.65625
+INFO:root:epoch: 54	batch: 400	loss: 0.0034143091179430485	accuracy:1.0
+INFO:root:epoch: 54	batch: 500	loss: 0.022797314450144768	accuracy:1.0
+INFO:root:epoch: 54	dev loss: 0.1976466327905655	dev accuracy: 0.9185674786567688	train accuracy: 0.9566972255706787
+INFO:root:epoch: 55	batch: 0	loss: 0.0012411633506417274	accuracy:1.0
+INFO:root:epoch: 55	batch: 100	loss: 0.05490127205848694	accuracy:0.9375
+INFO:root:epoch: 55	batch: 200	loss: 0.026179026812314987	accuracy:1.0
+INFO:root:epoch: 55	batch: 300	loss: 0.2504909634590149	accuracy:0.71875
+INFO:root:epoch: 55	batch: 400	loss: 0.0010281659197062254	accuracy:1.0
+INFO:root:epoch: 55	batch: 500	loss: 0.014414981007575989	accuracy:1.0
+INFO:root:epoch: 55	dev loss: 0.17696437239646912	dev accuracy: 0.9185674786567688	train accuracy: 0.9644960761070251
+INFO:root:epoch: 56	batch: 0	loss: 0.0001827188243623823	accuracy:1.0
+INFO:root:epoch: 56	batch: 100	loss: 0.06065523996949196	accuracy:0.9375
+INFO:root:epoch: 56	batch: 200	loss: 0.07116708159446716	accuracy:1.0
+INFO:root:epoch: 56	batch: 300	loss: 0.29858824610710144	accuracy:0.65625
+INFO:root:epoch: 56	batch: 400	loss: 0.001523198327049613	accuracy:1.0
+INFO:root:epoch: 56	batch: 500	loss: 0.009942945092916489	accuracy:1.0
+INFO:root:epoch: 56	dev loss: 0.1630726158618927	dev accuracy: 0.9185674786567688	train accuracy: 0.9554428458213806
+INFO:root:epoch: 57	batch: 0	loss: 0.00014472886687144637	accuracy:1.0
+INFO:root:epoch: 57	batch: 100	loss: 0.05755240097641945	accuracy:0.9375
+INFO:root:epoch: 57	batch: 200	loss: 0.07934561371803284	accuracy:1.0
+INFO:root:epoch: 57	batch: 300	loss: 0.30726850032806396	accuracy:0.65625
+INFO:root:epoch: 57	batch: 400	loss: 0.001657819957472384	accuracy:1.0
+INFO:root:epoch: 57	batch: 500	loss: 0.007452435791492462	accuracy:1.0
+INFO:root:epoch: 57	dev loss: 0.1644531786441803	dev accuracy: 0.9185674786567688	train accuracy: 0.9546247720718384
+INFO:root:epoch: 58	batch: 0	loss: 9.521639731246978e-05	accuracy:1.0
+INFO:root:epoch: 58	batch: 100	loss: 0.05576937645673752	accuracy:0.9375
+INFO:root:epoch: 58	batch: 200	loss: 0.07316248118877411	accuracy:1.0
+INFO:root:epoch: 58	batch: 300	loss: 0.2941014766693115	accuracy:0.65625
+INFO:root:epoch: 58	batch: 400	loss: 0.0015277671627700329	accuracy:1.0
+INFO:root:epoch: 58	batch: 500	loss: 0.0059601725079119205	accuracy:1.0
+INFO:root:epoch: 58	dev loss: 0.17134633660316467	dev accuracy: 0.9185674786567688	train accuracy: 0.9559882283210754
+INFO:root:epoch: 59	batch: 0	loss: 0.0003268399741500616	accuracy:1.0
+INFO:root:epoch: 59	batch: 100	loss: 0.056525006890296936	accuracy:0.9375
+INFO:root:epoch: 59	batch: 200	loss: 0.03286166489124298	accuracy:1.0
+INFO:root:epoch: 59	batch: 300	loss: 0.255556583404541	accuracy:0.65625
+INFO:root:epoch: 59	batch: 400	loss: 0.0005756464670412242	accuracy:1.0
+INFO:root:epoch: 59	batch: 500	loss: 0.0048106457106769085	accuracy:1.0
+INFO:root:epoch: 59	dev loss: 0.17790305614471436	dev accuracy: 0.9185674786567688	train accuracy: 0.9607329964637756
+
+Config:
+hops: 2
+actions: 16
+history utterance length: 18
+query length: 14
+embedding size: 10
+batch size: 32
+memory size: 20
+epochs: 50
+gradient clip norm: 40
+
+INFO:root:epoch: 49	dev loss: 0.11375171691179276	dev accuracy: 0.971826434135437	train accuracy: 0.986965537071228
+
+add H query embedding)
+Config:
+hops: 2
+actions: 16
+history utterance length: 18
+query length: 14
+embedding size: 10
+batch size: 32
+memory size: 20
+epochs: 50
+gradient clip norm: 40
+
+2018-04-20 15:57:00.983251: I tensorflow/core/platform/cpu_feature_guard.cc:140] Your CPU supports instructions that this TensorFlow binary was not compiled to use: AVX2 FMA
+INFO:root:epoch: 0	batch: 0	loss: 1.816061019897461	accuracy:0.65625
+INFO:root:epoch: 0	batch: 100	loss: 1.9155083894729614	accuracy:0.34375
+INFO:root:epoch: 0	batch: 200	loss: 1.396124005317688	accuracy:0.5
+INFO:root:epoch: 0	batch: 300	loss: 1.8044339418411255	accuracy:0.34375
+INFO:root:epoch: 0	batch: 400	loss: 1.1273789405822754	accuracy:0.4375
+INFO:root:epoch: 0	batch: 500	loss: 2.34792423248291	accuracy:0.0
+INFO:root:epoch: 0	dev loss: 2.490997552871704	dev accuracy: 0.18773365020751953	train accuracy: 0.3427683115005493
+INFO:root:epoch: 1	batch: 0	loss: 2.76682710647583	accuracy:0.03125
+INFO:root:epoch: 1	batch: 100	loss: 1.3178006410598755	accuracy:0.8125
+INFO:root:epoch: 1	batch: 200	loss: 0.7396135330200195	accuracy:0.96875
+INFO:root:epoch: 1	batch: 300	loss: 1.4045741558074951	accuracy:0.3125
+INFO:root:epoch: 1	batch: 400	loss: 0.9355924129486084	accuracy:0.6875
+INFO:root:epoch: 1	batch: 500	loss: 2.52023983001709	accuracy:0.0
+INFO:root:epoch: 1	dev loss: 2.520699977874756	dev accuracy: 0.31240180134773254	train accuracy: 0.6331260800361633
+INFO:root:epoch: 2	batch: 0	loss: 8.546064376831055	accuracy:0.0
+INFO:root:epoch: 2	batch: 100	loss: 0.3124349117279053	accuracy:0.9375
+INFO:root:epoch: 2	batch: 200	loss: 0.22667722404003143	accuracy:0.96875
+INFO:root:epoch: 2	batch: 300	loss: 0.9443773627281189	accuracy:0.59375
+INFO:root:epoch: 2	batch: 400	loss: 1.0427355766296387	accuracy:0.6875
+INFO:root:epoch: 2	batch: 500	loss: 1.9823291301727295	accuracy:0.4375
+INFO:root:epoch: 2	dev loss: 1.315128207206726	dev accuracy: 0.509671151638031	train accuracy: 0.7370200753211975
+INFO:root:epoch: 3	batch: 0	loss: 0.7458429336547852	accuracy:0.78125
+INFO:root:epoch: 3	batch: 100	loss: 0.08350635319948196	accuracy:1.0
+INFO:root:epoch: 3	batch: 200	loss: 0.1804530918598175	accuracy:0.96875
+INFO:root:epoch: 3	batch: 300	loss: 0.8328222036361694	accuracy:0.6875
+INFO:root:epoch: 3	batch: 400	loss: 0.8210276961326599	accuracy:0.6875
+INFO:root:epoch: 3	batch: 500	loss: 1.6408904790878296	accuracy:0.34375
+INFO:root:epoch: 3	dev loss: 1.0670721530914307	dev accuracy: 0.6047028303146362	train accuracy: 0.823298454284668
+INFO:root:epoch: 4	batch: 0	loss: 0.3580464720726013	accuracy:1.0
+INFO:root:epoch: 4	batch: 100	loss: 0.0402224138379097	accuracy:1.0
+INFO:root:epoch: 4	batch: 200	loss: 0.13913264870643616	accuracy:0.96875
+INFO:root:epoch: 4	batch: 300	loss: 0.724372386932373	accuracy:0.71875
+INFO:root:epoch: 4	batch: 400	loss: 0.6851050853729248	accuracy:0.6875
+INFO:root:epoch: 4	batch: 500	loss: 1.4152424335479736	accuracy:0.34375
+INFO:root:epoch: 4	dev loss: 0.807220995426178	dev accuracy: 0.7651297450065613	train accuracy: 0.8793630003929138
+INFO:root:epoch: 5	batch: 0	loss: 1.0124619007110596	accuracy:0.28125
+INFO:root:epoch: 5	batch: 100	loss: 0.01894378289580345	accuracy:1.0
+INFO:root:epoch: 5	batch: 200	loss: 0.10701778531074524	accuracy:1.0
+INFO:root:epoch: 5	batch: 300	loss: 0.7079034447669983	accuracy:0.6875
+INFO:root:epoch: 5	batch: 400	loss: 0.6177574396133423	accuracy:0.6875
+INFO:root:epoch: 5	batch: 500	loss: 1.2544479370117188	accuracy:0.34375
+INFO:root:epoch: 5	dev loss: 0.6949574947357178	dev accuracy: 0.7768868207931519	train accuracy: 0.8835078477859497
+INFO:root:epoch: 6	batch: 0	loss: 0.4290626645088196	accuracy:0.9375
+INFO:root:epoch: 6	batch: 100	loss: 0.008582944050431252	accuracy:1.0
+INFO:root:epoch: 6	batch: 200	loss: 0.11503720283508301	accuracy:0.9375
+INFO:root:epoch: 6	batch: 300	loss: 0.7472497224807739	accuracy:0.6875
+INFO:root:epoch: 6	batch: 400	loss: 0.5547804236412048	accuracy:0.6875
+INFO:root:epoch: 6	batch: 500	loss: 0.9921784400939941	accuracy:0.6875
+INFO:root:epoch: 6	dev loss: 0.6416835188865662	dev accuracy: 0.7964457869529724	train accuracy: 0.8878708481788635
+INFO:root:epoch: 7	batch: 0	loss: 0.0933622270822525	accuracy:1.0
+INFO:root:epoch: 7	batch: 100	loss: 0.0044733695685863495	accuracy:1.0
+INFO:root:epoch: 7	batch: 200	loss: 0.08030343055725098	accuracy:1.0
+INFO:root:epoch: 7	batch: 300	loss: 0.7800307273864746	accuracy:0.6875
+INFO:root:epoch: 7	batch: 400	loss: 0.5334129333496094	accuracy:0.6875
+INFO:root:epoch: 7	batch: 500	loss: 0.6197953224182129	accuracy:0.96875
+INFO:root:epoch: 7	dev loss: 0.6405819058418274	dev accuracy: 0.8074985146522522	train accuracy: 0.9001963138580322
+INFO:root:epoch: 8	batch: 0	loss: 0.03029502183198929	accuracy:1.0
+INFO:root:epoch: 8	batch: 100	loss: 0.0025716612581163645	accuracy:1.0
+INFO:root:epoch: 8	batch: 200	loss: 0.05624806880950928	accuracy:1.0
+INFO:root:epoch: 8	batch: 300	loss: 0.8619781136512756	accuracy:0.6875
+INFO:root:epoch: 8	batch: 400	loss: 0.5317899584770203	accuracy:0.6875
+INFO:root:epoch: 8	batch: 500	loss: 0.3773404061794281	accuracy:1.0
+INFO:root:epoch: 8	dev loss: 0.6361484527587891	dev accuracy: 0.8245652318000793	train accuracy: 0.9089768528938293
+INFO:root:epoch: 9	batch: 0	loss: 0.014499673619866371	accuracy:1.0
+INFO:root:epoch: 9	batch: 100	loss: 0.001613949309103191	accuracy:1.0
+INFO:root:epoch: 9	batch: 200	loss: 0.039173826575279236	accuracy:1.0
+INFO:root:epoch: 9	batch: 300	loss: 0.9362345337867737	accuracy:0.6875
+INFO:root:epoch: 9	batch: 400	loss: 0.5202306509017944	accuracy:0.6875
+INFO:root:epoch: 9	batch: 500	loss: 0.2517198324203491	accuracy:1.0
+INFO:root:epoch: 9	dev loss: 0.6144964694976807	dev accuracy: 0.8294956088066101	train accuracy: 0.9093040823936462
+INFO:root:epoch: 10	batch: 0	loss: 0.0076221260242164135	accuracy:1.0
+INFO:root:epoch: 10	batch: 100	loss: 0.0010959296487271786	accuracy:1.0
+INFO:root:epoch: 10	batch: 200	loss: 0.025575760751962662	accuracy:1.0
+INFO:root:epoch: 10	batch: 300	loss: 0.9610352516174316	accuracy:0.6875
+INFO:root:epoch: 10	batch: 400	loss: 0.5173061490058899	accuracy:0.6875
+INFO:root:epoch: 10	batch: 500	loss: 0.17869597673416138	accuracy:1.0
+INFO:root:epoch: 10	dev loss: 0.58493971824646	dev accuracy: 0.8268949389457703	train accuracy: 0.9083769917488098
+INFO:root:epoch: 11	batch: 0	loss: 0.004859789274632931	accuracy:1.0
+INFO:root:epoch: 11	batch: 100	loss: 0.00082195526920259	accuracy:1.0
+INFO:root:epoch: 11	batch: 200	loss: 0.014636868610978127	accuracy:1.0
+INFO:root:epoch: 11	batch: 300	loss: 0.9491444826126099	accuracy:0.6875
+INFO:root:epoch: 11	batch: 400	loss: 0.5245676636695862	accuracy:0.6875
+INFO:root:epoch: 11	batch: 500	loss: 0.12915831804275513	accuracy:1.0
+INFO:root:epoch: 11	dev loss: 0.5549634695053101	dev accuracy: 0.8330714702606201	train accuracy: 0.9109402298927307
+INFO:root:epoch: 12	batch: 0	loss: 0.004905242007225752	accuracy:1.0
+INFO:root:epoch: 12	batch: 100	loss: 0.0006837715045548975	accuracy:1.0
+INFO:root:epoch: 12	batch: 200	loss: 0.0066955857910215855	accuracy:1.0
+INFO:root:epoch: 12	batch: 300	loss: 0.9005168676376343	accuracy:0.6875
+INFO:root:epoch: 12	batch: 400	loss: 0.5332367420196533	accuracy:0.6875
+INFO:root:epoch: 12	batch: 500	loss: 0.09228287637233734	accuracy:1.0
+INFO:root:epoch: 12	dev loss: 0.5168246030807495	dev accuracy: 0.8393021821975708	train accuracy: 0.917593777179718
+INFO:root:epoch: 13	batch: 0	loss: 0.006606331095099449	accuracy:1.0
+INFO:root:epoch: 13	batch: 100	loss: 0.0006116428412497044	accuracy:1.0
+INFO:root:epoch: 13	batch: 200	loss: 0.0021707252599298954	accuracy:1.0
+INFO:root:epoch: 13	batch: 300	loss: 0.800562858581543	accuracy:0.78125
+INFO:root:epoch: 13	batch: 400	loss: 0.5318151712417603	accuracy:0.6875
+INFO:root:epoch: 13	batch: 500	loss: 0.06548139452934265	accuracy:1.0
+INFO:root:epoch: 13	dev loss: 0.45551130175590515	dev accuracy: 0.8566397428512573	train accuracy: 0.9247927665710449
+INFO:root:epoch: 14	batch: 0	loss: 0.007264263462275267	accuracy:1.0
+INFO:root:epoch: 14	batch: 100	loss: 0.0005142001900821924	accuracy:1.0
+INFO:root:epoch: 14	batch: 200	loss: 0.0008353989105671644	accuracy:1.0
+INFO:root:epoch: 14	batch: 300	loss: 0.6839820146560669	accuracy:0.78125
+INFO:root:epoch: 14	batch: 400	loss: 0.5258960723876953	accuracy:0.6875
+INFO:root:epoch: 14	batch: 500	loss: 0.04695392772555351	accuracy:1.0
+INFO:root:epoch: 14	dev loss: 0.3802483081817627	dev accuracy: 0.8871972560882568	train accuracy: 0.9327552318572998
+INFO:root:epoch: 15	batch: 0	loss: 0.00942310132086277	accuracy:1.0
+INFO:root:epoch: 15	batch: 100	loss: 0.00039065370219759643	accuracy:1.0
+INFO:root:epoch: 15	batch: 200	loss: 0.0005731895798817277	accuracy:1.0
+INFO:root:epoch: 15	batch: 300	loss: 0.5353745222091675	accuracy:0.78125
+INFO:root:epoch: 15	batch: 400	loss: 0.5043944716453552	accuracy:0.6875
+INFO:root:epoch: 15	batch: 500	loss: 0.0337643139064312	accuracy:1.0
+INFO:root:epoch: 15	dev loss: 0.32205629348754883	dev accuracy: 0.9012298583984375	train accuracy: 0.9446443915367126
+INFO:root:epoch: 16	batch: 0	loss: 0.019658084958791733	accuracy:1.0
+INFO:root:epoch: 16	batch: 100	loss: 0.00030267221154645085	accuracy:1.0
+INFO:root:epoch: 16	batch: 200	loss: 0.00044756103307008743	accuracy:1.0
+INFO:root:epoch: 16	batch: 300	loss: 0.42540279030799866	accuracy:0.84375
+INFO:root:epoch: 16	batch: 400	loss: 0.43669670820236206	accuracy:0.6875
+INFO:root:epoch: 16	batch: 500	loss: 0.0243254154920578	accuracy:1.0
+INFO:root:epoch: 16	dev loss: 0.30237412452697754	dev accuracy: 0.903613805770874	train accuracy: 0.9544611573219299
+INFO:root:epoch: 17	batch: 0	loss: 1.1413965225219727	accuracy:0.25
+INFO:root:epoch: 17	batch: 100	loss: 0.00024572337861172855	accuracy:1.0
+INFO:root:epoch: 17	batch: 200	loss: 0.0005567900952883065	accuracy:1.0
+INFO:root:epoch: 17	batch: 300	loss: 0.3795991837978363	accuracy:0.84375
+INFO:root:epoch: 17	batch: 400	loss: 0.3541109263896942	accuracy:0.6875
+INFO:root:epoch: 17	batch: 500	loss: 0.017864204943180084	accuracy:1.0
+INFO:root:epoch: 17	dev loss: 0.21221165359020233	dev accuracy: 0.9370428323745728	train accuracy: 0.9616601467132568
+INFO:root:epoch: 18	batch: 0	loss: 0.004277735948562622	accuracy:1.0
+INFO:root:epoch: 18	batch: 100	loss: 0.00016952058649621904	accuracy:1.0
+INFO:root:epoch: 18	batch: 200	loss: 0.0007065992103889585	accuracy:1.0
+INFO:root:epoch: 18	batch: 300	loss: 0.10563613474369049	accuracy:1.0
+INFO:root:epoch: 18	batch: 400	loss: 0.1516379714012146	accuracy:1.0
+INFO:root:epoch: 18	batch: 500	loss: 0.01288163848221302	accuracy:1.0
+INFO:root:epoch: 18	dev loss: 0.13381317257881165	dev accuracy: 0.9651622772216797	train accuracy: 0.9772578477859497
+INFO:root:epoch: 19	batch: 0	loss: 0.049553513526916504	accuracy:0.96875
+INFO:root:epoch: 19	batch: 100	loss: 0.00016805995255708694	accuracy:1.0
+INFO:root:epoch: 19	batch: 200	loss: 0.0007880968041718006	accuracy:1.0
+INFO:root:epoch: 19	batch: 300	loss: 0.060886818915605545	accuracy:1.0
+INFO:root:epoch: 19	batch: 400	loss: 0.053469814360141754	accuracy:1.0
+INFO:root:epoch: 19	batch: 500	loss: 0.008144048973917961	accuracy:1.0
+INFO:root:epoch: 19	dev loss: 0.0979376807808876	dev accuracy: 0.9841794371604919	train accuracy: 0.9842386841773987
+INFO:root:epoch: 20	batch: 0	loss: 0.06586660444736481	accuracy:1.0
+INFO:root:epoch: 20	batch: 100	loss: 0.00016957306070253253	accuracy:1.0
+INFO:root:epoch: 20	batch: 200	loss: 0.0009176922030746937	accuracy:1.0
+INFO:root:epoch: 20	batch: 300	loss: 0.05615633353590965	accuracy:1.0
+INFO:root:epoch: 20	batch: 400	loss: 0.023204796016216278	accuracy:1.0
+INFO:root:epoch: 20	batch: 500	loss: 0.005596078932285309	accuracy:1.0
+INFO:root:epoch: 20	dev loss: 0.0816880539059639	dev accuracy: 0.9841794371604919	train accuracy: 0.9845113158226013
+INFO:root:epoch: 21	batch: 0	loss: 0.005714667495340109	accuracy:1.0
+INFO:root:epoch: 21	batch: 100	loss: 0.00020076610962860286	accuracy:1.0
+INFO:root:epoch: 21	batch: 200	loss: 0.0010009496472775936	accuracy:1.0
+INFO:root:epoch: 21	batch: 300	loss: 0.05623140186071396	accuracy:1.0
+INFO:root:epoch: 21	batch: 400	loss: 0.01279076375067234	accuracy:1.0
+INFO:root:epoch: 21	batch: 500	loss: 0.003875255584716797	accuracy:1.0
+INFO:root:epoch: 21	dev loss: 0.07549260556697845	dev accuracy: 0.9841794371604919	train accuracy: 0.9845658540725708
+INFO:root:epoch: 22	batch: 0	loss: 0.005864068865776062	accuracy:1.0
+INFO:root:epoch: 22	batch: 100	loss: 0.000184845324838534	accuracy:1.0
+INFO:root:epoch: 22	batch: 200	loss: 0.0008974186494015157	accuracy:1.0
+INFO:root:epoch: 22	batch: 300	loss: 0.057131554931402206	accuracy:1.0
+INFO:root:epoch: 22	batch: 400	loss: 0.008230889216065407	accuracy:1.0
+INFO:root:epoch: 22	batch: 500	loss: 0.002719402778893709	accuracy:1.0
+INFO:root:epoch: 22	dev loss: 0.07161151617765427	dev accuracy: 0.9841794371604919	train accuracy: 0.9853293895721436
+INFO:root:epoch: 23	batch: 0	loss: 0.003620882285758853	accuracy:1.0
+INFO:root:epoch: 23	batch: 100	loss: 0.00017605471657589078	accuracy:1.0
+INFO:root:epoch: 23	batch: 200	loss: 0.0008538712281733751	accuracy:1.0
+INFO:root:epoch: 23	batch: 300	loss: 0.05852550268173218	accuracy:1.0
+INFO:root:epoch: 23	batch: 400	loss: 0.005685932002961636	accuracy:1.0
+INFO:root:epoch: 23	batch: 500	loss: 0.0018994401907548308	accuracy:1.0
+INFO:root:epoch: 23	dev loss: 0.06864158809185028	dev accuracy: 0.9841794371604919	train accuracy: 0.9850021600723267
+INFO:root:epoch: 24	batch: 0	loss: 0.0025846248026937246	accuracy:1.0
+INFO:root:epoch: 24	batch: 100	loss: 0.00017016817582771182	accuracy:1.0
+INFO:root:epoch: 24	batch: 200	loss: 0.0008806708501651883	accuracy:1.0
+INFO:root:epoch: 24	batch: 300	loss: 0.060314297676086426	accuracy:1.0
+INFO:root:epoch: 24	batch: 400	loss: 0.004100254271179438	accuracy:1.0
+INFO:root:epoch: 24	batch: 500	loss: 0.001322713098488748	accuracy:1.0
+INFO:root:epoch: 24	dev loss: 0.06621720641851425	dev accuracy: 0.9841794371604919	train accuracy: 0.9849476218223572
+INFO:root:epoch: 25	batch: 0	loss: 0.001949123339727521	accuracy:1.0
+INFO:root:epoch: 25	batch: 100	loss: 0.00017133052460849285	accuracy:1.0
+INFO:root:epoch: 25	batch: 200	loss: 0.0009529109229333699	accuracy:1.0
+INFO:root:epoch: 25	batch: 300	loss: 0.06234122812747955	accuracy:1.0
+INFO:root:epoch: 25	batch: 400	loss: 0.0030527219641953707	accuracy:1.0
+INFO:root:epoch: 25	batch: 500	loss: 0.0009189953561872244	accuracy:1.0
+INFO:root:epoch: 25	dev loss: 0.06420013308525085	dev accuracy: 0.9841794371604919	train accuracy: 0.9850566983222961
+INFO:root:epoch: 26	batch: 0	loss: 0.001485317712649703	accuracy:1.0
+INFO:root:epoch: 26	batch: 100	loss: 0.0001844331854954362	accuracy:1.0
+INFO:root:epoch: 26	batch: 200	loss: 0.0010440463665872812	accuracy:1.0
+INFO:root:epoch: 26	batch: 300	loss: 0.0643988624215126	accuracy:1.0
+INFO:root:epoch: 26	batch: 400	loss: 0.00235526985488832	accuracy:1.0
+INFO:root:epoch: 26	batch: 500	loss: 0.0006397167453542352	accuracy:1.0
+INFO:root:epoch: 26	dev loss: 0.062459416687488556	dev accuracy: 0.9841794371604919	train accuracy: 0.9846203923225403
+INFO:root:epoch: 27	batch: 0	loss: 0.0011280820472165942	accuracy:1.0
+INFO:root:epoch: 27	batch: 100	loss: 0.00021431682398542762	accuracy:1.0
+INFO:root:epoch: 27	batch: 200	loss: 0.0011354063171893358	accuracy:1.0
+INFO:root:epoch: 27	batch: 300	loss: 0.06640059500932693	accuracy:1.0
+INFO:root:epoch: 27	batch: 400	loss: 0.0019043511711061	accuracy:1.0
+INFO:root:epoch: 27	batch: 500	loss: 0.00045270382543094456	accuracy:1.0
+INFO:root:epoch: 27	dev loss: 0.0609196200966835	dev accuracy: 0.985425591468811	train accuracy: 0.9846749305725098
+INFO:root:epoch: 28	batch: 0	loss: 0.0008731032721698284	accuracy:1.0
+INFO:root:epoch: 28	batch: 100	loss: 0.000246974581386894	accuracy:1.0
+INFO:root:epoch: 28	batch: 200	loss: 0.0012221760116517544	accuracy:1.0
+INFO:root:epoch: 28	batch: 300	loss: 0.06861329823732376	accuracy:1.0
+INFO:root:epoch: 28	batch: 400	loss: 0.001620597206056118	accuracy:1.0
+INFO:root:epoch: 28	batch: 500	loss: 0.00032747164368629456	accuracy:1.0
+INFO:root:epoch: 28	dev loss: 0.059799280017614365	dev accuracy: 0.985425591468811	train accuracy: 0.9847294688224792
+INFO:root:epoch: 29	batch: 0	loss: 0.0006884962785989046	accuracy:1.0
+INFO:root:epoch: 29	batch: 100	loss: 0.0002311450953129679	accuracy:1.0
+INFO:root:epoch: 29	batch: 200	loss: 0.0013084944803267717	accuracy:1.0
+INFO:root:epoch: 29	batch: 300	loss: 0.0712747722864151	accuracy:1.0
+INFO:root:epoch: 29	batch: 400	loss: 0.0014021879760548472	accuracy:1.0
+INFO:root:epoch: 29	batch: 500	loss: 0.00024532328825443983	accuracy:1.0
+INFO:root:epoch: 29	dev loss: 0.0595526397228241	dev accuracy: 0.985425591468811	train accuracy: 0.9852748513221741
+INFO:root:epoch: 30	batch: 0	loss: 0.0006010442739352584	accuracy:1.0
+INFO:root:epoch: 30	batch: 100	loss: 0.0001701402652543038	accuracy:1.0
+INFO:root:epoch: 30	batch: 200	loss: 0.0014140151906758547	accuracy:1.0
+INFO:root:epoch: 30	batch: 300	loss: 0.07058054208755493	accuracy:1.0
+INFO:root:epoch: 30	batch: 400	loss: 0.001207261928357184	accuracy:1.0
+INFO:root:epoch: 30	batch: 500	loss: 0.0001857045281212777	accuracy:1.0
+INFO:root:epoch: 30	dev loss: 0.055432647466659546	dev accuracy: 0.985425591468811	train accuracy: 0.9872927665710449
+INFO:root:epoch: 31	batch: 0	loss: 0.00029843387892469764	accuracy:1.0
+INFO:root:epoch: 31	batch: 100	loss: 0.00016707008762750775	accuracy:1.0
+INFO:root:epoch: 31	batch: 200	loss: 0.0011844020336866379	accuracy:1.0
+INFO:root:epoch: 31	batch: 300	loss: 0.0625709593296051	accuracy:1.0
+INFO:root:epoch: 31	batch: 400	loss: 0.000942547747399658	accuracy:1.0
+INFO:root:epoch: 31	batch: 500	loss: 0.00014808960258960724	accuracy:1.0
+INFO:root:epoch: 31	dev loss: 0.052211713045835495	dev accuracy: 0.985425591468811	train accuracy: 0.9906740784645081
+INFO:root:epoch: 32	batch: 0	loss: 0.00010729875066317618	accuracy:1.0
+INFO:root:epoch: 32	batch: 100	loss: 0.00015026282926555723	accuracy:1.0
+INFO:root:epoch: 32	batch: 200	loss: 0.0002964393934234977	accuracy:1.0
+INFO:root:epoch: 32	batch: 300	loss: 0.03083989769220352	accuracy:1.0
+INFO:root:epoch: 32	batch: 400	loss: 0.0006113754934631288	accuracy:1.0
+INFO:root:epoch: 32	batch: 500	loss: 0.00011861681559821591	accuracy:1.0
+INFO:root:epoch: 32	dev loss: 0.03633623942732811	dev accuracy: 0.985425591468811	train accuracy: 0.9958006143569946
+INFO:root:epoch: 33	batch: 0	loss: 6.208491686265916e-05	accuracy:1.0
+INFO:root:epoch: 33	batch: 100	loss: 2.382593447691761e-05	accuracy:1.0
+INFO:root:epoch: 33	batch: 200	loss: 2.950648558908142e-05	accuracy:1.0
+INFO:root:epoch: 33	batch: 300	loss: 0.008218063041567802	accuracy:1.0
+INFO:root:epoch: 33	batch: 400	loss: 0.0002950564376078546	accuracy:1.0
+INFO:root:epoch: 33	batch: 500	loss: 8.32825608085841e-05	accuracy:1.0
+INFO:root:epoch: 33	dev loss: 0.006406495347619057	dev accuracy: 1.0	train accuracy: 0.9984729290008545
+INFO:root:epoch: 34	batch: 0	loss: 3.073677362408489e-05	accuracy:1.0
+INFO:root:epoch: 34	batch: 100	loss: 3.263334519942873e-06	accuracy:1.0
+INFO:root:epoch: 34	batch: 200	loss: 1.3094250789436046e-05	accuracy:1.0
+INFO:root:epoch: 34	batch: 300	loss: 0.004517138935625553	accuracy:1.0
+INFO:root:epoch: 34	batch: 400	loss: 0.0001642293791519478	accuracy:1.0
+INFO:root:epoch: 34	batch: 500	loss: 5.489961404236965e-05	accuracy:1.0
+INFO:root:epoch: 34	dev loss: 0.0031556719914078712	dev accuracy: 1.0	train accuracy: 1.0
+INFO:root:epoch: 35	batch: 0	loss: 3.477599602774717e-05	accuracy:1.0
+INFO:root:epoch: 35	batch: 100	loss: 1.8477378489478724e-06	accuracy:1.0
+INFO:root:epoch: 35	batch: 200	loss: 7.398389243462589e-06	accuracy:1.0
+INFO:root:epoch: 35	batch: 300	loss: 0.0015443959273397923	accuracy:1.0
+INFO:root:epoch: 35	batch: 400	loss: 9.379128459841013e-05	accuracy:1.0
+INFO:root:epoch: 35	batch: 500	loss: 3.746338188648224e-05	accuracy:1.0
+INFO:root:epoch: 35	dev loss: 0.0027779650408774614	dev accuracy: 1.0	train accuracy: 1.0
+INFO:root:epoch: 36	batch: 0	loss: 2.8038315576850437e-05	accuracy:1.0
+INFO:root:epoch: 36	batch: 100	loss: 1.3448263871396193e-06	accuracy:1.0
+INFO:root:epoch: 36	batch: 200	loss: 5.546936790779e-06	accuracy:1.0
+INFO:root:epoch: 36	batch: 300	loss: 0.0009075655834749341	accuracy:1.0
+INFO:root:epoch: 36	batch: 400	loss: 6.012368976371363e-05	accuracy:1.0
+INFO:root:epoch: 36	batch: 500	loss: 2.6053736291942187e-05	accuracy:1.0
+INFO:root:epoch: 36	dev loss: 0.002459184732288122	dev accuracy: 1.0	train accuracy: 1.0
+INFO:root:epoch: 37	batch: 0	loss: 2.419436350464821e-05	accuracy:1.0
+INFO:root:epoch: 37	batch: 100	loss: 9.462219168199226e-07	accuracy:1.0
+INFO:root:epoch: 37	batch: 200	loss: 3.881742941302946e-06	accuracy:1.0
+INFO:root:epoch: 37	batch: 300	loss: 0.000554639904294163	accuracy:1.0
+INFO:root:epoch: 37	batch: 400	loss: 3.972011472797021e-05	accuracy:1.0
+INFO:root:epoch: 37	batch: 500	loss: 1.8599879695102572e-05	accuracy:1.0
+INFO:root:epoch: 37	dev loss: 0.0022917375899851322	dev accuracy: 1.0	train accuracy: 1.0
+INFO:root:epoch: 38	batch: 0	loss: 1.998529114644043e-05	accuracy:1.0
+INFO:root:epoch: 38	batch: 100	loss: 7.376064559139195e-07	accuracy:1.0
+INFO:root:epoch: 38	batch: 200	loss: 2.7269079510006122e-06	accuracy:1.0
+INFO:root:epoch: 38	batch: 300	loss: 0.000355417316313833	accuracy:1.0
+INFO:root:epoch: 38	batch: 400	loss: 2.6243527827318758e-05	accuracy:1.0
+INFO:root:epoch: 38	batch: 500	loss: 1.3313929230207577e-05	accuracy:1.0
+INFO:root:epoch: 38	dev loss: 0.002125322353094816	dev accuracy: 1.0	train accuracy: 1.0
+INFO:root:epoch: 39	batch: 0	loss: 1.6010799299692735e-05	accuracy:1.0
+INFO:root:epoch: 39	batch: 100	loss: 4.954631549480837e-07	accuracy:1.0
+INFO:root:epoch: 39	batch: 200	loss: 1.9185222299711313e-06	accuracy:1.0
+INFO:root:epoch: 39	batch: 300	loss: 0.00023426968255080283	accuracy:1.0
+INFO:root:epoch: 39	batch: 400	loss: 1.7575417587067932e-05	accuracy:1.0
+INFO:root:epoch: 39	batch: 500	loss: 9.648365448811091e-06	accuracy:1.0
+INFO:root:epoch: 39	dev loss: 0.002007968258112669	dev accuracy: 1.0	train accuracy: 1.0
+INFO:root:epoch: 40	batch: 0	loss: 1.323193919233745e-05	accuracy:1.0
+INFO:root:epoch: 40	batch: 100	loss: 3.650781650321733e-07	accuracy:1.0
+INFO:root:epoch: 40	batch: 200	loss: 1.3262022093840642e-06	accuracy:1.0
+INFO:root:epoch: 40	batch: 300	loss: 0.00015746713324915618	accuracy:1.0
+INFO:root:epoch: 40	batch: 400	loss: 1.1708367310347967e-05	accuracy:1.0
+INFO:root:epoch: 40	batch: 500	loss: 6.992297585384222e-06	accuracy:1.0
+INFO:root:epoch: 40	dev loss: 0.0018804988358169794	dev accuracy: 1.0	train accuracy: 1.0
+INFO:root:epoch: 41	batch: 0	loss: 1.0903751899604686e-05	accuracy:1.0
+INFO:root:epoch: 41	batch: 100	loss: 2.9057250117148214e-07	accuracy:1.0
+INFO:root:epoch: 41	batch: 200	loss: 9.424978770766756e-07	accuracy:1.0
+INFO:root:epoch: 41	batch: 300	loss: 0.00010744200699264184	accuracy:1.0
+INFO:root:epoch: 41	batch: 400	loss: 7.845363143133e-06	accuracy:1.0
+INFO:root:epoch: 41	batch: 500	loss: 5.103608600620646e-06	accuracy:1.0
+INFO:root:epoch: 41	dev loss: 0.001763810869306326	dev accuracy: 1.0	train accuracy: 1.0
+INFO:root:epoch: 42	batch: 0	loss: 8.966666428023018e-06	accuracy:1.0
+INFO:root:epoch: 42	batch: 100	loss: 2.086161714487389e-07	accuracy:1.0
+INFO:root:epoch: 42	batch: 200	loss: 6.519255180137407e-07	accuracy:1.0
+INFO:root:epoch: 42	batch: 300	loss: 7.415466097882017e-05	accuracy:1.0
+INFO:root:epoch: 42	batch: 400	loss: 5.2675163715321105e-06	accuracy:1.0
+INFO:root:epoch: 42	batch: 500	loss: 3.7140935091883875e-06	accuracy:1.0
+INFO:root:epoch: 42	dev loss: 0.0016418725717812777	dev accuracy: 1.0	train accuracy: 1.0
+INFO:root:epoch: 43	batch: 0	loss: 7.122689567040652e-06	accuracy:1.0
+INFO:root:epoch: 43	batch: 100	loss: 1.3038513202445756e-07	accuracy:1.0
+INFO:root:epoch: 43	batch: 200	loss: 4.805623348147492e-07	accuracy:1.0
+INFO:root:epoch: 43	batch: 300	loss: 5.1583756430773064e-05	accuracy:1.0
+INFO:root:epoch: 43	batch: 400	loss: 3.5762582228926476e-06	accuracy:1.0
+INFO:root:epoch: 43	batch: 500	loss: 2.715725258894963e-06	accuracy:1.0
+INFO:root:epoch: 43	dev loss: 0.0015227074036374688	dev accuracy: 1.0	train accuracy: 1.0
+INFO:root:epoch: 44	batch: 0	loss: 5.6549506552983075e-06	accuracy:1.0
+INFO:root:epoch: 44	batch: 100	loss: 1.0430811414607888e-07	accuracy:1.0
+INFO:root:epoch: 44	batch: 200	loss: 3.315507797196915e-07	accuracy:1.0
+INFO:root:epoch: 44	batch: 300	loss: 3.612215368775651e-05	accuracy:1.0
+INFO:root:epoch: 44	batch: 400	loss: 2.4214289169322e-06	accuracy:1.0
+INFO:root:epoch: 44	batch: 500	loss: 2.0079251044080593e-06	accuracy:1.0
+INFO:root:epoch: 44	dev loss: 0.0014051166363060474	dev accuracy: 1.0	train accuracy: 1.0
+INFO:root:epoch: 45	batch: 0	loss: 4.339939096098533e-06	accuracy:1.0
+INFO:root:epoch: 45	batch: 100	loss: 7.823108205684548e-08	accuracy:1.0
+INFO:root:epoch: 45	batch: 200	loss: 2.4586910285506747e-07	accuracy:1.0
+INFO:root:epoch: 45	batch: 300	loss: 2.547999974922277e-05	accuracy:1.0
+INFO:root:epoch: 45	batch: 400	loss: 1.6801012634459767e-06	accuracy:1.0
+INFO:root:epoch: 45	batch: 500	loss: 1.4640356766904006e-06	accuracy:1.0
+INFO:root:epoch: 45	dev loss: 0.0012889698846265674	dev accuracy: 1.0	train accuracy: 1.0
+INFO:root:epoch: 46	batch: 0	loss: 3.453328645264264e-06	accuracy:1.0
+INFO:root:epoch: 46	batch: 100	loss: 7.450579886381092e-08	accuracy:1.0
+INFO:root:epoch: 46	batch: 200	loss: 1.899897767998482e-07	accuracy:1.0
+INFO:root:epoch: 46	batch: 300	loss: 1.8018736227531917e-05	accuracy:1.0
+INFO:root:epoch: 46	batch: 400	loss: 1.1846399274872965e-06	accuracy:1.0
+INFO:root:epoch: 46	batch: 500	loss: 1.0691564966691658e-06	accuracy:1.0
+INFO:root:epoch: 46	dev loss: 0.0011754876468330622	dev accuracy: 1.0	train accuracy: 1.0
+INFO:root:epoch: 47	batch: 0	loss: 2.708276497287443e-06	accuracy:1.0
+INFO:root:epoch: 47	batch: 100	loss: 2.2351738238057806e-08	accuracy:1.0
+INFO:root:epoch: 47	batch: 200	loss: 1.4901158351676713e-07	accuracy:1.0
+INFO:root:epoch: 47	batch: 300	loss: 1.2773773050867021e-05	accuracy:1.0
+INFO:root:epoch: 47	batch: 400	loss: 8.456395903522207e-07	accuracy:1.0
+INFO:root:epoch: 47	batch: 500	loss: 7.711340686000767e-07	accuracy:1.0
+INFO:root:epoch: 47	dev loss: 0.001058816909790039	dev accuracy: 1.0	train accuracy: 1.0
+INFO:root:epoch: 48	batch: 0	loss: 2.153211880795425e-06	accuracy:1.0
+INFO:root:epoch: 48	batch: 100	loss: 1.4901159417490817e-08	accuracy:1.0
+INFO:root:epoch: 48	batch: 200	loss: 8.195637946073475e-08	accuracy:1.0
+INFO:root:epoch: 48	batch: 300	loss: 9.111934559768997e-06	accuracy:1.0
+INFO:root:epoch: 48	batch: 400	loss: 6.444744258260471e-07	accuracy:1.0
+INFO:root:epoch: 48	batch: 500	loss: 5.699689040739031e-07	accuracy:1.0
+INFO:root:epoch: 48	dev loss: 0.0009372610365971923	dev accuracy: 1.0	train accuracy: 1.0
+INFO:root:epoch: 49	batch: 0	loss: 1.6242231595242629e-06	accuracy:1.0
+INFO:root:epoch: 49	batch: 100	loss: 7.450580152834618e-09	accuracy:1.0
+INFO:root:epoch: 49	batch: 200	loss: 7.823108916227284e-08	accuracy:1.0
+INFO:root:epoch: 49	batch: 300	loss: 6.496842615888454e-06	accuracy:1.0
+INFO:root:epoch: 49	batch: 400	loss: 4.5448499008671206e-07	accuracy:1.0
+INFO:root:epoch: 49	batch: 500	loss: 4.0605638673696376e-07	accuracy:1.0
+INFO:root:epoch: 49	dev loss: 0.0008112391224130988	dev accuracy: 1.0	train accuracy: 1.0
+                    tst loss: 0.03965916857123375   tst accuracy: 0.9901075959205627
+                tst oov loss: 0.05504821985960007 tst oov accuracy: 0.9911803007125854
+
+hops: 2
+actions: 16
+history utterance length: 18
+query length: 14
+embedding size: 10
+batch size: 32
+memory size: 8
+epochs: 40 (geslagd sinds epoch 30)
+gradient clip norm: 25
+keep prob: 0.95
+
+INFO:root:epoch: 39	dev loss: 0.007625299040228128	dev accuracy: 1.0	train accuracy: 1.0

@@ -5,6 +5,8 @@ import os
 from rasa_core.interpreter import RasaNLUInterpreter
 from rasa_core.agent import Agent
 from rasa_core.policies.keras_policy import KerasPolicy
+from custom.memnet.model import MemNetPolicy, MemNetPolicyEnsemble, BabiT5Featurizer
+from custom.memnet.data_utils import format_babi_data, build_batches, utterance_len, query_len
 from globals import *
 from rasa_core.channels.console import ConsoleInputChannel
 
@@ -40,22 +42,45 @@ def train_nlu():
     training_data = load_data(NLU_TRAINING_DATA_FILE)
     trainer = Trainer(RasaNLUConfig(NLU_CONFIG_FILE))
     trainer.train(training_data)
-    model_directory = trainer.persist(PERSISTED_NLU_PATH, project_name='', fixed_model_name=NLU_MODEL_NAME)
+    model_directory = trainer.persist(PERSISTED_NLU_PATH, project_name='', fixed_model_name=NLU_T5_MODEL_NAME)
     return model_directory
 
 
 def train_dialogue(domain_file=DOMAIN_TEMPLATES_FILE,
-                   model_path=PERSISTED_DIALOG_PATH,
+                   model_path=PERSISTED_DIALOG_UTTERS_PATH,
                    training_data_file=DIALOG_TRAINING_DATA_FILE):
-    agent = Agent(domain_file, policies=[KerasPolicy()])
-
+    # agent = Agent(domain_file, policies=[KerasPolicy()])
+    hops = 2
+    h_len = utterance_len()
+    embedding_size = 10
+    batch = 32
+    mem_size = 8
+    keep_prob = 0.95
+    epochs = 40
+    clip_norm = 25
+    print_cycle = 100
+    trn_history, trn_query, trn_label, batch_indexes = build_batches(format_babi_data(BABI_TRN_DIALOG_FILE),
+                                                                     batch_size=batch, max_memory_size=mem_size,
+                                                                     utterance_length=h_len)
+    dev_data = format_babi_data(BABI_DEV_DIALOG_FILE)
+    dev_history, dev_query, dev_label, _ = build_batches(dev_data, batch_size=len(dev_data),
+                                                         max_memory_size=mem_size,
+                                                         utterance_length=h_len)
+    agent = Agent(domain_file, policies=MemNetPolicyEnsemble([MemNetPolicy(trn_history, trn_query, trn_label,
+                                                                           batch_indexes,
+                                                                           featurizer=BabiT5Featurizer(mem_size),
+                                                                           embedding_size=embedding_size,
+                                                                           hops=hops)]))
     agent.train(
-            training_data_file,
-            max_history=2,
-            epochs=400,
-            batch_size=100,
-            validation_split=0.2
+        filename=None,
+        # max_history=2,
+        # epochs=400,
+        # batch_size=100,
+        # validation_split=0.2,
+        mn_dev_data={'history': dev_history, 'query': dev_query, 'label': dev_label}, mn_keep_prob=keep_prob,
+        mn_epochs=epochs, mn_clip_norm=clip_norm, mn_print_cycle=print_cycle
     )
+    # let's make the session a property of MemNetPolicy so we use the same for everything. Fuckers
     agent.persist(model_path)
     return agent
 
@@ -79,6 +104,6 @@ if __name__ == '__main__':
             train_dialogue(DOMAIN_CODE_FILE, PERSISTED_DIALOG_PATH, DIALOG_TRAINING_DATA_FILE)
     elif args.task == "run":
         if args.template_based:
-            run(join(PERSISTED_NLU_PATH, NLU_MODEL_NAME), PERSISTED_DIALOG_UTTERS_PATH)
+            run(join(PERSISTED_NLU_PATH, NLU_T5_MODEL_NAME), PERSISTED_DIALOG_UTTERS_PATH)
         else:
-            run(join(PERSISTED_NLU_PATH, NLU_MODEL_NAME), PERSISTED_DIALOG_PATH)
+            run(join(PERSISTED_NLU_PATH, NLU_T5_MODEL_NAME), PERSISTED_DIALOG_PATH)

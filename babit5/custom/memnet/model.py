@@ -322,13 +322,19 @@ class BabiT5Featurizer(Featurizer):
         self.memory_size = memory_size
 
     def encode(self, tracker, memory_size):
+        # TODO slight mistake in encoding: when it is the first user utterance, story should be empty. Basically, story
+        # should not include the last UserUttered event from the event queue, since that's the query
         # build query
         query = featurize_query(tracker.latest_message.intent['name'], tracker.latest_message.entities)
 
         # build history
         h = [ev for ev in tracker.events if (isinstance(ev, ActionExecuted) and
                                              ev.action_name not in self.ignored_actions) or
-             isinstance(ev, UserUttered)]  # TODO: add turn after, else non-relevant events take indexes from enumerate. Plus you want to keep pairs with same number
+             isinstance(ev, UserUttered)]
+        for i, e in zip(range(len(h)-1, -1, -1), h[::-1]):  # remove the last UserUttered, since that is the query
+            if isinstance(e, UserUttered):  # this could simply be h.pop(len(h)-1), dunno why I'm so complicated
+                h.pop(i)
+                break
         turns = [int(t / 2) for t in range(0, len(h))]  # [0, 0, 1, 1, 2, 2, .... floor((len(h)-1)/2)]
         h = [(t, ev) for t, ev in zip(turns, h)]  # adding the turn now that non-relevant events are out
         h = h[::-1][:memory_size][::-1]
@@ -340,6 +346,7 @@ class BabiT5Featurizer(Featurizer):
                 memory.append(featurize_bot_act(u.action_name, t, bot_padding))
             elif isinstance(u, UserUttered):
                 memory.append(featurize_user_act(u.intent['name'], u.entities, t, user_padding))
+        memory = [[0] * utterance_len()] if not memory else memory  # empty memories will have just 1 0-padded cell
         return query, memory
 
 

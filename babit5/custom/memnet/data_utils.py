@@ -203,7 +203,7 @@ def build_batches(data, utterance_length, batch_size=32, max_memory_size=8):
             memory_size = max(1, min(max_memory_size, len(h)))  # memory in [1, max_memory_size]
         h = h[::-1][:memory_size][::-1]  # take only the last memory_size sentences (flip, cut at mem size, flip back)
         pad_size = max(0, memory_size - len(h))  # pad h
-        for _ in range(pad_size):
+        for _ in range(pad_size):  # empty histories will thus consist of 1 0 padded memory
             h.append([0] * utterance_length)
         history.append(h)
         query.append(q)

@@ -12,7 +12,7 @@ user_das = {
     ],
     'inform': [
         '^i love (?P<cuisine>\w+) food$',
-        '^(?P<cuisine>\w+) please$',
+        '^(?P<location>\w+) please$',
         '^i am looking for a (?P<price>\w+) restaurant$',  # watchout: not totally sure only price can go there
         '^(i\'d like to book a table|may i have a table|instead could it be|actually i would prefer|'
         'can you make a restaurant reservation|can you book a table)?'
@@ -198,6 +198,18 @@ def produce_dialog_training_file(input_filename, output_filename, action_prefixe
             output_fh.write('\n')
 
 
+def _basic_checks(args):
+    if args.task not in ['nlu', 'dialog']:
+        raise ValueError('invalid value for argument task: {}\nMust be either nlu or dialog'.format(args.task))
+    if not args.input:
+        raise Exception('argument --input is mandatory')
+    if not os.path.isfile(args.input):
+        raise FileNotFoundError('file {} does not exist'.format(args.input))
+    if not args.output:
+        raise Exception('argument --output is mandatory')
+    return args
+
+
 def _get_args():
     parser = argparse.ArgumentParser(
         description='produce Rasa format training files')
@@ -208,23 +220,11 @@ def _get_args():
     parser.add_argument('--input', type=str, help='input file name')
     parser.add_argument('--output', type=str, help='output file name')
     parser.add_argument('--utter-prefixes', action='store_true', default=False)
-    return parser.parse_args()
-
-
-def _basic_checks(args):
-    if args.task not in ['nlu', 'dialog']:
-        raise ValueError('invalid value for argument task: {}\nMust be either nlu or dialog'.format(args.task))
-    if not args.input:
-        raise Exception('argument --input is mandatory')
-    if not os.path.isfile(args.input):
-        raise FileNotFoundError('file {} does not exist'.format(args.input))
-    if not args.output:
-        raise Exception('argument --output is mandatory')
+    return _basic_checks(parser.parse_args())
 
 
 if __name__ == '__main__':
     args = _get_args()
-    _basic_checks(args)
     if args.task == "nlu":
         produce_nlu_training_file(args.input, args.output)
     elif args.task == "dialog":

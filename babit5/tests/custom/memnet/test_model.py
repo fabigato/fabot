@@ -1,13 +1,20 @@
 from unittest import TestCase
 from custom.memnet.model import MemoryNetwork
 import tensorflow as tf
-from globals import BABI_TRN_DIALOG_FILE, BABI_DEV_DIALOG_FILE, BABI_TST_DIALOG_FILE
+from globals import BABI_TRN_DIALOG_FILE, BABI_DEV_DIALOG_FILE, BABI_TST_DIALOG_FILE, PERSISTED_NLU_PATH, \
+    PERSISTED_DIALOG_UTTERS_PATH, NLU_T5_MODEL_NAME, BABI_TST_OOV_DIALOG_FILE
 from custom.memnet.data_utils import format_babi_data, build_batches, utterance_len, query_len
+from data.babi_reader import babi_dialogue_iterator, get_bot_act
+from rasa_core.interpreter import RasaNLUInterpreter
+from rasa_core.agent import Agent
+from rasa_core.channels.direct import CollectingOutputChannel
+from os.path import join
+import json
 from numpy import mean
 import logging
+logging.basicConfig(level=logging.INFO)
 
 logger = logging.getLogger(__name__)
-logging.basicConfig(level=logging.INFO)
 
 
 class TestMemoryNetwork(TestCase):
@@ -32,7 +39,7 @@ class TestMemoryNetwork(TestCase):
         trn_history, trn_query, trn_label, batch_indexes = build_batches(format_babi_data(BABI_TRN_DIALOG_FILE),
                                                                          batch_size=batch, max_memory_size=mem_size,
                                                                          utterance_length=h_len)
-        dev_data = format_babi_data(BABI_TST_DIALOG_FILE)
+        dev_data = format_babi_data(BABI_DEV_DIALOG_FILE)
         dev_history, dev_query, dev_label, _ = build_batches(dev_data, batch_size=len(dev_data),
                                                              max_memory_size=mem_size,
                                                              utterance_length=h_len)
@@ -70,3 +77,68 @@ class TestMemoryNetwork(TestCase):
                                                                                                 dev_accuracy,
                                                                                                 mean(trn_accuracies)
                                                                                                 ))
+
+    def test_model_with_nlu(self):
+        interpreter = RasaNLUInterpreter(join(PERSISTED_NLU_PATH, NLU_T5_MODEL_NAME))
+        agent = Agent.load(PERSISTED_DIALOG_UTTERS_PATH, interpreter=interpreter)
+        output_channel = CollectingOutputChannel()
+
+        def do_test(input_filename, output_filename):
+            results = []
+            for story in babi_dialogue_iterator(input_filename):
+                conversation = []
+                output_channel.messages.clear()
+                for human_says in [turn['human'] for turn in story]:
+                    bot_said = agent.handle_message(human_says, output_channel=output_channel)
+                agent.tracker_store = Agent.create_tracker_store(store=None, domain=agent.domain)  # reset agent
+                for human, target, actual in zip([turn['human'] for turn in story],
+                                                 [turn['bot'] for turn in story],
+                                                 bot_said):
+                    target_act = get_bot_act(target)
+                    actual_act = get_bot_act(actual)
+                    if target_act in ['give_phone', 'give_address', 'suggest_restaurant']:
+                        match = actual_act == target_act  # just check the act, won't check restaurant names
+                    else:
+                        match = target == actual  # for all other cases, require perfect string match
+                    act_match = target_act == actual_act
+                    conversation.append({'human': human, 'bot': actual, 'target': target, 'match': match,
+                                         'act_match': act_match})
+                results.append(conversation)
+                with open(output_filename, 'w') as result_output:
+                    json.dump(results, result_output, indent=2)
+        do_test(BABI_TST_DIALOG_FILE, 'tests/custom/memnet/results.json')
+        do_test(BABI_TST_OOV_DIALOG_FILE, 'tests/custom/memnet/results_oov.json')
+
+    def test_compute_memnet_test_stats(self):
+        def do_test(results_filename):
+            with open(results_filename, 'r') as fh:
+                results = json.load(fh)
+                total_matches, perfect, total = 0, 0, 0
+                for i, conversation in enumerate(results):
+                    conversation_matches = 0
+                    for turn in conversation:
+                        if turn['match']:
+                            conversation_matches += 1
+                        total += 1
+                    total_matches += conversation_matches
+                    if conversation_matches == len(conversation):
+                        perfect += 1
+                    print(
+                        'Dialogue {i}: matches: {conversation_matches}/{total_conversation} total: '
+                        '{total_matches}/{total} ({total_percent:.2%}) perfect conversations: '
+                        '{perfect}/{conversations} ({dialog_total_percent:.2%})'
+                        '\n\n'.format(
+                            i=i,
+                            conversation_matches=conversation_matches,
+                            total_conversation=len(conversation),
+                            total_matches=total_matches,
+                            total=total,
+                            total_percent=total_matches/total,
+                            perfect=perfect,
+                            conversations=len(results),
+                            dialog_total_percent=perfect/len(results)
+                        ))
+        print('test results:\n')
+        do_test('tests/custom/memnet/results.json')
+        print('OOV test results:\n')
+        do_test('tests/custom/memnet/results_oov.json')

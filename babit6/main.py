@@ -64,16 +64,17 @@ def train_dialogue(task):
         babi_dev_file = BABI_T6_DEV_FILE
         domain_file = DOMAIN_T6_FILE
         model_path = DIALOGUE_T6_MODEL_PATH
-        data_adapter = MemNetT6DataAdapter(join(NLU_MODEL_PATH, NLU_T6_MODEL_NAME))
+        data_adapter = MemNetT6DataAdapter(join(NLU_MODEL_PATH, NLU_T6_MODEL_NAME), BABI_T6_KB_FILE)
         h_len = data_adapter.utterance_len()
         print_cycle = 100
-        hops = 1
-        embedding_size = 20
+
+        hops = 3
+        embedding_size = 50
         batch = 32
-        mem_size = 8
-        epochs = 40
-        clip_norm = 25
-        keep_prob = 0.86
+        mem_size = 20
+        epochs = 50
+        clip_norm = 15
+        keep_prob = 0.95
 
     trn_saved_data_filename = 'fabot/custom/memnet/t{}_trn_memnet_data.pickle'.format(task)
     if isfile(trn_saved_data_filename):
@@ -89,6 +90,8 @@ def train_dialogue(task):
         with open(trn_saved_data_filename, 'wb') as trn_fh:
             pickle.dump((trn_history, trn_query, trn_label, batch_indexes), trn_fh)
             print('saved formatted training data')
+    # TODO borrá esta peecha
+    # data_adapter.format_babi_data('data/dialog-bAbI-tasks/small.txt')
     dev_saved_data_filename = 'fabot/custom/memnet/t{}_dev_memnet_data.pickle'.format(task)
     if isfile(dev_saved_data_filename):
         with open(dev_saved_data_filename, 'rb') as dev_fh:
@@ -125,7 +128,6 @@ def train_dialogue(task):
         mn_dev_data={'history': dev_history, 'query': dev_query, 'label': dev_label}, mn_keep_prob=keep_prob,
         mn_epochs=epochs, mn_clip_norm=clip_norm, mn_print_cycle=print_cycle
     )
-    # let's make the session a property of MemNetPolicy so we use the same for everything. Fuckers
     agent.persist(model_path)
     return agent
 

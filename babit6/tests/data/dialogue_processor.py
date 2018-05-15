@@ -1,8 +1,8 @@
 from unittest import TestCase
-import data.dialogue_processor as processor
-from data.dialogue_processor import BOT_DAS as bot_das
+import data.dstc2_reader as processor
+from data.dstc2_reader import BOT_DAS as bot_das
 from json import load as json_load
-from globals import DSTC2_TRN_DEV_DATA_PATH, BABI_PATH
+from globals import DSTC2_DATA_PATH, BABI_PATH
 import re
 from data.test.babi_reader import babi_dialogue_iterator
 from os.path import join
@@ -112,8 +112,8 @@ class TestDialogueProcessor(TestCase):
         # check Mar13_S1A1/voip-d645d56d23-20130401_204424, starts with noise, then it should ignore that and delete the
         # following bot question
         for test in tests:
-            with open(DSTC2_TRN_DEV_DATA_PATH + test['file'] + 'label.json', 'r') as label, \
-                 open(DSTC2_TRN_DEV_DATA_PATH + test['file'] + 'log.json', 'r') as log:
+            with open(DSTC2_DATA_PATH + test['file'] + 'label.json', 'r') as label, \
+                 open(DSTC2_DATA_PATH + test['file'] + 'log.json', 'r') as log:
                 human_dic, bot_dic = json_load(label), json_load(log)
                 story = processor._make_story(human_dic, bot_dic)
                 self.assertEqual(story, test['label'])
@@ -129,7 +129,7 @@ class TestDialogueProcessor(TestCase):
                 for da_of_interest in das:
                     if bot_da == da_of_interest:
                         da_examples[da_of_interest].append(bot_turn['output']['transcript'])
-        processor.process_dstc2_files(process=collect_da_examples, path_prefix=DSTC2_TRN_DEV_DATA_PATH)
+        processor.process_dstc2_files(process=collect_da_examples, path_prefix=DSTC2_DATA_PATH)
         for da in da_examples:
             da_examples[da] = Counter(da_examples[da])
         res = {
@@ -333,7 +333,7 @@ class TestDialogueProcessor(TestCase):
             if not matched:
                 print('troublesome bAbI: {}'.format(utterance))
 
-        sentences_dstc2_trn_dev = processor.collect_all_bot_utterances(path_prefix=DSTC2_TRN_DEV_DATA_PATH,
+        sentences_dstc2_trn_dev = processor.collect_all_bot_utterances(path_prefix=DSTC2_DATA_PATH,
                                                                        only_success=False)
         for utterance in sentences_dstc2_trn_dev:
             matched = False

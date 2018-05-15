@@ -103,3 +103,20 @@ dev loss: 1.5860645771026611	dev accuracy: 0.6253907084465027	train accuracy: 0.
 dev loss: 1.5059291124343872	dev accuracy: 0.6109641790390015	train accuracy: 0.6650694608688354
 keep_prob = 0.95, hops = 3
 dev loss: 1.4609390497207642	dev accuracy: 0.6311613321304321	train accuracy: 0.659166693687439
+
+with BoW features
+hops = 3
+embedding_size = 50
+batch = 32
+mem_size = 20
+epochs = 50
+clip_norm = 15
+keep_prob = 0.95
+dev loss: 1.4294358491897583	dev accuracy: 0.6152921319007874	train accuracy: 0.7361805438995361
+embedding_size = 128, keep_prob = 0.9
+dev loss: 1.4829049110412598	dev accuracy: 0.5970185399055481	train accuracy: 0.773402750492096
+embedding_size = 100
+dev loss: 1.4270477294921875	dev accuracy: 0.6056744456291199	train accuracy: 0.7709027528762817
+epochs 40, mem_size = 10, keep_prob = 0.86
+dev loss: 1.391296625137329	dev accuracy: 0.6088001728057861	train accuracy: 0.7540972232818604
+

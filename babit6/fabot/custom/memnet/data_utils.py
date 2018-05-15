@@ -4,6 +4,10 @@ from copy import copy
 from rasa_core.events import ActionExecuted, UserUttered
 from rasa_core.actions.action import ACTION_LISTEN_NAME, ACTION_RESTART_NAME
 import re
+from os.path import isfile
+import logging
+
+logger = logging.getLogger(__name__)
 
 
 class MemNetDataAdapter(object):
@@ -24,7 +28,7 @@ class MemNetDataAdapter(object):
         """
         raise NotImplementedError
 
-    def featurize_user_act(self, intent, entities, turn, padding=0):
+    def featurize_user_act(self, intent, entities, turn, padding=0, raw_text=None):
         """
         Featurizes a user message
         :param intent: str indicating the user intent
@@ -33,6 +37,7 @@ class MemNetDataAdapter(object):
         :param turn: turn of the utterance in the conversation, int. This feature is used by Bordes
         :param padding: number of 0s to add at the end of the vector, to enforce user messages and bot messages have
         same length
+        :param raw_text: raw text from the user
         :return: a vector representing the featurized user act
         """
         raise NotImplementedError
@@ -158,7 +163,7 @@ class MemNetDataAdapter(object):
                 # self.featurize_bot_act(u.action_name, t, self.bot_padding)  # just to calculate context features
                 pass
             elif isinstance(u, UserUttered):
-                memory.append(self.featurize_user_act(u.intent['name'], u.entities, t, self.user_padding))
+                memory.append(self.featurize_user_act(u.intent['name'], u.entities, t, self.user_padding, u.text))
         query = memory.pop()  # remove the last one, since that one is query
         memory = [[0] * self.utterance_len()] if not memory else memory
         # TODO delete this crap
@@ -225,7 +230,8 @@ class MemNetDataAdapter(object):
             for i, turn in enumerate(story):
                 # EXTREMELY important to calculate user feats before bot's, cause both affect context_features and
                 # whatever the bot replies in a turn, should not affect the featurization of the user utterance
-                user_said = self.featurize_user_act(*self.parser.get_user_act(turn['human']), i, user_padding)
+                user_said = self.featurize_user_act(*self.parser.get_user_act(turn['human']), i, user_padding,
+                                                    turn['human'])
                 # bot_said = self.featurize_bot_act(self.parser.get_bot_act(turn['bot']), i, bot_padding)  # just to calculate context features
                 data.append({'history': copy(h), 'query': user_said,
                              'label': self._format_label(self.parser.get_bot_act(turn['bot']))})
@@ -294,7 +300,7 @@ class MemNetT5DataAdapter(MemNetDataAdapter):
     def entity2id(self):
         return self._entity2id
 
-    def featurize_user_act(self, intent, entities, turn, padding=0):
+    def featurize_user_act(self, intent, entities, turn, padding=0, raw_text=None):
         """
         Featurizes a user message
         :param intent: str indicating the user intent
@@ -303,6 +309,7 @@ class MemNetT5DataAdapter(MemNetDataAdapter):
         :param turn: turn of the utterance in the conversation, int. This feature is used by Bordes
         :param padding: number of 0s to add at the end of the vector, to enforce user messages and bot messages have
         same length
+        :param raw_text: not used
         :return: a vector consisting of a 0 (to indicate this is a user message and tell it apart from bot messages)
         concatenated with an integer value indicating the turn in the conversation (using binary is tempting to avoid
         learning bias towards higher numbered turns, but perhaps this is exactly what you want to do: more recent turns
@@ -426,10 +433,12 @@ class MemNetT6DataAdapter(MemNetDataAdapter):
         'silence': 12
     }
 
-    def __init__(self, nlu_model_path, kb_filename):
+    def __init__(self, nlu_model_path, kb_filename, vocab_filename=None):
         """
         :param nlu_model_path: path of the persisted Rasa NLU model to parse user text
         :param kb_filename: bAbI t6 knowledge base file
+        :param vocab_filename: filename to build vocabulary from (bAbI conversation file). If provided, BoW features
+        will be added
         """
         parser = BabiT6Reader(nlu_model_path, babit6_kb_filename=None)
         self.db = BabiDB(kb_filename)
@@ -449,6 +458,14 @@ class MemNetT6DataAdapter(MemNetDataAdapter):
         self.num_reqalts = None
         self.context_features = None
         self._reset()
+
+        self.vocab = None
+        if vocab_filename:
+            if isfile(vocab_filename):
+                self.vocab, _ = BabiReader.vocab(vocab_filename, 1)
+            else:
+                logger.warning('invalid vocabulary file, not using focab features')
+        self.vocab_filename = vocab_filename
 
         super(MemNetT6DataAdapter, self).__init__(parser)
 
@@ -481,7 +498,7 @@ class MemNetT6DataAdapter(MemNetDataAdapter):
     def _context_features(self):
         return [v for v in self.context_features.values()]
 
-    def featurize_user_act(self, intent, entities, turn, padding=0):
+    def featurize_user_act(self, intent, entities, turn, padding=0, raw_text=None):
         """
         Featurizes a user message
         :param intent: str indicating the user intent
@@ -490,6 +507,8 @@ class MemNetT6DataAdapter(MemNetDataAdapter):
         :param turn: turn of the utterance in the conversation, int. This feature is used by Bordes
         :param padding: number of 0s to add at the end of the vector, to enforce user messages and bot messages have
         same length
+        :param raw_text: raw text from the user, a BoW is build from this, only if a valid vocabulary file was passed
+        to the constructor
         :return: a vector consisting of a 0 (to indicate this is a user message and tell it apart from bot messages)
         concatenated with an integer value indicating the turn in the conversation (using binary is tempting to avoid
         learning bias towards higher numbered turns, but perhaps this is exactly what you want to do: more recent turns
@@ -517,7 +536,8 @@ class MemNetT6DataAdapter(MemNetDataAdapter):
             self.context_features['results_available'] = 1 - self.context_features['results_exhausted']
         if intent:  # user might say literally nothing, then we keep intent vector fully off
             intent_vec[self.intent2id[intent]] = 1
-        return [turn] + intent_vec + entity_vec + self._context_features()
+        bow = self.bow_features(raw_text) if self.vocab and raw_text is not None else []
+        return [turn] + intent_vec + entity_vec + self._context_features() + bow
 
     def featurize_bot_act(self, bot_act, turn, padding=0):
         """
@@ -545,8 +565,18 @@ class MemNetT6DataAdapter(MemNetDataAdapter):
 
         return [turn] + bot_vec
 
+    def bow_features(self, text):
+        """Creates the BoW for a given user sentence as a list of 0s and 1s. A valid vocab file must've been passed
+        to the constructor"""
+        bow = [0] * len(self.vocab)
+        for word in text.split():
+            if word in self.vocab:
+                bow[self.vocab[word]] = 1
+        return bow
+
     def len_user_featurized_vec(self):
-        return len(self.intent2id) + len(self.entity2id) + len(self.context_features) + 1
+        bow_len = len(self.vocab) if self.vocab else 0
+        return len(self.intent2id) + len(self.entity2id) + len(self.context_features) + bow_len + 1
 
     def len_bot_featurized_vec(self):
         return len(self.act2id) + 1  # 2 bits for sender flag + int for turn

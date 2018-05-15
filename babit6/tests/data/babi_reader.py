@@ -1,11 +1,14 @@
 from unittest import TestCase
 from globals import BABI_T6_TRN_FILE, BABI_T6_TST_FILE, BABI_T6_DEV_FILE, BABI_T6_KB_FILE, NLU_MODEL_PATH, \
-    NLU_T6_MODEL_NAME
+    NLU_T6_MODEL_NAME, DSTC2_DATA_PATH, DSTCT2_TRN_LIST_FILE, DSTCT2_DEV_LIST_FILE, DSTCT2_TST_LIST_FILE
+from data import dstc2_reader
 from data.babi_reader import BabiReader
 from data.babi_reader import BabiT6Reader
 import re
 from itertools import chain
 from os.path import join
+import json
+from collections import defaultdict
 
 
 class TestBabiReader(TestCase):
@@ -275,6 +278,73 @@ class TestBabiReader(TestCase):
         examples = [examples[intent][text] for intent in examples for text in examples[intent]]
         print('done')
 
+    def test_dstc2_user_das(self):
+        def cicle(list_file, act):
+            print('files: {}'.format(list_file))
+            cases = defaultdict(defaultdict)
+            for label, log in dstc2_reader.iter_dstc2_files_from_listfile(list_file=list_file,
+                                                                          path_prefix=DSTC2_DATA_PATH):
+                with open(label) as json_label, open(log) as json_log:
+                    label_dic, log_dic = json.load(json_label), json.load(json_log)
+                    for i, turn in enumerate(zip(log_dic['turns'], label_dic['turns'])):
+                        bot_turn, human_turn = turn[0], turn[1]
+                        bot_utterance = bot_turn['output']['transcript']
+                        user_utterance = human_turn['transcription']
+                        user_semantics = human_turn['semantics']['json']
+                        bot_replied = log_dic['turns'][i+1]['output']['transcript'] if i + 1 < len(log_dic['turns']) \
+                            else '-'
+                        for semantic in user_semantics:
+                            if semantic['act'] == act:
+                                case_id = '-'.join(sorted([s['act'] for s in user_semantics]))
+                                if user_utterance not in cases[case_id]:
+                                    cases[case_id][user_utterance] = []
+                                cases[case_id][user_utterance].append({'bot': bot_utterance,
+                                                                       'user_replied': user_utterance,
+                                                                       'bot_replied': bot_replied,
+                                                                       'user_sem': user_semantics})
+            for id in cases:
+                print('###################' + id + '#####################')
+                for text in cases[id]:
+                    print(text + ' =========================')
+                    for i, example in enumerate(cases[id][text]):
+                        print('bot said: {}\tuser replied: {}\tbot replied: {}'.format(
+                            example['bot'], example['user_replied'], example['bot_replied']))
+                        if i > 10:
+                            break
+        for file in [DSTCT2_TRN_LIST_FILE, DSTCT2_DEV_LIST_FILE, DSTCT2_TST_LIST_FILE]:
+            cicle(file, 'negate')
+
+    def test_dstc2_multi_request(self):
+        def cicle(list_file):
+            print('files: {}'.format(list_file))
+            cases = defaultdict(list)
+            for label, log in dstc2_reader.iter_dstc2_files_from_listfile(list_file=list_file,
+                                                                          path_prefix=DSTC2_DATA_PATH):
+                with open(label) as json_label, open(log) as json_log:
+                    label_dic, log_dic = json.load(json_label), json.load(json_log)
+                    for i, turn in enumerate(zip(log_dic['turns'], label_dic['turns'])):
+                        bot_turn, human_turn = turn[0], turn[1]
+                        bot_utterance = bot_turn['output']['transcript']
+                        user_utterance = human_turn['transcription']
+                        user_semantics = human_turn['semantics']['json']
+                        bot_replied = log_dic['turns'][i+1]['output']['transcript'] if i + 1 < len(log_dic['turns']) \
+                            else '-'
+                        if len([s['act'] for s in user_semantics if s['act'] == 'request']) > 2:
+                            case_id = '-'.join(sorted([s['act'] for s in user_semantics]))
+                            cases[case_id].append({'bot': bot_utterance,
+                                                   'user_replied': user_utterance,
+                                                   'bot_replied': bot_replied,
+                                                   'user_sem': user_semantics})
+            for id in cases:
+                print('###################' + id + '#####################')
+                for i, example in enumerate(cases[id]):
+                    print('bot said: {}\tuser replied: {}\tbot replied: {}'.format(
+                        example['bot'], example['user_replied'], example['bot_replied']))
+                    if i > 10:
+                        break
+        for file in [DSTCT2_TRN_LIST_FILE, DSTCT2_DEV_LIST_FILE, DSTCT2_TST_LIST_FILE]:
+            cicle(file)
+
     def test_produce_nlu_rasa_t6_file(self):
         reader = BabiT6Reader(join(NLU_MODEL_PATH, NLU_T6_MODEL_NAME), BABI_T6_KB_FILE)
         examples, synonyms, regex_features, unparsable = reader.extract_rasa_nlu_training_examples(BABI_T6_TRN_FILE)
@@ -283,4 +353,6 @@ class TestBabiReader(TestCase):
             for h, r in unparsable:
                 unparsable_fh.write('user: {}\t (bot: {})\n'.format(h, r))
 
-
+    def test_babi_vocab(self):
+        word2id, id2word = BabiReader.vocab(BABI_T6_TRN_FILE, 1)
+        print(word2id.keys())

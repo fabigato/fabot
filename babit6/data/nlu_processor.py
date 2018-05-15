@@ -3,8 +3,8 @@ import json
 from numpy import random
 from collections import defaultdict
 import logging
-from data.dialogue_processor import process_dstc2_files, get_user_intent
-from globals import DSTC2_TRN_DEV_DATA_PATH, RASA_TRAIN_PATH, RASA_TST_PATH, DSTC2_TST_DATA_PATH, DSTC2_ONTOLOGY_FILE
+from data.dstc2_reader import process_dstc2_files, get_user_intent
+from globals import DSTC2_DATA_PATH, RASA_TRAIN_PATH, RASA_TST_PATH, DSTC2_TST_DATA_PATH, DSTC2_ONTOLOGY_FILE
 
 logger = logging.getLogger(__name__)
 logging.basicConfig(level="INFO")
@@ -366,7 +366,7 @@ class NLUExampleGenerator(object):
 
 if __name__ == '__main__':
     nlu_generator = NLUExampleGenerator(ontology_file=DSTC2_ONTOLOGY_FILE, random_seed=42)
-    nlu_data, failed_examples = nlu_generator.generate_dstc2_examples(path_prefix=DSTC2_TRN_DEV_DATA_PATH)
+    nlu_data, failed_examples = nlu_generator.generate_dstc2_examples(path_prefix=DSTC2_DATA_PATH)
     with open(RASA_TRAIN_PATH + "dstc2_nlu_train.json", "w") as nlu_output:
          json.dump(nlu_data, nlu_output, indent=2)
     with open(RASA_TRAIN_PATH + "dstc2_nlu_train_unparsable.json", 'w') as fails:

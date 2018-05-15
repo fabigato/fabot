@@ -79,18 +79,19 @@ class TestMemoryNetwork(TestCase):
                                                                                                 ))
 
     def test_model_t6(self):
-        data_adapter = MemNetT6DataAdapter(join(NLU_MODEL_PATH, NLU_T6_MODEL_NAME), BABI_T6_KB_FILE)
+        data_adapter = MemNetT6DataAdapter(nlu_model_path=join(NLU_MODEL_PATH, NLU_T6_MODEL_NAME),
+                                           kb_filename=BABI_T6_KB_FILE, vocab_filename=BABI_T6_TRN_FILE)
         actions = len(data_adapter.act2id)
         h_len = data_adapter.utterance_len()
 
         print_cycle = 100
         hops = 3
-        embedding_size = 50
+        embedding_size = 100
         batch = 32
-        mem_size = 20
-        epochs = 50
+        mem_size = 10
+        epochs = 40
         clip_norm = 15
-        keep_prob = 0.95
+        keep_prob = 0.86
         logging.info(
             'starting training\nConfig:\nhops: {}\nactions: {}\nhistory utterance length: {}\n'
             'embedding size: {}\nbatch size: {}\nmemory size: {}\nepochs: {}\ngradient clip norm: {}\n'

@@ -1,0 +1,99 @@
+action_factory: null
+action_names:
+- utter_greet
+- utter_on_it
+- utter_announce_search
+- utter_api_call
+- utter_suggest_restaurant
+- utter_reserve
+- utter_announce_keep_searching
+- utter_request_updates
+- utter_give_phone
+- utter_give_address
+- utter_ask_location
+- utter_ask_number_of_people
+- utter_ask_price
+- utter_ask_cuisine
+- utter_ask_anything_else
+- utter_bye
+actions:
+- utter_greet
+- utter_on_it
+- utter_announce_search
+- utter_api_call
+- utter_suggest_restaurant
+- utter_reserve
+- utter_announce_keep_searching
+- utter_request_updates
+- utter_give_phone
+- utter_give_address
+- utter_ask_location
+- utter_ask_number_of_people
+- utter_ask_price
+- utter_ask_cuisine
+- utter_ask_anything_else
+- utter_bye
+config:
+  store_entities_as_slots: true
+entities:
+- cuisine
+- location
+- number
+- price
+intents:
+- greet
+- inform
+- deny
+- affirm
+- request_phone
+- request_address
+- thankyou
+- bye
+- silence
+slots:
+  cuisine:
+    initial_value: null
+    type: rasa_core.slots.TextSlot
+  location:
+    initial_value: null
+    type: rasa_core.slots.TextSlot
+  number:
+    initial_value: null
+    type: rasa_core.slots.TextSlot
+  price:
+    initial_value: null
+    type: rasa_core.slots.TextSlot
+templates:
+  utter_announce_keep_searching:
+  - text: sure let me find an other option for you
+  utter_announce_search:
+  - text: ok let me look into some options for you
+  utter_api_call:
+  - text: api_call {cuisine} {location} {number} {price}
+  utter_ask_anything_else:
+  - text: is there anything i can help you with
+  utter_ask_cuisine:
+  - text: any preference on a type of cuisine
+  utter_ask_location:
+  - text: where should it be
+  utter_ask_number_of_people:
+  - text: how many people would be in your party
+  utter_ask_price:
+  - text: which price range are looking for
+  utter_bye:
+  - text: you're welcome
+  utter_give_address:
+  - text: here it is _address
+  utter_give_phone:
+  - text: here it is _phone
+  utter_greet:
+  - text: hello what can i help you with today
+  utter_on_it:
+  - text: i'm on it
+  utter_request_updates:
+  - text: sure is there anything else to update
+  utter_reserve:
+  - text: great let me do the reservation
+  utter_suggest_restaurant:
+  - text: 'what do you think of this option: _restaurant'
+topics: []

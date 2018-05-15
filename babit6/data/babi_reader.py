@@ -8,6 +8,7 @@ from globals import NLU_MODEL_PATH, NLU_T6_MODEL_NAME, BABI_T6_TRN_FILE, BABI_T6
     BABI_T6_KB_FILE, BABI_T5_TRN_FILE, BABI_T5_DEV_FILE, BABI_T5_TST_FILE
 import logging
 import argparse
+from collections import Counter
 
 logger = logging.getLogger(__name__)
 
@@ -121,6 +122,19 @@ class BabiReader(object):
             return intent + '{' + ', '.join(['"{}": "{}"'.format(e['entity'], e['value']) for e in entities]) + '}'
         else:
             return intent
+
+    @staticmethod
+    def vocab(filename, threshold):
+        words = []
+        for story in BabiReader.babi_dialogue_iterator(filename):
+            for turn in story:
+                words += turn['human'].split()
+        words = Counter(words)
+        for word in list(words):
+            if words[word] < threshold:
+                del words[word]
+        word2id = {w: i for i, w in enumerate(list(words))}
+        return word2id, {i: w for w, i in word2id.items()}
 
 
 class BabiT5Reader(BabiReader):
@@ -477,7 +491,8 @@ class BabiT6Reader(BabiReader):
                 '^yes$'
             ],
             'negate': [
-                '^no$'
+                '^no$',
+                '^wrong$'
             ]
         }
         human_templates = {intent: [re.compile(pattern) for pattern in human_templates[intent]]

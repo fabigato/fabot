@@ -348,7 +348,7 @@ class MemNetT6Policy(MemNetPolicy):
         with open(join(path, 'MemoryNetwork_metadata.pickle'), 'wb') as metadata_fh:
             pickle.dump((self.history, self.queries, self.labels, self.batch_indexes, self.model.hops,
                          self.model.embedding_size, self.current_epoch, self.model_name, self.encoder.path,
-                         self.encoder.kb_filename), metadata_fh)
+                         self.encoder.kb_filename, self.encoder.vocab_filename), metadata_fh)
         # persist model variables
         saver = tf.train.Saver()
         saver.save(self.sess, join(path, "MemoryNetwork"))
@@ -358,7 +358,7 @@ class MemNetT6Policy(MemNetPolicy):
         # restore metadata
         with open(join(path, 'MemoryNetwork_metadata.pickle'), 'rb') as metadata_fh:
             history, queries, labels, batch_indexes, hops, embedding_size, current_epoch, model_name, nlu_path, \
-            kb_filename = pickle.load(metadata_fh)
+            kb_filename, vocab_filename = pickle.load(metadata_fh)
         num_actions = len(labels[0])
         utterance_len = len(history[0][0])
 
@@ -367,7 +367,8 @@ class MemNetT6Policy(MemNetPolicy):
         model = MemoryNetwork(num_actions, utterance_len, embedding_size, hops=hops)
         mem_net_policy = cls(history, queries, labels, batch_indexes, model=model,
                              embedding_size=embedding_size, hops=hops, encoder=MemNetT6DataAdapter(nlu_path,
-                                                                                                   kb_filename))
+                                                                                                   kb_filename,
+                                                                                                   vocab_filename))
         mem_net_policy.current_epoch = current_epoch
 
         saver = tf.train.Saver()

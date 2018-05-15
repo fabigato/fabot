@@ -64,17 +64,17 @@ def train_dialogue(task):
         babi_dev_file = BABI_T6_DEV_FILE
         domain_file = DOMAIN_T6_FILE
         model_path = DIALOGUE_T6_MODEL_PATH
-        data_adapter = MemNetT6DataAdapter(join(NLU_MODEL_PATH, NLU_T6_MODEL_NAME), BABI_T6_KB_FILE)
+        data_adapter = MemNetT6DataAdapter(join(NLU_MODEL_PATH, NLU_T6_MODEL_NAME), BABI_T6_KB_FILE, BABI_T6_TRN_FILE)
         h_len = data_adapter.utterance_len()
         print_cycle = 100
 
         hops = 3
-        embedding_size = 50
+        embedding_size = 100
         batch = 32
-        mem_size = 20
-        epochs = 50
+        mem_size = 10
+        epochs = 40
         clip_norm = 15
-        keep_prob = 0.95
+        keep_prob = 0.86
 
     trn_saved_data_filename = 'fabot/custom/memnet/t{}_trn_memnet_data.pickle'.format(task)
     if isfile(trn_saved_data_filename):

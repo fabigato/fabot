@@ -106,6 +106,8 @@ restaurant/*.log
 /restaurant/*
 /misc_utils/*
 /*/data/trndev/dialog-bAbI-tasks/
+/*/data/dialog-bAbI-tasks
+/*/data/dstc2/
 /*/data/test/dialog-bAbI-tasks/
 /*/data/trndev/dstc2/data/
 /*/data/trndev/dstc2/scripts/

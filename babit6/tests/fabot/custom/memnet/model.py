@@ -198,6 +198,7 @@ class TestMemoryNetwork(TestCase):
                 json.dump(results, result_output, indent=2)
 
     def test_full_bot_memnet_t5(self):
+        interpreter = RasaNLUInterpreter(join(NLU_MODEL_PATH, NLU_T5_MODEL_NAME))
         agent = Agent.load(DIALOGUE_T5_MODEL_PATH, interpreter=interpreter)
         output_channel = CollectingOutputChannel()
         babi_reader = agent.policy_ensemble.policies[0].encoder.parser

@@ -1,0 +1,60 @@
+;; This buffer is for notes you don't want to save, and for Lisp evaluation.
+;; If you want to create a file, visit that file with C-x C-f,
+;; then enter the text in that file's own buffer.
+
+hops = 2
+embedding_size = 10
+batch = 32
+mem_size = 8
+epochs = 40
+clip_norm = 25
+keep_prob = 0.95
+dev loss: 1.2890307903289795	dev accuracy: 0.6311613321304321 train accuracy: 0.6909722089767456
+hops = 4
+dev loss: 1.4175013303756714	dev accuracy: 0.6152921319007874 train accuracy: 0.6884027719497681
+hops = 3
+dev loss: 1.4084346294403076	dev accuracy: 0.6119259595870972 train accuracy: 0.6902083158493042
+hops = 1
+dev loss: 1.2893069982528687	dev accuracy: 0.6364510655403137 train accuracy: 0.6812499761581421
+hops stays 1
+embedding_size = 20
+dev loss: 1.2298990488052368	dev accuracy: 0.6513584852218628 train accuracy: 0.690625011920929
+embedding_size = 30
+dev loss: 1.2489397525787354	dev accuracy: 0.6470305323600769 train accuracy: 0.6928472518920898
+embedding_size stays 20
+hops = 3
+dev loss: 1.2941476106643677	dev accuracy: 0.638615071773529	train accuracy: 0.7022916674613953
+hops stays 1
+mem_size = 15
+dev loss: 1.2522355318069458	dev accuracy: 0.6503967046737671 train accuracy: 0.6918749809265137
+mem_size = 15 and hops = 3
+dev loss: 1.4003626108169556	dev accuracy: 0.6068766713142395 train accuracy: 0.6970833539962769
+hops remains 1
+embedding_size = 30
+dev loss: 1.2555116415023804	dev accuracy: 0.6441452503204346 train accuracy: 0.691944420337677
+hops = 3
+dev loss: 1.3102532625198364	dev accuracy: 0.6256311535835266 train accuracy: 0.7037500143051147
+hops stays 1
+embedding_size = 40
+dev loss: 1.248871088027954	dev accuracy: 0.6429430246353149 train accuracy: 0.6934722065925598
+embedding_size stays 20, mem_size stays 8
+clip_norm = 15
+dev loss: 1.239236831665039	dev accuracy: 0.6496754288673401 train accuracy: 0.6896528005599976
+clip_norm = 10
+dev loss: 1.2558763027191162	dev accuracy: 0.646549642086029	train accuracy: 0.6914583444595337
+epochs = 50
+dev loss: 1.2397749423980713	dev accuracy: 0.6487136483192444 train accuracy: 0.6933333277702332
+epochs stays 40 and clip_norm stays 25
+keep_prob = 0.9
+keep_prob = 0.86
+dev loss: 1.2507421970367432	dev accuracy: 0.649915874004364	train accuracy: 0.6907638907432556
+dev loss: 1.243707299232483	dev accuracy: 0.6520798206329346	train accuracy: 0.6927777528762817
+keep_prob = 0.8
+dev loss: 1.306885004043579	dev accuracy: 0.6487136483192444	train accuracy: 0.6882638931274414
+keep_prob stays 0.86
+hops = 3
+dev loss: 1.3620327711105347	dev accuracy: 0.6292377710342407	train accuracy: 0.6973611116409302
+hops stays 1
+epochs 50
+dev loss: 1.2304705381393433	dev accuracy: 0.6503967046737671	train accuracy: 0.6941666603088379
+epochs stays 40

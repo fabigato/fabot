@@ -27,21 +27,6 @@ intents:
  - silence
 
 templates:
-  utter_request_food:
-    - "What kind of food would you like?"
-  utter_request_area:
-    - "What part of town do you have in mind?"
-  utter_anything_else:
-    - "Can I help you with anything else?"
-  utter_bye:
-    - " you are welcome"
-  utter_select_price:
-    - "Would you like something in the cheap , moderate , or expensive price range?"
-  utter_offer_area:
-    - "{name} is in the {location} part of town ."
-  utter_select_area:
-    - "There are restaurants available . What area do you want?"
-
   utter_greet:
     - "Hello , welcome to the Cambridge restaurant system . You can ask for restaurants by area , price range or food type . How may I help you ?"
   utter_confirm_food_dontcare:

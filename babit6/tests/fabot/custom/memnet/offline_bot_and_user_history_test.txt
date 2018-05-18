@@ -1,0 +1,69 @@
+offline testing (i.e. no literal match), using bot and user utterances in history
+hops = 2
+embedding_size = 100
+batch = 32
+mem_size = 10
+epochs = 10
+clip_norm = 15
+keep_prob = 0.86
+
+2018-05-17 11:43:24 INFO     root  - epoch: 0	batch: 0	loss: 11.496735572814941	accuracy:0.0
+2018-05-17 11:43:32 INFO     root  - epoch: 0	batch: 100	loss: 2.9159770011901855	accuracy:0.3125
+2018-05-17 11:43:38 INFO     root  - epoch: 0	batch: 200	loss: 2.528609037399292	accuracy:0.46875
+2018-05-17 11:43:45 INFO     root  - epoch: 0	batch: 300	loss: 3.0000486373901367	accuracy:0.4375
+2018-05-17 11:43:50 INFO     root  - epoch: 0	batch: 400	loss: 4.145354270935059	accuracy:0.0
+2018-05-17 11:43:55 INFO     root  - epoch: 0	dev loss: 2.522852659225464	dev accuracy: 0.3941463232040405	train accuracy: 0.40444445610046387
+2018-05-17 11:43:55 INFO     root  - epoch: 1	batch: 0	loss: 6.946320533752441	accuracy:0.125
+2018-05-17 11:44:02 INFO     root  - epoch: 1	batch: 100	loss: 1.9331928491592407	accuracy:0.53125
+2018-05-17 11:44:09 INFO     root  - epoch: 1	batch: 200	loss: 2.2024056911468506	accuracy:0.59375
+2018-05-17 11:44:15 INFO     root  - epoch: 1	batch: 300	loss: 2.999516010284424	accuracy:0.4375
+2018-05-17 11:44:20 INFO     root  - epoch: 1	batch: 400	loss: 1.400381326675415	accuracy:1.0
+2018-05-17 11:44:25 INFO     root  - epoch: 1	dev loss: 1.8371913433074951	dev accuracy: 0.5214634537696838	train accuracy: 0.5772222280502319
+2018-05-17 11:44:25 INFO     root  - epoch: 2	batch: 0	loss: 4.22443151473999	accuracy:0.21875
+2018-05-17 11:44:32 INFO     root  - epoch: 2	batch: 100	loss: 1.8099379539489746	accuracy:0.59375
+2018-05-17 11:44:39 INFO     root  - epoch: 2	batch: 200	loss: 1.8958290815353394	accuracy:0.59375
+2018-05-17 11:44:45 INFO     root  - epoch: 2	batch: 300	loss: 2.311190128326416	accuracy:0.34375
+2018-05-17 11:44:51 INFO     root  - epoch: 2	batch: 400	loss: 0.5662652850151062	accuracy:1.0
+2018-05-17 11:44:56 INFO     root  - epoch: 2	dev loss: 1.6646499633789062	dev accuracy: 0.5604878067970276	train accuracy: 0.6081944704055786
+2018-05-17 11:44:56 INFO     root  - epoch: 3	batch: 0	loss: 4.470419883728027	accuracy:0.15625
+2018-05-17 11:45:03 INFO     root  - epoch: 3	batch: 100	loss: 1.7964938879013062	accuracy:0.6875
+2018-05-17 11:45:10 INFO     root  - epoch: 3	batch: 200	loss: 1.5820350646972656	accuracy:0.59375
+2018-05-17 11:45:16 INFO     root  - epoch: 3	batch: 300	loss: 2.2672319412231445	accuracy:0.40625
+2018-05-17 11:45:21 INFO     root  - epoch: 3	batch: 400	loss: 1.1048145294189453	accuracy:1.0
+2018-05-17 11:45:26 INFO     root  - epoch: 3	dev loss: 1.5975414514541626	dev accuracy: 0.564390242099762	train accuracy: 0.6273611187934875
+2018-05-17 11:45:26 INFO     root  - epoch: 4	batch: 0	loss: 4.312023162841797	accuracy:0.15625
+2018-05-17 11:45:33 INFO     root  - epoch: 4	batch: 100	loss: 1.309704303741455	accuracy:0.6875
+2018-05-17 11:45:40 INFO     root  - epoch: 4	batch: 200	loss: 1.335209846496582	accuracy:0.625
+2018-05-17 11:45:46 INFO     root  - epoch: 4	batch: 300	loss: 2.328613758087158	accuracy:0.40625
+2018-05-17 11:45:51 INFO     root  - epoch: 4	batch: 400	loss: 0.40223440527915955	accuracy:1.0
+2018-05-17 11:45:56 INFO     root  - epoch: 4	dev loss: 1.5522584915161133	dev accuracy: 0.5753658413887024	train accuracy: 0.6395139098167419
+2018-05-17 11:45:56 INFO     root  - epoch: 5	batch: 0	loss: 3.1317100524902344	accuracy:0.15625
+2018-05-17 11:46:03 INFO     root  - epoch: 5	batch: 100	loss: 1.3615903854370117	accuracy:0.6875
+2018-05-17 11:46:10 INFO     root  - epoch: 5	batch: 200	loss: 1.3007831573486328	accuracy:0.625
+2018-05-17 11:46:16 INFO     root  - epoch: 5	batch: 300	loss: 1.9659086465835571	accuracy:0.4375
+2018-05-17 11:46:22 INFO     root  - epoch: 5	batch: 400	loss: 0.370179146528244	accuracy:1.0
+2018-05-17 11:46:27 INFO     root  - epoch: 5	dev loss: 1.5278507471084595	dev accuracy: 0.5773169994354248	train accuracy: 0.6504861116409302
+2018-05-17 11:46:27 INFO     root  - epoch: 6	batch: 0	loss: 3.2179548740386963	accuracy:0.1875
+2018-05-17 11:46:34 INFO     root  - epoch: 6	batch: 100	loss: 1.6517804861068726	accuracy:0.6875
+2018-05-17 11:46:41 INFO     root  - epoch: 6	batch: 200	loss: 1.2944765090942383	accuracy:0.625
+2018-05-17 11:46:47 INFO     root  - epoch: 6	batch: 300	loss: 2.3485705852508545	accuracy:0.46875
+2018-05-17 11:46:52 INFO     root  - epoch: 6	batch: 400	loss: 0.5755378603935242	accuracy:1.0
+2018-05-17 11:46:57 INFO     root  - epoch: 6	dev loss: 1.5056573152542114	dev accuracy: 0.5795121788978577	train accuracy: 0.6553472280502319
+2018-05-17 11:46:57 INFO     root  - epoch: 7	batch: 0	loss: 2.8882384300231934	accuracy:0.25
+2018-05-17 11:47:04 INFO     root  - epoch: 7	batch: 100	loss: 1.6046292781829834	accuracy:0.6875
+2018-05-17 11:47:11 INFO     root  - epoch: 7	batch: 200	loss: 1.643555760383606	accuracy:0.625
+2018-05-17 11:47:17 INFO     root  - epoch: 7	batch: 300	loss: 1.9847755432128906	accuracy:0.46875
+2018-05-17 11:47:22 INFO     root  - epoch: 7	batch: 400	loss: 0.8665032386779785	accuracy:1.0
+2018-05-17 11:47:27 INFO     root  - epoch: 7	dev loss: 1.4877723455429077	dev accuracy: 0.5802439451217651	train accuracy: 0.6609027981758118
+2018-05-17 11:47:27 INFO     root  - epoch: 8	batch: 0	loss: 2.5178637504577637	accuracy:0.3125
+2018-05-17 11:47:34 INFO     root  - epoch: 8	batch: 100	loss: 1.4882643222808838	accuracy:0.6875
+2018-05-17 11:47:41 INFO     root  - epoch: 8	batch: 200	loss: 1.3507907390594482	accuracy:0.625
+2018-05-17 11:47:47 INFO     root  - epoch: 8	batch: 300	loss: 1.933618187904358	accuracy:0.46875
+2018-05-17 11:47:52 INFO     root  - epoch: 8	batch: 400	loss: 0.5323179960250854	accuracy:1.0
+2018-05-17 11:47:58 INFO     root  - epoch: 8	dev loss: 1.4712425470352173	dev accuracy: 0.5804877877235413	train accuracy: 0.6651389002799988
+2018-05-17 11:47:58 INFO     root  - epoch: 9	batch: 0	loss: 1.9398542642593384	accuracy:0.53125
+2018-05-17 11:48:05 INFO     root  - epoch: 9	batch: 100	loss: 1.523289680480957	accuracy:0.71875
+2018-05-17 11:48:11 INFO     root  - epoch: 9	batch: 200	loss: 1.4038419723510742	accuracy:0.65625
+2018-05-17 11:48:18 INFO     root  - epoch: 9	batch: 300	loss: 1.8335835933685303	accuracy:0.5
+2018-05-17 11:48:23 INFO     root  - epoch: 9	batch: 400	loss: 0.21893545985221863	accuracy:1.0
+2018-05-17 11:48:28 INFO     root  - epoch: 9	dev loss: 1.460813045501709	dev accuracy: 0.5804877877235413	train accuracy: 0.6710416674613953

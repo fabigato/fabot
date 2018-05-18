@@ -1,0 +1,122 @@
+;; This buffer is for notes you don't want to save, and for Lisp evaluation.
+;; If you want to create a file, visit that file with C-x C-f,
+;; then enter the text in that file's own buffer.
+
+hops = 2
+embedding_size = 10
+batch = 32
+mem_size = 8
+epochs = 40
+clip_norm = 25
+keep_prob = 0.95
+dev loss: 1.2890307903289795	dev accuracy: 0.6311613321304321 train accuracy: 0.6909722089767456
+hops = 4
+dev loss: 1.4175013303756714	dev accuracy: 0.6152921319007874 train accuracy: 0.6884027719497681
+hops = 3
+dev loss: 1.4084346294403076	dev accuracy: 0.6119259595870972 train accuracy: 0.6902083158493042
+hops = 1
+dev loss: 1.2893069982528687	dev accuracy: 0.6364510655403137 train accuracy: 0.6812499761581421
+hops stays 1
+embedding_size = 20
+dev loss: 1.2298990488052368	dev accuracy: 0.6513584852218628 train accuracy: 0.690625011920929
+embedding_size = 30
+dev loss: 1.2489397525787354	dev accuracy: 0.6470305323600769 train accuracy: 0.6928472518920898
+embedding_size stays 20
+hops = 3
+dev loss: 1.2941476106643677	dev accuracy: 0.638615071773529	train accuracy: 0.7022916674613953
+hops stays 1
+mem_size = 15
+dev loss: 1.2522355318069458	dev accuracy: 0.6503967046737671 train accuracy: 0.6918749809265137
+mem_size = 15 and hops = 3
+dev loss: 1.4003626108169556	dev accuracy: 0.6068766713142395 train accuracy: 0.6970833539962769
+hops remains 1
+embedding_size = 30
+dev loss: 1.2555116415023804	dev accuracy: 0.6441452503204346 train accuracy: 0.691944420337677
+hops = 3
+dev loss: 1.3102532625198364	dev accuracy: 0.6256311535835266 train accuracy: 0.7037500143051147
+hops stays 1
+embedding_size = 40
+dev loss: 1.248871088027954	dev accuracy: 0.6429430246353149 train accuracy: 0.6934722065925598
+embedding_size stays 20, mem_size stays 8
+clip_norm = 15
+dev loss: 1.239236831665039	dev accuracy: 0.6496754288673401 train accuracy: 0.6896528005599976
+clip_norm = 10
+dev loss: 1.2558763027191162	dev accuracy: 0.646549642086029	train accuracy: 0.6914583444595337
+epochs = 50
+dev loss: 1.2397749423980713	dev accuracy: 0.6487136483192444 train accuracy: 0.6933333277702332
+epochs stays 40 and clip_norm stays 25
+keep_prob = 0.9
+keep_prob = 0.86
+dev loss: 1.2507421970367432	dev accuracy: 0.649915874004364	train accuracy: 0.6907638907432556
+dev loss: 1.243707299232483	dev accuracy: 0.6520798206329346	train accuracy: 0.6927777528762817
+keep_prob = 0.8
+dev loss: 1.306885004043579	dev accuracy: 0.6487136483192444	train accuracy: 0.6882638931274414
+keep_prob stays 0.86
+hops = 3
+dev loss: 1.3620327711105347	dev accuracy: 0.6292377710342407	train accuracy: 0.6973611116409302
+hops stays 1
+epochs 50
+dev loss: 1.2304705381393433	dev accuracy: 0.6503967046737671	train accuracy: 0.6941666603088379
+epochs stays 40
+
+removing bot utterances from history
+hops = 1
+embedding_size = 20
+batch = 32
+mem_size = 8
+epochs = 40
+clip_norm = 25
+keep_prob = 0.86
+lr = 1e-3
+
+tst accuracy 50.74
+dev loss: 1.4326272010803223	dev accuracy: 0.6119259595870972	train accuracy: 0.6499999761581421
+mem_size = 15
+dev loss: 1.4488904476165771	dev accuracy: 0.6116855144500732	train accuracy: 0.6511111259460449
+hops = 3
+dev loss: 1.8892309665679932	dev accuracy: 0.5498918294906616	train accuracy: 0.668749988079071
+hops = 2
+dev loss: 1.6794734001159668	dev accuracy: 0.5849964022636414	train accuracy: 0.6610416769981384
+embedding_size 15
+dev loss: 1.968243956565857	dev accuracy: 0.4943495988845825	train accuracy: 0.6559028029441833
+clip_norm = 15, keep_prob = 0.95
+dev loss: 1.6536586284637451	dev accuracy: 0.5991824865341187	train accuracy: 0.6622222065925598
+learning rate = 1e-5
+dev loss: 3.015885829925537	dev accuracy: 0.2678528428077698	train accuracy: 0.21416667103767395
+lr = 1e-4
+dev loss: 1.5517935752868652	dev accuracy: 0.5833132863044739	train accuracy: 0.6142361164093018
+epochs 50
+dev loss: 1.6086392402648926	dev accuracy: 0.5878816843032837	train accuracy: 0.6255555748939514
+mem_size = 20
+dev loss: 1.5364073514938354	dev accuracy: 0.5792257785797119	train accuracy: 0.6262500286102295
+embedding_size = 25, hops = 3
+dev loss: 1.510617971420288	dev accuracy: 0.6229863166809082	train accuracy: 0.6447222232818604
+embedding_size = 50
+dev loss: 1.4887617826461792	dev accuracy: 0.631401777267456	train accuracy: 0.6601389050483704
+hops 5, epochs 60
+dev loss: 1.5673919916152954	dev accuracy: 0.6311613321304321	train accuracy: 0.6586111187934875
+hops = 4, keep_prob = 1
+dev loss: 1.4878864288330078	dev accuracy: 0.616494357585907	train accuracy: 0.664097249507904
+dev loss: 1.428281307220459	dev accuracy: 0.6277951598167419	train accuracy: 0.6675000190734863
+keep_prob = 0.9
+dev loss: 1.5860645771026611	dev accuracy: 0.6253907084465027	train accuracy: 0.6582638621330261
+dev loss: 1.5059291124343872	dev accuracy: 0.6109641790390015	train accuracy: 0.6650694608688354
+keep_prob = 0.95, hops = 3
+dev loss: 1.4609390497207642	dev accuracy: 0.6311613321304321	train accuracy: 0.659166693687439
+
+with BoW features
+hops = 3
+embedding_size = 50
+batch = 32
+mem_size = 20
+epochs = 50
+clip_norm = 15
+keep_prob = 0.95
+dev loss: 1.4294358491897583	dev accuracy: 0.6152921319007874	train accuracy: 0.7361805438995361
+embedding_size = 128, keep_prob = 0.9
+dev loss: 1.4829049110412598	dev accuracy: 0.5970185399055481	train accuracy: 0.773402750492096
+embedding_size = 100
+dev loss: 1.4270477294921875	dev accuracy: 0.6056744456291199	train accuracy: 0.7709027528762817
+epochs 40, mem_size = 10, keep_prob = 0.86
+dev loss: 1.391296625137329	dev accuracy: 0.6088001728057861	train accuracy: 0.7540972232818604
+

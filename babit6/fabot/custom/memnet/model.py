@@ -35,29 +35,29 @@ def batch_matmul(x, A):
     final_shape = tf.concat([final_shape, [tf.shape(A)[-1]]], 0)
     return tf.reshape(prod, final_shape)
 
-# TODO bordes uses 2 bits to indicate whether the utterance came from bot or user, which makes sense.
+
+# TODO another improvement: maybe it is good to keep fixed size memory, starting with all null memories, then adding
+# actual memories every turn
 class MemoryNetwork(object):
 
     def __init__(self,
                  num_actions,
-                 h_utterance_len,
-                 query_len,
+                 utterance_len,
                  embedding_size,
                  hops=3,
                  var_init=tf.random_normal_initializer(stddev=0.1),
                  model_name="MemoryNetwork"):
         # placeholders
         # [batch, mem_size, utter_len]
-        self.history = tf.placeholder(tf.float32, [None, None, h_utterance_len], name="history")
-        self.queries = tf.placeholder(tf.float32, [None, query_len], name="queries")  # [batch, query_len]
+        self.history = tf.placeholder(tf.float32, [None, None, utterance_len], name="history")
+        self.queries = tf.placeholder(tf.float32, [None, utterance_len], name="queries")  # [batch, query_len]
         self.labels = tf.placeholder(tf.float32, [None, num_actions], name="labels")  # [batch, num_actions]
         self.keep_prob = tf.placeholder(tf.float32, [], name='keep_probability')
 
         # model parameters
         with tf.variable_scope(model_name):
-            self.A = [tf.Variable(initial_value=var_init([h_utterance_len, embedding_size]), name="A" + str(i))
+            self.A = [tf.Variable(initial_value=var_init([utterance_len, embedding_size]), name="A" + str(i))
                       for i in range(hops+1)]
-            self.B = tf.Variable(initial_value=var_init([query_len, embedding_size]), name="B")
             # self.C = tf.Variable(initial_value=var_init([h_utterance_len, embedding_size]), name="C")
             self.W = tf.Variable(initial_value=var_init([embedding_size, num_actions]), name="W")
             self.H = tf.Variable(initial_value=var_init([embedding_size, embedding_size]), name="H")
@@ -65,7 +65,7 @@ class MemoryNetwork(object):
             self.embedding_size = embedding_size
 
             # define graph
-            u = tf.matmul(self.queries, self.B)  # [batch, embedding_size]
+            u = tf.matmul(self.queries, self.A[0])  # [batch, embedding_size]
             for i in range(hops):
                 """we need a matmul on each [mem_size, utter_len] element of history with A. scan takes each element
                 (across 0th dim) of history and applies the lambda function (matmul) to it. Argument x is the element
@@ -152,14 +152,13 @@ class MemNetPolicy(Policy):
                                                                                                len(query),
                                                                                                len(label))
         num_actions = len(label[0])  # trn data can't be empty
-        h_utterance_len = len(history[0][0])  # at least 1 padded memory is in history, always
-        query_len = len(query[0])
+        utterance_len = len(history[0][0])  # at least 1 padded memory is in history, always
         if model:
             assert isinstance(model, MemoryNetwork), 'expected a MemoryNetwork as model. Got {}'.format(type(model))
-            MemNetPolicy._check_data_model_compatibility(model, num_actions, h_utterance_len, query_len)
+            MemNetPolicy._check_data_model_compatibility(model, num_actions, utterance_len)
             self.model = model
         else:
-            self.model = MemoryNetwork(num_actions, h_utterance_len, query_len, embedding_size, hops, var_init,
+            self.model = MemoryNetwork(num_actions, utterance_len, embedding_size, hops, var_init,
                                        model_name)
         self.history = history
         self.queries = query
@@ -172,18 +171,22 @@ class MemNetPolicy(Policy):
         self.encoder = encoder
 
     @staticmethod
-    def _check_data_model_compatibility(model, num_actions, h_utterance_len, query_len):
+    def _check_data_model_compatibility(model, num_actions, h_utterance_len):
         model_num_actions = int(model.labels.shape[-1])
-        model_h_utterance_len = int(model.history.shape[-1])
+        model_utterance_len = int(model.history.shape[-1])
         model_query_len = int(model.queries.shape[-1])
         assert model_num_actions == num_actions, 'number of actions defined in training data ({}) differs from ' \
                                                  'the one defined in the model ({})'.format(num_actions,
                                                                                             model_num_actions)
-        assert model_h_utterance_len == h_utterance_len, 'length of history utterances defined in training data ' \
+        assert model_utterance_len == h_utterance_len, 'length of history utterances defined in training data ' \
                                                          '({}) differs from the one defined in the model ({})'. \
-            format(h_utterance_len, model_h_utterance_len)
-        assert model_query_len == query_len, 'length of queries defined in training data ({}) differs from the ' \
-                                             'one defined in the model ({})'.format(query_len, model_query_len)
+            format(h_utterance_len, model_utterance_len)
+        assert model_query_len == model_utterance_len, 'length of queries defined in training data ({}) differs from ' \
+                                                       'the one defined in the model ({})'.format(model_utterance_len,
+                                                                                                  model_query_len)
+
+    def reset(self):
+        self.encoder._reset()
 
     def predict_action_probabilities(self, tracker, domain):
         if isinstance(tracker.events[-1], ActionExecuted):
@@ -244,16 +247,19 @@ class MemNetPolicy(Policy):
             self.history = kwargs['mn_training_data']['history']
             self.queries = kwargs['mn_training_data']['query']
             self.labels = kwargs['mn_training_data']['label']
-            self.batch_indexes = kwargs['mn_training_data']['batch_indexes']
+            self.batch_indexes = list(kwargs['mn_training_data']['batch_indexes'])
         if 'mn_dev_data' in kwargs:
             assert 'history' in kwargs['mn_dev_data'], 'no history in the mn_dev_data dictionary'
             assert 'query' in kwargs['mn_dev_data'], 'no queries in the mn_dev_data dictionary'
             assert 'label' in kwargs['mn_dev_data'], 'no labels in the mn_dev_data dictionary'
+            if 'batch_indexes' not in kwargs['mn_dev_data']:
+                logger.info('no batch indexes in dev data. Using a single batch')
+                dev_batch_indexes = [(0, len(kwargs['mn_dev_data']['query']))]
+            else:
+                dev_batch_indexes = list(kwargs['mn_dev_data']['batch_indexes'])
             num_actions_dev = len(kwargs['mn_dev_data']['label'][0])
             h_utterance_len_dev = len(kwargs['mn_dev_data']['history'][0][0])
-            query_len_dev = len(kwargs['mn_dev_data']['query'][0])
-            MemNetPolicy._check_data_model_compatibility(self.model, num_actions_dev, h_utterance_len_dev,
-                                                         query_len_dev)
+            MemNetPolicy._check_data_model_compatibility(self.model, num_actions_dev, h_utterance_len_dev)
         # all set. Aan de slag
         logging.info(
             'starting training\nConfig:\nhops: {}\nactions: {}\nhistory utterance length: {}\nquery length: {}\n'
@@ -262,7 +268,7 @@ class MemNetPolicy(Policy):
                 self.model.hops, int(self.model.labels.shape[-1]), int(self.model.history.shape[-1]),
                 int(self.model.queries.shape[-1]), self.model.embedding_size, len(self.batch_indexes),
                 max(len(h) for h in self.history), keep_prob, epochs, clip_norm))
-        optimizer = tf.train.AdamOptimizer(learning_rate=1e-3, epsilon=1e-8)
+        optimizer = tf.train.AdamOptimizer(learning_rate=1e-4, epsilon=1e-8)
         loss_op = self.model.loss
         grads, vars = zip(*optimizer.compute_gradients(loss_op))
         grads_clipped, _ = tf.clip_by_global_norm(grads, clip_norm=clip_norm)
@@ -283,15 +289,23 @@ class MemNetPolicy(Policy):
                     logging.info('epoch: {}\tbatch: {}\tloss: {}\taccuracy:{}'.format(epoch, i, loss, accuracy))
                 trn_accuracies.append(accuracy)
             if 'mn_dev_data' in kwargs:
-                dev_accuracy, dev_loss = self.sess.run([self.model.accuracy, loss_op],
-                                                       feed_dict={self.model.history: kwargs['mn_dev_data']['history'],
-                                                                  self.model.queries: kwargs['mn_dev_data']['query'],
-                                                                  self.model.labels: kwargs['mn_dev_data']['label'],
-                                                                  self.model.keep_prob: 1})
-                logging.info('epoch: {}\tdev loss: {}\tdev accuracy: {}\ttrain accuracy: {}'.format(epoch, dev_loss,
-                                                                                                    dev_accuracy,
-                                                                                                    mean(trn_accuracies)
-                                                                                                    ))
+                dev_accuracies, dev_losses = [], []
+                for i, (b_start, b_end) in enumerate(dev_batch_indexes):
+                    dev_accuracy, dev_loss = self.sess.run(
+                        [self.model.accuracy, loss_op],
+                        feed_dict={
+                            self.model.history: kwargs['mn_dev_data']['history'][b_start:b_end],
+                            self.model.queries: kwargs['mn_dev_data']['query'][b_start:b_end],
+                            self.model.labels: kwargs['mn_dev_data']['label'][b_start:b_end],
+                            self.model.keep_prob: 1})
+                    dev_accuracies.append(dev_accuracy)
+                    dev_losses.append(dev_loss)
+                logging.info('epoch: {}\tdev loss: {}\tdev accuracy: {}\ttrain accuracy: {}'.format(
+                    epoch,
+                    mean(dev_losses),
+                    mean(dev_accuracies),
+                    mean(trn_accuracies)
+                ))
             else:
                 logging.info('epoch: {}\ttrain accuracy: {}'.format(epoch, mean(trn_accuracies)))
             self.current_epoch += epochs + 1
@@ -321,12 +335,11 @@ class MemNetT5Policy(MemNetPolicy):
             history, queries, labels, batch_indexes, hops, embedding_size, current_epoch, model_name = \
                 pickle.load(metadata_fh)
         num_actions = len(labels[0])
-        h_utterance_len = len(history[0][0])
-        query_len = len(queries[0])
+        utterance_len = len(history[0][0])
 
         # restore model
         tf.reset_default_graph()
-        model = MemoryNetwork(num_actions, h_utterance_len, query_len, embedding_size, hops=hops)
+        model = MemoryNetwork(num_actions, utterance_len, embedding_size, hops=hops)
         mem_net_policy = cls(history, queries, labels, batch_indexes, model=model,
                              embedding_size=embedding_size, hops=hops, encoder=MemNetT5DataAdapter())
         mem_net_policy.current_epoch = current_epoch
@@ -347,7 +360,8 @@ class MemNetT6Policy(MemNetPolicy):
         # persist metadata
         with open(join(path, 'MemoryNetwork_metadata.pickle'), 'wb') as metadata_fh:
             pickle.dump((self.history, self.queries, self.labels, self.batch_indexes, self.model.hops,
-                         self.model.embedding_size, self.current_epoch, self.model_name, self.encoder.path),
+                         self.model.embedding_size, self.current_epoch, self.model_name, self.encoder.path,
+                         self.encoder.kb_filename, self.encoder.vocab_filename, self.encoder.w2v_model_filename),
                         metadata_fh)
         # persist model variables
         saver = tf.train.Saver()
@@ -357,17 +371,19 @@ class MemNetT6Policy(MemNetPolicy):
     def load(cls, path, featurizer, max_history):
         # restore metadata
         with open(join(path, 'MemoryNetwork_metadata.pickle'), 'rb') as metadata_fh:
-            history, queries, labels, batch_indexes, hops, embedding_size, current_epoch, model_name, nlu_path = \
-                pickle.load(metadata_fh)
+            history, queries, labels, batch_indexes, hops, embedding_size, current_epoch, model_name, nlu_path, \
+            kb_filename, vocab_filename, w2v_model_filename = pickle.load(metadata_fh)
         num_actions = len(labels[0])
-        h_utterance_len = len(history[0][0])
-        query_len = len(queries[0])
+        utterance_len = len(history[0][0])
 
         # restore model
         tf.reset_default_graph()
-        model = MemoryNetwork(num_actions, h_utterance_len, query_len, embedding_size, hops=hops)
+        model = MemoryNetwork(num_actions, utterance_len, embedding_size, hops=hops)
         mem_net_policy = cls(history, queries, labels, batch_indexes, model=model,
-                             embedding_size=embedding_size, hops=hops, encoder=MemNetT6DataAdapter(nlu_path))
+                             embedding_size=embedding_size, hops=hops, encoder=MemNetT6DataAdapter(nlu_path,
+                                                                                                   kb_filename,
+                                                                                                   vocab_filename,
+                                                                                                   w2v_model_filename))
         mem_net_policy.current_epoch = current_epoch
 
         saver = tf.train.Saver()
@@ -384,13 +400,13 @@ class MemNetT6Policy(MemNetPolicy):
         :param domain: rasa domain object
         :return: probability vector after applying the domain specific rules
         """
-        action = domain.action_for_index(argmax(p)).name()
-        entities = {e: v for e, v in tracker.current_slot_values().items() if v}
-        if action == 'api_call':
-            num_results = self.db.num_results(**entities)
-            if num_results == 0:  # don't issue api_call
-                p[domain.index_for_action(action)] = 0
-                p = softmax(p)
+        # action = domain.action_for_index(argmax(p)).name()
+        # entities = {e: v for e, v in tracker.current_slot_values().items() if v}
+        # if action == 'api_call':
+        #     num_results = self.db.num_results(**entities)
+        #     if num_results == 0:  # don't issue api_call
+        #         p[domain.index_for_action(action)] = 0
+        #         p = softmax(p)
         return p
 
 

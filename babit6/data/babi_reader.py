@@ -8,6 +8,7 @@ from globals import NLU_MODEL_PATH, NLU_T6_MODEL_NAME, BABI_T6_TRN_FILE, BABI_T6
     BABI_T6_KB_FILE, BABI_T5_TRN_FILE, BABI_T5_DEV_FILE, BABI_T5_TST_FILE
 import logging
 import argparse
+from collections import Counter
 
 logger = logging.getLogger(__name__)
 
@@ -121,6 +122,19 @@ class BabiReader(object):
             return intent + '{' + ', '.join(['"{}": "{}"'.format(e['entity'], e['value']) for e in entities]) + '}'
         else:
             return intent
+
+    @staticmethod
+    def vocab(filename, threshold):
+        words = []
+        for story in BabiReader.babi_dialogue_iterator(filename):
+            for turn in story:
+                words += turn['human'].split()
+        words = Counter(words)
+        for word in list(words):
+            if words[word] < threshold:
+                del words[word]
+        word2id = {w: i for i, w in enumerate(list(words))}
+        return word2id, {i: w for w, i in word2id.items()}
 
 
 class BabiT5Reader(BabiReader):
@@ -262,6 +276,104 @@ class BabiT5Reader(BabiReader):
 
 
 class BabiT6Reader(BabiReader):
+    das = {
+        'greet': (
+        'Hello , welcome to the Cambridge restaurant system \. You can ask for restaurants by area , price range or food type \. How may I help you \?$', 'Hello , welcome to the Cambridge restaurant system \. You can ask for restaurants by area , price range or food type \. How may I help you \?$'),  # 1117
+        'api_call': ('api_call \w+ \w+ \w+$', 'api_call {cuisine} {location} {price}'),  # 1088
+        'offer_rest_area_price': ('.+ is a nice place in the \w+ of town and the prices are \w+$', '.+ is a nice place in the {location} of town and the prices are {price}$'),  # 574
+        'offer_rest_area_food': ('(.+ is a nice place in the \w+ of town serving tasty \w+ food$)|(.+ is a nice restaurant in the \w+ of town serving \w+ food$)', '.+ is a nice place in the {location} of town serving tasty {cuisine} food$'),  # 270
+        'offer_rest_area_food_price': ('(.+ is a great restaurant serving \w+ \w+ food in the \w+ of town .$)|(.+ is a nice restaurant in the \w+ of town in the \w+ price range$)', '.+ is a great restaurant serving {price} {cuisine} food in the {location} of town .$'),  # no exact template in tst to match this trn one, semi-arbitrary choice here   71
+        'offer_rest_area': ('.+ is a nice place in the \w+ of town$', '.+ is a nice place in the {location} of town$'),  # 90
+        'offer_rest_food_price': ('.+ serves \w+ food in the \w+ price range$', '.+ serves {cuisine} food in the {price} price range$'),  # 268
+        'offer_rest_food': ('(.+ serves \w+ food$)|(\w+ serves \w+ food \.$)', '.+ serves {cuisine} food$'),  # 371
+        'offer_rest_price': ('(.+ is in the \w+ price range$)|(The price range at .+ is \w+ \.$)', '.+ is in the {price} price range$'),  # 110
+        'offer_rest_price_postcode': ('\w+ is in the \w+ price range , and their post code is .+$', '\w+ is in the {price} price range , and their post code is .+$'),  # 3
+        'offer_rest': ('.+ is a great restaurant$', '.+ is a great restaurant$'),  # 303
+        'confirm_food_dontcare': ('You are looking for a restaurant serving any kind of food right\?$', 'You are looking for a restaurant serving any kind of food right\?$'),  # 247
+        'confirm_price': ('Let me confirm , You are looking for a restaurant in the \w+ price range right\?$', 'Let me confirm , You are looking for a restaurant in the {price} price range right\?$'),  # 24
+        'confirm_price_dontcare': ('Let me confirm , You are looking for a restaurant and you dont care about the price range right\?$', 'Let me confirm , You are looking for a restaurant and you dont care about the price range right\?$'),  # 8
+        'confirm_area': ('Did you say you are looking for a restaurant in the \w+ of town\?$', 'Did you say you are looking for a restaurant in the {location} of town\?$'),  # 116
+        'confirm_area_dontcare': ('Ok , a restaurant in any part of town is that right\?$', 'Ok , a restaurant in any part of town is that right\?$'),  # 45
+        'bye': (' you are welcome$', ' you are welcome$'),  # 1117
+        'ask_food': ('(What kind of food would you like\?$)|(Sorry would you like \w+ or \w+ food\?$)|(Sorry would you like \w+ food or you dont care)$', 'What kind of food would you like\?$'),  # 302
+        'ask_area': ('(What part of town do you have in mind\?$)|(Sorry would you like the \w+ of town or you dont care$)|(Sorry would you like something in the \w+ or in the \w+$)|(There are restaurants \. That area would you like\?$)', 'What part of town do you have in mind\?$'),  # 244
+        'ask_price': ('(Would you like something in the cheap , moderate , or expensive price range\?$)|(Sorry would you like something in the \w+ price range or in the \w+ price range$)|(Sorry would you like something in the \w+ price range or in the \w+ price range$)|(Sorry would you like something in the \w+ price range or you dont care$)', 'Would you like something in the cheap , moderate , or expensive price range\?$'),  # 157
+        'canthelp_food': ('I\'m sorry but there is no restaurant serving \w+ food$', 'I\'m sorry but there is no restaurant serving {cuisine} food$'),  # 597
+        'canthelp_food2': ('(I am sorry but there is no other \w+ restaurant that matches your request$)|(I am sorry but there is no {cuisine} restaurant that matches your request$)', 'I am sorry but there is no other \w+ restaurant that matches your request$'),  # 24
+        'canthelp_food_price': ('(I am sorry but there is no other \w+ restaurant in the \w+ price range$)|(Sorry there is no \w+ restaurant in the \w+ price range$)', 'I am sorry but there is no other {cuisine} restaurant in the {price} price range$'),  # 10
+        'canthelp_food_area': ('I am sorry but there is no other \w+ restaurant in the \w+ of town$', 'I am sorry but there is no other {cuisine} restaurant in the {location} of town$'),  # 14
+        'canthelp_price_area': ('Sorry but there is no other restaurant in the \w+ price range and the \w+ of town$', 'Sorry but there is no other restaurant in the {price} price range and the {location} of town$'),  # 30
+        'canthelp_food_price_area': ('Sorry but there is no other \w+ restaurant in the \w+ price range and the \w+ of town$', 'Sorry but there is no other {cuisine} restaurant in the {price} price range and the {location} of town$'),  # 10
+        'canthelp_food_area2': ('(I\'m sorry but there is no \w+ restaurant in the \w+ of town$)|(Sorry there is no \w+ restaurant in the \w+ of town$)', 'I\'m sorry but there is no {cuisine} restaurant in the {location} of town$'),  # 85
+        'canthelp_price_food': ('I\'m sorry but there is no restaurant serving \w+ \w+ food$', 'I\'m sorry but there is no restaurant serving {price} {cuisine} food$'),  # 54
+        'canthelp_food_area_price': ('(I\'m sorry but there is no \w+ restaurant in the \w+ of town and the \w+ price range$)|(Sorry there is no \w+ restaurant in the \w+ of town serving \w+ food$)', 'I\'m sorry but there is no {cuisine} restaurant in the {location} of town and the {price} price range$'),  # 11
+        'repeat': ('(Could you please repeat that\?$)|(Sorry I am a bit confused ; please tell me again what you are looking for \.$)|(You are looking for a restaurant is that right\?$)', 'Could you please repeat that\?$'),  # semi-arbitrary 'looking for a restaurant' addition, but in training practice, that's how they use it  518
+        'canthear': ('Sorry, I can\'t hear you$', 'Sorry, I can\'t hear you$'),  # 25
+        'confirm_food_area_ask_price': ('There are restaurants serving \w+ in the \w+ of town \. What price range would you like\?$', 'There are restaurants serving {cuisine} in the {location} of town \. What price range would you like\?$'),  # 107
+        'confirm_food_price_ask_area': ('There are restaurants serving \w+ in the \w+ price range \. What area would you like\?$', 'There are restaurants serving {cuisine} in the {price} price range \. What area would you like\?$'),  # 106
+        'confirm_food_price_dontcare_ask_area': ('There are restaurants serving \w+ in any price range \. What area would you like\?$', 'There are restaurants serving {cuisine} in any price range \. What area would you like\?$'),  # 10
+        'confirm_area_food_dontcare_ask_price': ('There are restaurants in the \w+ of town serving any kind of food \. What price range would you like\?$', 'There are restaurants in the {location} of town serving any kind of food \. What price range would you like\?$'),  # 61
+        'confirm_price_area_ask_food': ('There are restaurants in the \w+ price range and the \w+ of town \. What type of food would you like\?$', 'There are restaurants in the {price} price range and the {location} of town \. What type of food would you like\?$'),  # 210
+        'confirm_food_ask_area': ('There are restaurants serving \w+ food \. What area do you want\?$', 'There are restaurants serving {cuisine} food \. What area do you want\?$'),  # 164
+        'confirm_food_area_dontcare_ask_price': ('There are restaurants serving \w+ food in any part of town \. What price range would you like\?$', 'There are restaurants serving {cuisine} food in any part of town \. What price range would you like\?$'),  # 107
+        'confirm_food_ask_price': ('There are restaurants serving \w+ food \. What price range do you want\?$', 'There are restaurants serving {cuisine} food \. What price range do you want\?$'),  # 14
+        'confirm_area_ask_food': ('There are restaurants in the \w+ of town \. What type of food do you want\?$', 'There are restaurants in the {location} of town \. What type of food do you want\?$'),  # 155
+        'confirm_price_ask_food': ('There are restaurants in the \w+ price range . What type of food do you want\?$', 'There are restaurants in the {price} price range . What type of food do you want\?$'),  # 184
+        'confirm_price_ask_area': ('There are restaurants in the \w+ price range \. What area do you want\?$', 'There are restaurants in the {price} price range \. What area do you want\?$'),  # 1
+        'confirm_area_dontcare_ask_price': ('There are restaurants in all parts of town \. What type of pricerange do you want\?$', 'There are restaurants in all parts of town \. What type of pricerange do you want\?$'),  # 1
+        'confirm_food_dontcare_ask_area': ('There are restaurants if you don\'t care about the food \. What area do you want\?$', 'There are restaurants if you don\'t care about the food \. What area do you want\?$'),  # 21
+        'confirm_food_dontcare_ask_price': ('There are restaurants if you don\'t care about the food \. What price range do you want\?$', 'There are restaurants if you don\'t care about the food \. What price range do you want\?$'),  # 1
+        'confirm_area_dontcare_food_dontcare_ask_price': ('There are restaurants if you don\'t care about the area or the type of food \. What price range would you like\?$', 'There are restaurants if you don\'t care about the area or the type of food \. What price range would you like\?$'),  # 15
+        'confirm_food_dontcare_price_ask_area': ('There are restaurants serving any kind of food in the \w+ price range \. What area would you like\?$', 'There are restaurants serving any kind of food in the {price} price range \. What area would you like\?$'),  # 39
+        'confirm_area_dontcare_ask_food': ('There are restaurants in all parts of town \. What type of food do you want\?$', 'There are restaurants in all parts of town \. What type of food do you want\?$'),  # 8
+        'confirm_food': ('You are looking for a \w+ restaurant right\?$', 'You are looking for a {cuisine} restaurant right\?$'),  # 368
+        'give_phone': ('The phone number of .+ is \w+$', 'The phone number of .+ is \w+$'),  # 795
+        'give_phone2': ('\w+ is a great restaurant serving \w+ food \. Their phone number is .+ \.$', '\w+ is a great restaurant serving {cuisine} food \. Their phone number is .+ \.$'),  # 1
+        'give_postcode': ('The post code of .+ is \w+$', 'The post code of .+ is \w+$'),  # 163
+        'give_address': ('The address of \w+ is .+ \.$', 'The address of \w+ is .+ \.$'),  # 3
+        'give_area': ('(Sure , .+ is on \w+$)|(.+ is in the \w+ part of town \.$)|(\w+ is in the \w+ , at .+$)', 'Sure , .+ is on \w+$'),  # This gives address     611
+        'give_address2': ('(\w+ is on \w+$)|(the good luck chinese food takeaway is on \w+$)', '\w+ is on \w+$'),  # both OR clauses are seen in test data  24
+        'askmore': ('Can I help you with anything else\?$', 'Can I help you with anything else\?$')  # 165
+    }
+    das = {da: (re.compile(patterns[0]), patterns[1]) for da, patterns in das.items()}
+    act2id = {da: i for i, da in enumerate(das)}
+    id2act = {i: da for da, i in act2id.items()}
+
+    intents = {
+        'affirm': 0,
+        'bye': 1,
+        'dontcare': 2,
+        'inform': 3,
+        'negate': 4,
+        'reqalts': 5,
+        'request_address': 6,
+        'request_food': 7,
+        'request_location': 8,
+        'request_phone': 9,
+        'request_postcode': 10,
+        'request_price': 11,
+        'silence': 12
+    }
+
+    entity2id = {
+        'cuisine': 0,
+        'location': 1,
+        'price': 2
+    }
+
+    cuisine_types = []
+    with open(BABI_T6_KB_FILE) as kb_fh:
+        for line in kb_fh:
+            match = re.search('R_cuisine (?P<value>\w+)', line)
+            if match:
+                cuisine_types.append(match.group('value'))
+    cuisine_types = list(set(cuisine_types))
+    prices = ['cheap', 'moderate', 'expensive', 'moderately']
+    locations = ['center', 'north', 'south', 'east', 'west', 'centre']
+    location_syns = {'center': ['centre']}
+    prices_syns = {'moderate': 'moderately'}
+
+    w2id, id2w = BabiReader.vocab(BABI_T6_TRN_FILE, 1)
 
     def __init__(self, nlu_model_path, babit6_kb_filename):
         """
@@ -269,71 +381,10 @@ class BabiT6Reader(BabiReader):
         :param babit6_kb_filename: bAbI knowledge base file
         """
         self.babi_kb = babit6_kb_filename
-        self._bot_das = {
-            'greet': 'Hello , welcome to the Cambridge restaurant system \. You can ask for restaurants by area , price range or food type \. How may I help you \?$',  # 1117
-            'api_call': 'api_call \w+ \w+ \w+$',  # 1088
-            'offer_rest_area_price': '.+ is a nice place in the \w+ of town and the prices are \w+$',  # 574
-            'offer_rest_area_food': '(.+ is a nice place in the \w+ of town serving tasty \w+ food$)|(.+ is a nice restaurant in the \w+ of town serving \w+ food$)',  # 270
-            'offer_rest_area_food_price': '(.+ is a great restaurant serving \w+ \w+ food in the \w+ of town .$)|(.+ is a nice restaurant in the \w+ of town in the \w+ price range$)', # no exact template in tst to match this trn one, semi-arbitrary choice here   71
-            'offer_rest_area': '.+ is a nice place in the \w+ of town$',  # 90
-            'offer_rest_food_price': '.+ serves \w+ food in the \w+ price range$',  # 268
-            'offer_rest_food': '(.+ serves \w+ food$)|(\w+ serves \w+ food \.$)',  # 371
-            'offer_rest_price': '(.+ is in the \w+ price range$)|(The price range at .+ is \w+ \.$)',  # 110
-            'offer_rest_price_postcode': '\w+ is in the \w+ price range , and their post code is .+$',  # 3
-            'offer_rest': '.+ is a great restaurant$',  # 303
-            'confirm_food_dontcare': 'You are looking for a restaurant serving any kind of food right\?$',  # 247
-            'confirm_price': 'Let me confirm , You are looking for a restaurant in the \w+ price range right\?$',  # 24
-            'confirm_price_dontcare': 'Let me confirm , You are looking for a restaurant and you dont care about the price range right\?$',  # 8
-            'confirm_area': 'Did you say you are looking for a restaurant in the \w+ of town\?$',  # 116
-            'confirm_area_dontcare': 'Ok , a restaurant in any part of town is that right\?$',  # 45
-            'bye': ' you are welcome$',  # 1117
-            'ask_food': '(What kind of food would you like\?$)|(Sorry would you like \w+ or \w+ food\?$)|(Sorry would you like \w+ food or you dont care)$',  # 302
-            'ask_area': '(What part of town do you have in mind\?$)|(Sorry would you like the \w+ of town or you dont care$)|(Sorry would you like something in the \w+ or in the \w+$)|(There are restaurants \. That area would you like\?$)',  #244
-            'ask_price': '(Would you like something in the cheap , moderate , or expensive price range\?$)|(Sorry would you like something in the \w+ price range or in the \w+ price range$)|(Sorry would you like something in the \w+ price range or in the \w+ price range$)|(Sorry would you like something in the \w+ price range or you dont care$)',  # 157
-            'canthelp_food': 'I\'m sorry but there is no restaurant serving \w+ food$',  # 597
-            'canthelp_food2': '(I am sorry but there is no other \w+ restaurant that matches your request$)|(I am sorry but there is no \w+ restaurant that matches your request$)',  # 24
-            'canthelp_food_price': '(I am sorry but there is no other \w+ restaurant in the \w+ price range$)|(Sorry there is no \w+ restaurant in the \w+ price range$)',  # 10
-            'canthelp_food_area': 'I am sorry but there is no other \w+ restaurant in the \w+ of town$',  # 14
-            'canthelp_price_area': 'Sorry but there is no other restaurant in the \w+ price range and the \w+ of town$',  # 30
-            'canthelp_food_price_area': 'Sorry but there is no other \w+ restaurant in the \w+ price range and the \w+ of town$',  # 10
-            'canthelp_food_area2': '(I\'m sorry but there is no \w+ restaurant in the \w+ of town$)|(Sorry there is no \w+ restaurant in the \w+ of town$)',  # 85
-            'canthelp_price_food': 'I\'m sorry but there is no restaurant serving \w+ \w+ food$',  # 54
-            'canthelp_food_area_price': '(I\'m sorry but there is no \w+ restaurant in the \w+ of town and the \w+ price range$)|(Sorry there is no \w+ restaurant in the \w+ of town serving \w+ food$)',  # 11
-            'repeat': '(Could you please repeat that\?$)|(Sorry I am a bit confused ; please tell me again what you are looking for \.$)|(You are looking for a restaurant is that right\?$)',  # semi-arbitrary 'looking for a restaurant' addition, but in training practice, that's how they use it  518
-            'canthear': 'Sorry, I can\'t hear you$',  # 25
-            'confirm_food_area_ask_price': 'There are restaurants serving \w+ in the \w+ of town \. What price range would you like\?$',  # 107
-            'confirm_food_price_ask_area': 'There are restaurants serving \w+ in the \w+ price range \. What area would you like\?$',  # 106
-            'confirm_food_price_dontcare_ask_area': 'There are restaurants serving \w+ in any price range \. What area would you like\?$',  # 10
-            'confirm_area_food_dontcare_ask_price': 'There are restaurants in the \w+ of town serving any kind of food \. What price range would you like\?$',  # 61
-            'confirm_price_area_ask_food': 'There are restaurants in the \w+ price range and the \w+ of town \. What type of food would you like\?$',  # 210
-            'confirm_food_ask_area': 'There are restaurants serving \w+ food \. What area do you want\?$',  # 164
-            'confirm_food_area_dontcare_ask_price': 'There are restaurants serving \w+ food in any part of town \. What price range would you like\?$',  # 107
-            'confirm_food_ask_price': 'There are restaurants serving \w+ food \. What price range do you want\?$',  # 14
-            'confirm_area_ask_food': 'There are restaurants in the \w+ of town \. What type of food do you want\?$',  # 155
-            'confirm_price_ask_food': 'There are restaurants in the \w+ price range . What type of food do you want\?$',  # 184
-            'confirm_price_ask_area': 'There are restaurants in the \w+ price range \. What area do you want\?$',  # 1
-            'confirm_area_dontcare_ask_price': 'There are restaurants in all parts of town \. What type of pricerange do you want\?$',  # 1
-            'confirm_food_dontcare_ask_area': 'There are restaurants if you don\'t care about the food \. What area do you want\?$',  # 21
-            'confirm_food_dontcare_ask_price': 'There are restaurants if you don\'t care about the food \. What price range do you want\?$',  # 1
-            'confirm_area_dontcare_food_dontcare_ask_price': 'There are restaurants if you don\'t care about the area or the type of food \. What price range would you like\?$',  # 15
-            'confirm_food_dontcare_price_ask_area': 'There are restaurants serving any kind of food in the \w+ price range \. What area would you like\?$',  # 39
-            'confirm_area_dontcare_ask_food': 'There are restaurants in all parts of town \. What type of food do you want\?$',  # 8
-            'confirm_food': 'You are looking for a \w+ restaurant right\?$',  # 368
-            'give_phone': 'The phone number of .+ is \w+$',  # 795
-            'give_phone2': '\w+ is a great restaurant serving \w+ food \. Their phone number is .+ \.$',  # 1
-            'give_postcode': 'The post code of .+ is \w+$',  # 163
-            'give_address': 'The address of \w+ is .+ \.$',  # 3
-            'give_area': '(Sure , .+ is on \w+$)|(.+ is in the \w+ part of town \.$)|(\w+ is in the \w+ , at .+$)',  # This gives address     611
-            'give_address2': '(\w+ is on \w+$)|(the good luck chinese food takeaway is on \w+$)',  # both OR clauses are seen in test data  24
-            'askmore': 'Can I help you with anything else\?$'  # 165
-        }
-
-        self._bot_das = {da: re.compile(pattern) for da, pattern in self._bot_das.items()}
-
         self.interpreter = RasaNLUInterpreter(nlu_model_path)
 
     def get_bot_act(self, text):
-        for da, pattern in self._bot_das.items():
+        for da, (pattern, _) in BabiT6Reader.das.items():
             if pattern.match(text):
                 return da
         return None
@@ -344,7 +395,7 @@ class BabiT6Reader(BabiReader):
 
     @property
     def bot_das(self):
-        return self._bot_das.keys()
+        return BabiT6Reader.das.keys()
 
     def extract_rasa_nlu_training_examples(self, input_filename):
         # nlu_data, failed_examples = _generate_dstc2_examples(ontology_file=ontology, path_prefix=dstc2_datapath,
@@ -477,7 +528,8 @@ class BabiT6Reader(BabiReader):
                 '^yes$'
             ],
             'negate': [
-                '^no$'
+                '^no$',
+                '^wrong$'
             ]
         }
         human_templates = {intent: [re.compile(pattern) for pattern in human_templates[intent]]

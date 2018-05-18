@@ -49,8 +49,8 @@ class ActionOfferRestAreaFoodPrice(Action):
         pricerange = tracker.current_slot_values()['price']
         food = tracker.current_slot_values()['cuisine']
         area = tracker.current_slot_values()['location']
-        dispatcher.utter_message('_restaurant_ is a great restaurant serving {pricerange} \w+ food in '
-                                 'the \w+ of town .'.format(pricerange=pricerange, food=food, area=area))
+        dispatcher.utter_message('_restaurant_ is a great restaurant serving {pricerange} {food} food in '
+                                 'the {area} of town .'.format(pricerange=pricerange, food=food, area=area))
         return []
 
 

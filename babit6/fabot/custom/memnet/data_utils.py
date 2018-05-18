@@ -1,7 +1,15 @@
 from data.babi_reader import BabiT5Reader, BabiT6Reader, BabiReader
+from data.database import BabiDB
 from copy import copy
 from rasa_core.events import ActionExecuted, UserUttered
 from rasa_core.actions.action import ACTION_LISTEN_NAME, ACTION_RESTART_NAME
+import re
+from os.path import isfile
+import logging
+import gensim
+from numpy import mean
+
+logger = logging.getLogger(__name__)
 
 
 class MemNetDataAdapter(object):
@@ -12,8 +20,17 @@ class MemNetDataAdapter(object):
     def __init__(self, parser):
         self.parser = parser
         self.ignored_actions = [ACTION_RESTART_NAME, ACTION_LISTEN_NAME]  # necessary to encode in rasa format
+        self.bot_padding = max(0, self.len_user_featurized_vec() - self.len_bot_featurized_vec())
+        self.user_padding = max(0, self.len_bot_featurized_vec() - self.len_user_featurized_vec())
 
-    def featurize_user_act(self, intent, entities, turn, padding=0):
+    def _reset(self):
+        """
+        gets called after processing each story. Child classes can do any clean up/reset related tasks here
+        :return:
+        """
+        raise NotImplementedError
+
+    def featurize_user_act(self, intent, entities, turn, padding=0, raw_text=None):
         """
         Featurizes a user message
         :param intent: str indicating the user intent
@@ -22,20 +39,10 @@ class MemNetDataAdapter(object):
         :param turn: turn of the utterance in the conversation, int. This feature is used by Bordes
         :param padding: number of 0s to add at the end of the vector, to enforce user messages and bot messages have
         same length
-        :return: a vector consisting of a 0 (to indicate this is a user message and tell it apart from bot messages)
-        concatenated with an integer value indicating the turn in the conversation (using binary is tempting to avoid
-        learning bias towards higher numbered turns, but perhaps this is exactly what you want to do: more recent turns
-        to influence learning more), concatenated with a 1-hot vector indicating user intent concatenated with a binary
-        vector of size 4 indicating which entities have a value (cuisine, location, number, price) concatenated with
-        padding 0s: [0, turn, 0 ..., intent, 0 ..., location, number, price, cuisine, 0...]
+        :param raw_text: raw text from the user
+        :return: a vector representing the featurized user act
         """
-        entity_vec = [0] * len(self.entity2id)
-        for e in entities:
-            entity_vec[self.entity2id[e['entity']]] = 1
-        intent_vec = [0] * len(self.intent2id)
-        if intent:  # user might say literally nothing, then we keep intent vector fully off
-            intent_vec[self.intent2id[intent]] = 1
-        return [0] + [turn] + intent_vec + entity_vec + [0] * padding
+        raise NotImplementedError
 
     def featurize_bot_act(self, bot_act, turn, padding=0):
         """
@@ -44,42 +51,33 @@ class MemNetDataAdapter(object):
         :param turn: turn of the utterance in the conversation, int. This feature is used by Bordes
         :param padding: number of 0s to add at the end of the vector, to enforce user messages and bot messages have same
         length
-        :return: a vector consisting of a 1 (to indicate this is a bot message and tell it apart from user messages),
-        concatenated with an integer value indicating the turn in the conversation (using binary is tempting to avoid
-        learning bias towards higher numbered turns, but perhaps this is exactly what you want to do: more recent turns to
-        influence learning more), concatenated with a 1 hot vector indicating the bot action, concatenated with padding 0's:
-        [1, turn, 0, ... action, 0..., 0...]
+        :return: a vector representing the featurized bot act
         """
-        bot_vec = [0] * len(self.act2id)
-        bot_vec[self.act2id[bot_act.replace("utter_", "")]] = 1  # just in case they include the utter_ rasa prefix
-        return [1] + [turn] + bot_vec + [0] * padding
+        raise NotImplementedError
 
-    def featurize_query(self, intent, entities):
-        """
-        produces a vector of features representing the query in the MemNet
-        :param intent: user intent, as a string
-        :param entities: List of entities in the user utterance. Each entity represented as a Dictionary with at least a
-        'entity' key with the name of the entity as value
-        :return: List[int] representing the featurized user utterance. It is a 1-hot encoding of the user intent
-        concatenated with the entities mentioned in the utterance (i.e. a 4-dimensional binary vector, bits representing
-        cuisine, location, number and price)
-        """
-        entity_vec = [0] * len(self.entity2id)
-        for e in entities:
-            entity_vec[self.entity2id[e['entity']]] = 1
-        intent_vec = [0] * len(self.intent2id)
-        if intent:  # user might say literally '', in that case we don't set a 1 in the query/utterance
-            intent_vec[self.intent2id[intent]] = 1
-        return intent_vec + entity_vec + [0]
+    # def featurize_query(self, intent, entities):
+    #     """
+    #     produces a vector of features representing the query in the MemNet
+    #     :param intent: user intent, as a string
+    #     :param entities: List of entities in the user utterance. Each entity represented as a Dictionary with at least a
+    #     'entity' key with the name of the entity as value
+    #     :return: List[int] representing the featurized user utterance. It is a 1-hot encoding of the user intent
+    #     concatenated with the entities mentioned in the utterance (i.e. a 4-dimensional binary vector, bits representing
+    #     cuisine, location, number and price)
+    #     """
+    #     entity_vec = [0] * len(self.entity2id)
+    #     for e in entities:
+    #         entity_vec[self.entity2id[e['entity']]] = 1
+    #     intent_vec = [0] * len(self.intent2id)
+    #     if intent:  # user might say literally '', in that case we don't set a 1 in the query/utterance
+    #         intent_vec[self.intent2id[intent]] = 1
+    #     return intent_vec + entity_vec + [0]
 
     def len_user_featurized_vec(self):
-        return len(self.entity2id) + len(self.intent2id) + 2
+        raise NotImplementedError
 
     def len_bot_featurized_vec(self):
-        return len(self.act2id) + 2
-
-    def query_len(self):
-        return len(self.entity2id) + len(self.intent2id) + 1
+        raise NotImplementedError
 
     def utterance_len(self):
         return max(self.len_bot_featurized_vec(), self.len_user_featurized_vec())
@@ -117,8 +115,7 @@ class MemNetDataAdapter(object):
             h, q, l = x.values()
             if i % batch_size == 0:  # new batch. history length of this first point in the batch determines memory_size
                 memory_size = max(1, min(max_memory_size, len(h)))  # memory in [1, max_memory_size]
-            h = h[::-1][:memory_size][
-                ::-1]  # take only the last memory_size sentences (flip, cut at mem size, flip back)
+            h = h[::-1][:memory_size][::-1]  # take only last memory_size sentences (flip, cut at mem size, flip back)
             pad_size = max(0, memory_size - len(h))  # pad h
             for _ in range(pad_size):  # empty histories will thus consist of 1 0 padded memory
                 h.append([0] * utterance_length)
@@ -147,28 +144,22 @@ class MemNetDataAdapter(object):
         :return: query, memory. Query is a vector representing the featurized user message; memory is a list of vectors
         representing the last memory_size utterances in the history
         """
-        query = self.featurize_query(tracker.latest_message.intent['name'], tracker.latest_message.entities)
         # build history
         h = [ev for ev in tracker.events if (isinstance(ev, ActionExecuted) and
                                              ev.action_name not in self.ignored_actions) or
              isinstance(ev, UserUttered)]
-        for i, e in zip(range(len(h)-1, -1, -1), h[::-1]):  # remove the last UserUttered, since that is the query
-            if isinstance(e, UserUttered):  # this could simply be h.pop(len(h)-1), dunno why I'm so complicated
-                h.pop(i)
-                break
         turns = [int(t / 2) for t in range(0, len(h))]  # [0, 0, 1, 1, 2, 2, .... floor((len(h)-1)/2)]
         h = [(t, ev) for t, ev in zip(turns, h)]  # adding the turn now that non-relevant events are out
+        # h = [(t, ev) for t, ev in enumerate(h)]
         h = h[::-1][:memory_size][::-1]
         memory = []
-        bot_padding = max(0, self.len_user_featurized_vec() - self.len_bot_featurized_vec())
-        user_padding = max(0, self.len_bot_featurized_vec() - self.len_user_featurized_vec())
         for t, u in h:
             if isinstance(u, ActionExecuted):
-                memory.append(self.featurize_bot_act(u.action_name, t, bot_padding))
+                memory.append(self.featurize_bot_act(u.action_name, t, self.bot_padding))
             elif isinstance(u, UserUttered):
-                memory.append(self.featurize_user_act(u.intent['name'], u.entities, t, user_padding))
+                memory.append(self.featurize_user_act(u.intent['name'], u.entities, t, self.user_padding, u.text))
+        query = memory.pop()  # remove the last one, since that one is query
         memory = [[0] * self.utterance_len()] if not memory else memory
-        # empty memories will have just 1 0-padded cell
         return query, memory
 
     @property
@@ -227,12 +218,16 @@ class MemNetDataAdapter(object):
         for story in BabiReader.babi_dialogue_iterator(filename):
             h = []
             for i, turn in enumerate(story):
-                bot_said = self.featurize_bot_act(self.parser.get_bot_act(turn['bot']), i, bot_padding)
-                user_said = self.featurize_user_act(*self.parser.get_user_act(turn['human']), i, user_padding)
-                data.append({'history': copy(h), 'query': self.featurize_query(*self.parser.get_user_act(turn['human'])),
+                # EXTREMELY important to calculate user feats before bot's, cause both affect context_features and
+                # whatever the bot replies in a turn, should not affect the featurization of the user utterance
+                user_said = self.featurize_user_act(*self.parser.get_user_act(turn['human']), i, user_padding,
+                                                    turn['human'])
+                bot_said = self.featurize_bot_act(self.parser.get_bot_act(turn['bot']), i, bot_padding)  # just to calculate context features
+                data.append({'history': copy(h), 'query': user_said,
                              'label': self._format_label(self.parser.get_bot_act(turn['bot']))})
                 h.append(user_said)
                 h.append(bot_said)
+            self._reset()
         return data
 
 
@@ -276,8 +271,8 @@ class MemNetT5DataAdapter(MemNetDataAdapter):
         parser = BabiT5Reader()
         super(MemNetT5DataAdapter, self).__init__(parser)
 
-    def _set_parser(self, parser):
-        self.parser = parser
+    def _reset(self):
+        pass  # nothing to reset for task 5
 
     @property
     def act2id(self):
@@ -290,6 +285,57 @@ class MemNetT5DataAdapter(MemNetDataAdapter):
     @property
     def entity2id(self):
         return self._entity2id
+
+    def featurize_user_act(self, intent, entities, turn, padding=0, raw_text=None):
+        """
+        Featurizes a user message
+        :param intent: str indicating the user intent
+        :param entities: iterable of entities in the user message, each one a dictionary with the name of the entity
+        under key 'entity'
+        :param turn: turn of the utterance in the conversation, int. This feature is used by Bordes
+        :param padding: number of 0s to add at the end of the vector, to enforce user messages and bot messages have
+        same length
+        :param raw_text: not used
+        :return: a vector consisting of a 0 (to indicate this is a user message and tell it apart from bot messages)
+        concatenated with an integer value indicating the turn in the conversation (using binary is tempting to avoid
+        learning bias towards higher numbered turns, but perhaps this is exactly what you want to do: more recent turns
+        to influence learning more), concatenated with a 1-hot vector indicating user intent concatenated with a binary
+        vector of size 4 indicating which entities have a value (cuisine, location, number, price) concatenated with
+        padding 0s: [0, turn, 0 ..., intent, 0 ..., location, number, price, cuisine, 0...]
+        """
+        entity_vec = [0] * len(self.entity2id)
+        for e in entities:
+            entity_vec[self.entity2id[e['entity']]] = 1
+        intent_vec = [0] * len(self.intent2id)
+        if intent:  # user might say literally nothing, then we keep intent vector fully off
+            intent_vec[self.intent2id[intent]] = 1
+        return [0] + [turn] + intent_vec + entity_vec + [0] * padding
+
+    def featurize_bot_act(self, bot_act, turn, padding=0):
+        """
+        Featurizes a bot message
+        :param bot_act: str indicating the bot action. Can come with or without the 'utter_' prefix
+        :param turn: turn of the utterance in the conversation, int. This feature is used by Bordes
+        :param padding: number of 0s to add at the end of the vector, to enforce user messages and bot messages have same
+        length
+        :return: a vector consisting of a 1 (to indicate this is a bot message and tell it apart from user messages),
+        concatenated with an integer value indicating the turn in the conversation (using binary is tempting to avoid
+        learning bias towards higher numbered turns, but perhaps this is exactly what you want to do: more recent turns to
+        influence learning more), concatenated with a 1 hot vector indicating the bot action, concatenated with padding 0's:
+        [1, turn, 0, ... action, 0..., 0...]
+        """
+        bot_vec = [0] * len(self.act2id)
+        bot_vec[self.act2id[bot_act.replace("utter_", "")]] = 1  # just in case they include the utter_ rasa prefix
+        return [1] + [turn] + bot_vec + [0] * padding
+
+    def len_user_featurized_vec(self):
+        return len(self.entity2id) + len(self.intent2id) + 2
+
+    def len_bot_featurized_vec(self):
+        return len(self.act2id) + 2
+
+    def utterance_len(self):
+        return max(self.len_bot_featurized_vec(), self.len_user_featurized_vec())
 
 
 class MemNetT6DataAdapter(MemNetDataAdapter):
@@ -373,16 +419,63 @@ class MemNetT6DataAdapter(MemNetDataAdapter):
         'silence': 12
     }
 
-    def __init__(self, nlu_model_path):
+    def __init__(self, nlu_model_path, kb_filename, vocab_filename=None, w2v_model_filename=None):
         """
         :param nlu_model_path: path of the persisted Rasa NLU model to parse user text
+        :param kb_filename: bAbI t6 knowledge base file
+        :param vocab_filename: filename to build vocabulary from (bAbI conversation file). If provided, BoW features
+        will be added
+        :param w2v_model_filename: filename of the word2vec model. If provided, word embeddings will be added to the features
         """
         parser = BabiT6Reader(nlu_model_path, babit6_kb_filename=None)
+        self.db = BabiDB(kb_filename)
         self.path = nlu_model_path
+        self.kb_filename = kb_filename
+        self.slot_values = {'cuisine': None, 'location': None, 'price': None}
+        self.cuisine_types = []
+        with open(self.kb_filename) as kb_fh:
+            for line in kb_fh:
+                match = re.search('R_cuisine (?P<value>\w+)', line)
+                if match:
+                    self.cuisine_types.append(match.group('value'))
+        self.cuisine_types = list(set(self.cuisine_types))
+
+        # context feature flags
+        self.pending_results = None
+        self.context_features = None
+        self._reset()
+
+        self.vocab = None
+        if vocab_filename:
+            if isfile(vocab_filename):
+                self.vocab, _ = BabiReader.vocab(vocab_filename, 1)
+            else:
+                logger.warning('invalid vocabulary file, not using vocab features')
+        self.vocab_filename = vocab_filename
+
+        self.w2v_model = None
+        if w2v_model_filename:
+            if isfile(w2v_model_filename):
+                self.w2v_model = gensim.models.KeyedVectors.load_word2vec_format(w2v_model_filename, binary=True)
+            else:
+                logger.warning('invalid word2vec model file, not using embedding features')
+        self.w2v_model_filename = w2v_model_filename
+
         super(MemNetT6DataAdapter, self).__init__(parser)
 
-    def _set_parser(self, parser):
-        self.parser = parser
+    def _reset(self):
+        """
+        Sets the context features to the right initial values. Should be call if starting to featurize a new
+        conversation
+        """
+        self.slot_values = {'cuisine': None, 'location': None, 'price': None}
+        self.pending_results = self.db.num_results()
+        self.num_reqalts = 0
+        self.context_features = {'db_queried': 0, 'empty_results': 0, 'non-empty_results': 1, 'results_offered': 0,
+                                 'results_exhausted': 0, 'results_available': 1, 'unknown_cuisine': 0}
+        # # TODO restore botsaid
+        # self.context_features = {'empty_results': 0, 'non-empty_results': 1,
+        #                          'results_exhausted': 0, 'results_available': 1, 'unknown_cuisine': 0}
 
     @property
     def act2id(self):
@@ -395,3 +488,103 @@ class MemNetT6DataAdapter(MemNetDataAdapter):
     @property
     def entity2id(self):
         return self._entity2id
+
+    def _context_features(self):
+        return [v for v in self.context_features.values()]
+
+    def featurize_user_act(self, intent, entities, turn, padding=0, raw_text=None):
+        """
+        Featurizes a user message
+        :param intent: str indicating the user intent
+        :param entities: iterable of entities in the user message, each one a dictionary with the name of the entity
+        under key 'entity'
+        :param turn: turn of the utterance in the conversation, int. This feature is used by Bordes
+        :param padding: number of 0s to add at the end of the vector, to enforce user messages and bot messages have
+        same length
+        :param raw_text: raw text from the user, a BoW is build from this, only if a valid vocabulary file was passed
+        to the constructor
+        :return: a vector consisting of a 0 (to indicate this is a user message and tell it apart from bot messages)
+        concatenated with an integer value indicating the turn in the conversation (using binary is tempting to avoid
+        learning bias towards higher numbered turns, but perhaps this is exactly what you want to do: more recent turns
+        to influence learning more), concatenated with a 1-hot vector indicating user intent concatenated with a binary
+        vector of size 3 indicating which entities have a value (cuisine, location, price) concatenated with
+        padding 0s: [0, turn, 0 ..., intent, 0 ..., location, number, price, cuisine, 0...]
+        """
+        entity_vec = [0] * len(self.entity2id)
+        for e in entities:
+            entity_vec[self.entity2id[e['entity']]] = 1
+            self.slot_values[e['entity']] = e['value']  # keep track of currently filled slots
+        num_results = self.db.num_results(**{k: v for k, v in self.slot_values.items() if v})
+        self.context_features['empty_results'] = 1 if num_results == 0 else 0
+        self.context_features['non-empty_results'] = 1 - self.context_features['empty_results']
+        if entities:  # providing new entitites means new query, so pending results is reset
+            self.pending_results = num_results
+        if self.slot_values['cuisine']:
+            self.context_features['unknown_cuisine'] = 1 if self.slot_values['cuisine'] not in self.cuisine_types else 0
+
+        intent_vec = [0] * len(self.intent2id)
+        if intent:  # user might say literally nothing, then we keep intent vector fully off
+            intent_vec[self.intent2id[intent]] = 1
+        bow = self.bow_features(raw_text) if self.vocab is not None else []
+        embeddings = self.w2v_features(raw_text) if self.w2v_model is not None else []
+        return [turn] + intent_vec + entity_vec + self._context_features() + bow + embeddings + [0] * padding
+
+    def featurize_bot_act(self, bot_act, turn, padding=0):
+        """
+        Featurizes a bot message
+        :param bot_act: str indicating the bot action. Can come with or without the 'utter_' prefix
+        :param turn: turn of the utterance in the conversation, int. This feature is used by Bordes
+        :param padding: number of 0s to add at the end of the vector, to enforce user messages and bot messages have same
+        length
+        :return: a vector consisting of a 1 (to indicate this is a bot message and tell it apart from user messages),
+        concatenated with an integer value indicating the turn in the conversation (using binary is tempting to avoid
+        learning bias towards higher numbered turns, but perhaps this is exactly what you want to do: more recent turns to
+        influence learning more), concatenated with a 1 hot vector indicating the bot action, concatenated with padding 0's:
+        [1, turn, 0, ... action, 0..., 0...]
+        """
+        bot_vec = [0] * len(self.act2id)
+        bot_vec[self.act2id[bot_act.replace("utter_", "")]] = 1  # just in case they include the utter_ rasa prefix
+        _bot_act = bot_act.replace("utter_", "")
+        if _bot_act == 'api_call':
+            self.context_features['db_queried'] = 1
+        if _bot_act[:5] == 'offer':
+            self.context_features['results_offered'] = 1
+            self.pending_results -= 1
+            self.context_features['results_exhausted'] = 1 if self.pending_results == 0 else 1
+            self.context_features['results_available'] = 1 - self.context_features['results_exhausted']
+
+        return [turn] + bot_vec + [0] * padding
+
+    def w2v_features(self, text):
+        """Gets word2vec features for a given utterance from the user, computed as the mean embedding for all words.
+        Embedding is calculated only for words that exist in the embedding model vocabulary. If no words are recognized,
+        a 0 embedding is returned. This function should only be called if a word2vec model filename was passed to the
+        constructor.
+        :param text: user utterance to embed
+        :return word embedding as a list of floats"""
+        embs = [self.w2v_model[word] for word in text.split(' ') if word and word in self.w2v_model]
+        # average of embeddings
+        if len(embs):
+            return list(mean(embs, axis=0))
+        else:
+            return [0] * self.w2v_model.vector_size
+
+    def bow_features(self, text):
+        """Creates the BoW for a given user sentence as a list of 0s and 1s. A valid vocab file must've been passed
+        to the constructor"""
+        bow = [0] * len(self.vocab)
+        for word in text.split():
+            if word in self.vocab:
+                bow[self.vocab[word]] = 1
+        return bow
+
+    def len_user_featurized_vec(self):
+        bow_len = len(self.vocab) if self.vocab else 0
+        w2v_len = self.w2v_model.vector_size if self.w2v_model else 0
+        return len(self.intent2id) + len(self.entity2id) + len(self.context_features) + bow_len + w2v_len + 1
+
+    def len_bot_featurized_vec(self):
+        return len(self.act2id) + 1  # 2 bits for sender flag + int for turn
+
+    def utterance_len(self):
+        return max(self.len_bot_featurized_vec(), self.len_user_featurized_vec())

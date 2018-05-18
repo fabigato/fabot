@@ -2,10 +2,11 @@ from unittest import TestCase
 import logging
 from fabot.custom.memnet.data_utils import MemNetDataAdapter, MemNetT5DataAdapter, MemNetT6DataAdapter
 from globals import BABI_T5_TRN_FILE, BABI_T5_DEV_FILE, BABI_T6_TRN_FILE, BABI_T6_DEV_FILE, NLU_MODEL_PATH, \
-    NLU_T6_MODEL_NAME, DIALOGUE_T6_MODEL_PATH, BABI_T6_TST_FILE
+    NLU_T6_MODEL_NAME, DIALOGUE_T6_MODEL_PATH, BABI_T6_TST_FILE, BABI_T6_KB_FILE, NLU_T5_MODEL_NAME, \
+    DIALOGUE_T5_MODEL_PATH, BABI_T5_TST_FILE, W2VEC_MODEL_PATH
 from os.path import join, isfile
 import tensorflow as tf
-from fabot.custom.memnet.model import MemoryNetwork
+from fabot.custom.memnet.model import MemoryNetwork, MemNetPolicy
 from numpy import mean
 import pickle
 from rasa_core.interpreter import RasaNLUInterpreter
@@ -21,7 +22,6 @@ class TestMemoryNetwork(TestCase):
         hops = 2
         actions = len(data_adapter.act2id)
         h_len = data_adapter.utterance_len()
-        q_len = data_adapter.query_len()
         embedding_size = 10
         batch = 32
         mem_size = 8
@@ -30,9 +30,9 @@ class TestMemoryNetwork(TestCase):
         print_cycle = 100
         keep_prob = 0.95
         logging.info(
-            'starting training\nConfig:\nhops: {}\nactions: {}\nhistory utterance length: {}\nquery length: {}\n'
+            'starting training\nConfig:\nhops: {}\nactions: {}\nhistory utterance length: {}\n'
             'embedding size: {}\nbatch size: {}\nmemory size: {}\nepochs: {}\ngradient clip norm: {}\n'
-            'keep prob: {}\n'.format(hops, actions, h_len, q_len, embedding_size, batch, mem_size, epochs, clip_norm,
+            'keep prob: {}\n'.format(hops, actions, h_len, embedding_size, batch, mem_size, epochs, clip_norm,
                                      keep_prob))
 
         trn_history, trn_query, trn_label, batch_indexes = MemNetDataAdapter.build_batches(
@@ -44,7 +44,7 @@ class TestMemoryNetwork(TestCase):
                                                                           max_memory_size=mem_size,
                                                                           utterance_length=h_len)
 
-        model = MemoryNetwork(num_actions=actions, h_utterance_len=h_len, query_len=q_len,
+        model = MemoryNetwork(num_actions=actions, utterance_len=h_len,
                               embedding_size=embedding_size,
                               hops=1)
 
@@ -79,26 +79,27 @@ class TestMemoryNetwork(TestCase):
                                                                                                 ))
 
     def test_model_t6(self):
-        data_adapter = MemNetT6DataAdapter(join(NLU_MODEL_PATH, NLU_T6_MODEL_NAME))
+        data_adapter = MemNetT6DataAdapter(nlu_model_path=join(NLU_MODEL_PATH, NLU_T6_MODEL_NAME),
+                                           kb_filename=BABI_T6_KB_FILE, vocab_filename=BABI_T6_TRN_FILE,
+                                           w2v_model_filename=W2VEC_MODEL_PATH)
         actions = len(data_adapter.act2id)
         h_len = data_adapter.utterance_len()
-        q_len = data_adapter.query_len()
 
         print_cycle = 100
-        hops = 1
-        embedding_size = 20
+        hops = 2
+        embedding_size = 100
         batch = 32
-        mem_size = 8
-        epochs = 40
-        clip_norm = 25
+        mem_size = 10
+        epochs = 10
+        clip_norm = 15
         keep_prob = 0.86
         logging.info(
-            'starting training\nConfig:\nhops: {}\nactions: {}\nhistory utterance length: {}\nquery length: {}\n'
+            'starting training\nConfig:\nhops: {}\nactions: {}\nhistory utterance length: {}\n'
             'embedding size: {}\nbatch size: {}\nmemory size: {}\nepochs: {}\ngradient clip norm: {}\n'
-            'keep prob: {}\n'.format(hops, actions, h_len, q_len, embedding_size, batch, mem_size, epochs,
+            'keep prob: {}\n'.format(hops, actions, h_len, embedding_size, batch, mem_size, epochs,
                                      clip_norm,
                                      keep_prob))
-        saved_batches = 'tests/fabot/custom/memnet/trn_t6_batches.pickle'
+        saved_batches = 'tests/fabot/custom/memnet/t6_trn_memnet_data.pickle'
         if isfile(saved_batches):
             with open(saved_batches, 'rb') as batches_fh:
                 trn_history, trn_query, trn_label, batch_indexes = pickle.load(batches_fh)
@@ -112,7 +113,7 @@ class TestMemoryNetwork(TestCase):
             with open(saved_batches, 'wb') as batches_fh:
                 pickle.dump((trn_history, trn_query, trn_label, batch_indexes), batches_fh)
             print('saved')
-        saved_batches = 'tests/fabot/custom/memnet/dev_t6_batches.pickle'
+        saved_batches = 'tests/fabot/custom/memnet/t6_dev_memnet_data.pickle'
         if isfile(saved_batches):
             with open(saved_batches, 'rb') as batches_fh:
                 dev_history, dev_query, dev_label = pickle.load(batches_fh)
@@ -127,10 +128,10 @@ class TestMemoryNetwork(TestCase):
                 pickle.dump((dev_history, dev_query, dev_label), batches_fh)
             print('saved')
 
-        model = MemoryNetwork(num_actions=actions, h_utterance_len=h_len, query_len=q_len,
+        model = MemoryNetwork(num_actions=actions, utterance_len=h_len,
                               embedding_size=embedding_size,
                               hops=hops)
-        optimizer = tf.train.AdamOptimizer(learning_rate=1e-3, epsilon=1e-8)
+        optimizer = tf.train.AdamOptimizer(learning_rate=1e-4, epsilon=1e-8)
         loss_op = model.loss
         grads, vars = zip(*optimizer.compute_gradients(loss_op))
         grads_clipped, _ = tf.clip_by_global_norm(grads, clip_norm=clip_norm)
@@ -164,18 +165,24 @@ class TestMemoryNetwork(TestCase):
         interpreter = RasaNLUInterpreter(join(NLU_MODEL_PATH, NLU_T6_MODEL_NAME))
         agent = Agent.load(DIALOGUE_T6_MODEL_PATH, interpreter=interpreter)
         output_channel = CollectingOutputChannel()
-        babi_reader = BabiT6Reader(join(NLU_MODEL_PATH, NLU_T6_MODEL_NAME), None)
+        # babi_reader = BabiT6Reader(join(NLU_MODEL_PATH, NLU_T6_MODEL_NAME), None)
+        babi_reader = agent.policy_ensemble.policies[0].encoder.parser
         results = []
         for story in BabiReader.babi_dialogue_iterator(BABI_T6_TST_FILE):
+        # for story in BabiReader.babi_dialogue_iterator('data/dialog-bAbI-tasks/small.txt'):
             conversation = []
             output_channel.messages.clear()
             for human_says in [turn['human'] for turn in story]:
                 bot_said = agent.handle_message(human_says, output_channel=output_channel)
             agent.tracker_store = Agent.create_tracker_store(store=None, domain=agent.domain)  # reset agent
-            for human, target, actual in zip([turn['human'] for turn in story],
-                                             [turn['bot'] for turn in story],
-                                             bot_said):
-                target_act = babi_reader.get_bot_act(target)
+            for p in agent.policy_ensemble.policies:
+                if isinstance(p, MemNetPolicy):
+                    p.reset()  # for task 6, you have to clean the context features
+            # for human, target, actual in zip([turn['human'] for turn in story],
+            #                                  [turn['bot'] for turn in story],
+            #                                  bot_said):
+            for turn, actual in zip(story, bot_said):
+                target_act = babi_reader.get_bot_act(turn['bot'])
                 actual_act = babi_reader.get_bot_act(actual)
                 if target_act in ['offer_rest_area_price', 'offer_rest_area_food', 'offer_rest_area_food_price',
                                   'offer_rest_area', 'offer_rest_food_price', 'offer_rest_food', 'offer_rest_price',
@@ -183,12 +190,41 @@ class TestMemoryNetwork(TestCase):
                                   'give_postcode', 'give_address', 'give_area', 'give_address2']:
                     match = actual_act == target_act  # just check the act, won't check restaurant names
                 else:
-                    match = target == actual  # for all other cases, require perfect string match
+                    match = turn['bot'] == actual  # for all other cases, require perfect string match
                 act_match = target_act == actual_act
-                conversation.append({'human': human, 'bot': actual, 'target': target, 'match': match,
+                conversation.append({'human': turn['human'], 'bot': actual, 'target': turn['bot'], 'match': match,
                                      'act_match': act_match})
             results.append(conversation)
             with open('tests/fabot/custom/memnet/tst_t6_results.json', 'w') as result_output:
+                json.dump(results, result_output, indent=2)
+
+    def test_full_bot_memnet_t5(self):
+        interpreter = RasaNLUInterpreter(join(NLU_MODEL_PATH, NLU_T5_MODEL_NAME))
+        agent = Agent.load(DIALOGUE_T5_MODEL_PATH, interpreter=interpreter)
+        output_channel = CollectingOutputChannel()
+        babi_reader = agent.policy_ensemble.policies[0].encoder.parser
+        results = []
+        for story in BabiReader.babi_dialogue_iterator(BABI_T5_TST_FILE):
+            conversation = []
+            output_channel.messages.clear()
+            for human_says in [turn['human'] for turn in story]:
+                bot_said = agent.handle_message(human_says, output_channel=output_channel)
+            agent.tracker_store = Agent.create_tracker_store(store=None, domain=agent.domain)  # reset agent
+            for p in agent.policy_ensemble.policies:
+                if isinstance(p, MemNetPolicy):
+                    p.reset()  # for task 6, you have to clean the context features
+            for turn, actual in zip(story, bot_said):
+                target_act = babi_reader.get_bot_act(turn['bot'])
+                actual_act = babi_reader.get_bot_act(actual)
+                if target_act in ['suggest_restaurant', 'give_phone', 'give_address']:
+                    match = actual_act == target_act  # just check the act, won't check restaurant names
+                else:
+                    match = turn['bot'] == actual  # for all other cases, require perfect string match
+                act_match = target_act == actual_act
+                conversation.append({'human': turn['human'], 'bot': actual, 'target': turn['bot'], 'match': match,
+                                     'act_match': act_match})
+            results.append(conversation)
+            with open('tests/fabot/custom/memnet/tst_t5_results.json', 'w') as result_output:
                 json.dump(results, result_output, indent=2)
 
     def test_compute_memnet_t6_test_stats(self):

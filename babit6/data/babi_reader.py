@@ -299,7 +299,7 @@ class BabiT6Reader(BabiReader):
         'ask_area': ('(What part of town do you have in mind\?$)|(Sorry would you like the \w+ of town or you dont care$)|(Sorry would you like something in the \w+ or in the \w+$)|(There are restaurants \. That area would you like\?$)', 'What part of town do you have in mind\?$'),  # 244
         'ask_price': ('(Would you like something in the cheap , moderate , or expensive price range\?$)|(Sorry would you like something in the \w+ price range or in the \w+ price range$)|(Sorry would you like something in the \w+ price range or in the \w+ price range$)|(Sorry would you like something in the \w+ price range or you dont care$)', 'Would you like something in the cheap , moderate , or expensive price range\?$'),  # 157
         'canthelp_food': ('I\'m sorry but there is no restaurant serving \w+ food$', 'I\'m sorry but there is no restaurant serving {cuisine} food$'),  # 597
-        'canthelp_food2': ('(I am sorry but there is no other \w+ restaurant that matches your request$)|(I am sorry but there is no {cuisine} restaurant that matches your request$)', 'I am sorry but there is no other \w+ restaurant that matches your request$'),  # 24
+        'canthelp_food2': ('(I am sorry but there is no other \w+ restaurant that matches your request$)|(I am sorry but there is no \w+ restaurant that matches your request$)', 'I am sorry but there is no other {cuisine} restaurant that matches your request$'),  # 24
         'canthelp_food_price': ('(I am sorry but there is no other \w+ restaurant in the \w+ price range$)|(Sorry there is no \w+ restaurant in the \w+ price range$)', 'I am sorry but there is no other {cuisine} restaurant in the {price} price range$'),  # 10
         'canthelp_food_area': ('I am sorry but there is no other \w+ restaurant in the \w+ of town$', 'I am sorry but there is no other {cuisine} restaurant in the {location} of town$'),  # 14
         'canthelp_price_area': ('Sorry but there is no other restaurant in the \w+ price range and the \w+ of town$', 'Sorry but there is no other restaurant in the {price} price range and the {location} of town$'),  # 30
@@ -368,10 +368,10 @@ class BabiT6Reader(BabiReader):
             if match:
                 cuisine_types.append(match.group('value'))
     cuisine_types = list(set(cuisine_types))
-    prices = ['cheap', 'moderate', 'expensive', 'moderately']
-    locations = ['center', 'north', 'south', 'east', 'west', 'centre']
-    location_syns = {'center': ['centre']}
-    prices_syns = {'moderate': 'moderately'}
+    prices = ['cheap', 'moderate', 'expensive']
+    locations = ['centre', 'north', 'south', 'east', 'west']
+    location_syns = {'centre': ['center']}
+    prices_syns = {'moderate': ['moderately']}
 
     w2id, id2w = BabiReader.vocab(BABI_T6_TRN_FILE, 1)
 

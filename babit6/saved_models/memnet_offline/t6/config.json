@@ -1,0 +1,7 @@
+{
+  "num_actions": 56,
+  "hops": 2,
+  "input_dim": 892,
+  "embedding_size": 100,
+  "train_dropout": 0.86
+}

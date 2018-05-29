@@ -114,3 +114,6 @@ restaurant/*.log
 /*/data/test/dstc2/
 /*/models/dialogue/
 /dstc2/tests/resutls1.txt
+*.pickle
+*/dialog-bAbI-tasks/
+*/dstc2/data/

@@ -1,0 +1,9 @@
+{
+  "action_fingerprints": {},
+  "rasa_core": "0.8.3",
+  "max_history": 35,
+  "ensemble_name": "fabot.custom.ensemble.MemNetPolicyEnsemble",
+  "policy_names": [
+    "fabot.custom.memnet.model.MemNetT5Policy"
+  ]
+}

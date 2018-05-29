@@ -12,7 +12,7 @@ class T6Featurizer(object):
     """
 
     def __init__(self, use_bow=True, use_turn=True, use_bot_utter=True, use_embeddings=True, use_intent=False,
-                 use_nlu_entity_extractor=False, use_context=True):
+                 use_nlu_entity_extractor=False, use_entities=True, use_context=True):
         """
         :param use_bow: if True, BoW features will be used
         :param use_turn: if True, conversation turn will be added to the features
@@ -21,7 +21,10 @@ class T6Featurizer(object):
         :param use_intent: if True, use Rasa NLU to classify user utterances by intent and add that to the features
         :param use_nlu_entity_extractor: if True, the Rasa NLU model saved at this location will be used to extract
         entities. Else, simple pattern match will be used to detect entities
-        :param use_context: use the context features from Williams
+        :param use_entities: if True, use a binary feature vector for entities mentioned in the current utterance
+        :param use_context: use the context features from Williams (this includes entities currently set in the
+        conversation state, which is different from just having the entities in the current utterance, which you get
+        by setting use_entities=True)
         """
         self._use_bow = use_bow
         self._use_turn = use_turn
@@ -29,6 +32,7 @@ class T6Featurizer(object):
         self._use_embeddings = use_embeddings
         self._use_intent = use_intent
         self._use_nlu_entity_extractor = use_nlu_entity_extractor
+        self._use_entities = use_entities
         self._use_context = use_context
 
         if use_embeddings:
@@ -39,7 +43,8 @@ class T6Featurizer(object):
             self.context = {'empty_results': 0, 'non-empty_results': 1, 'results_offered': 0,
                             'results_exhausted': 0, 'results_available': 1, 'unknown_cuisine': 0}
             self.db = BabiDB(BABI_T6_KB_FILE)
-            self.pending_results = self.db.num_results()
+            self.num_results = self.db.num_results()
+            self.num_offered = 0
         # slot_values keep current entity values at every point in a conversation
         self.slot_values = {e: None for e in BabiT6Reader.entity2id}
 
@@ -51,7 +56,8 @@ class T6Featurizer(object):
         self.context = {'empty_results': 0, 'non-empty_results': 1, 'results_offered': 0,
                         'results_exhausted': 0, 'results_available': 1, 'unknown_cuisine': 0}
         self.slot_values = self.slot_values = {e: None for e in BabiT6Reader.entity2id}
-        self.pending_results = self.db.num_results()
+        self.num_results = self.db.num_results()
+        self.num_offered = 0
 
     @staticmethod
     def get_bot_act(text):
@@ -86,29 +92,60 @@ class T6Featurizer(object):
                 elif word in BabiT6Reader.locations:
                     entities['location'] = word
                 else:
-                    for value, synonyms in BabiT6Reader.prices_syns.values():
+                    for value, synonyms in BabiT6Reader.prices_syns.items():
                         if word in synonyms:
-                            entities['price'] = word
+                            entities['price'] = value  # we save the canonical value, not the synonym
                             break
-                    for value, synonyms in BabiT6Reader.location_syns.values():
+                    for value, synonyms in BabiT6Reader.location_syns.items():
                         if word in synonyms:
-                            entities['location'] = word
+                            entities['location'] = value
                             break
             return entities
 
-    def context_features(self):
-        entities = [0] * len(BabiT6Reader.entity2id)
+    def entity_features(self, entities):
+        """Produces features to track entities mentioned in current utterance, not in the converstion state. For those
+        use context features instead
+        :param entities: dictionary of entities to featurize"""
+        entity_vec = [0] * len(BabiT6Reader.entity2id)
+        for entity in entities:
+            entity_vec[BabiT6Reader.entity2id[entity]] = 1
+        return entity_vec
+
+    def context_features(self, prev_bot_text):
+        entities = [0] * len(BabiT6Reader.entity2id)  # not entities in current utterance, but in the conversation state
         for entity in self.slot_values:
             if self.slot_values[entity]:
                 entities[BabiT6Reader.entity2id[entity]] = 1
+        bot_act = T6Featurizer.get_bot_act(prev_bot_text)
+
+        self.num_results = self.db.num_results(**{e: v for e, v in self.slot_values.items() if v})
+        self.context['unknown_cuisine'] = 1 \
+            if self.slot_values['cuisine'] and self.slot_values['cuisine'] not in BabiT6Reader.cuisine_types else 0
+        if bot_act in ['offer_rest_area_price', 'offer_rest_area_food', 'offer_rest_area_food_price', 'offer_rest_area',
+                       'offer_rest_food_price', 'offer_rest_food', 'offer_rest_price', 'offer_rest']:
+            self.context['results_offered'] = 1
+            self.num_offered += 1
+            self.context['results_exhausted'] = 1 if self.num_offered >= self.num_results else 0
+            self.context['results_available'] = 1 if self.num_offered < self.num_results else 0
+
+        if bot_act == 'api_call':
+            self.context['results_offered'] = 0
+            self.num_offered = 0
+        self.context['empty_results'] = 1 if self.num_results == 0 else 0
+        self.context['non-empty_results'] = 1 if self.num_results > 0 else 0
+
         return [v for v in self.context.values()] + entities
 
     @staticmethod
-    def bot_features(bot_act):
-        bot_vec = [0] * len(BabiT6Reader.bot_das)
+    def bot_features(bot_text):
+        bot_act = T6Featurizer.get_bot_act(bot_text)
+        bot_vec = [0] * len(BabiT6Reader.das)
         if bot_act:
             bot_vec[BabiT6Reader.act2id[bot_act]] = 1
         return bot_vec
+
+    def slots(self):
+        return {e: v if v else 'R_' + e for e, v in self.slot_values.items()}
 
     def embedding_features(self, text):
         embs = [self.w2vec_model[word] for word in text.split(' ') if word and word in self.w2vec_model]
@@ -117,6 +154,10 @@ class T6Featurizer(object):
             return list(mean(embs, axis=0))
         else:
             return [0] * self.w2vec_model.vector_size
+
+    @staticmethod
+    def num_actions():
+        return len(BabiT6Reader.das)
 
     @staticmethod
     def bow_features(text):
@@ -130,51 +171,44 @@ class T6Featurizer(object):
         """
         Featurizes a data point
         :param user_text: user text
-        :param prev_bot_text: bot text of previous turn. If use_bot_utter was set to True at constructor, this argument
-        should be provided
+        :param prev_bot_text: bot text of previous turn. If use_bot_utter or use_context were set to True at
+        constructor, this argument should be provided
         :param turn: conversation turn corresponding to the data point. If use_turn was set to True at constructor, this
         argument should be provided
         :return: List of features
         """
-        pass # jeje
-        # prev_bot_act_feats = t6_featurize_bot_act(prev_bot_text) if prev_bot_text else []
-        # turn_feat = [turn] if turn else []
-        # bow_feats = bow_features(user_text, vocab) if vocab else []
-        #
-        # self.extract_entities(user_text)
-        #
-        # bow = # TODO dammit
+        entities = self.extract_entities(user_text)
+        for e, v in entities.items():
+            self.slot_values[e] = v
+
+        turn = [turn] if self._use_turn else []
+        intent = self.nlu.parse(user_text)['intent']['name'] if self._use_intent else []
+        bot = T6Featurizer.bot_features(prev_bot_text) if self._use_bot_utter else []
+        entities = self.entity_features(entities) if self._use_entities else []
+        bow = T6Featurizer.bow_features(user_text) if self._use_bow else []
+        embeddings = self.embedding_features(user_text) if self._use_embeddings else []
+        context = self.context_features(prev_bot_text) if self._use_context else []
+        return turn + intent + bot + entities + bow + embeddings + context
 
     def feature_len(self):
         turn = 1 if self._use_turn else 0
         intent = len(BabiT6Reader.intents) if self._use_intent else 0
+        bot = len(BabiT6Reader.das) if self._use_bot_utter else 0
+        entities = len(self.slot_values) if self._use_entities else 0
         bow = len(BabiT6Reader.w2id) if self._use_bow else 0
         embeddings = self.w2vec_model.vector_size if self._use_embeddings else 0
         context = len(self.context) + len(self.slot_values) if self._use_context else 0
-        bot = len(BabiT6Reader.das) if self._use_bot_utter else 0
-        return turn + intent + bow + embeddings + context + bot
-    # def bot_features(self, bot_text):
-    #     """
-    #     Featurizes a bot message
-    #     :param bot_act: str indicating the bot action. Can come with or without the 'utter_' prefix
-    #     :param turn: turn of the utterance in the conversation, int. This feature is used by Bordes
-    #     :param padding: number of 0s to add at the end of the vector, to enforce user messages and bot messages have
-    #     same length
-    #     :return: a vector consisting of a 1 (to indicate this is a bot message and tell it apart from user messages),
-    #     concatenated with an integer value indicating the turn in the conversation (using binary is tempting to avoid
-    #     learning bias towards higher numbered turns, but perhaps this is exactly what you want to do: more recent turns to
-    #     influence learning more), concatenated with a 1 hot vector indicating the bot action, concatenated with padding 0's:
-    #     [1, turn, 0, ... action, 0..., 0...]
-    #     """
-    #     bot_vec = [0] * len(t6_act2id)
-    #     bot_vec[self.act2id[bot_act.replace("utter_", "")]] = 1  # just in case they include the utter_ rasa prefix
-    #     _bot_act = bot_act.replace("utter_", "")
-    #     if _bot_act == 'api_call':
-    #         self.context_features['db_queried'] = 1
-    #     if _bot_act[:5] == 'offer':
-    #         self.context_features['results_offered'] = 1
-    #         self.pending_results -= 1
-    #         self.context_features['results_exhausted'] = 1 if self.pending_results == 0 else 1
-    #         self.context_features['results_available'] = 1 - self.context_features['results_exhausted']
-    #
-    #     return [turn] + bot_vec + [0] * padding
+        return turn + intent + bot + entities + bow + embeddings + context
+
+    def get_bot_utterance_act_id(self, bot_text):
+        bot_act = self.get_bot_act(bot_text)
+        assert bot_act or not bot_text
+        return BabiT6Reader.act2id[bot_act]
+
+    @staticmethod
+    def id2act(actid):
+        return BabiT6Reader.id2act[actid]
+
+    @staticmethod
+    def act2pattern(bot_act):
+        return BabiT6Reader.das[bot_act]

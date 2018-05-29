@@ -12,7 +12,7 @@ import pickle
 from rasa_core.interpreter import RasaNLUInterpreter
 from rasa_core.agent import Agent
 from rasa_core.channels.direct import CollectingOutputChannel
-from data.babi_reader import BabiReader, BabiT6Reader
+from data.babi_reader import BabiReader
 import json
 
 
@@ -228,13 +228,13 @@ class TestMemoryNetwork(TestCase):
                 json.dump(results, result_output, indent=2)
 
     def test_compute_memnet_t6_test_stats(self):
-        with open('tests/fabot/custom/memnet/tst_t6_results.json', 'r') as fh:
+        with open('tests/fabot/custom/memnet/tst_t6_memnet_offline_results.json', 'r') as fh:
             results = json.load(fh)
             total_matches, perfect, total = 0, 0, 0
             for i, conversation in enumerate(results):
                 conversation_matches = 0
                 for turn in conversation:
-                    if turn['match']:
+                    if turn['act_match']:
                         conversation_matches += 1
                     total += 1
                 total_matches += conversation_matches

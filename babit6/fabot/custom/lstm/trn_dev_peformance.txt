@@ -1,0 +1,8 @@
+INFO:root:epoch: 11	trn loss: [20270.271]	accuracy: 9910/14404 (68.80%)	perfect dialogs: 239/1618 (0.1477132262051916)
+INFO:root:dev loss: [0.57509655]	accuracy: 2380/4159 (57.23%)	perfect dialogs: 1/500 (0.002)
+INFO:root:test accuracy: 5770/11237 (51.35%)	perfect dialogs: 1/1117 (0.0008952551477170994)
+(best) INFO:root:test accuracy: 5917/11237 (52.66%)	perfect dialogs: 0/1117 (0.0)
+INFO:root:test act match results:
+accuracy: 5770/11237 (51.35%)	perfect dialogs: 1/1117 (0.0008952551477170994)
+INFO:root:test literal match results:
+accuracy: 5260/11237 (46.81%)	perfect dialogs: 0/1117 (0.0)

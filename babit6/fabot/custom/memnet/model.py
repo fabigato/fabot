@@ -1,14 +1,20 @@
 import tensorflow as tf
 from fabot.custom.memnet.data_utils import MemNetT5DataAdapter, MemNetT6DataAdapter
+from data.feature_factory import T6Featurizer
 from data.database import BabiDB
-from globals import BABI_T6_KB_FILE
+from globals import BABI_T6_KB_FILE, BABI_T6_TRN_FILE, BABI_T6_DEV_FILE, BABI_T6_TST_FILE
 from rasa_core.policies import Policy
-from rasa_core.events import ActionExecuted, UserUttered
-from rasa_core.actions.action import ACTION_LISTEN_NAME, ACTION_RESTART_NAME
-from numpy import mean, argmax, exp
-from os.path import join
+from rasa_core.events import ActionExecuted
+from rasa_core.actions.action import ACTION_LISTEN_NAME
+from numpy import mean, exp, argmax
+from os.path import join, isfile
 import logging
 import pickle
+import argparse
+from data.babi_reader import BabiReader
+from copy import copy
+import re
+import json
 
 logger = logging.getLogger(__name__)
 logging.basicConfig(level=logging.DEBUG)
@@ -36,8 +42,6 @@ def batch_matmul(x, A):
     return tf.reshape(prod, final_shape)
 
 
-# TODO another improvement: maybe it is good to keep fixed size memory, starting with all null memories, then adding
-# actual memories every turn
 class MemoryNetwork(object):
 
     def __init__(self,
@@ -46,13 +50,18 @@ class MemoryNetwork(object):
                  embedding_size,
                  hops=3,
                  var_init=tf.random_normal_initializer(stddev=0.1),
-                 model_name="MemoryNetwork"):
+                 model_name="MemoryNetwork",
+                 optimizer=tf.train.AdamOptimizer(learning_rate=1e-4, epsilon=1e-8),
+                 clip_norm=15.,
+                 keep_prob=1.):
+        self.h = [[0] * utterance_len]  # used during online test
         # placeholders
         # [batch, mem_size, utter_len]
         self.history = tf.placeholder(tf.float32, [None, None, utterance_len], name="history")
         self.queries = tf.placeholder(tf.float32, [None, utterance_len], name="queries")  # [batch, query_len]
         self.labels = tf.placeholder(tf.float32, [None, num_actions], name="labels")  # [batch, num_actions]
         self.keep_prob = tf.placeholder(tf.float32, [], name='keep_probability')
+        self.train_keep_prob = keep_prob
 
         # model parameters
         with tf.variable_scope(model_name):
@@ -108,9 +117,69 @@ class MemoryNetwork(object):
             self.logits = tf.nn.dropout(tf.matmul((o + u), self.W), self.keep_prob)  # [batch, actions]
             self.loss = tf.reduce_mean(tf.nn.softmax_cross_entropy_with_logits(labels=self.labels, logits=self.logits))
             self.output_p = tf.nn.softmax(self.logits)
+            self.pred_action = tf.arg_max(self.output_p, dimension=0)
             self.accuracy = tf.reduce_mean(tf.cast(
                 tf.equal(tf.argmax(self.logits, axis=1), tf.argmax(self.labels, axis=1)),
                 tf.float32))
+
+            grads, vars = zip(*optimizer.compute_gradients(self.loss))
+            grads_clipped, _ = tf.clip_by_global_norm(grads, clip_norm=clip_norm)
+            self.train_op = optimizer.apply_gradients(zip(grads_clipped, vars))
+
+            self.sess = tf.Session()
+            self.sess.run(tf.global_variables_initializer())
+
+    def prediction(self, history, query):
+        prediction = self.sess.run(self.output_p, feed_dict={self.history: [history],
+                                                             self.queries: [query],
+                                                             self.keep_prob: 1})
+        return prediction
+
+    def train_step(self, history_batch, query_batch, label_batch):
+        pred, loss, _ = self.sess.run([self.pred_action, self.loss, self.train_op],
+                                      feed_dict={self.history: history_batch,
+                                                 self.queries: query_batch,
+                                                 self.labels: label_batch,
+                                                 self.keep_prob: self.train_keep_prob})
+        return pred, loss
+
+    def predict_turn(self, x):
+        """predicts given one turn, keeping track of history
+        :param x: featurized turn"""
+        prediction = self.sess.run(self.output_p, feed_dict={self.history: [self.h],
+                                                             self.queries: [x],
+                                                             self.keep_prob: 1})
+        self.h.append(x)
+        return prediction.squeeze()
+
+    def reset_conversation_state(self):
+        h_len = int(self.history.shape[-1])
+        self.h = [[0] * h_len]
+
+    def persist(self, path):
+        config = {'hops': self.hops, 'num_actions': int(self.labels.shape[-1]), 'train_dropout': self.train_keep_prob,
+                  'input_dim': int(self.queries.shape[-1]), 'embedding_size': self.embedding_size}
+        with open(join(path, 'config.json'), 'w') as fh:
+            json.dump(config, indent=2, fp=fh)
+        saver = tf.train.Saver()
+        saver.save(self.sess, path, global_step=0)
+        logging.info('successfully persisted the model at {}'.format(path))
+
+    @staticmethod
+    def load(path):
+        with open(join(path, 'config.json')) as fh:
+            config = json.load(fh)
+        model = MemoryNetwork(num_actions=config['num_actions'], utterance_len=config['input_dim'],
+                              embedding_size=config['embedding_size'], hops=config['hops'],
+                              keep_prob=config['train_dropout'])
+        saver = tf.train.Saver()
+        ckpt = tf.train.get_checkpoint_state(path)
+        if ckpt and ckpt.model_checkpoint_path:
+            saver.restore(model.sess, ckpt.model_checkpoint_path)
+            logging.info('successfully restored LSTM model from {}'.format(path))
+        else:
+            logging.error('persisted model not found')
+        return model
 
 
 class MemNetPolicy(Policy):
@@ -410,41 +479,223 @@ class MemNetT6Policy(MemNetPolicy):
         return p
 
 
-# class Featurizer(object):
-#
-#     def encode(self, tracker, memory_size):
-#         raise NotImplementedError
-#
-#
-# class BabiT5Featurizer(Featurizer):
-#     def __init__(self, memory_size=8):
-#         self.ignored_actions = [ACTION_RESTART_NAME, ACTION_LISTEN_NAME]
-#         self.memory_size = memory_size
-#         self.data_adapter = MemNetT5DataAdapter()
-#
-#     def encode(self, tracker, memory_size):
-#         query = self.data_adapter.featurize_query(tracker.latest_message.intent['name'],
-#                                                   tracker.latest_message.entities)
-#         # build history
-#         h = [ev for ev in tracker.events if (isinstance(ev, ActionExecuted) and
-#                                              ev.action_name not in self.ignored_actions) or
-#              isinstance(ev, UserUttered)]
-#         for i, e in zip(range(len(h)-1, -1, -1), h[::-1]):  # remove the last UserUttered, since that is the query
-#             if isinstance(e, UserUttered):  # this could simply be h.pop(len(h)-1), dunno why I'm so complicated
-#                 h.pop(i)
-#                 break
-#         turns = [int(t / 2) for t in range(0, len(h))]  # [0, 0, 1, 1, 2, 2, .... floor((len(h)-1)/2)]
-#         h = [(t, ev) for t, ev in zip(turns, h)]  # adding the turn now that non-relevant events are out
-#         h = h[::-1][:memory_size][::-1]
-#         memory = []
-#         bot_padding = max(0, self.data_adapter.len_user_featurized_vec() - self.data_adapter.len_bot_featurized_vec())
-#         user_padding = max(0, self.data_adapter.len_bot_featurized_vec() - self.data_adapter.len_user_featurized_vec())
-#         for t, u in h:
-#             if isinstance(u, ActionExecuted):
-#                 memory.append(self.data_adapter.featurize_bot_act(u.action_name, t, bot_padding))
-#             elif isinstance(u, UserUttered):
-#                 memory.append(self.data_adapter.featurize_user_act(u.intent['name'], u.entities, t, user_padding))
-#         memory = [[0] * self.data_adapter.utterance_len()] if not memory else memory
-#         # empty memories will have just 1 0-padded cell
-#         return query, memory
+def get_args():
+    parser = argparse.ArgumentParser(
+        description='train or test a MemoryNetwork for bAbI tasks 5 or 6')
+    parser.add_argument('--job', choices=['train', 'test'], required=True,
+                        help='train the network or test an already trained one. Mandatory')
+    parser.add_argument('--task', choices=['5', '6'], required=True, help='bAbI task, must be t5 or t6. Mandatory')
+    return parser.parse_args()
+
+
+def format_babi_data(filename, featurizer):
+    """
+    produces bAbI data in a format suitable for the memory network. Each conversation provides as many training examples
+    as turns. Turn i produces a training example that contains the conversation history up to turn i-1, the user
+    utterance from turn i and the bot action at turn i
+    :param filename: bAbI conversation filename
+    :param featurizer: featurizer object
+    :return: List of training examples with labels. Each element is a Dictionary['history': h, 'query': q, 'label': l,
+    'entities': e]
+    h: List, h[i] is the featurized data point at turn i in the conversation
+    q: vector of features representing the current turn (in the same format as the elements of h)
+    l: 1 hot vector indicating the bot action at the current turn
+    e: Dictionary with the value of each entity at that point in the conversation (None, for those with no value set)
+    """
+    data = []
+
+    def prev_bot_utter():
+        return '' if i == 0 else story[i-1]['bot']
+    for story in BabiReader.babi_dialogue_iterator(filename):
+        h = []
+        for i, turn in enumerate(story):
+            x = featurizer.featurize(user_text=turn['human'], prev_bot_text=prev_bot_utter(), turn=i)
+            data.append({'history': copy(h), 'query': x, 'label': featurizer.bot_features(turn['bot']),
+                         'entities': copy(featurizer.slot_values)})
+            h.append(x)
+        featurizer.reset()
+    return data
+
+
+def build_batches(filename, featurizer, batch_size=32, max_memory_size=8):
+    """
+    Produces batch indexes of points with similar length of history and adds padding so that the history component of
+    all points in a batch have the same length
+    :param filename: bAbI conversation filename
+    :param featurizer: featurizer object
+    :param batch_size: number of elements in a batch, unless there are not enough elements, then a batch will have the
+    remaining points, with len < batch_size
+    :param max_memory_size: max number of previous utterances (bot and user alike) to keep in history for a single
+    data point
+    :return: history, query, label, entities, batch_indexes. Each one is a list. The ith element of all lists is refers
+    to one data point. The lists are sorted by decreasing length of history and adding padding so that all histories in
+    the same batch have equal length. batch_indexes is an iterable of Tuple[start, end], where end is not part of the
+    current batch but of the next only (i.e. end_i = start_i+1 for all i except the last). Do note the end index of the
+    last batch is not checked against the number of elements in the data, therefore this number can be higher.
+    This should not be a problem if data is split using the data[start:end] slicing format
+    """
+    data = format_babi_data(filename=filename, featurizer=featurizer)
+    max_memory_size = min(max_memory_size, max(len(x['history']) for x in data))  # no point in max_mem > longest h
+    batch_size = min(batch_size, len(data))
+    data.sort(key=lambda x: len(x['history']), reverse=True)
+    history, query, label, entities = [], [], [], []
+    batch_memory_size = max_memory_size  # redundant, just to comply with PEP8 (batch_mem could be reference before bla)
+    for i, x in enumerate(data):
+        h, q, l, e = x.values()
+        if i % batch_size == 0:  # new batch. history length of this first point in the batch determines memory_size
+            batch_memory_size = max(1, min(max_memory_size, len(h)))  # memory in [1, max_memory_size]
+        h = h[::-1][:batch_memory_size][::-1]  # take only last memory_size sentences (flip, cut at mem size, flip back)
+        pad_size = max(0, batch_memory_size - len(h))  # pad h
+        for _ in range(pad_size):  # empty histories will thus consist of 1 0 padded memory
+            h.append([0] * featurizer.feature_len())
+        history.append(h)
+        query.append(q)
+        label.append(l)
+        entities.append(e)
+    batch_indexes = list(zip(range(0, len(data) - batch_size, batch_size), range(batch_size, len(data), batch_size)))
+    return history, query, label, entities, batch_indexes
+
+
+def train_t6():
+    logging.info(
+        'starting training\nConfig:\nhops: {}\nactions: {}\nhistory utterance length: {}\n'
+        'embedding size: {}\nbatch size: {}\nmemory size: {}\nepochs: {}\ngradient clip norm: {}\n'
+        'keep prob: {}\n'.format(hops, num_actions, h_len, embedding_size, batch, mem_size, epochs,
+                                 clip_norm,
+                                 keep_prob))
+    saved_batches = 'tests/fabot/custom/memnet/t6_trn_memnet_offline_data.pickle'
+    if isfile(saved_batches):
+        with open(saved_batches, 'rb') as batches_fh:
+            trn_history, trn_query, trn_label, trn_entities, batch_indexes = pickle.load(batches_fh)
+    else:
+        print('train batches data not found, now recreating it')
+        trn_history, trn_query, trn_label, trn_entities, batch_indexes = build_batches(filename=BABI_T6_TRN_FILE,
+                                                                                       featurizer=featurizer,
+                                                                                       batch_size=batch,
+                                                                                       max_memory_size=mem_size)
+        print('saving data')
+        with open(saved_batches, 'wb') as batches_fh:
+            pickle.dump((trn_history, trn_query, trn_label, trn_entities, batch_indexes), batches_fh)
+        print('saved')
+    saved_batches = 'tests/fabot/custom/memnet/t6_dev_memnet_offline_data.pickle'
+    if isfile(saved_batches):
+        with open(saved_batches, 'rb') as batches_fh:
+            dev_history, dev_query, dev_label, dev_entities, dev_batch_indexes = pickle.load(batches_fh)
+    else:
+        print('dev batches data not found, now recreating it')
+        dev_history, dev_query, dev_label, dev_entities, dev_batch_indexes = build_batches(
+            filename=BABI_T6_DEV_FILE, featurizer=featurizer, batch_size=100, max_memory_size=mem_size)
+        print('saving data')
+        with open(saved_batches, 'wb') as batches_fh:
+            pickle.dump((dev_history, dev_query, dev_label, dev_entities, dev_batch_indexes), batches_fh)
+        print('saved')
+
+    model = MemoryNetwork(num_actions=num_actions, utterance_len=h_len,
+                          embedding_size=embedding_size,
+                          hops=hops, keep_prob=keep_prob, clip_norm=clip_norm)
+    for epoch in range(epochs):
+        batch_indexes = list(batch_indexes)
+        trn_accuracies = []
+        for i, (b_start, b_end) in enumerate(batch_indexes):
+            pred, loss = model.train_step(history_batch=trn_history[b_start:b_end],
+                                          query_batch=trn_query[b_start:b_end],
+                                          label_batch=trn_label[b_start:b_end])
+            accuracy = model.sess.run(model.accuracy, feed_dict={model.history: trn_history[b_start:b_end],
+                                                                 model.queries: trn_query[b_start:b_end],
+                                                                 model.labels: trn_label[b_start:b_end],
+                                                                 model.keep_prob: 1})
+            if i % print_cycle == 0:
+                logging.info('epoch: {}\tbatch: {}\tloss: {}\taccuracy:{}'.format(epoch, i, loss, accuracy))
+            trn_accuracies.append(accuracy)
+        dev_accuracies, dev_losses = [], []
+        for i, (b_start, b_end) in enumerate(dev_batch_indexes):
+            _, dev_loss = model.train_step(history_batch=dev_history[b_start:b_end],
+                                           query_batch=dev_query[b_start:b_end],
+                                           label_batch=dev_label[b_start:b_end])
+            dev_accuracy = model.sess.run(model.accuracy, feed_dict={model.history: dev_history[b_start:b_end],
+                                                                     model.queries: dev_query[b_start:b_end],
+                                                                     model.labels: dev_label[b_start:b_end],
+                                                                     model.keep_prob: 1})
+            dev_accuracies.append(dev_accuracy)
+            dev_losses.append(dev_loss)
+        logging.info('epoch: {}\tdev loss: {}\tdev accuracy: {}\ttrain accuracy: {}'.format(
+            epoch,
+            mean(dev_losses),
+            mean(dev_accuracies),
+            mean(trn_accuracies)
+        ))
+    model.persist(persisted_path)
+
+
+def test_t6():
+    model = MemoryNetwork.load(persisted_path)
+    results = []
+    total_act_matches, total_literal_matches = 0, 0
+    perfect_act_dialogs, perfect_literal_dialogs = 0, 0
+    total_turns = 11237
+    total_dialogs = 1117
+    for story in BabiReader.babi_dialogue_iterator(BABI_T6_TST_FILE):
+        h = [[0] * featurizer.feature_len()]
+        featurizer.reset()
+        story_results = []
+        dialog_act_matches, dialog_literal_matches = 0, 0
+        for i, turn in enumerate(story):
+            x = featurizer.featurize(user_text=turn['human'], prev_bot_text='' if i == 0 else story[i-1]['bot'], turn=i)
+            prediction = model.prediction(history=h, query=x)
+
+            turn_results = dict()
+            turn_results['human'] = turn['human']
+            turn_results['target'] = turn['bot']
+            actual_da = featurizer.get_bot_act(turn['bot'])
+            predicted_da = featurizer.id2act(argmax(prediction))
+            turn_results['actual'] = featurizer.act2pattern(predicted_da)[1].format(**featurizer.slots())
+            turn_results['literal_match'] = re.match(pattern=turn_results['actual'],
+                                                     string=turn_results['target']) is not None
+            turn_results['act_match'] = actual_da == predicted_da
+            story_results.append(turn_results)
+
+            h.append(x)
+
+            dialog_act_matches += int(turn_results['act_match'])
+            dialog_literal_matches += int(turn_results['literal_match'])
+        total_act_matches += dialog_act_matches
+        total_literal_matches += dialog_literal_matches
+        perfect_act_dialogs += int(dialog_act_matches == len(story))
+        perfect_literal_dialogs += int(dialog_literal_matches == len(story))
+        results.append(story_results)
+    with open('tests/fabot/custom/memnet/tst_t6_memnet_offline_results.json', 'w') as fh:
+        json.dump(results, fh, indent=2)
+    logging.info('test act match results:\n'
+                 'accuracy: {}/{} ({:.2%})\tperfect dialogs: {}/{} ({})'.format(
+        total_act_matches, total_turns, total_act_matches / total_turns, perfect_act_dialogs, total_dialogs,
+                                        perfect_act_dialogs / total_dialogs))
+    logging.info('test literal match results:\n'
+                 'accuracy: {}/{} ({:.2%})\tperfect dialogs: {}/{} ({})'.format(
+        total_literal_matches, total_turns, total_literal_matches / total_turns, perfect_literal_dialogs, total_dialogs,
+                                            perfect_literal_dialogs / total_dialogs))
+
+
+if __name__ == '__main__':
+    args = get_args()
+    if args.task == '6':
+        persisted_path = 'saved_models/memnet_offline/t6/'
+        featurizer = T6Featurizer(use_bow=True, use_turn=True, use_bot_utter=True, use_embeddings=True,
+                                  use_intent=False, use_nlu_entity_extractor=False, use_entities=True, use_context=True)
+        num_actions = T6Featurizer.num_actions()
+        h_len = featurizer.feature_len()
+
+        print_cycle = 100
+        hops = 2
+        embedding_size = 100
+        batch = 32
+        mem_size = 10
+        epochs = 10
+        clip_norm = 15
+        keep_prob = 0.86
+        if args.job == 'train':
+            train_t6()
+        if args.job == 'test':
+            test_t6()
+    if args.task == '5':
+        raise NotImplementedError
 

@@ -120,3 +120,14 @@ dev loss: 1.4270477294921875	dev accuracy: 0.6056744456291199	train accuracy: 0.
 epochs 40, mem_size = 10, keep_prob = 0.86
 dev loss: 1.391296625137329	dev accuracy: 0.6088001728057861	train accuracy: 0.7540972232818604
 
+with all williams features:
+hops = 2
+embedding_size = 100
+batch = 32
+mem_size = 10
+epochs = 10
+clip_norm = 15
+keep_prob = 0.86
+dev loss: 1.459405779838562	dev accuracy: 0.6458536386489868	train accuracy: 0.7200000286102295
+dev loss: 1.501767635345459	dev accuracy: 0.6431707739830017	train accuracy: 0.7235416769981384
+

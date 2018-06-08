@@ -6,3 +6,353 @@ INFO:root:test act match results:
 accuracy: 5770/11237 (51.35%)	perfect dialogs: 1/1117 (0.0008952551477170994)
 INFO:root:test literal match results:
 accuracy: 5260/11237 (46.81%)	perfect dialogs: 0/1117 (0.0)
+
+INFO:root:epoch: 0	batch: 0	loss: 12.806833267211914	accuracy:0.0
+INFO:root:epoch: 0	batch: 100	loss: 2.793043613433838	accuracy:0.40625
+INFO:root:epoch: 0	batch: 200	loss: 2.065793514251709	accuracy:0.5
+INFO:root:epoch: 0	batch: 300	loss: 2.7633743286132812	accuracy:0.40625
+INFO:root:epoch: 0	batch: 400	loss: 3.921327590942383	accuracy:0.0
+INFO:root:successfully persisted the model at saved_models/memnet_offline/t6/
+INFO:root:epoch: 0	dev loss: 2.678997039794922	dev accuracy: 0.37609755992889404	train accuracy: 0.44034722447395325
+INFO:root:epoch: 1	batch: 0	loss: 7.631128311157227	accuracy:0.0625
+INFO:root:epoch: 1	batch: 100	loss: 1.7510007619857788	accuracy:0.5625
+INFO:root:epoch: 1	batch: 200	loss: 1.9161491394042969	accuracy:0.53125
+INFO:root:epoch: 1	batch: 300	loss: 2.216926097869873	accuracy:0.46875
+INFO:root:epoch: 1	batch: 400	loss: 0.9729111194610596	accuracy:1.0
+INFO:root:successfully persisted the model at saved_models/memnet_offline/t6/
+INFO:root:epoch: 1	dev loss: 1.9702961444854736	dev accuracy: 0.5534146428108215	train accuracy: 0.6066666841506958
+INFO:root:epoch: 2	batch: 0	loss: 4.2188215255737305	accuracy:0.28125
+INFO:root:epoch: 2	batch: 100	loss: 1.8478929996490479	accuracy:0.5625
+INFO:root:epoch: 2	batch: 200	loss: 1.7700273990631104	accuracy:0.625
+INFO:root:epoch: 2	batch: 300	loss: 2.135894298553467	accuracy:0.40625
+INFO:root:epoch: 2	batch: 400	loss: 0.7541313171386719	accuracy:1.0
+INFO:root:successfully persisted the model at saved_models/memnet_offline/t6/
+INFO:root:epoch: 2	dev loss: 1.7647584676742554	dev accuracy: 0.5887804627418518	train accuracy: 0.6433333158493042
+INFO:root:epoch: 3	batch: 0	loss: 3.9451236724853516	accuracy:0.40625
+INFO:root:epoch: 3	batch: 100	loss: 1.5470445156097412	accuracy:0.65625
+INFO:root:epoch: 3	batch: 200	loss: 1.2805249691009521	accuracy:0.65625
+INFO:root:epoch: 3	batch: 300	loss: 1.5745210647583008	accuracy:0.4375
+INFO:root:epoch: 3	batch: 400	loss: 0.6701675057411194	accuracy:1.0
+INFO:root:successfully persisted the model at saved_models/memnet_offline/t6/
+INFO:root:epoch: 3	dev loss: 1.6785308122634888	dev accuracy: 0.6131707429885864	train accuracy: 0.6672916412353516
+INFO:root:epoch: 4	batch: 0	loss: 3.2425594329833984	accuracy:0.40625
+INFO:root:epoch: 4	batch: 100	loss: 1.7075786590576172	accuracy:0.6875
+INFO:root:epoch: 4	batch: 200	loss: 1.1363677978515625	accuracy:0.65625
+INFO:root:epoch: 4	batch: 300	loss: 1.973352074623108	accuracy:0.46875
+INFO:root:epoch: 4	batch: 400	loss: 0.5101257562637329	accuracy:1.0
+INFO:root:successfully persisted the model at saved_models/memnet_offline/t6/
+INFO:root:epoch: 4	dev loss: 1.5960630178451538	dev accuracy: 0.6168292760848999	train accuracy: 0.6823611259460449
+INFO:root:epoch: 5	batch: 0	loss: 2.982229709625244	accuracy:0.46875
+INFO:root:epoch: 5	batch: 100	loss: 1.5388089418411255	accuracy:0.75
+INFO:root:epoch: 5	batch: 200	loss: 1.2402125597000122	accuracy:0.65625
+INFO:root:epoch: 5	batch: 300	loss: 1.7283718585968018	accuracy:0.5
+INFO:root:epoch: 5	batch: 400	loss: 0.46824437379837036	accuracy:1.0
+INFO:root:successfully persisted the model at saved_models/memnet_offline/t6/
+INFO:root:epoch: 5	dev loss: 1.5605225563049316	dev accuracy: 0.6324390172958374	train accuracy: 0.6925694346427917
+INFO:root:epoch: 6	batch: 0	loss: 3.0145421028137207	accuracy:0.5
+INFO:root:epoch: 6	batch: 100	loss: 1.4716099500656128	accuracy:0.75
+INFO:root:epoch: 6	batch: 200	loss: 1.1229026317596436	accuracy:0.71875
+INFO:root:epoch: 6	batch: 300	loss: 1.4101691246032715	accuracy:0.53125
+INFO:root:epoch: 6	batch: 400	loss: 0.6825522780418396	accuracy:1.0
+INFO:root:successfully persisted the model at saved_models/memnet_offline/t6/
+INFO:root:epoch: 6	dev loss: 1.5351394414901733	dev accuracy: 0.633414626121521	train accuracy: 0.700208306312561
+INFO:root:epoch: 7	batch: 0	loss: 2.6856322288513184	accuracy:0.46875
+INFO:root:epoch: 7	batch: 100	loss: 1.3820281028747559	accuracy:0.75
+INFO:root:epoch: 7	batch: 200	loss: 1.03182053565979	accuracy:0.6875
+INFO:root:epoch: 7	batch: 300	loss: 1.4840110540390015	accuracy:0.53125
+INFO:root:epoch: 7	batch: 400	loss: 0.17079809308052063	accuracy:1.0
+INFO:root:successfully persisted the model at saved_models/memnet_offline/t6/
+INFO:root:epoch: 7	dev loss: 1.520060420036316	dev accuracy: 0.6378049254417419	train accuracy: 0.7080555558204651
+INFO:root:epoch: 8	batch: 0	loss: 2.5534257888793945	accuracy:0.53125
+INFO:root:epoch: 8	batch: 100	loss: 1.41703462600708	accuracy:0.78125
+INFO:root:epoch: 8	batch: 200	loss: 1.2599236965179443	accuracy:0.6875
+INFO:root:epoch: 8	batch: 300	loss: 1.2607800960540771	accuracy:0.59375
+INFO:root:epoch: 8	batch: 400	loss: 0.16432173550128937	accuracy:1.0
+INFO:root:epoch: 8	dev loss: 1.5230368375778198	dev accuracy: 0.6351219415664673	train accuracy: 0.7140277624130249
+INFO:root:epoch: 9	batch: 0	loss: 2.981595516204834	accuracy:0.5
+INFO:root:epoch: 9	batch: 100	loss: 1.3105597496032715	accuracy:0.8125
+INFO:root:epoch: 9	batch: 200	loss: 1.1518067121505737	accuracy:0.6875
+INFO:root:epoch: 9	batch: 300	loss: 1.3137574195861816	accuracy:0.53125
+INFO:root:epoch: 9	batch: 400	loss: 0.3091279864311218	accuracy:1.0
+INFO:root:successfully persisted the model at saved_models/memnet_offline/t6/
+INFO:root:epoch: 9	dev loss: 1.4991884231567383	dev accuracy: 0.640487790107727	train accuracy: 0.721666693687439
+INFO:root:epoch: 10	batch: 0	loss: 3.078740119934082	accuracy:0.5
+INFO:root:epoch: 10	batch: 100	loss: 1.1667747497558594	accuracy:0.78125
+INFO:root:epoch: 10	batch: 200	loss: 0.941371500492096	accuracy:0.65625
+INFO:root:epoch: 10	batch: 300	loss: 1.261892557144165	accuracy:0.5625
+INFO:root:epoch: 10	batch: 400	loss: 0.3780514895915985	accuracy:1.0
+INFO:root:successfully persisted the model at saved_models/memnet_offline/t6/
+INFO:root:epoch: 10	dev loss: 1.467665672302246	dev accuracy: 0.6468293070793152	train accuracy: 0.7276389002799988
+INFO:root:epoch: 11	batch: 0	loss: 3.6234326362609863	accuracy:0.5625
+INFO:root:epoch: 11	batch: 100	loss: 1.479810357093811	accuracy:0.8125
+INFO:root:epoch: 11	batch: 200	loss: 1.1085845232009888	accuracy:0.6875
+INFO:root:epoch: 11	batch: 300	loss: 1.603960394859314	accuracy:0.5625
+INFO:root:epoch: 11	batch: 400	loss: 0.3560500741004944	accuracy:1.0
+INFO:root:successfully persisted the model at saved_models/memnet_offline/t6/
+INFO:root:epoch: 11	dev loss: 1.4525789022445679	dev accuracy: 0.6490244269371033	train accuracy: 0.7327083349227905
+INFO:root:epoch: 12	batch: 0	loss: 2.292654037475586	accuracy:0.5625
+INFO:root:epoch: 12	batch: 100	loss: 1.3155158758163452	accuracy:0.8125
+INFO:root:epoch: 12	batch: 200	loss: 1.1834828853607178	accuracy:0.65625
+INFO:root:epoch: 12	batch: 300	loss: 1.2416272163391113	accuracy:0.59375
+INFO:root:epoch: 12	batch: 400	loss: 0.5206555724143982	accuracy:1.0
+INFO:root:successfully persisted the model at saved_models/memnet_offline/t6/
+INFO:root:epoch: 12	dev loss: 1.465069055557251	dev accuracy: 0.6519511938095093	train accuracy: 0.738402783870697
+INFO:root:epoch: 13	batch: 0	loss: 1.8873960971832275	accuracy:0.5625
+INFO:root:epoch: 13	batch: 100	loss: 1.1066107749938965	accuracy:0.8125
+INFO:root:epoch: 13	batch: 200	loss: 0.9493573307991028	accuracy:0.6875
+INFO:root:epoch: 13	batch: 300	loss: 1.3554532527923584	accuracy:0.59375
+INFO:root:epoch: 13	batch: 400	loss: 0.1545352041721344	accuracy:1.0
+INFO:root:successfully persisted the model at saved_models/memnet_offline/t6/
+INFO:root:epoch: 13	dev loss: 1.4371947050094604	dev accuracy: 0.6580487489700317	train accuracy: 0.7431944608688354
+INFO:root:epoch: 14	batch: 0	loss: 1.9761991500854492	accuracy:0.625
+INFO:root:epoch: 14	batch: 100	loss: 1.014197826385498	accuracy:0.8125
+INFO:root:epoch: 14	batch: 200	loss: 1.1980246305465698	accuracy:0.6875
+INFO:root:epoch: 14	batch: 300	loss: 1.5388236045837402	accuracy:0.5625
+INFO:root:epoch: 14	batch: 400	loss: 0.3432597219944	accuracy:1.0
+INFO:root:successfully persisted the model at saved_models/memnet_offline/t6/
+INFO:root:epoch: 14	dev loss: 1.4197415113449097	dev accuracy: 0.6609755754470825	train accuracy: 0.7472916841506958
+INFO:root:epoch: 15	batch: 0	loss: 2.6273436546325684	accuracy:0.59375
+INFO:root:epoch: 15	batch: 100	loss: 1.3810943365097046	accuracy:0.8125
+INFO:root:epoch: 15	batch: 200	loss: 1.1655635833740234	accuracy:0.65625
+INFO:root:epoch: 15	batch: 300	loss: 1.3020933866500854	accuracy:0.5625
+INFO:root:epoch: 15	batch: 400	loss: 0.5387860536575317	accuracy:1.0
+INFO:root:successfully persisted the model at saved_models/memnet_offline/t6/
+INFO:root:epoch: 15	dev loss: 1.4025217294692993	dev accuracy: 0.6641463041305542	train accuracy: 0.7503471970558167
+INFO:root:epoch: 16	batch: 0	loss: 2.717439651489258	accuracy:0.625
+INFO:root:epoch: 16	batch: 100	loss: 1.1964892148971558	accuracy:0.90625
+INFO:root:epoch: 16	batch: 200	loss: 0.9300259947776794	accuracy:0.6875
+INFO:root:epoch: 16	batch: 300	loss: 1.5072150230407715	accuracy:0.59375
+INFO:root:epoch: 16	batch: 400	loss: 0.3403734862804413	accuracy:1.0
+INFO:root:epoch: 16	dev loss: 1.4037731885910034	dev accuracy: 0.6639024019241333	train accuracy: 0.754444420337677
+INFO:root:epoch: 17	batch: 0	loss: 2.3199808597564697	accuracy:0.625
+INFO:root:epoch: 17	batch: 100	loss: 0.9922456741333008	accuracy:0.90625
+INFO:root:epoch: 17	batch: 200	loss: 0.9368014335632324	accuracy:0.6875
+INFO:root:epoch: 17	batch: 300	loss: 1.3533363342285156	accuracy:0.625
+INFO:root:epoch: 17	batch: 400	loss: 0.5470923185348511	accuracy:1.0
+INFO:root:successfully persisted the model at saved_models/memnet_offline/t6/
+INFO:root:epoch: 17	dev loss: 1.373734712600708	dev accuracy: 0.668780505657196	train accuracy: 0.7565972208976746
+INFO:root:epoch: 18	batch: 0	loss: 2.86928129196167	accuracy:0.625
+INFO:root:epoch: 18	batch: 100	loss: 0.9096435904502869	accuracy:0.90625
+INFO:root:epoch: 18	batch: 200	loss: 0.7477257251739502	accuracy:0.6875
+INFO:root:epoch: 18	batch: 300	loss: 1.3031506538391113	accuracy:0.59375
+INFO:root:epoch: 18	batch: 400	loss: 0.4131079912185669	accuracy:1.0
+INFO:root:epoch: 18	dev loss: 1.384081482887268	dev accuracy: 0.6675609350204468	train accuracy: 0.7602777481079102
+INFO:root:epoch: 19	batch: 0	loss: 2.4457778930664062	accuracy:0.625
+INFO:root:epoch: 19	batch: 100	loss: 0.8188226819038391	accuracy:0.90625
+INFO:root:epoch: 19	batch: 200	loss: 0.8458991646766663	accuracy:0.6875
+INFO:root:epoch: 19	batch: 300	loss: 1.4474873542785645	accuracy:0.625
+INFO:root:epoch: 19	batch: 400	loss: 0.4041003882884979	accuracy:1.0
+INFO:root:successfully persisted the model at saved_models/memnet_offline/t6/
+INFO:root:epoch: 19	dev loss: 1.37605619430542	dev accuracy: 0.6717073321342468	train accuracy: 0.7637500166893005
+INFO:root:epoch: 20	batch: 0	loss: 2.627992630004883	accuracy:0.625
+INFO:root:epoch: 20	batch: 100	loss: 0.9907245635986328	accuracy:0.90625
+INFO:root:epoch: 20	batch: 200	loss: 0.6797803044319153	accuracy:0.75
+INFO:root:epoch: 20	batch: 300	loss: 1.3643618822097778	accuracy:0.625
+INFO:root:epoch: 20	batch: 400	loss: 0.37861117720603943	accuracy:1.0
+INFO:root:successfully persisted the model at saved_models/memnet_offline/t6/
+INFO:root:epoch: 20	dev loss: 1.371778964996338	dev accuracy: 0.6773170828819275	train accuracy: 0.7659027576446533
+INFO:root:epoch: 21	batch: 0	loss: 3.1866610050201416	accuracy:0.625
+INFO:root:epoch: 21	batch: 100	loss: 0.9914969205856323	accuracy:0.875
+INFO:root:epoch: 21	batch: 200	loss: 0.7997084856033325	accuracy:0.78125
+INFO:root:epoch: 21	batch: 300	loss: 1.4754552841186523	accuracy:0.59375
+INFO:root:epoch: 21	batch: 400	loss: 0.2941209673881531	accuracy:1.0
+INFO:root:epoch: 21	dev loss: 1.3794207572937012	dev accuracy: 0.6768292784690857	train accuracy: 0.7693750262260437
+INFO:root:epoch: 22	batch: 0	loss: 2.676492929458618	accuracy:0.625
+INFO:root:epoch: 22	batch: 100	loss: 0.9812616109848022	accuracy:0.875
+INFO:root:epoch: 22	batch: 200	loss: 1.1255559921264648	accuracy:0.75
+INFO:root:epoch: 22	batch: 300	loss: 1.198349952697754	accuracy:0.65625
+INFO:root:epoch: 22	batch: 400	loss: 0.2896276116371155	accuracy:1.0
+INFO:root:successfully persisted the model at saved_models/memnet_offline/t6/
+INFO:root:epoch: 22	dev loss: 1.3433785438537598	dev accuracy: 0.6797560453414917	train accuracy: 0.7701388597488403
+INFO:root:epoch: 23	batch: 0	loss: 1.7813441753387451	accuracy:0.625
+INFO:root:epoch: 23	batch: 100	loss: 1.1360666751861572	accuracy:0.9375
+INFO:root:epoch: 23	batch: 200	loss: 0.8459434509277344	accuracy:0.75
+INFO:root:epoch: 23	batch: 300	loss: 1.4052222967147827	accuracy:0.625
+INFO:root:epoch: 23	batch: 400	loss: 0.41931113600730896	accuracy:1.0
+INFO:root:successfully persisted the model at saved_models/memnet_offline/t6/
+INFO:root:epoch: 23	dev loss: 1.3411047458648682	dev accuracy: 0.6812195181846619	train accuracy: 0.7737500071525574
+INFO:root:epoch: 24	batch: 0	loss: 2.5006067752838135	accuracy:0.65625
+INFO:root:epoch: 24	batch: 100	loss: 0.895673394203186	accuracy:0.90625
+INFO:root:epoch: 24	batch: 200	loss: 1.0508334636688232	accuracy:0.75
+INFO:root:epoch: 24	batch: 300	loss: 1.2662732601165771	accuracy:0.625
+INFO:root:epoch: 24	batch: 400	loss: 0.42355620861053467	accuracy:1.0
+INFO:root:epoch: 24	dev loss: 1.3674092292785645	dev accuracy: 0.6802439093589783	train accuracy: 0.778124988079071
+INFO:root:epoch: 25	batch: 0	loss: 1.7795963287353516	accuracy:0.65625
+INFO:root:epoch: 25	batch: 100	loss: 0.8312011957168579	accuracy:0.9375
+INFO:root:epoch: 25	batch: 200	loss: 1.0953198671340942	accuracy:0.75
+INFO:root:epoch: 25	batch: 300	loss: 1.3394980430603027	accuracy:0.65625
+INFO:root:epoch: 25	batch: 400	loss: 0.07350774109363556	accuracy:1.0
+INFO:root:successfully persisted the model at saved_models/memnet_offline/t6/
+INFO:root:epoch: 25	dev loss: 1.332563877105713	dev accuracy: 0.6829268336296082	train accuracy: 0.7799305319786072
+INFO:root:epoch: 26	batch: 0	loss: 2.8520476818084717	accuracy:0.65625
+INFO:root:epoch: 26	batch: 100	loss: 1.000401258468628	accuracy:0.90625
+INFO:root:epoch: 26	batch: 200	loss: 0.919130802154541	accuracy:0.75
+INFO:root:epoch: 26	batch: 300	loss: 1.1713621616363525	accuracy:0.65625
+INFO:root:epoch: 26	batch: 400	loss: 0.272140234708786	accuracy:1.0
+INFO:root:successfully persisted the model at saved_models/memnet_offline/t6/
+INFO:root:epoch: 26	dev loss: 1.3143664598464966	dev accuracy: 0.6829268336296082	train accuracy: 0.7813194394111633
+INFO:root:epoch: 27	batch: 0	loss: 1.7956273555755615	accuracy:0.65625
+INFO:root:epoch: 27	batch: 100	loss: 0.8577021956443787	accuracy:0.9375
+INFO:root:epoch: 27	batch: 200	loss: 1.1356086730957031	accuracy:0.75
+INFO:root:epoch: 27	batch: 300	loss: 1.3107613325119019	accuracy:0.71875
+INFO:root:epoch: 27	batch: 400	loss: 0.3476994037628174	accuracy:1.0
+INFO:root:successfully persisted the model at saved_models/memnet_offline/t6/
+INFO:root:epoch: 27	dev loss: 1.3163917064666748	dev accuracy: 0.6848780512809753	train accuracy: 0.784375011920929
+INFO:root:epoch: 28	batch: 0	loss: 1.9443464279174805	accuracy:0.6875
+INFO:root:epoch: 28	batch: 100	loss: 0.8530303239822388	accuracy:0.90625
+INFO:root:epoch: 28	batch: 200	loss: 0.5880064368247986	accuracy:0.75
+INFO:root:epoch: 28	batch: 300	loss: 1.0673655271530151	accuracy:0.65625
+INFO:root:epoch: 28	batch: 400	loss: 0.3426307141780853	accuracy:1.0
+INFO:root:successfully persisted the model at saved_models/memnet_offline/t6/
+INFO:root:epoch: 28	dev loss: 1.3085757493972778	dev accuracy: 0.688048779964447	train accuracy: 0.7855555415153503
+INFO:root:epoch: 29	batch: 0	loss: 1.8938478231430054	accuracy:0.6875
+INFO:root:epoch: 29	batch: 100	loss: 1.0360058546066284	accuracy:0.90625
+INFO:root:epoch: 29	batch: 200	loss: 0.9347996711730957	accuracy:0.78125
+INFO:root:epoch: 29	batch: 300	loss: 1.4090354442596436	accuracy:0.6875
+INFO:root:epoch: 29	batch: 400	loss: 0.3330368995666504	accuracy:1.0
+INFO:root:epoch: 29	dev loss: 1.3168549537658691	dev accuracy: 0.6875609755516052	train accuracy: 0.789027750492096
+INFO:root:epoch: 30	batch: 0	loss: 2.3747339248657227	accuracy:0.6875
+INFO:root:epoch: 30	batch: 100	loss: 0.7108495831489563	accuracy:0.9375
+INFO:root:epoch: 30	batch: 200	loss: 1.1314756870269775	accuracy:0.75
+INFO:root:epoch: 30	batch: 300	loss: 1.1599260568618774	accuracy:0.75
+INFO:root:epoch: 30	batch: 400	loss: 0.5128692984580994	accuracy:1.0
+INFO:root:epoch: 30	dev loss: 1.3034683465957642	dev accuracy: 0.6846342086791992	train accuracy: 0.789513885974884
+INFO:root:epoch: 31	batch: 0	loss: 2.1865129470825195	accuracy:0.6875
+INFO:root:epoch: 31	batch: 100	loss: 0.7192603945732117	accuracy:0.9375
+INFO:root:epoch: 31	batch: 200	loss: 1.1236352920532227	accuracy:0.8125
+INFO:root:epoch: 31	batch: 300	loss: 1.2224723100662231	accuracy:0.71875
+INFO:root:epoch: 31	batch: 400	loss: 0.31270790100097656	accuracy:1.0
+INFO:root:successfully persisted the model at saved_models/memnet_offline/t6/
+INFO:root:epoch: 31	dev loss: 1.3025342226028442	dev accuracy: 0.6895121932029724	train accuracy: 0.7915277481079102
+INFO:root:epoch: 32	batch: 0	loss: 2.3589067459106445	accuracy:0.6875
+INFO:root:epoch: 32	batch: 100	loss: 0.9319026470184326	accuracy:0.90625
+INFO:root:epoch: 32	batch: 200	loss: 0.7234238982200623	accuracy:0.8125
+INFO:root:epoch: 32	batch: 300	loss: 1.1732280254364014	accuracy:0.78125
+INFO:root:epoch: 32	batch: 400	loss: 0.28244346380233765	accuracy:1.0
+INFO:root:epoch: 32	dev loss: 1.2952221632003784	dev accuracy: 0.6887804865837097	train accuracy: 0.7936111092567444
+INFO:root:epoch: 33	batch: 0	loss: 2.6156411170959473	accuracy:0.6875
+INFO:root:epoch: 33	batch: 100	loss: 0.6661125421524048	accuracy:0.9375
+INFO:root:epoch: 33	batch: 200	loss: 0.8960427641868591	accuracy:0.78125
+INFO:root:epoch: 33	batch: 300	loss: 1.1509751081466675	accuracy:0.75
+INFO:root:epoch: 33	batch: 400	loss: 0.10878276079893112	accuracy:1.0
+INFO:root:successfully persisted the model at saved_models/memnet_offline/t6/
+INFO:root:epoch: 33	dev loss: 1.3263195753097534	dev accuracy: 0.6902439594268799	train accuracy: 0.7945138812065125
+INFO:root:epoch: 34	batch: 0	loss: 2.4805092811584473	accuracy:0.6875
+INFO:root:epoch: 34	batch: 100	loss: 1.0785191059112549	accuracy:0.9375
+INFO:root:epoch: 34	batch: 200	loss: 0.658137321472168	accuracy:0.78125
+INFO:root:epoch: 34	batch: 300	loss: 1.2280250787734985	accuracy:0.78125
+INFO:root:epoch: 34	batch: 400	loss: 0.4755226671695709	accuracy:1.0
+INFO:root:successfully persisted the model at saved_models/memnet_offline/t6/
+INFO:root:epoch: 34	dev loss: 1.2981234788894653	dev accuracy: 0.6912195086479187	train accuracy: 0.7977083325386047
+accuracy: 6049/11237 (53.83%)	perfect dialogs: 1/1117 (0.0008952551477170994)
+INFO:root:test literal match results:
+accuracy: 5474/11237 (48.71%)	perfect dialogs: 1/1117 (0.0008952551477170994)
+
+(opnieuw)
+INFO:root:epoch: 0	trn loss: [33315.094]	accuracy: 6617/14404 (45.94%)	perfect dialogs: 32/1618 (0.019777503090234856)
+INFO:root:dev loss: [7.4982443]	accuracy: 1458/4159 (35.06%)	perfect dialogs: 0/500 (0.0)
+INFO:root:successfully persisted the model at saved_models/lstm_offline/t6_regex/
+INFO:root:epoch: 1	trn loss: [24398.93]	accuracy: 8446/14404 (58.64%)	perfect dialogs: 110/1618 (0.06798516687268233)
+INFO:root:dev loss: [3.5471704]	accuracy: 1807/4159 (43.45%)	perfect dialogs: 0/500 (0.0)
+INFO:root:successfully persisted the model at saved_models/lstm_offline/t6_regex/
+INFO:root:epoch: 2	trn loss: [23063.416]	accuracy: 8961/14404 (62.21%)	perfect dialogs: 144/1618 (0.08899876390605686)
+INFO:root:dev loss: [2.6105347]	accuracy: 2159/4159 (51.91%)	perfect dialogs: 0/500 (0.0)
+INFO:root:successfully persisted the model at saved_models/lstm_offline/t6_regex/
+INFO:root:epoch: 3	trn loss: [22536.498]	accuracy: 9156/14404 (63.57%)	perfect dialogs: 152/1618 (0.09394313967861558)
+INFO:root:dev loss: [1.6798589]	accuracy: 2245/4159 (53.98%)	perfect dialogs: 0/500 (0.0)
+INFO:root:successfully persisted the model at saved_models/lstm_offline/t6_regex/
+INFO:root:epoch: 4	trn loss: [22043.14]	accuracy: 9352/14404 (64.93%)	perfect dialogs: 167/1618 (0.10321384425216316)
+INFO:root:dev loss: [1.0370162]	accuracy: 2278/4159 (54.77%)	perfect dialogs: 1/500 (0.002)
+INFO:root:successfully persisted the model at saved_models/lstm_offline/t6_regex/
+INFO:root:epoch: 5	trn loss: [21576.023]	accuracy: 9511/14404 (66.03%)	perfect dialogs: 184/1618 (0.11372064276885044)
+INFO:root:dev loss: [0.6643383]	accuracy: 2294/4159 (55.16%)	perfect dialogs: 1/500 (0.002)
+INFO:root:successfully persisted the model at saved_models/lstm_offline/t6_regex/
+INFO:root:epoch: 6	trn loss: [21196.717]	accuracy: 9621/14404 (66.79%)	perfect dialogs: 203/1618 (0.12546353522867737)
+INFO:root:dev loss: [0.46752343]	accuracy: 2295/4159 (55.18%)	perfect dialogs: 1/500 (0.002)
+INFO:root:successfully persisted the model at saved_models/lstm_offline/t6_regex/
+INFO:root:epoch: 7	trn loss: [20903.053]	accuracy: 9703/14404 (67.36%)	perfect dialogs: 218/1618 (0.13473423980222496)
+INFO:root:dev loss: [0.37679374]	accuracy: 2304/4159 (55.40%)	perfect dialogs: 0/500 (0.0)
+INFO:root:successfully persisted the model at saved_models/lstm_offline/t6_regex/
+INFO:root:epoch: 8	trn loss: [20675.25]	accuracy: 9777/14404 (67.88%)	perfect dialogs: 224/1618 (0.138442521631644)
+INFO:root:dev loss: [0.33118588]	accuracy: 2309/4159 (55.52%)	perfect dialogs: 0/500 (0.0)
+INFO:root:successfully persisted the model at saved_models/lstm_offline/t6_regex/
+INFO:root:epoch: 9	trn loss: [20490.432]	accuracy: 9851/14404 (68.39%)	perfect dialogs: 229/1618 (0.1415327564894932)
+INFO:root:dev loss: [0.3217658]	accuracy: 2324/4159 (55.88%)	perfect dialogs: 0/500 (0.0)
+INFO:root:successfully persisted the model at saved_models/lstm_offline/t6_regex/
+INFO:root:epoch: 10	trn loss: [20320.523]	accuracy: 9880/14404 (68.59%)	perfect dialogs: 231/1618 (0.14276885043263288)
+INFO:root:dev loss: [0.32573214]	accuracy: 2326/4159 (55.93%)	perfect dialogs: 0/500 (0.0)
+INFO:root:successfully persisted the model at saved_models/lstm_offline/t6_regex/
+INFO:root:epoch: 11	trn loss: [20160.582]	accuracy: 9912/14404 (68.81%)	perfect dialogs: 240/1618 (0.14833127317676142)
+INFO:root:dev loss: [0.32672372]	accuracy: 2342/4159 (56.31%)	perfect dialogs: 0/500 (0.0)
+INFO:root:successfully persisted the model at saved_models/lstm_offline/t6_regex/
+INFO:root:epoch: 12	trn loss: [20007.82]	accuracy: 9965/14404 (69.18%)	perfect dialogs: 244/1618 (0.1508034610630408)
+INFO:root:dev loss: [0.32573214]	accuracy: 2351/4159 (56.53%)	perfect dialogs: 0/500 (0.0)
+INFO:root:successfully persisted the model at saved_models/lstm_offline/t6_regex/
+INFO:root:epoch: 13	trn loss: [19871.406]	accuracy: 10004/14404 (69.45%)	perfect dialogs: 247/1618 (0.1526576019777503)
+INFO:root:dev loss: [0.3222616]	accuracy: 2351/4159 (56.53%)	perfect dialogs: 0/500 (0.0)
+INFO:root:successfully persisted the model at saved_models/lstm_offline/t6_regex/
+INFO:root:epoch: 14	trn loss: [19756.238]	accuracy: 10023/14404 (69.58%)	perfect dialogs: 249/1618 (0.15389369592089)
+INFO:root:dev loss: [0.3098671]	accuracy: 2366/4159 (56.89%)	perfect dialogs: 0/500 (0.0)
+INFO:root:successfully persisted the model at saved_models/lstm_offline/t6_regex/
+INFO:root:epoch: 15	trn loss: [19646.756]	accuracy: 10048/14404 (69.76%)	perfect dialogs: 250/1618 (0.15451174289245984)
+INFO:root:dev loss: [0.27764052]	accuracy: 2396/4159 (57.61%)	perfect dialogs: 0/500 (0.0)
+INFO:root:successfully persisted the model at saved_models/lstm_offline/t6_regex/
+INFO:root:epoch: 16	trn loss: [19530.566]	accuracy: 10060/14404 (69.84%)	perfect dialogs: 254/1618 (0.15698393077873918)
+INFO:root:dev loss: [0.24591157]	accuracy: 2421/4159 (58.21%)	perfect dialogs: 1/500 (0.002)
+INFO:root:successfully persisted the model at saved_models/lstm_offline/t6_regex/
+INFO:root:epoch: 17	trn loss: [19419.076]	accuracy: 10082/14404 (69.99%)	perfect dialogs: 256/1618 (0.15822002472187885)
+INFO:root:dev loss: [0.2250883]	accuracy: 2438/4159 (58.62%)	perfect dialogs: 1/500 (0.002)
+INFO:root:successfully persisted the model at saved_models/lstm_offline/t6_regex/
+INFO:root:epoch: 18	trn loss: [19319.96]	accuracy: 10100/14404 (70.12%)	perfect dialogs: 258/1618 (0.15945611866501855)
+INFO:root:dev loss: [0.22013035]	accuracy: 2442/4159 (58.72%)	perfect dialogs: 2/500 (0.004)
+INFO:root:successfully persisted the model at saved_models/lstm_offline/t6_regex/
+INFO:root:epoch: 19	trn loss: [19231.578]	accuracy: 10130/14404 (70.33%)	perfect dialogs: 264/1618 (0.1631644004944376)
+INFO:root:dev loss: [0.21665995]	accuracy: 2439/4159 (58.64%)	perfect dialogs: 2/500 (0.004)
+INFO:root:epoch: 20	trn loss: [19148.998]	accuracy: 10157/14404 (70.52%)	perfect dialogs: 268/1618 (0.16563658838071693)
+INFO:root:dev loss: [0.21467677]	accuracy: 2431/4159 (58.45%)	perfect dialogs: 1/500 (0.002)
+INFO:root:epoch: 21	trn loss: [19070.678]	accuracy: 10186/14404 (70.72%)	perfect dialogs: 271/1618 (0.16749072929542647)
+INFO:root:dev loss: [0.21418098]	accuracy: 2424/4159 (58.28%)	perfect dialogs: 1/500 (0.002)
+INFO:root:epoch: 22	trn loss: [18997.018]	accuracy: 10203/14404 (70.83%)	perfect dialogs: 272/1618 (0.1681087762669963)
+INFO:root:dev loss: [0.21120621]	accuracy: 2414/4159 (58.04%)	perfect dialogs: 1/500 (0.002)
+INFO:root:epoch: 23	trn loss: [18928.047]	accuracy: 10223/14404 (70.97%)	perfect dialogs: 275/1618 (0.1699629171817058)
+INFO:root:dev loss: [0.20823146]	accuracy: 2410/4159 (57.95%)	perfect dialogs: 1/500 (0.002)
+INFO:__main__:no improvement in dev in more the last 5 epochs, stopping now with the best model so far
+
+Process finished with exit code 0
+
+
+############################################ NLU WILLIAMS ###################################################
+Epoch 4/35
+ - 1s - loss: 0.7604 - acc: 0.7946 - val_loss: 1.1512 - val_acc: 0.7122
+
+########################################## REGEX RASA #######################################################
+epoch: 8	trn loss: [22067.098]	accuracy: 9497/14404 (65.93%)	perfect dialogs: 180/1618 (0.11124845488257108)
+INFO:root:dev loss: [1.4726682]	accuracy: 2418/4159 (58.14%)	perfect dialogs: 5/500 (0.01)
+
+accuracy: 5905/11237 (52.55%)	perfect dialogs: 0/1117 (0.0)
+INFO:root:test literal match results:
+accuracy: 5538/11237 (49.28%)	perfect dialogs: 0/1117 (0.0)
+
+######################################### NLU RASA #########################################################
+epoch: 8	trn loss: [21964.21]	accuracy: 9630/14404 (66.86%)	perfect dialogs: 194/1618 (11.99%)
+INFO:root:dev loss: [0.63855654]	accuracy: 2257/4159 (54.27%)	perfect dialogs: 0/500 (0.00%)
+
+accuracy: 6035/11237 (53.71%)	perfect dialogs: 0/1117 (0.0)
+INFO:root:test literal match results:
+accuracy: 5671/11237 (50.47%)	perfect dialogs: 0/1117 (0.0)
+
+########################################## T5 ################################################################
+######################################### NLU RASA ###########################################################
+INFO:root:epoch: 2	trn loss: [3870.4004]	accuracy: 16950/18340 (92.42%)	perfect dialogs: 61/1000 (6.10%)
+INFO:root:dev loss: [7.629986]	accuracy: 12166/18457 (65.92%)	perfect dialogs: 0/1000 (0.00%)
+INFO:root:test act match results:
+accuracy: 17088/18398 (92.88%)	perfect dialogs: 51/1000 (0.051)
+INFO:root:test literal match results:
+accuracy: 17088/18398 (92.88%)	perfect dialogs: 51/1000 (0.051)
+######################################### NLU Williams #######################################################
+epoch: 3	trn loss: [3369.3098]	accuracy: 17095/18340 (93.21%)	perfect dialogs: 91/1000 (9.10%)
+INFO:root:dev loss: [0.611668]	accuracy: 16816/18457 (91.11%)	perfect dialogs: 49/1000 (4.90%)
+INFO:root:test act match results:
+accuracy: 17162/18398 (93.28%)	perfect dialogs: 95/1000 (0.095)
+INFO:root:test literal match results:
+accuracy: 17162/18398 (93.28%)	perfect dialogs: 95/1000 (0.095)

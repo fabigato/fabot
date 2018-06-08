@@ -6,7 +6,6 @@ from os.path import isfile
 from rasa_core.interpreter import RasaNLUInterpreter
 from rasa_core.agent import Agent
 from rasa_core.channels.console import ConsoleInputChannel
-from fabot.custom.ensemble import MemNetPolicyEnsemble
 from fabot.custom.memnet.data_utils import MemNetT5DataAdapter, MemNetT6DataAdapter
 from fabot.custom.memnet.model import MemNetT5Policy, MemNetT6Policy
 from globals import *
@@ -32,7 +31,7 @@ def get_args():
     return parser.parse_args()
 
 
-def train_nlu():
+def train_nlu_6():
     from rasa_nlu.converters import load_data
     from rasa_nlu.config import RasaNLUConfig
     from rasa_nlu.model import Trainer
@@ -40,6 +39,17 @@ def train_nlu():
     trainer = Trainer(RasaNLUConfig(NLU_TRAIN_CONFIG_FILE))
     trainer.train(training_data)
     model_directory = trainer.persist(NLU_MODEL_PATH, project_name='', fixed_model_name='t6new')  # NLU_T6_MODEL_NAME)
+    return model_directory
+
+
+def train_nlu_5():
+    from rasa_nlu.converters import load_data
+    from rasa_nlu.config import RasaNLUConfig
+    from rasa_nlu.model import Trainer
+    training_data = load_data(os.path.join(RASA_TRAIN_PATH, 't5_nlu_trndev.json'))
+    trainer = Trainer(RasaNLUConfig(NLU_TRAIN_CONFIG_FILE))
+    trainer.train(training_data)
+    model_directory = trainer.persist(NLU_MODEL_PATH, project_name='', fixed_model_name='t5')  # NLU_T6_MODEL_NAME)
     return model_directory
 
 
@@ -179,7 +189,7 @@ if __name__ == '__main__':
     init()
     args = get_args()
     if args.action == "train-nlu":
-        train_nlu()
+        train_nlu_5()
     elif args.action == "train-dialogue":
         train_dialogue(args.task)
     elif args.action == "run":

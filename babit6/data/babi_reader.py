@@ -5,7 +5,7 @@ from rasa_core.interpreter import RasaNLUInterpreter
 import re
 from itertools import chain
 from globals import NLU_MODEL_PATH, NLU_T6_MODEL_NAME, BABI_T6_TRN_FILE, BABI_T6_DEV_FILE, BABI_T6_TST_FILE, \
-    BABI_T6_KB_FILE, BABI_T5_TRN_FILE, BABI_T5_DEV_FILE, BABI_T5_TST_FILE
+    BABI_T6_KB_FILE, BABI_T5_TRN_FILE, BABI_T5_DEV_FILE, BABI_T5_TST_FILE, BABI_T5_KB_FILE
 import logging
 import argparse
 from collections import Counter
@@ -138,112 +138,112 @@ class BabiReader(object):
 
 
 class BabiT5Reader(BabiReader):
-    def __init__(self):
-        self.user_das = {
-            'greet': [
-                '^good morning$',
-                '^hello$',
-                '^hi$'
-            ],
-            'inform': [
-                '^i love (?P<cuisine>\w+) food$',
-                '^(?P<location>\w+) please$',
-                '^i am looking for a (?P<price>\w+) restaurant$',  # watchout: not totally sure only price can go there
-                '^(i\'d like to book a table|may i have a table|instead could it be|actually i would prefer|'
-                'can you make a restaurant reservation|can you book a table)?'
-                '(( ?with (?P<cuisine>\w+) (cuisine|food))?( ?in a (?P<price>\w+) price range)?'
-                '( ?for (?P<number>\w+)( people)?)?( ?in (?P<location>\w+))?)+( please)?$',
-                '^we will be (?P<number>\w+)$'
-            ],
-            'deny': [
-                '^no$',
-                '^no this does not work for me$',
-                '^do you have something else$',
-                '^no i don\'t like that$'
-            ],
-            'affirm': [
-                '^it\'s perfect$',
-                '^i love that$',
-                '^let\'s do it$',
-                '^that looks great$'
-            ],
-            'request_phone': [
-                '^may i have the phone number of the restaurant$',
-                '^what is the phone number of the restaurant$',
-                '^do you have its phone number$'
-            ],
-            'request_address': [
-                '^may i have the address of the restaurant$',
-                '^do you have its address$',
-                '^can you provide the address$'
-            ],
-            'thankyou': [
-                '^thanks$',
-                '^thank you$',
-                '^you rock$'
-            ],
-            'bye': [
-                '^no thank you$',
-                '^no thanks$'
-            ],
-            'silence': [
-                '^<SILENCE>$'
-            ]
-        }
-        for da in self.user_das:
-            self.user_das[da] = [re.compile(pattern) for pattern in self.user_das[da]]
-        self._bot_das = {
-            'give_phone': [
-                '^here it is \w+phone$'
-            ],
-            'give_address': [
-                '^here it is \w+address$'
-            ],
-            'suggest_restaurant': [
-                '^what do you think of this option: \w+$'
-            ],
-            'announce_search': [
-                '^ok let me look into some options for you$'
-            ],
-            'request_updates': [
-                '^sure is there anything else to update$'
-            ],
-            'announce_keep_searching': [
-                '^sure let me find an other option for you$'
-            ],
-            'api_call': [
-                '^api_call \w+ \w+ \w+ \w+$'
-            ],
-            'reserve': [
-                '^great let me do the reservation$'
-            ],
-            'greet': [
-                '^hello what can i help you with today$'
-            ],
-            'on_it': [
-                '^i\'m on it$'
-            ],
-            'ask_location': [
-                '^where should it be$'
-            ],
-            'ask_number_of_people': [
-                '^how many people would be in your party$'
-            ],
-            'ask_price': [
-                '^which price range are looking for$'
-            ],
-            'ask_cuisine': [
-                '^any preference on a type of cuisine$'
-            ],
-            'ask_anything_else': [
-                '^is there anything i can help you with$'
-            ],
-            'bye': [
-                '^you\'re welcome$'
-            ]
-        }
-        for da in self._bot_das:
-            self._bot_das[da] = [re.compile(pattern) for pattern in self._bot_das[da]]
+    user_das = {
+        'greet': [
+            '^good morning$',
+            '^hello$',
+            '^hi$'
+        ],
+        'inform': [
+            '^i love (?P<cuisine>\w+) food$',
+            '^(?P<location>\w+) please$',
+            '^i am looking for a (?P<price>\w+) restaurant$',  # watchout: not totally sure only price can go there
+            '^(i\'d like to book a table|may i have a table|instead could it be|actually i would prefer|'
+            'can you make a restaurant reservation|can you book a table)?'
+            '(( ?with (?P<cuisine>\w+) (cuisine|food))?( ?in a (?P<price>\w+) price range)?'
+            '( ?for (?P<number>\w+)( people)?)?( ?in (?P<location>\w+))?)+( please)?$',
+            '^we will be (?P<number>\w+)$'
+        ],
+        'deny': [
+            '^no$',
+            '^no this does not work for me$',
+            '^do you have something else$',
+            '^no i don\'t like that$'
+        ],
+        'affirm': [
+            '^it\'s perfect$',
+            '^i love that$',
+            '^let\'s do it$',
+            '^that looks great$'
+        ],
+        'request_phone': [
+            '^may i have the phone number of the restaurant$',
+            '^what is the phone number of the restaurant$',
+            '^do you have its phone number$'
+        ],
+        'request_address': [
+            '^may i have the address of the restaurant$',
+            '^do you have its address$',
+            '^can you provide the address$'
+        ],
+        'thankyou': [
+            '^thanks$',
+            '^thank you$',
+            '^you rock$'
+        ],
+        'bye': [
+            '^no thank you$',
+            '^no thanks$'
+        ],
+        'silence': [
+            '^<SILENCE>$'
+        ]
+    }
+    user_das = {da: [re.compile(pattern) for pattern in patterns] for da, patterns in user_das.items()}
+    user_da2id = {da: i for i, da in enumerate(user_das)}
+
+    bot_das_ = {
+        'give_phone': ('^here it is \w+phone$', 'here it is {phone}'),
+        'give_address': ('^here it is \w+address$', 'here it is {address}'),
+        'suggest_restaurant': ('^what do you think of this option: \w+$', 'what do you think of this option: {name}'),
+        'announce_search': ('^ok let me look into some options for you$', 'ok let me look into some options for you'),
+        'request_updates': ('^sure is there anything else to update$', 'sure is there anything else to update'),
+        'announce_keep_searching': ('^sure let me find an other option for you$', 'sure let me find an other option for you'),
+        'api_call': ('^api_call \w+ \w+ \w+ \w+$', 'api_call {cuisine} {location} {number} {price}'),
+        'reserve': ('^great let me do the reservation$', 'great let me do the reservation'),
+        'greet': ('^hello what can i help you with today$', 'hello what can i help you with today'),
+        'on_it': ('^i\'m on it$', 'i\'m on it'),
+        'ask_location': ('^where should it be$', 'where should it be'),
+        'ask_number_of_people': ('^how many people would be in your party$', 'how many people would be in your party'),
+        'ask_price': ('^which price range are looking for$', 'which price range are looking for'),
+        'ask_cuisine': ('^any preference on a type of cuisine$', 'any preference on a type of cuisine'),
+        'ask_anything_else': ('^is there anything i can help you with$', 'is there anything i can help you with'),
+        'bye': ('^you\'re welcome$', 'you\'re welcome')
+    }
+    bot_das_ = {da: (re.compile(patterns[0]), patterns[1]) for da, patterns in bot_das_.items()}
+    act2id = {da: i for i, da in enumerate(bot_das_)}
+    id2act = {i: da for da, i in act2id.items()}
+
+    entity2id = {
+        'cuisine': 0,
+        'location': 1,
+        'price': 2,
+        'number': 3
+    }
+
+    w2id, id2w = BabiReader.vocab(BABI_T5_TRN_FILE, 1)
+
+    intents = {da: i for i, da in enumerate(user_das)}
+
+    cuisine_types, locations, prices, numbers = [], [], [], []
+    with open(BABI_T5_KB_FILE) as kb_fh:
+        for line in kb_fh:
+            cuisine_match = re.search('R_cuisine (?P<value>\w+)', line)
+            location_match = re.search('R_location (?P<value>\w+)', line)
+            price_match = re.search('R_price (?P<value>\w+)', line)
+            number_match = re.search('R_number (?P<value>\w+)', line)
+            if cuisine_match:
+                cuisine_types.append(cuisine_match.group('value'))
+            if location_match:
+                locations.append(location_match.group('value'))
+            if price_match:
+                prices.append(price_match.group('value'))
+            if number_match:
+                numbers.append(number_match.group('value'))
+    cuisine_types = list(set(cuisine_types))
+    locations = list(set(locations))
+    prices = list(set(prices))
+    numbers = list(set(numbers))
 
     def get_user_act(self, text):
         for act in self.user_das:
@@ -272,7 +272,7 @@ class BabiT5Reader(BabiReader):
 
     @property
     def bot_das(self):
-        return self._bot_das.keys()
+        return self.bot_das_.keys()
 
 
 class BabiT6Reader(BabiReader):

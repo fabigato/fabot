@@ -1,0 +1,196 @@
+Epoch 1/20
+ - 1s - loss: 1.7448 - acc: 0.6655 - val_loss: 1.2322 - val_acc: 0.6862
+Epoch 2/20
+ - 0s - loss: 0.9583 - acc: 0.7539 - val_loss: 1.1628 - val_acc: 0.6978
+Epoch 3/20
+ - 0s - loss: 0.8760 - acc: 0.7694 - val_loss: 1.1088 - val_acc: 0.7067
+Epoch 4/20
+ - 0s - loss: 0.8312 - acc: 0.7767 - val_loss: 1.0993 - val_acc: 0.7069
+Epoch 5/20
+ - 0s - loss: 0.8031 - acc: 0.7847 - val_loss: 1.0645 - val_acc: 0.7127
+Epoch 6/20
+ - 0s - loss: 0.7835 - acc: 0.7898 - val_loss: 1.0776 - val_acc: 0.7098
+Epoch 7/20
+ - 0s - loss: 0.7685 - acc: 0.7916 - val_loss: 1.0674 - val_acc: 0.7091
+Epoch 8/20
+ - 0s - loss: 0.7578 - acc: 0.7933 - val_loss: 1.0727 - val_acc: 0.7095
+Epoch 9/20
+ - 0s - loss: 0.7498 - acc: 0.7955 - val_loss: 1.0677 - val_acc: 0.7117
+Epoch 10/20
+ - 0s - loss: 0.7426 - acc: 0.7975 - val_loss: 1.0628 - val_acc: 0.7091
+INFO:root:test act match results:
+accuracy: 6092/11237 (54.21%)	perfect dialogs: 15/1117 (0.01342882721575649)
+INFO:root:test literal match results:
+accuracy: 5405/11237 (48.10%)	perfect dialogs: 9/1117 (0.008057296329453895)
+
+Epoch 1/20
+ - 1s - loss: 1.7668 - acc: 0.6604 - val_loss: 1.2453 - val_acc: 0.6759
+Epoch 2/20
+ - 0s - loss: 0.9581 - acc: 0.7544 - val_loss: 1.1364 - val_acc: 0.7026
+Epoch 3/20
+ - 0s - loss: 0.8723 - acc: 0.7694 - val_loss: 1.1011 - val_acc: 0.7076
+Epoch 4/20
+ - 0s - loss: 0.8283 - acc: 0.7789 - val_loss: 1.0789 - val_acc: 0.7103
+Epoch 5/20
+ - 0s - loss: 0.7995 - acc: 0.7855 - val_loss: 1.0608 - val_acc: 0.7105
+Epoch 6/20
+ - 0s - loss: 0.7800 - acc: 0.7917 - val_loss: 1.0565 - val_acc: 0.7115
+Epoch 7/20
+ - 0s - loss: 0.7668 - acc: 0.7929 - val_loss: 1.0329 - val_acc: 0.7182
+Epoch 8/20
+ - 0s - loss: 0.7543 - acc: 0.7938 - val_loss: 1.0525 - val_acc: 0.7146
+Epoch 9/20
+ - 0s - loss: 0.7459 - acc: 0.7962 - val_loss: 1.0570 - val_acc: 0.7163
+Epoch 10/20
+ - 0s - loss: 0.7373 - acc: 0.7982 - val_loss: 1.0527 - val_acc: 0.7127
+Epoch 11/20
+ - 0s - loss: 0.7317 - acc: 0.7964 - val_loss: 1.0463 - val_acc: 0.7134
+Epoch 12/20
+ - 0s - loss: 0.7265 - acc: 0.7989 - val_loss: 1.0544 - val_acc: 0.7124
+INFO:root:test act match results:
+accuracy: 6081/11237 (54.12%)	perfect dialogs: 14/1117 (0.012533572068039392)
+INFO:root:test literal match results:
+accuracy: 5414/11237 (48.18%)	perfect dialogs: 9/1117 (0.008057296329453895)
+unlimited memnet history during inference
+Epoch 1/20
+ - 1s - loss: 1.7462 - acc: 0.6807 - val_loss: 1.2175 - val_acc: 0.6792
+Epoch 2/20
+ - 0s - loss: 0.9559 - acc: 0.7524 - val_loss: 1.1230 - val_acc: 0.7031
+Epoch 3/20
+ - 0s - loss: 0.8713 - acc: 0.7691 - val_loss: 1.0921 - val_acc: 0.7059
+Epoch 4/20
+ - 0s - loss: 0.8285 - acc: 0.7789 - val_loss: 1.0886 - val_acc: 0.7107
+Epoch 5/20
+ - 0s - loss: 0.8017 - acc: 0.7840 - val_loss: 1.0661 - val_acc: 0.7105
+Epoch 6/20
+ - 0s - loss: 0.7820 - acc: 0.7897 - val_loss: 1.0633 - val_acc: 0.7148
+Epoch 7/20
+ - 0s - loss: 0.7700 - acc: 0.7926 - val_loss: 1.0751 - val_acc: 0.7105
+Epoch 8/20
+ - 0s - loss: 0.7592 - acc: 0.7941 - val_loss: 1.0503 - val_acc: 0.7139
+Epoch 9/20
+ - 0s - loss: 0.7499 - acc: 0.7961 - val_loss: 1.0626 - val_acc: 0.7112
+Epoch 10/20
+ - 0s - loss: 0.7427 - acc: 0.7983 - val_loss: 1.0591 - val_acc: 0.7122
+Epoch 11/20
+ - 0s - loss: 0.7361 - acc: 0.7981 - val_loss: 1.0755 - val_acc: 0.7098
+INFO:root:test act match results:
+accuracy: 6099/11237 (54.28%)	perfect dialogs: 17/1117 (0.01521933751119069)
+INFO:root:test literal match results:
+accuracy: 5420/11237 (48.23%)	perfect dialogs: 12/1117 (0.010743061772605193)
+35 epochs (early stopped at 17 with patience 5)
+Epoch 17/35
+ - 0s - loss: 0.7120 - acc: 0.8031 - val_loss: 1.0724 - val_acc: 0.7112
+ INFO:root:test act match results:
+accuracy: 6048/11237 (53.82%)	perfect dialogs: 18/1117 (0.01611459265890779)
+INFO:root:test literal match results:
+accuracy: 5385/11237 (47.92%)	perfect dialogs: 12/1117 (0.010743061772605193)
+(patience 10)
+Epoch 26/35
+ - 0s - loss: 0.6949 - acc: 0.8052 - val_loss: 1.0705 - val_acc: 0.7100
+INFO:root:test act match results:
+accuracy: 6056/11237 (53.89%)	perfect dialogs: 16/1117 (0.01432408236347359)
+INFO:root:test literal match results:
+accuracy: 5401/11237 (48.06%)	perfect dialogs: 12/1117 (0.010743061772605193)
+(added extra dense layer, now is input - 100 - 80 - output)
+Epoch 16/35
+ - 0s - loss: 0.6897 - acc: 0.8048 - val_loss: 1.0814 - val_acc: 0.7110
+INFO:root:test act match results:
+accuracy: 6093/11237 (54.22%)	perfect dialogs: 22/1117 (0.019695613249776187)
+INFO:root:test literal match results:
+accuracy: 5411/11237 (48.15%)	perfect dialogs: 16/1117 (0.01432408236347359)
+(added dropout 0.8 keep)
+Epoch 19/35
+ - 1s - loss: 0.7208 - acc: 0.8020 - val_loss: 1.0608 - val_acc: 0.7093
+INFO:root:test act match results:
+accuracy: 6083/11237 (54.13%)	perfect dialogs: 21/1117 (0.018800358102059087)
+INFO:root:test literal match results:
+accuracy: 5412/11237 (48.16%)	perfect dialogs: 16/1117 (0.01432408236347359)
+(training on dev set, validating on tst set)
+Epoch 21/35
+0s - loss: 0.7078 - acc: 0.7865 - val_loss: 5.8266 - val_acc: 0.4838
+(back to trn/dev)
+Epoch 19/35
+ - 1s - loss: 0.7249 - acc: 0.8021 - val_loss: 1.0356 - val_acc: 0.7110
+(dropout keep 70%)
+Epoch 15/35
+ - 1s - loss: 0.7588 - acc: 0.7982 - val_loss: 1.0744 - val_acc: 0.7091
+INFO:root:test act match results:
+accuracy: 6063/11237 (53.96%)	perfect dialogs: 12/1117 (0.010743061772605193)
+INFO:root:test literal match results:
+accuracy: 5413/11237 (48.17%)	perfect dialogs: 8/1117 (0.007162041181736795)
+(dropout keep 90%)
+Epoch 17/35
+ - 1s - loss: 0.7037 - acc: 0.8039 - val_loss: 1.0837 - val_acc: 0.7139
+INFO:root:test act match results:
+accuracy: 6081/11237 (54.12%)	perfect dialogs: 19/1117 (0.017009847806624886)
+INFO:root:test literal match results:
+accuracy: 5417/11237 (48.21%)	perfect dialogs: 13/1117 (0.011638316920322292)
+(geen dropout meer)
+Epoch 21/35
+ - 0s - loss: 0.6723 - acc: 0.8085 - val_loss: 1.0649 - val_acc: 0.7115
+INFO:root:test act match results:
+accuracy: 6116/11237 (54.43%)	perfect dialogs: 22/1117 (0.019695613249776187)
+INFO:root:test literal match results:
+accuracy: 5452/11237 (48.52%)	perfect dialogs: 17/1117 (0.01521933751119069)
+added Dense: input, 500, 200, 100, output
+Epoch 14/35
+ - 1s - loss: 0.6790 - acc: 0.8071 - val_loss: 1.1551 - val_acc: 0.7088
+INFO:root:test act match results:
+accuracy: 6111/11237 (54.38%)	perfect dialogs: 17/1117 (0.01521933751119069)
+INFO:root:test literal match results:
+accuracy: 5421/11237 (48.24%)	perfect dialogs: 11/1117 (0.009847806624888093)
+(patience 15)
+Epoch 22/35
+ - 1s - loss: 0.6597 - acc: 0.8142 - val_loss: 1.2736 - val_acc: 0.7059
+INFO:root:test act match results:
+accuracy: 6099/11237 (54.28%)	perfect dialogs: 22/1117 (0.019695613249776187)
+INFO:root:test literal match results:
+accuracy: 5361/11237 (47.71%)	perfect dialogs: 16/1117 (0.01432408236347359)
+(patience 2)
+Epoch 8/35
+ - 1s - loss: 0.7121 - acc: 0.8010 - val_loss: 1.0871 - val_acc: 0.7086
+I'll keep this architecture
+(opnieuw)
+Epoch 5/35
+ - 1s - loss: 0.7959 - acc: 0.7870 - val_loss: 1.1439 - val_acc: 0.6927
+
+################################# learned T6 NLU RASA ####################################################
+Epoch 5/35
+ - 1s - loss: 1.0601 - acc: 0.7062 - val_loss: 1.2633 - val_acc: 0.6780
+ INFO:root:test act match results:
+accuracy: 5974/11237 (53.16%)	perfect dialogs: 3/1117 (0.0026857654431512983)
+INFO:root:test literal match results:
+accuracy: 5400/11237 (48.06%)	perfect dialogs: 3/1117 (0.0026857654431512983)
+
+################################# highest t6 nlu rasa ####################################################
+INFO:root:test act match results:
+accuracy: 6167/11237 (54.88%)	perfect dialogs: 3/1117 (0.0026857654431512983)
+INFO:root:test literal match results:
+accuracy: 5696/11237 (50.69%)	perfect dialogs: 3/1117 (0.0026857654431512983)
+
+################################# average t6 nlu rasa ####################################################
+INFO:root:test act match results:
+accuracy: 6167/11237 (54.88%)	perfect dialogs: 3/1117 (0.0026857654431512983)
+INFO:root:test literal match results:
+accuracy: 5697/11237 (50.70%)	perfect dialogs: 3/1117 (0.0026857654431512983)
+
+################################# learned t6 regex rasa ##################################################
+Epoch 4/35
+ - 1s - loss: 1.0534 - acc: 0.7107 - val_loss: 1.2057 - val_acc: 0.6795
+INFO:root:test act match results:
+accuracy: 5993/11237 (53.33%)	perfect dialogs: 7/1117 (0.006266786034019696)
+INFO:root:test literal match results:
+accuracy: 5389/11237 (47.96%)	perfect dialogs: 6/1117 (0.005371530886302597)
+
+################################# highest t6 regex rasa ##################################################
+INFO:root:test act match results:
+accuracy: 6113/11237 (54.40%)	perfect dialogs: 0/1117 (0.0)
+INFO:root:test literal match results:
+accuracy: 5572/11237 (49.59%)	perfect dialogs: 0/1117 (0.0)
+
+################################# average t6 regex rasa ##################################################
+INFO:root:test act match results:
+accuracy: 6129/11237 (54.54%)	perfect dialogs: 0/1117 (0.0)
+INFO:root:test literal match results:
+accuracy: 5584/11237 (49.69%)	perfect dialogs: 0/1117 (0.0)

@@ -1,9 +1,10 @@
 from data.feature_factory import T6Featurizer
 import argparse
 from keras.models import Sequential
-from keras.layers import Dense
+from keras.layers import Dense, Dropout
 from keras.models import model_from_json
 from keras.utils import to_categorical
+from keras.callbacks import BaseLogger, EarlyStopping
 from data.babi_reader import BabiReader
 from fabot.custom.memnet.model import MemoryNetwork
 from fabot.custom.lstm.model import CustomLSTM
@@ -13,7 +14,7 @@ import logging
 import numpy as np
 from numpy import argmax
 from copy import copy
-from globals import PERSISTED_ENSEMBLE_T6, PERSISTED_T6_MEMNET_OFFLINE_PATH, PERSISTED_T6_LSTM_OFFLINE_PATH, \
+from globals import PERSISTED_ENSEMBLE_T6, PERSISTED_T6_MEMNET_OFFLINE_PATH, PERSISTED_LSTM_OFFLINE_PATH, \
     BABI_T6_TRN_FILE, BABI_T6_DEV_FILE, BABI_T6_TST_FILE
 import json
 import re
@@ -44,7 +45,10 @@ class CustomEnsemble(object):
         self.policy = policy
         if policy == 'learned':
             ensemble = Sequential()
-            ensemble.add(Dense(80, input_dim=num_actions * len(models), activation='relu'))
+            ensemble.add(Dense(500, input_dim=num_actions * len(models), activation='relu'))
+            ensemble.add(Dense(200, activation='relu'))
+            ensemble.add(Dense(100, activation='relu'))
+            # ensemble.add(Dropout(rate=0.1))
             ensemble.add(Dense(num_actions, activation='softmax'))
             ensemble.compile(optimizer='rmsprop', loss='categorical_crossentropy', metrics=['accuracy'])
             self.ensemble = ensemble
@@ -118,20 +122,32 @@ class CustomEnsemble(object):
                     pickle.dump((x, y, e), fh)
                     logger.info('successfully saved data at {}'.format(saved_filename))
             return x, y
-        x_trn, y_trn = load_data('fabot/custom/ensemble_t6_trn_data.pickle', trn_filename)
+        x_trn, y_trn = load_data('fabot/custom/ensemble/saved_data/ensemble_t6_trn_{ent}_{feats}_data.pickle'.format(
+            ent=args.entities, feats=args.features), trn_filename)
         y_trn = to_categorical(np.array(y_trn), num_classes=num_actions)
-        self.ensemble.fit(x_trn, y_trn, epochs=epochs, verbose=2)
         if dev_filename:
-            x_dev, y_dev = load_data('fabot/custom/ensemble_t6_dev_data.pickle', dev_filename)
+            x_dev, y_dev = load_data('fabot/custom/ensemble/saved_data/ensemble_t6_dev_{ent}_data.pickle'.format(
+                ent=args.entities, feats=args.features), dev_filename)
             y_dev = to_categorical(y_dev, num_classes=num_actions)
-            score = self.ensemble.evaluate(x_dev, y_dev, batch_size=128)
-            logger.info('accuracy on dev: {}', score[1])
+            # y_dev = to_categorical(np.array(y_dev), num_classes=num_actions)
+            self.ensemble.fit(x_trn, y_trn, epochs=epochs, verbose=2, validation_data=(x_dev, y_dev),
+                              callbacks=[BaseLogger(), EarlyStopping(monitor='val_acc', patience=2)])
+        else:
+            self.ensemble.fit(x_trn, y_trn, epochs=epochs, verbose=2)
+        # if dev_filename:
+        #     x_dev, y_dev = load_data('fabot/custom/ensemble_t6_dev_data.pickle', dev_filename)
+        #     y_dev = to_categorical(y_dev, num_classes=num_actions)
+        #     score = self.ensemble.evaluate(x_dev, y_dev, batch_size=128)
+        #     logger.info('accuracy on dev: {}', score[1])
         # save
         model_json = self.ensemble.to_json()
-        with open(join(PERSISTED_ENSEMBLE_T6, 'model.json'), "w") as json_file:
+        with open(join(PERSISTED_ENSEMBLE_T6.format(ent=args.entities, feats=args.features), 'model.json'),
+                  "w") as json_file:
             json_file.write(model_json)
-        self.ensemble.save_weights(join(PERSISTED_ENSEMBLE_T6, 'model.h5'))
-        logger.info('successfully persisted ensemble at {}'.format(PERSISTED_ENSEMBLE_T6))
+        self.ensemble.save_weights(join(PERSISTED_ENSEMBLE_T6.format(ent=args.entities,
+                                                                     feats=args.features), 'model.h5'))
+        logger.info('successfully persisted ensemble at {}'.format(PERSISTED_ENSEMBLE_T6.format(ent=args.entities,
+                                                                                                feats=args.features)))
 
     def load(self, path):
         with open(join(path, 'model.json')) as json_config:
@@ -150,17 +166,16 @@ class CustomEnsemble(object):
             input = np.reshape(input, (1, input.shape[0]))
             prediction = self.ensemble.predict(input, batch_size=1)
         elif self.policy == 'highest':
-            pass
-            # result = None
-            # max_confidence = -1
-            # for p in self.policies:
-            #     probabilities = p.predict_action_probabilities(tracker, domain)
-            #     confidence = np.max(probabilities)
-            #     if confidence > max_confidence:
-            #         max_confidence = confidence
-            #         result = probabilities
+            max_confidence = -1
+            for candidate in inputs:
+                confidence = np.max(candidate)
+                if confidence > max_confidence:
+                    max_confidence = confidence
+                    prediction = candidate
         elif self.policy == 'average':
-            pass
+            prediction = np.mean(inputs, axis=0)
+        else:
+            raise ValueError('policy must be "highest", "average" or "learned". Got {}'.format(self.policy))
         return prediction
 
     def test_t6(self, featurizer):
@@ -198,17 +213,19 @@ class CustomEnsemble(object):
             results.append(story_results)
             for m in self.models:
                 m.reset_conversation_state()
-        with open('fabot/custom/tst_t6_ensemble_offline_results.json', 'w') as fh:
+        with open('fabot/custom/tst_t6_ensemble_offline_results_{policy}_{ent}.json'.format(
+                policy=self.policy, ent=args.entities), 'w') as fh:
             json.dump(results, fh, indent=2)
         logging.info('test act match results:\n'
-                     'accuracy: {}/{} ({:.2%})\tperfect dialogs: {}/{} ({})'.format(
-            total_act_matches, total_turns, total_act_matches / total_turns, perfect_act_dialogs, total_dialogs,
-                                            perfect_act_dialogs / total_dialogs))
+                     'accuracy: {}/{} ({:.2%})\tperfect dialogs: {}/{} ({})'.format(total_act_matches, total_turns,
+                                                                                    total_act_matches / total_turns,
+                                                                                    perfect_act_dialogs, total_dialogs,
+                                                                                    perfect_act_dialogs / total_dialogs)
+                     )
         logging.info('test literal match results:\n'
-                     'accuracy: {}/{} ({:.2%})\tperfect dialogs: {}/{} ({})'.format(
-            total_literal_matches, total_turns, total_literal_matches / total_turns, perfect_literal_dialogs,
-            total_dialogs,
-                                                perfect_literal_dialogs / total_dialogs))
+                     'accuracy: {}/{} ({:.2%})\tperfect dialogs: {}/{} ({})'.
+                     format(total_literal_matches, total_turns, total_literal_matches / total_turns,
+                            perfect_literal_dialogs, total_dialogs, perfect_literal_dialogs / total_dialogs))
 
 
 def get_args():
@@ -217,39 +234,47 @@ def get_args():
     parser.add_argument('--job', choices=['train', 'test'], required=True,
                         help='train the ensemble or test an already trained one. Mandatory')
     parser.add_argument('--task', choices=['5', '6'], required=True, help='bAbI task, must be t5 or t6. Mandatory')
+    parser.add_argument('--policy', choices=['average', 'highest', 'learned'], help='ensemble policy. "average" to use '
+                                                                                    'average distribution of all '
+                                                                                    'models, "highest" to use the '
+                                                                                    'distribution with highest '
+                                                                                    'confidence and "learned" to use '
+                                                                                    'a model trained on the '
+                                                                                    'distributions of the ensemble')
+    parser.add_argument('--entities', choices=['regex', 'nlu'], required=True,
+                        help='regex if you want to use basic pattern match to find entities. nlu if you want to use '
+                             'Rasa NLU instead. Mandatory')
+    parser.add_argument('--features', choices=['williams', 'rasa'], required=True)
     return parser.parse_args()
 
 
 if __name__ == '__main__':
     args = get_args()
+    if args.features == 'williams':
+        features = {'use_bow': True, 'use_turn': True, 'use_bot_utter': True, 'use_embeddings': True,
+                    'use_intent': False, 'use_nlu_entity_extractor': args.entities == 'nlu', 'use_entities': True,
+                    'use_context': True}
+    else:  # Rasa
+        features = {'use_bow': False, 'use_turn': True, 'use_bot_utter': True, 'use_embeddings': False,
+                    'use_intent': True, 'use_nlu_entity_extractor': args.entities == 'nlu', 'use_entities': True,
+                    'use_context': True}
     if args.task == '6':
         if args.job == 'train':
-            featurizer = T6Featurizer(use_bow=True, use_turn=True, use_bot_utter=True, use_embeddings=True,
-                                      use_intent=False, use_nlu_entity_extractor=False, use_entities=True,
-                                      use_context=True)
+            featurizer = T6Featurizer(**features)
             num_actions = T6Featurizer.num_actions()
-            # h_len = featurizer.feature_len()
-            # hops = 2
-            # embedding_size = 100
-            # batch = 32
-            # mem_size = 10
-            # epochs = 10
-            # clip_norm = 15
-            # keep_prob = 0.86
-            memnet = MemoryNetwork.load(PERSISTED_T6_MEMNET_OFFLINE_PATH)
-            lstm = CustomLSTM.load(PERSISTED_T6_LSTM_OFFLINE_PATH)
+            memnet = MemoryNetwork.load(PERSISTED_T6_MEMNET_OFFLINE_PATH.format(ent=args.entities, feats=args.features))
+            lstm = CustomLSTM.load(PERSISTED_LSTM_OFFLINE_PATH.format(task=args.task, ent=args.entities,
+                                                                      feats=args.features))
             ensemble = CustomEnsemble(models=[memnet, lstm], num_actions=num_actions, policy='learned')
-            ensemble.train_t6(trn_filename=BABI_T6_TRN_FILE, featurizer=featurizer, epochs=10,
+            ensemble.train_t6(trn_filename=BABI_T6_TRN_FILE, featurizer=featurizer, epochs=35,
                               dev_filename=BABI_T6_DEV_FILE)
         if args.job == 'test':
-            featurizer = T6Featurizer(use_bow=True, use_turn=True, use_bot_utter=True, use_embeddings=True,
-                                      use_intent=False, use_nlu_entity_extractor=False, use_entities=True,
-                                      use_context=True)
-            memnet = MemoryNetwork.load(PERSISTED_T6_MEMNET_OFFLINE_PATH)
-            lstm = CustomLSTM.load(PERSISTED_T6_LSTM_OFFLINE_PATH)
-            ensemble = CustomEnsemble(models=[memnet, lstm], num_actions=T6Featurizer.num_actions(), policy='learned')
-            ensemble.load(PERSISTED_ENSEMBLE_T6)
+            featurizer = T6Featurizer(**features)
+            memnet = MemoryNetwork.load(PERSISTED_T6_MEMNET_OFFLINE_PATH.format(ent=args.entities, feats=args.features))
+            lstm = CustomLSTM.load(PERSISTED_LSTM_OFFLINE_PATH.format(task=args.task, ent=args.entities, feats=args.features))
+            ensemble = CustomEnsemble(models=[memnet, lstm], num_actions=T6Featurizer.num_actions(),
+                                      policy=args.policy)
+            ensemble.load(PERSISTED_ENSEMBLE_T6.format(ent=args.entities, feats=args.features))
             ensemble.test_t6(featurizer)
     if args.task == '5':
         raise NotImplementedError
-

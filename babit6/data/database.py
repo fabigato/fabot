@@ -1,8 +1,12 @@
 from collections import defaultdict
 import pandas as pd
 
-BABI2FABOT_SLOT = {b: f for b, f in zip(['R_cuisine', 'R_location', 'R_price', 'R_address', 'R_phone', 'R_post_code'],
-                                        ['cuisine', 'location', 'price', 'address', 'phone', 'postcode'])}
+T6BABI2FABOT_SLOT = {b: f for b, f in zip(['R_cuisine', 'R_location', 'R_price', 'R_address', 'R_phone', 'R_post_code'],
+                                          ['cuisine', 'location', 'price', 'address', 'phone', 'postcode'])}
+
+T5BABI2FABOT_SLOT = {b: f for b, f in zip(['R_cuisine', 'R_location', 'R_price', 'R_rating', 'R_phone', 'R_address',
+                                           'R_number'],
+                                          ['cuisine', 'location', 'price', 'rating', 'phone', 'address', 'number'])}
 
 BABI_MESSAGES = {
     'no_more_options': [
@@ -136,19 +140,22 @@ BABI_MESSAGES = {
 
 class BabiDB(object):
 
-    def __init__(self, babi_kb):
+    def __init__(self, babi_kb, task=6):
+        self.task = task
         restaurants = defaultdict(dict)
+        var_map = T6BABI2FABOT_SLOT if task == 6 else T5BABI2FABOT_SLOT
         with open(babi_kb, 'r') as babi_kb_handler:
             for line in babi_kb_handler:
                 _, name, var, value = line.split()
-                restaurants[name][BABI2FABOT_SLOT[var]] = value
-        self.restaurants = pd.DataFrame(columns=['name', 'cuisine', 'location', 'price', 'address', 'phone',
-                                                 'postcode'])
+                restaurants[name][var_map[var]] = value
+        cols = ['name', 'cuisine', 'location', 'price', 'address', 'phone', 'postcode'] \
+            if task == 6 else ['name', 'cuisine', 'location', 'price', 'rating', 'phone', 'address', 'number']
+        self.restaurants = pd.DataFrame(columns=cols)
         for restaurant, data in restaurants.items():
             # add the missing values as None:
-            for var in BABI2FABOT_SLOT.keys():
-                if BABI2FABOT_SLOT[var] not in data:
-                    data[BABI2FABOT_SLOT[var]] = None
+            for var in var_map.keys():
+                if var_map[var] not in data:
+                    data[var_map[var]] = None
             self.restaurants = self.restaurants.append({'name': restaurant, **data}, ignore_index=True)
 
     def find_restaurant(self, **kwargs):
@@ -161,6 +168,8 @@ class BabiDB(object):
         result = self.restaurants
         for var, value in kwargs.items():  # go through each condition
             result = result[result[var].str.contains(value)] if var == 'name' else result[result[var] == value]
+        if self.task == 5:
+            result = result.sort_values(by='rating', ascending=False)
         return result
 
     def num_results(self, **kwargs):

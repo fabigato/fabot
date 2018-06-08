@@ -1,9 +1,10 @@
 import tensorflow as tf
 from tensorflow.contrib.layers import xavier_initializer as xav
-from globals import PERSISTED_T6_LSTM_OFFLINE_PATH, BABI_T6_TRN_FILE, BABI_T6_DEV_FILE, BABI_T6_TST_FILE
+from globals import PERSISTED_LSTM_OFFLINE_PATH, BABI_T6_TRN_FILE, BABI_T6_DEV_FILE, BABI_T6_TST_FILE, \
+    BABI_T5_TRN_FILE, BABI_T5_DEV_FILE, BABI_T5_TST_FILE
 import logging
 import numpy as np
-from data.feature_factory import T6Featurizer
+from data.feature_factory import T6Featurizer, T5Featurizer
 import pickle
 from data.babi_reader import BabiReader
 from copy import copy
@@ -68,7 +69,7 @@ class CustomLSTM(object):
 
         # attach symbols to self
         self.loss = loss
-        self.prediction = prediction
+        self.predicted_action = prediction
         self.probs = probs
         self.logits = logits
         self.state = state
@@ -91,7 +92,7 @@ class CustomLSTM(object):
     def predict_turn(self, features):
         # forward
         action_mask = [1] * self.num_actions
-        probs, prediction, state_c, state_h = self.sess.run([self.probs, self.prediction, self.state.c, self.state.h],
+        probs, prediction, state_c, state_h = self.sess.run([self.probs, self.predicted_action, self.state.c, self.state.h],
                                                             feed_dict={
                                                                 self.features_: [features],
                                                                 self.init_state_c_: self.init_state_c,
@@ -107,7 +108,7 @@ class CustomLSTM(object):
     def prediction(self, features):
         # forward
         action_mask = [1] * self.num_actions
-        probs, prediction, state_c, state_h = self.sess.run([self.probs, self.prediction, self.state.c, self.state.h],
+        probs, prediction, state_c, state_h = self.sess.run([self.probs, self.predicted_action, self.state.c, self.state.h],
                                                             feed_dict={
                                                                 self.features_: features.reshape([1, self.input_dim]),
                                                                 self.init_state_c_: self.init_state_c,
@@ -122,7 +123,7 @@ class CustomLSTM(object):
 
     # training
     def train_step(self, featurized_turn, action, action_mask, train_op):
-        pred, _, loss_value, state_c, state_h = self.sess.run([self.prediction, train_op, self.loss, self.state.c,
+        pred, _, loss_value, state_c, state_h = self.sess.run([self.predicted_action, train_op, self.loss, self.state.c,
                                                                self.state.h], feed_dict={
             self.features_: featurized_turn.reshape([1, self.input_dim]),
             self.action_: [action],
@@ -140,7 +141,7 @@ class CustomLSTM(object):
         self.init_state_c = np.zeros([1, self.hidden_size], dtype=np.float32)
         self.init_state_h = np.zeros([1, self.hidden_size], dtype=np.float32)
 
-    def persist(self, path=PERSISTED_T6_LSTM_OFFLINE_PATH):
+    def persist(self, path):
         config = {'input_dim': self.input_dim, 'hidden_size': self.hidden_size, 'num_actions': self.num_actions}
         with open(join(path, 'config.json'), 'w') as fh:
             json.dump(config, fh, indent=2)
@@ -149,7 +150,7 @@ class CustomLSTM(object):
         logging.info('successfully persisted the model at {}'.format(path))
 
     @staticmethod
-    def load(path=PERSISTED_T6_LSTM_OFFLINE_PATH):
+    def load(path):
         with open(join(path, 'config.json')) as fh:
             config = json.load(fh)
         model = CustomLSTM(input_dim=config['input_dim'], hidden_size=config['hidden_size'],
@@ -187,29 +188,39 @@ def format_babi_data(filename, featurizer):
     return data
 
 
-def train_t6():
-    epochs = 12
+def train(task):
+    if task == '6':
+        trn_file = BABI_T6_TRN_FILE
+        dev_file = BABI_T6_DEV_FILE
+    elif task == '5':
+        trn_file = BABI_T5_TRN_FILE
+        dev_file = BABI_T5_DEV_FILE
+    epochs = 35
     clip_norm = 1.
     logging.info('starting training\nConfig:\nactions: {}\ninput_dim: {}\nhidden_size: {}\nepochs: {}\ngradient clip '
                  'norm: {}\n'.format(num_actions, input_dim, hidden_size, epochs, clip_norm))
-    saved_data = 'fabot/custom/lstm/t6_trn_lstm_offline_data.pickle'
+    saved_data = 'fabot/custom/lstm/saved_data/t{task}_trn_lstm_offline_{ent}_{feats}_data.pickle'.format(
+        task=task, ent=args.entities, feats=args.features
+                                                                                                     )
     if isfile(saved_data):
         with open(saved_data, 'rb') as data_fh:
             trn_dialogs = pickle.load(data_fh)
     else:
         print('train data not found, now creating it')
-        trn_dialogs = format_babi_data(filename=BABI_T6_TRN_FILE, featurizer=featurizer)
+        trn_dialogs = format_babi_data(filename=trn_file, featurizer=featurizer)
         print('saving data')
         with open(saved_data, 'wb') as data_fh:
             pickle.dump(trn_dialogs, data_fh)
         print('saved')
-    saved_data = 'fabot/custom/lstm/t6_dev_lstm_offline_data.pickle'
+    saved_data = 'fabot/custom/lstm/saved_data/t{task}_dev_lstm_offline_{ent}_{feats}_data.pickle'.format(
+        task=task, ent=args.entities, feats=args.features
+                                                                                                     )
     if isfile(saved_data):
         with open(saved_data, 'rb') as data_fh:
             dev_dialogs = pickle.load(data_fh)
     else:
         print('dev data not found, now creating it')
-        dev_dialogs = format_babi_data(filename=BABI_T6_DEV_FILE, featurizer=featurizer)
+        dev_dialogs = format_babi_data(filename=dev_file, featurizer=featurizer)
         print('saving data')
         with open(saved_data, 'wb') as data_fh:
             pickle.dump(dev_dialogs, data_fh)
@@ -226,7 +237,12 @@ def train_t6():
     model.sess.run(tf.global_variables_initializer())
     total_turns = sum([len(dialog) for dialog in trn_dialogs])
     dev_total_turns = sum([len(dialog) for dialog in dev_dialogs])
+    highest_dev_matches = 0
+    chances2improve = 5
+    stop = False
     for epoch in range(epochs):
+        if stop:
+            break
         total_loss = 0
         total_matches = 0
         perfect_dialogs = 0
@@ -240,7 +256,7 @@ def train_t6():
                 dialog_matches += int(pred == turn['y'])
             total_matches += dialog_matches
             perfect_dialogs += int(dialog_matches == len(dialog))
-        logging.info('epoch: {}\ttrn loss: {}\taccuracy: {}/{} ({:.2%})\tperfect dialogs: {}/{} ({})'.format(
+        logging.info('epoch: {}\ttrn loss: {}\taccuracy: {}/{} ({:.2%})\tperfect dialogs: {}/{} ({:.2%})'.format(
             epoch, total_loss, total_matches, total_turns, total_matches/total_turns, perfect_dialogs, len(trn_dialogs),
             perfect_dialogs/len(trn_dialogs)))
         # evaluate in dev
@@ -255,22 +271,34 @@ def train_t6():
                 dev_dialog_matches += int(pred == turn['y'])
             dev_total_matches += dev_dialog_matches
             dev_perfect_dialogs += int(dev_dialog_matches == len(dialog))
-        logging.info('dev loss: {}\taccuracy: {}/{} ({:.2%})\tperfect dialogs: {}/{} ({})'.format(
+        logging.info('dev loss: {}\taccuracy: {}/{} ({:.2%})\tperfect dialogs: {}/{} ({:.2%})'.format(
             dev_total_loss, dev_total_matches, dev_total_turns, dev_total_matches / dev_total_turns,
             dev_perfect_dialogs, len(dev_dialogs), dev_perfect_dialogs / len(dev_dialogs)))
-    model.persist()
+        if dev_total_matches >= highest_dev_matches:
+            highest_dev_matches = dev_total_matches
+            chances2improve = 5
+            model.persist(path=PERSISTED_LSTM_OFFLINE_PATH.format(task=task, ent=args.entities, feats=args.features))
+        else:
+            chances2improve -= 1
+            if chances2improve == 0:
+                logger.info('no improvement in dev in more the last 5 epochs, stopping now with the best model so far')
+                stop = True
 
 
-def test_t6_act_match():
+def test_act_match(task):
     """tests act match vs test set"""
-    model = CustomLSTM.load(path=PERSISTED_T6_LSTM_OFFLINE_PATH)
-    saved_data = 'fabot/custom/lstm/t6_tst_lstm_offline_data.pickle'
+    if task == '6':
+        tst_file = BABI_T6_TST_FILE
+    elif task == '5':
+        tst_file = BABI_T5_TST_FILE
+    model = CustomLSTM.load(path=PERSISTED_LSTM_OFFLINE_PATH.format(task=task, ent=args.entities, feats=args.features))
+    saved_data = 'fabot/custom/lstm/t{task}_tst_lstm_offline_data.pickle'.format(task)
     if isfile(saved_data):
         with open(saved_data, 'rb') as data_fh:
             tst_dialogs = pickle.load(data_fh)
     else:
         print('train data not found, now creating it')
-        tst_dialogs = format_babi_data(filename=BABI_T6_TST_FILE, featurizer=featurizer)
+        tst_dialogs = format_babi_data(filename=tst_file, featurizer=featurizer)
         print('saving data')
         with open(saved_data, 'wb') as data_fh:
             pickle.dump(tst_dialogs, data_fh)
@@ -282,7 +310,7 @@ def test_t6_act_match():
     for dialog in tst_dialogs:
         dialog_matches = 0
         for turn in dialog:
-            pred = model.prediction(features=turn['x'])
+            pred = model.predicted_action(features=turn['x'])
             dialog_matches += int(pred == turn['y'])
         total_matches += dialog_matches
         perfect_dialogs += int(dialog_matches == len(dialog))
@@ -291,16 +319,21 @@ def test_t6_act_match():
         perfect_dialogs / len(tst_dialogs)))
 
 
-def produce_test_results_file():
+def produce_test_results_file(task):
     """tests literal match vs test set. Produces a json file with the results of both act and literal match"""
-    model = CustomLSTM.load(path=PERSISTED_T6_LSTM_OFFLINE_PATH)
-
+    model = CustomLSTM.load(path=PERSISTED_LSTM_OFFLINE_PATH.format(task=task, ent=args.entities, feats=args.features))
+    if task == '6':
+        tst_file = BABI_T6_TST_FILE
+        total_turns = 11237
+        total_dialogs = 1117
+    elif task == '5':
+        tst_file = BABI_T5_TST_FILE
+        total_turns = 18398
+        total_dialogs = 1000
     results = []
     total_act_matches, total_literal_matches = 0, 0
     perfect_act_dialogs, perfect_literal_dialogs = 0, 0
-    total_turns = 11237
-    total_dialogs = 1117
-    for story in BabiReader.babi_dialogue_iterator(BABI_T6_TST_FILE):
+    for story in BabiReader.babi_dialogue_iterator(tst_file):
         featurizer.reset()
         story_results = []
         dialog_act_matches, dialog_literal_matches = 0, 0
@@ -320,21 +353,27 @@ def produce_test_results_file():
 
             dialog_act_matches += int(turn_results['act_match'])
             dialog_literal_matches += int(turn_results['literal_match'])
+        model.reset_conversation_state()
         total_act_matches += dialog_act_matches
         total_literal_matches += dialog_literal_matches
         perfect_act_dialogs += int(dialog_act_matches == len(story))
         perfect_literal_dialogs += int(dialog_literal_matches == len(story))
         results.append(story_results)
-    with open('tests/fabot/custom/lstm/tst_t6_lstm_offline_results.json', 'w') as fh:
+    with open('fabot/custom/lstm/results/tst_t{task}_lstm_offline_{ent}_{feats}_results.json'.format(
+            task=task, ent=args.entities, feats=args.features),
+              'w') as fh:
         json.dump(results, fh, indent=2)
     logging.info('test act match results:\n'
-                 'accuracy: {}/{} ({:.2%})\tperfect dialogs: {}/{} ({})'.format(
-        total_act_matches, total_turns, total_act_matches / total_turns, perfect_act_dialogs, total_dialogs,
-        perfect_act_dialogs / total_dialogs))
+                 'accuracy: {}/{} ({:.2%})\tperfect dialogs: {}/{} ({})'.format(total_act_matches, total_turns,
+                                                                                total_act_matches / total_turns,
+                                                                                perfect_act_dialogs, total_dialogs,
+                                                                                perfect_act_dialogs / total_dialogs))
     logging.info('test literal match results:\n'
-                 'accuracy: {}/{} ({:.2%})\tperfect dialogs: {}/{} ({})'.format(
-        total_literal_matches, total_turns, total_literal_matches / total_turns, perfect_literal_dialogs, total_dialogs,
-        perfect_literal_dialogs / total_dialogs))
+                 'accuracy: {}/{} ({:.2%})\tperfect dialogs: {}/{} ({})'.format(total_literal_matches, total_turns,
+                                                                                total_literal_matches / total_turns,
+                                                                                perfect_literal_dialogs, total_dialogs,
+                                                                                perfect_literal_dialogs / total_dialogs
+                                                                                ))
 
 
 def get_args():
@@ -343,20 +382,46 @@ def get_args():
     parser.add_argument('--job', choices=['train', 'test'], required=True,
                         help='train the network or test an already trained one. Mandatory')
     parser.add_argument('--task', choices=['5', '6'], required=True, help='bAbI task, must be t5 or t6. Mandatory')
+    parser.add_argument('--entities', choices=['regex', 'nlu'], required=True,
+                        help='regex if you want to use basic pattern match to find entities. nlu if you want to use '
+                             'Rasa NLU instead. Mandatory')
+    parser.add_argument('--features', choices=['williams', 'rasa'], required=True)
     return parser.parse_args()
 
 
 if __name__ == '__main__':
     args = get_args()
     if args.task == '6':
-        featurizer = T6Featurizer(use_bow=True, use_turn=True, use_bot_utter=True, use_embeddings=True,
-                                  use_intent=False, use_nlu_entity_extractor=False, use_entities=True, use_context=True)
+        if args.features == 'williams':
+            features = {'use_bow': True, 'use_turn': True, 'use_bot_utter': True, 'use_embeddings': True,
+                        'use_intent': False, 'use_nlu_entity_extractor': args.entities == 'nlu', 'use_entities': True,
+                        'use_context': True}
+        else:  # Rasa
+            features = {'use_bow': False, 'use_turn': True, 'use_bot_utter': True, 'use_embeddings': False,
+                        'use_intent': True, 'use_nlu_entity_extractor': args.entities == 'nlu', 'use_entities': True,
+                        'use_context': True}
+        featurizer = T6Featurizer(**features)
         num_actions = T6Featurizer.num_actions()
         input_dim = featurizer.feature_len()
         hidden_size = 128
         if args.job == 'train':
-            train_t6()
+            train(args.task)
         if args.job == 'test':
-            produce_test_results_file()
+            produce_test_results_file(args.task)
     if args.task == '5':
-        raise NotImplementedError
+        if args.features == 'williams':
+            features = {'use_bow': True, 'use_turn': True, 'use_bot_utter': True, 'use_embeddings': True,
+                        'use_intent': False, 'use_nlu_entity_extractor': args.entities == 'nlu', 'use_entities': True,
+                        'use_context': False}
+        else:  # Rasa
+            features = {'use_bow': False, 'use_turn': True, 'use_bot_utter': True, 'use_embeddings': False,
+                        'use_intent': True, 'use_nlu_entity_extractor': args.entities == 'nlu', 'use_entities': True,
+                        'use_context': False}
+        featurizer = T5Featurizer(**features)
+        num_actions = T5Featurizer.num_actions()
+        input_dim = featurizer.feature_len()
+        hidden_size = 128
+        if args.job == 'train':
+            train(task=args.task)
+        if args.job == 'test':
+            produce_test_results_file(args.task)

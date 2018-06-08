@@ -1,8 +1,10 @@
 import tensorflow as tf
 from fabot.custom.memnet.data_utils import MemNetT5DataAdapter, MemNetT6DataAdapter
-from data.feature_factory import T6Featurizer
+from data.feature_factory import T6Featurizer, T5Featurizer
 from data.database import BabiDB
-from globals import BABI_T6_KB_FILE, BABI_T6_TRN_FILE, BABI_T6_DEV_FILE, BABI_T6_TST_FILE
+from globals import BABI_T6_KB_FILE, BABI_T6_TRN_FILE, BABI_T6_DEV_FILE, BABI_T6_TST_FILE, \
+    PERSISTED_T6_MEMNET_OFFLINE_PATH, PERSISTED_T5_MEMNET_OFFLINE_PATH, BABI_T5_TRN_FILE, BABI_T5_DEV_FILE, \
+    BABI_T5_TST_FILE
 from rasa_core.policies import Policy
 from rasa_core.events import ActionExecuted
 from rasa_core.actions.action import ACTION_LISTEN_NAME
@@ -48,6 +50,7 @@ class MemoryNetwork(object):
                  num_actions,
                  utterance_len,
                  embedding_size,
+                 mem_size=10,
                  hops=3,
                  var_init=tf.random_normal_initializer(stddev=0.1),
                  model_name="MemoryNetwork",
@@ -55,6 +58,9 @@ class MemoryNetwork(object):
                  clip_norm=15.,
                  keep_prob=1.):
         self.h = [[0] * utterance_len]  # used during online test
+        self.hops = hops
+        self.mem_size = mem_size
+        self.h_len = utterance_len
         # placeholders
         # [batch, mem_size, utter_len]
         self.history = tf.placeholder(tf.float32, [None, None, utterance_len], name="history")
@@ -70,7 +76,6 @@ class MemoryNetwork(object):
             # self.C = tf.Variable(initial_value=var_init([h_utterance_len, embedding_size]), name="C")
             self.W = tf.Variable(initial_value=var_init([embedding_size, num_actions]), name="W")
             self.H = tf.Variable(initial_value=var_init([embedding_size, embedding_size]), name="H")
-            self.hops = hops
             self.embedding_size = embedding_size
 
             # define graph
@@ -146,19 +151,22 @@ class MemoryNetwork(object):
     def predict_turn(self, x):
         """predicts given one turn, keeping track of history
         :param x: featurized turn"""
-        prediction = self.sess.run(self.output_p, feed_dict={self.history: [self.h],
+        prediction = self.sess.run(self.output_p, feed_dict={self.history: [self.h if len(self.h) > 0 else
+                                                                            [[0] * self.h_len]],
                                                              self.queries: [x],
                                                              self.keep_prob: 1})
         self.h.append(x)
+        # if len(self.h) > self.mem_size:
+        #     self.h = self.h[::-1][:self.mem_size][::-1]
         return prediction.squeeze()
 
     def reset_conversation_state(self):
-        h_len = int(self.history.shape[-1])
-        self.h = [[0] * h_len]
+        self.h = []
 
     def persist(self, path):
-        config = {'hops': self.hops, 'num_actions': int(self.labels.shape[-1]), 'train_dropout': self.train_keep_prob,
-                  'input_dim': int(self.queries.shape[-1]), 'embedding_size': self.embedding_size}
+        config = {'hops': self.hops, 'num_actions': int(self.labels.shape[-1]), 'mem_size': self.mem_size,
+                  'train_dropout': self.train_keep_prob, 'input_dim': int(self.queries.shape[-1]),
+                  'embedding_size': self.embedding_size}
         with open(join(path, 'config.json'), 'w') as fh:
             json.dump(config, indent=2, fp=fh)
         saver = tf.train.Saver()
@@ -170,13 +178,13 @@ class MemoryNetwork(object):
         with open(join(path, 'config.json')) as fh:
             config = json.load(fh)
         model = MemoryNetwork(num_actions=config['num_actions'], utterance_len=config['input_dim'],
-                              embedding_size=config['embedding_size'], hops=config['hops'],
+                              embedding_size=config['embedding_size'], mem_size=config['mem_size'], hops=config['hops'],
                               keep_prob=config['train_dropout'])
         saver = tf.train.Saver()
         ckpt = tf.train.get_checkpoint_state(path)
         if ckpt and ckpt.model_checkpoint_path:
             saver.restore(model.sess, ckpt.model_checkpoint_path)
-            logging.info('successfully restored LSTM model from {}'.format(path))
+            logging.info('successfully restored Memory Network model from {}'.format(path))
         else:
             logging.error('persisted model not found')
         return model
@@ -220,15 +228,6 @@ class MemNetPolicy(Policy):
                                                                         'MemoryNetwork'.format(len(history),
                                                                                                len(query),
                                                                                                len(label))
-        num_actions = len(label[0])  # trn data can't be empty
-        utterance_len = len(history[0][0])  # at least 1 padded memory is in history, always
-        if model:
-            assert isinstance(model, MemoryNetwork), 'expected a MemoryNetwork as model. Got {}'.format(type(model))
-            MemNetPolicy._check_data_model_compatibility(model, num_actions, utterance_len)
-            self.model = model
-        else:
-            self.model = MemoryNetwork(num_actions, utterance_len, embedding_size, hops, var_init,
-                                       model_name)
         self.history = history
         self.queries = query
         self.labels = label
@@ -238,6 +237,16 @@ class MemNetPolicy(Policy):
         self.sess = tf.Session()
         self.mem_size = max(len(h) for h in self.history)
         self.encoder = encoder
+        num_actions = len(label[0])  # trn data can't be empty
+        utterance_len = len(history[0][0])  # at least 1 padded memory is in history, always
+        if model:
+            assert isinstance(model, MemoryNetwork), 'expected a MemoryNetwork as model. Got {}'.format(type(model))
+            MemNetPolicy._check_data_model_compatibility(model, num_actions, utterance_len)
+            self.model = model
+        else:
+            self.model = MemoryNetwork(num_actions=num_actions, utterance_len=utterance_len,
+                                       embedding_size=embedding_size, mem_size=self.mem_size, hops=hops,
+                                       var_init=var_init, model_name=model_name)
 
     @staticmethod
     def _check_data_model_compatibility(model, num_actions, h_utterance_len):
@@ -405,10 +414,11 @@ class MemNetT5Policy(MemNetPolicy):
                 pickle.load(metadata_fh)
         num_actions = len(labels[0])
         utterance_len = len(history[0][0])
+        mem_size = max(len(h) for h in history)
 
         # restore model
         tf.reset_default_graph()
-        model = MemoryNetwork(num_actions, utterance_len, embedding_size, hops=hops)
+        model = MemoryNetwork(num_actions, utterance_len, embedding_size, mem_size, hops=hops)
         mem_net_policy = cls(history, queries, labels, batch_indexes, model=model,
                              embedding_size=embedding_size, hops=hops, encoder=MemNetT5DataAdapter())
         mem_net_policy.current_epoch = current_epoch
@@ -444,10 +454,10 @@ class MemNetT6Policy(MemNetPolicy):
             kb_filename, vocab_filename, w2v_model_filename = pickle.load(metadata_fh)
         num_actions = len(labels[0])
         utterance_len = len(history[0][0])
-
+        mem_size = max(len(h) for h in history)
         # restore model
         tf.reset_default_graph()
-        model = MemoryNetwork(num_actions, utterance_len, embedding_size, hops=hops)
+        model = MemoryNetwork(num_actions, utterance_len, embedding_size, mem_size, hops=hops)
         mem_net_policy = cls(history, queries, labels, batch_indexes, model=model,
                              embedding_size=embedding_size, hops=hops, encoder=MemNetT6DataAdapter(nlu_path,
                                                                                                    kb_filename,
@@ -485,6 +495,10 @@ def get_args():
     parser.add_argument('--job', choices=['train', 'test'], required=True,
                         help='train the network or test an already trained one. Mandatory')
     parser.add_argument('--task', choices=['5', '6'], required=True, help='bAbI task, must be t5 or t6. Mandatory')
+    parser.add_argument('--entities', choices=['regex', 'nlu'], required=True,
+                        help='regex if you want to use basic pattern match to find entities. nlu if you want to use '
+                             'Rasa NLU instead. Mandatory')
+    parser.add_argument('--features', choices=['williams', 'rasa'], required=True)
     return parser.parse_args()
 
 
@@ -506,7 +520,8 @@ def format_babi_data(filename, featurizer):
 
     def prev_bot_utter():
         return '' if i == 0 else story[i-1]['bot']
-    for story in BabiReader.babi_dialogue_iterator(filename):
+    for si, story in enumerate(BabiReader.babi_dialogue_iterator(filename)):
+        logger.info('featurizing story {}'.format(si))
         h = []
         for i, turn in enumerate(story):
             x = featurizer.featurize(user_text=turn['human'], prev_bot_text=prev_bot_utter(), turn=i)
@@ -563,7 +578,8 @@ def train_t6():
         'keep prob: {}\n'.format(hops, num_actions, h_len, embedding_size, batch, mem_size, epochs,
                                  clip_norm,
                                  keep_prob))
-    saved_batches = 'tests/fabot/custom/memnet/t6_trn_memnet_offline_data.pickle'
+    saved_batches = 'fabot/custom/memnet/saved_data/t6_trn_memnet_offline_{ent}_{feats}_data.pickle'.format(
+        ent=args.entities, feats=args.features)
     if isfile(saved_batches):
         with open(saved_batches, 'rb') as batches_fh:
             trn_history, trn_query, trn_label, trn_entities, batch_indexes = pickle.load(batches_fh)
@@ -577,7 +593,8 @@ def train_t6():
         with open(saved_batches, 'wb') as batches_fh:
             pickle.dump((trn_history, trn_query, trn_label, trn_entities, batch_indexes), batches_fh)
         print('saved')
-    saved_batches = 'tests/fabot/custom/memnet/t6_dev_memnet_offline_data.pickle'
+    saved_batches = 'fabot/custom/memnet/saved_data/t6_dev_memnet_offline_{ent}_{feats}_data.pickle'.format(
+        ent=args.entities, feats=args.features)
     if isfile(saved_batches):
         with open(saved_batches, 'rb') as batches_fh:
             dev_history, dev_query, dev_label, dev_entities, dev_batch_indexes = pickle.load(batches_fh)
@@ -591,9 +608,14 @@ def train_t6():
         print('saved')
 
     model = MemoryNetwork(num_actions=num_actions, utterance_len=h_len,
-                          embedding_size=embedding_size,
-                          hops=hops, keep_prob=keep_prob, clip_norm=clip_norm)
+                          embedding_size=embedding_size, mem_size=mem_size, hops=hops, keep_prob=keep_prob,
+                          clip_norm=clip_norm)
+    highest_dev_acc = 0
+    chances2improve = 5
+    stop = False
     for epoch in range(epochs):
+        if stop:
+            break
         batch_indexes = list(batch_indexes)
         trn_accuracies = []
         for i, (b_start, b_end) in enumerate(batch_indexes):
@@ -618,30 +640,138 @@ def train_t6():
                                                                      model.keep_prob: 1})
             dev_accuracies.append(dev_accuracy)
             dev_losses.append(dev_loss)
+        dev_acc = mean(dev_accuracies)
+        if dev_acc >= highest_dev_acc:
+            highest_dev_acc = dev_acc
+            chances2improve = 5
+            model.persist(persisted_path)
+        else:
+            chances2improve -= 1
+            if chances2improve == 0:
+                logger.info('no improvement in dev in more the last 5 epochs, stopping now with the best model so far')
+                stop = True
         logging.info('epoch: {}\tdev loss: {}\tdev accuracy: {}\ttrain accuracy: {}'.format(
             epoch,
             mean(dev_losses),
-            mean(dev_accuracies),
+            dev_acc,
             mean(trn_accuracies)
         ))
-    model.persist(persisted_path)
 
 
-def test_t6():
+def train(task='5'):
+    if task == '5':
+        trn_file = BABI_T5_TRN_FILE
+        dev_file = BABI_T5_DEV_FILE
+    else:
+        trn_file = BABI_T6_TRN_FILE
+        dev_file = BABI_T6_DEV_FILE
+    logging.info(
+        'starting training\nConfig:\nhops: {}\nactions: {}\nhistory utterance length: {}\n'
+        'embedding size: {}\nbatch size: {}\nmemory size: {}\nepochs: {}\ngradient clip norm: {}\n'
+        'keep prob: {}\n'.format(hops, num_actions, h_len, embedding_size, batch, mem_size, epochs,
+                                 clip_norm,
+                                 keep_prob))
+    saved_batches = 'fabot/custom/memnet/saved_data/t{task}_trn_memnet_offline_{ent}_{feats}_data.pickle'.format(
+        task=task, ent=args.entities, feats=args.features)
+    if isfile(saved_batches):
+        with open(saved_batches, 'rb') as batches_fh:
+            trn_history, trn_query, trn_label, trn_entities, batch_indexes = pickle.load(batches_fh)
+    else:
+        print('train batches data not found, now recreating it')
+        trn_history, trn_query, trn_label, trn_entities, batch_indexes = build_batches(filename=trn_file,
+                                                                                       featurizer=featurizer,
+                                                                                       batch_size=batch,
+                                                                                       max_memory_size=mem_size)
+        print('saving data')
+        with open(saved_batches, 'wb') as batches_fh:
+            pickle.dump((trn_history, trn_query, trn_label, trn_entities, batch_indexes), batches_fh)
+        print('saved')
+    saved_batches = 'fabot/custom/memnet/saved_data/t{task}_dev_memnet_offline_{ent}_{feats}_data.pickle'.format(
+        task=task, ent=args.entities, feats=args.features)
+    if isfile(saved_batches):
+        with open(saved_batches, 'rb') as batches_fh:
+            dev_history, dev_query, dev_label, dev_entities, dev_batch_indexes = pickle.load(batches_fh)
+    else:
+        print('dev batches data not found, now recreating it')
+        dev_history, dev_query, dev_label, dev_entities, dev_batch_indexes = build_batches(
+            filename=dev_file, featurizer=featurizer, batch_size=100, max_memory_size=mem_size)
+        print('saving data')
+        with open(saved_batches, 'wb') as batches_fh:
+            pickle.dump((dev_history, dev_query, dev_label, dev_entities, dev_batch_indexes), batches_fh)
+        print('saved')
+
+    model = MemoryNetwork(num_actions=num_actions, utterance_len=h_len,
+                          embedding_size=embedding_size, mem_size=mem_size, hops=hops, keep_prob=keep_prob,
+                          clip_norm=clip_norm)
+    highest_dev_acc = 0
+    chances2improve = 5
+    stop = False
+    for epoch in range(epochs):
+        if stop:
+            break
+        batch_indexes = list(batch_indexes)
+        trn_accuracies = []
+        for i, (b_start, b_end) in enumerate(batch_indexes):
+            pred, loss = model.train_step(history_batch=trn_history[b_start:b_end],
+                                          query_batch=trn_query[b_start:b_end],
+                                          label_batch=trn_label[b_start:b_end])
+            accuracy = model.sess.run(model.accuracy, feed_dict={model.history: trn_history[b_start:b_end],
+                                                                 model.queries: trn_query[b_start:b_end],
+                                                                 model.labels: trn_label[b_start:b_end],
+                                                                 model.keep_prob: 1})
+            if i % print_cycle == 0:
+                logging.info('epoch: {}\tbatch: {}\tloss: {}\taccuracy:{}'.format(epoch, i, loss, accuracy))
+            trn_accuracies.append(accuracy)
+        dev_accuracies, dev_losses = [], []
+        for i, (b_start, b_end) in enumerate(dev_batch_indexes):
+            _, dev_loss = model.train_step(history_batch=dev_history[b_start:b_end],
+                                           query_batch=dev_query[b_start:b_end],
+                                           label_batch=dev_label[b_start:b_end])
+            dev_accuracy = model.sess.run(model.accuracy, feed_dict={model.history: dev_history[b_start:b_end],
+                                                                     model.queries: dev_query[b_start:b_end],
+                                                                     model.labels: dev_label[b_start:b_end],
+                                                                     model.keep_prob: 1})
+            dev_accuracies.append(dev_accuracy)
+            dev_losses.append(dev_loss)
+        dev_acc = mean(dev_accuracies)
+        if dev_acc > highest_dev_acc:
+            highest_dev_acc = dev_acc
+            chances2improve = 5
+            model.persist(persisted_path)
+        else:
+            chances2improve -= 1
+            if chances2improve == 0:
+                logger.info('no improvement in dev in more the last 5 epochs, stopping now with the best model so far')
+                stop = True
+        logging.info('epoch: {}\tdev loss: {}\tdev accuracy: {}\ttrain accuracy: {}'.format(
+            epoch,
+            mean(dev_losses),
+            dev_acc,
+            mean(trn_accuracies)
+        ))
+
+
+def test(task='6'):
     model = MemoryNetwork.load(persisted_path)
     results = []
     total_act_matches, total_literal_matches = 0, 0
     perfect_act_dialogs, perfect_literal_dialogs = 0, 0
-    total_turns = 11237
-    total_dialogs = 1117
-    for story in BabiReader.babi_dialogue_iterator(BABI_T6_TST_FILE):
-        h = [[0] * featurizer.feature_len()]
+    if task == '6':
+        tst_file = BABI_T6_TST_FILE
+        total_turns = 11237
+        total_dialogs = 1117
+    else:  # i.e. 5
+        tst_file = BABI_T5_TST_FILE
+        total_turns = 18398
+        total_dialogs = 1000
+    for story in BabiReader.babi_dialogue_iterator(tst_file):
         featurizer.reset()
         story_results = []
         dialog_act_matches, dialog_literal_matches = 0, 0
+        h = []
         for i, turn in enumerate(story):
             x = featurizer.featurize(user_text=turn['human'], prev_bot_text='' if i == 0 else story[i-1]['bot'], turn=i)
-            prediction = model.prediction(history=h, query=x)
+            prediction = model.prediction(history=h if len(h) > 0 else [[0] * featurizer.feature_len()], query=x)
 
             turn_results = dict()
             turn_results['human'] = turn['human']
@@ -655,6 +785,8 @@ def test_t6():
             story_results.append(turn_results)
 
             h.append(x)
+            # if len(h) > mem_size:
+            #     h = h[::-1][:mem_size][::-1]
 
             dialog_act_matches += int(turn_results['act_match'])
             dialog_literal_matches += int(turn_results['literal_match'])
@@ -663,7 +795,8 @@ def test_t6():
         perfect_act_dialogs += int(dialog_act_matches == len(story))
         perfect_literal_dialogs += int(dialog_literal_matches == len(story))
         results.append(story_results)
-    with open('tests/fabot/custom/memnet/tst_t6_memnet_offline_results.json', 'w') as fh:
+    with open('fabot/custom/memnet/results/tst_t{task}_memnet_offline_{ent}_{feats}_results.json'.format(
+            task=task, ent=args.entities, feats=args.features), 'w') as fh:
         json.dump(results, fh, indent=2)
     logging.info('test act match results:\n'
                  'accuracy: {}/{} ({:.2%})\tperfect dialogs: {}/{} ({})'.format(
@@ -678,9 +811,16 @@ def test_t6():
 if __name__ == '__main__':
     args = get_args()
     if args.task == '6':
-        persisted_path = 'saved_models/memnet_offline/t6/'
-        featurizer = T6Featurizer(use_bow=True, use_turn=True, use_bot_utter=True, use_embeddings=True,
-                                  use_intent=False, use_nlu_entity_extractor=False, use_entities=True, use_context=True)
+        if args.features == 'williams':
+            features = {'use_bow': True, 'use_turn': True, 'use_bot_utter': True, 'use_embeddings': True,
+                        'use_intent': False, 'use_nlu_entity_extractor': args.entities == 'nlu', 'use_entities': True,
+                        'use_context': True}
+        else:  # Rasa
+            features = {'use_bow': False, 'use_turn': True, 'use_bot_utter': True, 'use_embeddings': False,
+                        'use_intent': True, 'use_nlu_entity_extractor': args.entities == 'nlu', 'use_entities': True,
+                        'use_context': True}
+        persisted_path = PERSISTED_T6_MEMNET_OFFLINE_PATH.format(ent=args.entities, feats=args.features)
+        featurizer = T6Featurizer(**features)
         num_actions = T6Featurizer.num_actions()
         h_len = featurizer.feature_len()
 
@@ -688,14 +828,38 @@ if __name__ == '__main__':
         hops = 2
         embedding_size = 100
         batch = 32
-        mem_size = 10
-        epochs = 10
-        clip_norm = 15
-        keep_prob = 0.86
+        mem_size = 9
+        epochs = 35
+        clip_norm = 1.
+        keep_prob = 0.8
         if args.job == 'train':
-            train_t6()
+            train(task=args.task)
         if args.job == 'test':
-            test_t6()
+            test(args.task)
     if args.task == '5':
-        raise NotImplementedError
+        if args.features == 'williams':
+            features = {'use_bow': True, 'use_turn': True, 'use_bot_utter': True, 'use_embeddings': True,
+                        'use_intent': False, 'use_nlu_entity_extractor': args.entities == 'nlu', 'use_entities': True,
+                        'use_context': False}
+        else:  # Rasa
+            features = {'use_bow': False, 'use_turn': True, 'use_bot_utter': True, 'use_embeddings': False,
+                        'use_intent': True, 'use_nlu_entity_extractor': args.entities == 'nlu', 'use_entities': True,
+                        'use_context': False}
+        featurizer = T5Featurizer(**features)
+        persisted_path = PERSISTED_T5_MEMNET_OFFLINE_PATH.format(ent=args.entities, feats=args.features)
+        num_actions = T5Featurizer.num_actions()
+        h_len = featurizer.feature_len()
+
+        print_cycle = 100
+        hops = 2
+        embedding_size = 100
+        batch = 32
+        mem_size = 9
+        epochs = 35
+        clip_norm = 1.
+        keep_prob = 0.8
+        if args.job == 'train':
+            train(task=args.task)
+        if args.job == 'test':
+            test(args.task)
 

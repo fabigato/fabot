@@ -45,8 +45,7 @@ class TestMemoryNetwork(TestCase):
                                                                           utterance_length=h_len)
 
         model = MemoryNetwork(num_actions=actions, utterance_len=h_len,
-                              embedding_size=embedding_size,
-                              hops=1)
+                              embedding_size=embedding_size, mem_size=mem_size, hops=1)
 
         optimizer = tf.train.AdamOptimizer(learning_rate=1e-3, epsilon=1e-8)
         loss_op = model.loss
@@ -128,9 +127,8 @@ class TestMemoryNetwork(TestCase):
                 pickle.dump((dev_history, dev_query, dev_label), batches_fh)
             print('saved')
 
-        model = MemoryNetwork(num_actions=actions, utterance_len=h_len,
-                              embedding_size=embedding_size,
-                              hops=hops)
+        model = MemoryNetwork(num_actions=actions, utterance_len=h_len, embedding_size=embedding_size,
+                              mem_size=mem_size, hops=hops)
         optimizer = tf.train.AdamOptimizer(learning_rate=1e-4, epsilon=1e-8)
         loss_op = model.loss
         grads, vars = zip(*optimizer.compute_gradients(loss_op))

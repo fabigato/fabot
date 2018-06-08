@@ -117,3 +117,9 @@ restaurant/*.log
 *.pickle
 */dialog-bAbI-tasks/
 */dstc2/data/
+/babit6/saved_models/
+/babit6/data/dialog-bAbI-tasks/
+/babit6/data/dstc2/
+/babit6/fabot/custom/ensemble/saved_data/
+/babit6/fabot/custom/lstm/saved_data/
+/babit6/fabot/custom/memnet/saved_data/

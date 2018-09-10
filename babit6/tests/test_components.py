@@ -25,7 +25,7 @@ class TestNLU(TestCase):
     def test_nlu(self):
         from rasa_nlu.evaluate import run_evaluation
         from rasa_nlu.config import RasaNLUConfig
-        run_evaluation(config=RasaNLUConfig(NLU_TEST_CONFIG_FILE), model_path=join(NLU_MODEL_PATH, 't6new'))  #NLU_T6_MODEL_NAME))
+        run_evaluation(config=RasaNLUConfig(NLU_TEST_CONFIG_FILE), model_path=join(NLU_MODEL_PATH, 't5'))  #NLU_T6_MODEL_NAME))
 
     def test_entities(self):
         from rasa_nlu.config import RasaNLUConfig

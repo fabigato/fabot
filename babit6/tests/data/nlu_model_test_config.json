@@ -8,5 +8,5 @@
     "ner_synonyms"
   ],
   "path" : "models/nlu",
-  "data" : "data/rasa/t6_nlu_tst_new.json"
+  "data" : "data/rasa/t5_nlu_tst.json"
 }

@@ -1,17 +1,18 @@
 import tensorflow as tf
 from tensorflow.contrib.layers import xavier_initializer as xav
-from globals import PERSISTED_LSTM_OFFLINE_PATH, BABI_T6_TRN_FILE, BABI_T6_DEV_FILE, BABI_T6_TST_FILE, \
-    BABI_T5_TRN_FILE, BABI_T5_DEV_FILE, BABI_T5_TST_FILE
+from globals import PERSISTED_LSTM_PATH, BABI_T6_TRN_FILE, BABI_T6_DEV_FILE, BABI_T6_TST_FILE, \
+    BABI_T5_TRN_FILE, BABI_T5_DEV_FILE, BABI_T5_TST_FILE, BABI_T5_TST_OOV_FILE
 import logging
 import numpy as np
 from data.feature_factory import T6Featurizer, T5Featurizer
 import pickle
 from data.babi_reader import BabiReader
 from copy import copy
-from os.path import isfile, join
+from os.path import isfile, join, exists
 import json
 import re
 import argparse
+from os import mkdir
 
 logging.basicConfig(level="DEBUG")
 logger = logging.getLogger(__name__)
@@ -143,6 +144,8 @@ class CustomLSTM(object):
 
     def persist(self, path):
         config = {'input_dim': self.input_dim, 'hidden_size': self.hidden_size, 'num_actions': self.num_actions}
+        if not exists(path):
+            mkdir(path)
         with open(join(path, 'config.json'), 'w') as fh:
             json.dump(config, fh, indent=2)
         saver = tf.train.Saver()
@@ -188,6 +191,19 @@ def format_babi_data(filename, featurizer):
     return data
 
 
+def bot_prev_utter(story, turn, prev_pred):
+    if turn == 0:
+        return ''
+    elif args.bot_prev == 'offline':
+        return story[turn - 1]['bot']
+    elif args.bot_prev == 'online':
+        return prev_pred
+    elif args.bot_prev == 'no':
+        return prev_pred  # just to update the current rest correctly
+    else:
+        raise ValueError('bot-prev argument should be online, offline or no. Received {}'.format(args.bot_prev))
+
+
 def train(task):
     if task == '6':
         trn_file = BABI_T6_TRN_FILE
@@ -199,9 +215,9 @@ def train(task):
     clip_norm = 1.
     logging.info('starting training\nConfig:\nactions: {}\ninput_dim: {}\nhidden_size: {}\nepochs: {}\ngradient clip '
                  'norm: {}\n'.format(num_actions, input_dim, hidden_size, epochs, clip_norm))
-    saved_data = 'fabot/custom/lstm/saved_data/t{task}_trn_lstm_offline_{ent}_{feats}_data.pickle'.format(
-        task=task, ent=args.entities, feats=args.features
-                                                                                                     )
+    saved_data = 'fabot/custom/lstm/saved_data/t{task}_trn_lstm_{bot_prev}_{ent}_{feats}_data.pickle'.format(
+        task=task, ent=args.entities, feats=args.features,
+        bot_prev=args.bot_prev if args.bot_prev != 'online' else 'offline')  # online is no valid train setting
     if isfile(saved_data):
         with open(saved_data, 'rb') as data_fh:
             trn_dialogs = pickle.load(data_fh)
@@ -212,9 +228,9 @@ def train(task):
         with open(saved_data, 'wb') as data_fh:
             pickle.dump(trn_dialogs, data_fh)
         print('saved')
-    saved_data = 'fabot/custom/lstm/saved_data/t{task}_dev_lstm_offline_{ent}_{feats}_data.pickle'.format(
-        task=task, ent=args.entities, feats=args.features
-                                                                                                     )
+    saved_data = 'fabot/custom/lstm/saved_data/t{task}_dev_lstm_{bot_prev}_{ent}_{feats}_data.pickle'.format(
+        task=task, ent=args.entities, feats=args.features,
+        bot_prev=args.bot_prev if args.bot_prev != 'online' else 'offline')
     if isfile(saved_data):
         with open(saved_data, 'rb') as data_fh:
             dev_dialogs = pickle.load(data_fh)
@@ -246,7 +262,7 @@ def train(task):
         total_loss = 0
         total_matches = 0
         perfect_dialogs = 0
-        for dialog in trn_dialogs:
+        for di, dialog in enumerate(trn_dialogs):
             dialog_matches = 0
             model.reset_conversation_state()
             for turn in dialog:
@@ -277,7 +293,9 @@ def train(task):
         if dev_total_matches >= highest_dev_matches:
             highest_dev_matches = dev_total_matches
             chances2improve = 5
-            model.persist(path=PERSISTED_LSTM_OFFLINE_PATH.format(task=task, ent=args.entities, feats=args.features))
+            model.persist(path=PERSISTED_LSTM_PATH.format(
+                task=task, ent=args.entities, feats=args.features,
+                bot_prev=args.bot_prev if args.bot_prev != 'online' else 'noprev'))
         else:
             chances2improve -= 1
             if chances2improve == 0:
@@ -291,8 +309,11 @@ def test_act_match(task):
         tst_file = BABI_T6_TST_FILE
     elif task == '5':
         tst_file = BABI_T5_TST_FILE
-    model = CustomLSTM.load(path=PERSISTED_LSTM_OFFLINE_PATH.format(task=task, ent=args.entities, feats=args.features))
-    saved_data = 'fabot/custom/lstm/t{task}_tst_lstm_offline_data.pickle'.format(task)
+    model = CustomLSTM.load(path=PERSISTED_LSTM_PATH.format(
+        task=task, ent=args.entities, feats=args.features,
+        bot_prev=args.bot_prev if args.bot_prev != 'online' else 'noprev'))
+    saved_data = 'fabot/custom/lstm/t{task}_tst_lstm_act{prev}_data.pickle'.format(
+        task=task, prev='_noprev' if args.bot_prev == 'no' else '')
     if isfile(saved_data):
         with open(saved_data, 'rb') as data_fh:
             tst_dialogs = pickle.load(data_fh)
@@ -321,31 +342,36 @@ def test_act_match(task):
 
 def produce_test_results_file(task):
     """tests literal match vs test set. Produces a json file with the results of both act and literal match"""
-    model = CustomLSTM.load(path=PERSISTED_LSTM_OFFLINE_PATH.format(task=task, ent=args.entities, feats=args.features))
+    model = CustomLSTM.load(path=PERSISTED_LSTM_PATH.format(
+        task=task, ent=args.entities, feats=args.features,
+        bot_prev=args.bot_prev if args.bot_prev != 'online' else 'offline'))
     if task == '6':
         tst_file = BABI_T6_TST_FILE
         total_turns = 11237
         total_dialogs = 1117
     elif task == '5':
-        tst_file = BABI_T5_TST_FILE
-        total_turns = 18398
+        tst_file = BABI_T5_TST_FILE if not args.oov else BABI_T5_TST_OOV_FILE
+        total_turns = 18398 if not args.oov else 18368
         total_dialogs = 1000
     results = []
     total_act_matches, total_literal_matches = 0, 0
     perfect_act_dialogs, perfect_literal_dialogs = 0, 0
-    for story in BabiReader.babi_dialogue_iterator(tst_file):
+    for si, story in enumerate(BabiReader.babi_dialogue_iterator(tst_file)):
+        print('\rstory {}'.format(si+1), end="", flush=True)
         featurizer.reset()
         story_results = []
         dialog_act_matches, dialog_literal_matches = 0, 0
+        prev_pred = ''  # just to have an initial previous prediction
         for i, turn in enumerate(story):
-            x = featurizer.featurize(user_text=turn['human'], prev_bot_text='' if i == 0 else story[i-1]['bot'], turn=i)
+            x = featurizer.featurize(user_text=turn['human'], prev_bot_text=bot_prev_utter(story, i, prev_pred), turn=i)
             pred = model.prediction(features=np.array(x, dtype=np.float32))
             turn_results = dict()
             turn_results['human'] = turn['human']
             turn_results['target'] = turn['bot']
             actual_da = featurizer.get_bot_act(turn['bot'])
             predicted_da = featurizer.id2act(pred)
-            turn_results['actual'] = featurizer.act2pattern(predicted_da)[1].format(**featurizer.slots())
+            prev_pred = featurizer.act2pattern(predicted_da)[1].format(**featurizer.slots())
+            turn_results['actual'] = prev_pred
             turn_results['literal_match'] = re.match(pattern=turn_results['actual'],
                                                      string=turn_results['target']) is not None
             turn_results['act_match'] = actual_da == predicted_da
@@ -359,8 +385,8 @@ def produce_test_results_file(task):
         perfect_act_dialogs += int(dialog_act_matches == len(story))
         perfect_literal_dialogs += int(dialog_literal_matches == len(story))
         results.append(story_results)
-    with open('fabot/custom/lstm/results/tst_t{task}_lstm_offline_{ent}_{feats}_results.json'.format(
-            task=task, ent=args.entities, feats=args.features),
+    with open('fabot/custom/lstm/results/tst_t{task}_lstm_{bot_prev}_{ent}_{feats}_{oov}results.json'.format(
+            task=task, ent=args.entities, feats=args.features, bot_prev=args.bot_prev, oov='oov_' if args.oov else ''),
               'w') as fh:
         json.dump(results, fh, indent=2)
     logging.info('test act match results:\n'
@@ -386,6 +412,10 @@ def get_args():
                         help='regex if you want to use basic pattern match to find entities. nlu if you want to use '
                              'Rasa NLU instead. Mandatory')
     parser.add_argument('--features', choices=['williams', 'rasa'], required=True)
+    parser.add_argument('--bot-prev', choices=['online', 'offline', 'no'], required=True,
+                        help="'online' to use the actual bot last prediction as a feature. 'offline' to use the ground "
+                             "truth previous prediction instead. 'no' to not use that feature at all")
+    parser.add_argument('--oov', action='store_true', default=False, help='use OOV test file for task 5')
     return parser.parse_args()
 
 
@@ -393,13 +423,13 @@ if __name__ == '__main__':
     args = get_args()
     if args.task == '6':
         if args.features == 'williams':
-            features = {'use_bow': True, 'use_turn': True, 'use_bot_utter': True, 'use_embeddings': True,
-                        'use_intent': False, 'use_nlu_entity_extractor': args.entities == 'nlu', 'use_entities': True,
-                        'use_context': True}
+            features = {'use_bow': True, 'use_turn': True, 'use_bot_utter': args.bot_prev != 'no',
+                        'use_embeddings': True, 'use_intent': False, 'use_nlu_entity_extractor': args.entities == 'nlu',
+                        'use_entities': True, 'use_context': True}
         else:  # Rasa
-            features = {'use_bow': False, 'use_turn': True, 'use_bot_utter': True, 'use_embeddings': False,
-                        'use_intent': True, 'use_nlu_entity_extractor': args.entities == 'nlu', 'use_entities': True,
-                        'use_context': True}
+            features = {'use_bow': False, 'use_turn': True, 'use_bot_utter': args.bot_prev != 'no',
+                        'use_embeddings': False, 'use_intent': True, 'use_nlu_entity_extractor': args.entities == 'nlu',
+                        'use_entities': True, 'use_context': True}
         featurizer = T6Featurizer(**features)
         num_actions = T6Featurizer.num_actions()
         input_dim = featurizer.feature_len()
@@ -410,13 +440,13 @@ if __name__ == '__main__':
             produce_test_results_file(args.task)
     if args.task == '5':
         if args.features == 'williams':
-            features = {'use_bow': True, 'use_turn': True, 'use_bot_utter': True, 'use_embeddings': True,
-                        'use_intent': False, 'use_nlu_entity_extractor': args.entities == 'nlu', 'use_entities': True,
-                        'use_context': False}
+            features = {'use_bow': True, 'use_turn': True, 'use_bot_utter': args.bot_prev != 'no',
+                        'use_embeddings': True, 'use_intent': False, 'use_nlu_entity_extractor': args.entities == 'nlu',
+                        'use_entities': True, 'use_context': False, 'use_oov': args.oov}
         else:  # Rasa
-            features = {'use_bow': False, 'use_turn': True, 'use_bot_utter': True, 'use_embeddings': False,
-                        'use_intent': True, 'use_nlu_entity_extractor': args.entities == 'nlu', 'use_entities': True,
-                        'use_context': False}
+            features = {'use_bow': False, 'use_turn': True, 'use_bot_utter': args.bot_prev != 'no',
+                        'use_embeddings': False, 'use_intent': True, 'use_nlu_entity_extractor': args.entities == 'nlu',
+                        'use_entities': True, 'use_context': False, 'use_oov': args.oov}
         featurizer = T5Featurizer(**features)
         num_actions = T5Featurizer.num_actions()
         input_dim = featurizer.feature_len()

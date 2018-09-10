@@ -5,10 +5,13 @@ from rasa_core.interpreter import RasaNLUInterpreter
 import re
 from itertools import chain
 from globals import NLU_MODEL_PATH, NLU_T6_MODEL_NAME, BABI_T6_TRN_FILE, BABI_T6_DEV_FILE, BABI_T6_TST_FILE, \
-    BABI_T6_KB_FILE, BABI_T5_TRN_FILE, BABI_T5_DEV_FILE, BABI_T5_TST_FILE, BABI_T5_KB_FILE
+    BABI_T6_KB_FILE, BABI_T5_TRN_FILE, BABI_T5_DEV_FILE, BABI_T5_TST_FILE, BABI_T5_KB_FILE, DSTC2_ONTOLOGY_FILE, \
+    DSTCT2_TRN_LIST_FILE, DSTC2_DATA_PATH
 import logging
 import argparse
 from collections import Counter
+import json
+from data import dstc2_reader
 
 logger = logging.getLogger(__name__)
 
@@ -255,10 +258,9 @@ class BabiT5Reader(BabiReader):
         return None
 
     def get_bot_act(self, text):
-        for act in self.bot_das:
-            for pattern in self._bot_das[act]:
-                if pattern.search(text):
-                    return act
+        for act, (pattern, _) in BabiT5Reader.bot_das_.items():
+            if pattern.search(text):
+                return act
         return None
 
     def extract_rasa_nlu_training_examples(self, input_filename):
@@ -352,7 +354,8 @@ class BabiT6Reader(BabiReader):
         'request_phone': 9,
         'request_postcode': 10,
         'request_price': 11,
-        'silence': 12
+        'silence': 12,
+        'unknown': 13
     }
 
     entity2id = {
@@ -382,6 +385,153 @@ class BabiT6Reader(BabiReader):
         """
         self.babi_kb = babit6_kb_filename
         self.interpreter = RasaNLUInterpreter(nlu_model_path)
+
+    @staticmethod
+    def parse_user_text_with_dstc2_das(human_says, json_semantics, values):
+        all_values = {entity: sorted(values[entity] + list(chain(*[synonyms[entity][syn]
+                                                                   for syn in synonyms[entity]])), reverse=True)
+                      for entity in values}
+        # make sure to capture only full words, not subwords, i.e. 'italian' is ok, 'kitalian' is not ok. Without this
+        # 'north_american would be matched as location=north, cuisine=north_american
+        all_values = {entity: ['(?<!\w)' + value + '(?!\w)' for value in all_values[entity]] for entity in all_values}
+
+        entity_regex = [  # will take anything that mentions an entity, should be checked only after request_food etc
+            # with the 3 entities
+            ''.join(['.*(?P<' + entity + '>(' + '|'.join(all_values[entity]) + '))'  # cuisine location price
+                     for entity in ['cuisine', 'location', 'price']]) + '.*',
+            ''.join(['.*(?P<' + entity + '>(' + '|'.join(all_values[entity]) + '))'  # cuisine price location
+                     for entity in ['cuisine', 'price', 'location']]) + '.*',
+            ''.join(['.*(?P<' + entity + '>(' + '|'.join(all_values[entity]) + '))'  # location cuisine price
+                     for entity in ['location', 'cuisine', 'price']]) + '.*',
+            ''.join(['.*(?P<' + entity + '>(' + '|'.join(all_values[entity]) + '))'  # location price cuisine
+                     for entity in ['location', 'price', 'cuisine']]) + '.*',
+            ''.join(['.*(?P<' + entity + '>(' + '|'.join(all_values[entity]) + '))'  # price cuisine location
+                     for entity in ['price', 'cuisine', 'location']]) + '.*',
+            ''.join(['.*(?P<' + entity + '>(' + '|'.join(all_values[entity]) + '))'  # price location cuisine
+                     for entity in ['price', 'location', 'cuisine']]) + '.*',
+            # with 2 entities
+            ''.join(['.*(?P<' + entity + '>(' + '|'.join(all_values[entity]) + '))'  # cuisine location
+                     for entity in ['cuisine', 'location']]) + '.*',
+            ''.join(['.*(?P<' + entity + '>(' + '|'.join(all_values[entity]) + '))'  # location cuisine
+                     for entity in ['location', 'cuisine']]) + '.*',
+            ''.join(['.*(?P<' + entity + '>(' + '|'.join(all_values[entity]) + '))'  # cuisine price
+                     for entity in ['cuisine', 'price']]) + '.*',
+            ''.join(['.*(?P<' + entity + '>(' + '|'.join(all_values[entity]) + '))'  # price cuisine
+                     for entity in ['price', 'cuisine']]) + '.*',
+            ''.join(['.*(?P<' + entity + '>(' + '|'.join(all_values[entity]) + '))'  # price location
+                     for entity in ['price', 'location']]) + '.*',
+            ''.join(['.*(?P<' + entity + '>(' + '|'.join(all_values[entity]) + '))'  # location price
+                     for entity in ['location', 'price']]) + '.*',
+            # with 1 entity
+            '.*(?P<cuisine>(' + '|'.join(all_values['cuisine']) + ')).*',  # cuisine
+            '.*(?P<location>(' + '|'.join(all_values['location']) + ')).*',  # location
+            '.*(?P<price>(' + '|'.join(all_values['price']) + ')).*',  # price
+
+            # not prividing any entities, still inform (only after the previous ones where discarded):
+            'find a restaurant'
+            # '.*(' + '|'.join(['(?P<' + entity + '>(' + '|'.join(all_values[entity]) + '))'
+            # for entity in all_values]) + ')+.*'
+        ]
+
+        entity_regex = [re.compile(pattern) for pattern in entity_regex]
+
+        def get_intent():
+            acts = set([s['act'] for s in json_semantics])
+            if 'bye' in acts:
+                return 'bye'
+            elif 'reqalts' in acts and not 'inform' in acts:
+                return 'reqalts'
+            elif 'request' in acts and not 'inform' in acts:
+                requested = [sem['slots'][0][1] for sem in json_semantics if sem['act'] == 'request']
+                if 'addr' in requested:
+                    return 'request_address'
+                elif 'phone' in requested:
+                    return 'request_phone'
+                elif 'postcode' in requested:
+                    return 'request_postcode'
+                elif 'food' in requested:
+                    return 'request_food'
+                elif 'area' in requested:
+                    return 'request_location'
+                elif 'pricerange' in requested:
+                    return 'request_price'
+                else:
+                    return 'unknown'
+            elif acts == {'confirm'} and json_semantics[0]['slots'][0][1] == 'food':
+                return 'request_food'
+            elif 'inform' in acts:
+                informed = set([sem['slots'][0][1] for sem in json_semantics if sem['act'] == 'inform'])
+                if informed != {'dontcare'}:
+                    return 'inform'
+                else:
+                    return 'dontcare'
+            elif acts == {'affirm'} or acts == {'ack'} or acts == {'ack', 'affirm'}:
+                return 'affirm'
+            elif acts == {'deny'} or acts == {'negate'} or acts == {'deny', 'negate'}:
+                return 'negate'
+            else:
+                return 'unknown'
+
+        def check_if_synonym(value, entity):
+            if value in values[entity]:
+                return value
+            else:
+                for candidate_value in synonyms[entity]:
+                    if value in synonyms[entity][candidate_value]:
+                        return candidate_value
+                raise Exception('unknown value for entity {}: {}'.format(entity, value))
+
+        intent = get_intent()
+        ents = []
+        if intent == 'inform':
+            for pattern in entity_regex:
+                match = pattern.search(human_says)
+                if match:
+                    ents = [{'start': match.span(entity)[0], 'end': match.span(entity)[1],
+                             'value': check_if_synonym(match.group(entity), entity), 'entity': entity}
+                            for entity in match.groupdict()]
+                    break
+        return {'text': human_says, 'intent': intent, 'entities': ents}
+
+    @staticmethod
+    def produce_dstc2_nlu_rasa_file(dstc2_list_file):
+        values = {'cuisine': [], 'location': [], 'price': []}
+        with open(DSTC2_ONTOLOGY_FILE) as kb_fh:
+            values = json.load(kb_fh)['informable']
+        new_names = {'food': 'cuisine', 'area': 'location', 'pricerange': 'price'}
+        del values['name']
+        for slot in new_names:
+            values[new_names[slot]] = values.pop(slot)
+        # food values not in the kb, but asked by users on train data (only if the bot detected it as food type)
+        values['cuisine'] += ['canapes', 'kosher', 'creative', 'caribbean', 'tuscan', 'traditional', 'austrian',
+                              'swedish', 'christmas', 'australian', 'cantonese', 'irish', 'welsh', 'polynesian',
+                              'romanian', 'german', 'greek', 'afghan', 'moroccan', 'belgian', 'hungarian', 'unusual',
+                              'halal', 'english', 'swiss', 'world', 'vegetarian']
+        # remove duplicates
+        for slot in values:
+            values[slot] = list(set(values[slot]))
+        # add synonyms for each value of each entity
+        synonyms = {slot: {value: [] for value in values[slot]} for slot in values}
+        synonyms['location']['centre'] = ['center']
+        synonyms['cuisine']['north_american'] = ['american']
+        synonyms['price']['moderate'] = ['moderately']
+
+        examples = []
+        for label, log in dstc2_reader.iter_dstc2_files_from_listfile(dstc2_list_file,
+                                                                      path_prefix=DSTC2_DATA_PATH):
+            with open(label) as label_fh, open(log) as log_fh:
+                label, log = json.load(label_fh), json.load(log_fh)
+            for i, human_turn in enumerate(label['turns']):
+                examples.append(BabiT6Reader.parse_user_text_with_dstc2_das(human_turn['transcription'],
+                                                                            human_turn['semantics']['json'], values))
+
+        synonyms = [{"value": value, "synonyms": synonyms[entity][value]}
+                    for entity in synonyms
+                    for value in synonyms[entity] if synonyms[entity][value]]
+        with open('data/rasa/t6_nlu_dstc2_trn.json', 'w') as fh:
+            json.dump(
+                {'rasa_nlu_data': {'common_examples': examples, 'entity_synonyms': synonyms, 'regex_features': []}},
+                fh, indent=2)
 
     def get_bot_act(self, text):
         for da, (pattern, _) in BabiT6Reader.das.items():
@@ -425,6 +575,10 @@ class BabiT6Reader(BabiReader):
         all_values = {entity: sorted(values[entity] + list(chain(*[synonyms[entity][syn]
                                                                    for syn in synonyms[entity]])), reverse=True)
                       for entity in values}
+        # make sure to capture only full words, not subwords, i.e. 'italian' is ok, 'kitalian' is not ok. Without this
+        # 'north_american would be matched as location=north, cuisine=north_american
+        all_values = {entity: ['(?<!\w)' + value + '(?!\w)' for value in all_values[entity]] for entity in all_values}
+
         human_templates = {
             'silence': [
                 '<SILENCE>'
@@ -536,20 +690,20 @@ class BabiT6Reader(BabiReader):
                            for intent in human_templates}
         intent_priority = [  # re patterns are tried in this order. More general patterns go last
             'silence',
-            'dontcare',
             'bye',
             'reqalts',
-            'request_phone',
             'request_address',
+            'request_phone',
             'request_postcode',
             'request_food',
             'request_location',
             'request_price',
             'inform',
+            'dontcare',
             'affirm',
             'negate'
         ]
-        examples = {intent: {} for intent in human_templates}  # indexed by intent and then by text, so we don't repeat
+        examples = {intent: {} for intent in list(human_templates.keys()) + ['unknown']}  # indexed by intent and then by text, so we don't repeat
         unknown = []
 
         def parse_example(text, act, regex):
@@ -581,9 +735,10 @@ class BabiT6Reader(BabiReader):
                             break
                     if matched:  # no need to try further intents if we had a match already
                         break
-                if not matched:
+                if not matched and human_says != '':
+                    examples['unknown'][human_says] = {'text': human_says, 'intent': 'unknown', 'entities': []}
                     # unknown.append('human: {}\t (bot: {})'.format(human_says, turn['bot']))
-                    unknown.append((human_says, turn['bot']))
+                    # unknown.append((human_says, turn['bot']))
         return [examples[intent][text] for intent in examples for text in examples[intent]], \
                [{"value": value, "synonyms": synonyms[entity][value]}
                 for entity in synonyms for value in synonyms[entity]
@@ -637,6 +792,15 @@ def _get_args():
 
 
 if __name__ == '__main__':
+    # from collections import Counter
+    # counter = []
+    # reader = BabiT6Reader(join(NLU_MODEL_PATH, NLU_T6_MODEL_NAME), BABI_T6_KB_FILE)
+    # for i, story in enumerate(BabiReader.babi_dialogue_iterator(BABI_T6_TST_FILE)):
+    #     for turn in story:
+    #         counter.append(reader.get_bot_act(turn['bot']))
+    # counter = Counter(counter)
+
+
     def get_input_sources():
         sources = [args.input] if args.input else []
         if args.task == 't5':
@@ -668,9 +832,9 @@ if __name__ == '__main__':
             unparsables += u
         reader.produce_rasa_nlu_training_file(examples, args.nlu_output, synonyms, regex_features)
         unparsable_fn, _ = splitext(args.nlu_output)
-        with open(unparsable_fn + '_unparsable.txt', "w") as unparsable_fh:
-            for h, r in unparsables:
-                unparsable_fh.write('user: {}\t (bot: {})\n'.format(h, r))
+        # with open(unparsable_fn + '_unparsable.txt', "w") as unparsable_fh:
+        #     for h, r in unparsables:
+        #         unparsable_fh.write('user: {}\t (bot: {})\n'.format(h, r))
     if args.dialog:
         prefixes = {action: 'utter_' for action in reader.bot_das} if args.utter_prefixes else None
         reader.produce_dialog_rasa_training_file(input_filename=args.input, output_filename=args.dialog_output,

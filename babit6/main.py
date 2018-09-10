@@ -35,10 +35,10 @@ def train_nlu_6():
     from rasa_nlu.converters import load_data
     from rasa_nlu.config import RasaNLUConfig
     from rasa_nlu.model import Trainer
-    training_data = load_data(os.path.join(RASA_TRAIN_PATH, 'dstc2_nlu_trndev_new.json'))
+    training_data = load_data(os.path.join(RASA_TRAIN_PATH, 't5_nlu_trndev.json'))
     trainer = Trainer(RasaNLUConfig(NLU_TRAIN_CONFIG_FILE))
     trainer.train(training_data)
-    model_directory = trainer.persist(NLU_MODEL_PATH, project_name='', fixed_model_name='t6new')  # NLU_T6_MODEL_NAME)
+    model_directory = trainer.persist(NLU_MODEL_PATH, project_name='', fixed_model_name='t5')  # NLU_T6_MODEL_NAME)
     return model_directory
 
 
@@ -189,7 +189,7 @@ if __name__ == '__main__':
     init()
     args = get_args()
     if args.action == "train-nlu":
-        train_nlu_5()
+        train_nlu_6()
     elif args.action == "train-dialogue":
         train_dialogue(args.task)
     elif args.action == "run":

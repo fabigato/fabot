@@ -4,9 +4,9 @@ from data.dstc2_reader import BOT_DAS as bot_das
 from json import load as json_load
 from globals import DSTC2_DATA_PATH, BABI_PATH
 import re
-from data.test.babi_reader import babi_dialogue_iterator
+from data.babi_reader import BabiReader
 from os.path import join
-from data.test.babi_reader import BabiComparatorV2
+# from data.babi_reader import BabiComparatorV2
 
 
 class TestDialogueProcessor(TestCase):

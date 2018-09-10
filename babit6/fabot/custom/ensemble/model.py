@@ -14,7 +14,7 @@ import logging
 import numpy as np
 from numpy import argmax
 from copy import copy
-from globals import PERSISTED_ENSEMBLE_T6, PERSISTED_T6_MEMNET_OFFLINE_PATH, PERSISTED_LSTM_OFFLINE_PATH, \
+from globals import PERSISTED_ENSEMBLE_T6, PERSISTED_MEMNET_PATH, PERSISTED_LSTM_PATH, \
     BABI_T6_TRN_FILE, BABI_T6_DEV_FILE, BABI_T6_TST_FILE
 import json
 import re
@@ -110,7 +110,7 @@ class CustomEnsemble(object):
             featurizer.reset()
         return np.array(x), np.array(y), e
 
-    def train_t6(self, trn_filename, featurizer, epochs=10, dev_filename=None):
+    def train_t6(self, trn_filename, featurizer, epochs=30, dev_filename=None):
         def load_data(saved_filename, input_filename):
             if isfile(saved_filename):
                 with open(saved_filename, 'rb') as fh:
@@ -245,33 +245,43 @@ def get_args():
                         help='regex if you want to use basic pattern match to find entities. nlu if you want to use '
                              'Rasa NLU instead. Mandatory')
     parser.add_argument('--features', choices=['williams', 'rasa'], required=True)
+    parser.add_argument('--bot-prev', choices=['online', 'offline', 'no'], required=True,
+                        help="'online' to use the actual bot last prediction as a feature. 'offline' to use the ground "
+                             "truth previous prediction instead. 'no' to not use that feature at all")
     return parser.parse_args()
 
 
 if __name__ == '__main__':
     args = get_args()
     if args.features == 'williams':
-        features = {'use_bow': True, 'use_turn': True, 'use_bot_utter': True, 'use_embeddings': True,
+        features = {'use_bow': True, 'use_turn': True, 'use_bot_utter': args.bot_prev != 'no', 'use_embeddings': True,
                     'use_intent': False, 'use_nlu_entity_extractor': args.entities == 'nlu', 'use_entities': True,
                     'use_context': True}
     else:  # Rasa
-        features = {'use_bow': False, 'use_turn': True, 'use_bot_utter': True, 'use_embeddings': False,
+        features = {'use_bow': False, 'use_turn': True, 'use_bot_utter': args.bot_prev != 'no', 'use_embeddings': False,
                     'use_intent': True, 'use_nlu_entity_extractor': args.entities == 'nlu', 'use_entities': True,
                     'use_context': True}
     if args.task == '6':
         if args.job == 'train':
             featurizer = T6Featurizer(**features)
             num_actions = T6Featurizer.num_actions()
-            memnet = MemoryNetwork.load(PERSISTED_T6_MEMNET_OFFLINE_PATH.format(ent=args.entities, feats=args.features))
-            lstm = CustomLSTM.load(PERSISTED_LSTM_OFFLINE_PATH.format(task=args.task, ent=args.entities,
-                                                                      feats=args.features))
+            memnet = MemoryNetwork.load(PERSISTED_MEMNET_PATH.format(
+                bot_prev=args.bot_prev if args.bot_prev != 'online' else 'offline', task=args.task, ent=args.entities,
+                feats=args.features))
+            lstm = CustomLSTM.load(PERSISTED_LSTM_PATH.format(
+                task=args.task, ent=args.entities, feats=args.features,
+                bot_prev=args.bot_prev if args.bot_prev != 'online' else 'noprev'))
             ensemble = CustomEnsemble(models=[memnet, lstm], num_actions=num_actions, policy='learned')
             ensemble.train_t6(trn_filename=BABI_T6_TRN_FILE, featurizer=featurizer, epochs=35,
                               dev_filename=BABI_T6_DEV_FILE)
         if args.job == 'test':
             featurizer = T6Featurizer(**features)
-            memnet = MemoryNetwork.load(PERSISTED_T6_MEMNET_OFFLINE_PATH.format(ent=args.entities, feats=args.features))
-            lstm = CustomLSTM.load(PERSISTED_LSTM_OFFLINE_PATH.format(task=args.task, ent=args.entities, feats=args.features))
+            memnet = MemoryNetwork.load(PERSISTED_MEMNET_PATH.format(
+                bot_prev=args.bot_prev if args.bot_prev != 'online' else 'offline', task=args.task, ent=args.entities,
+                feats=args.features))
+            lstm = CustomLSTM.load(PERSISTED_LSTM_PATH.format(
+                task=args.task, ent=args.entities, feats=args.features,
+                bot_prev=args.bot_prev if args.bot_prev != 'online' else 'noprev'))
             ensemble = CustomEnsemble(models=[memnet, lstm], num_actions=T6Featurizer.num_actions(),
                                       policy=args.policy)
             ensemble.load(PERSISTED_ENSEMBLE_T6.format(ent=args.entities, feats=args.features))

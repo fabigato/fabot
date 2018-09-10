@@ -3,13 +3,14 @@ from fabot.custom.memnet.data_utils import MemNetT5DataAdapter, MemNetT6DataAdap
 from data.feature_factory import T6Featurizer, T5Featurizer
 from data.database import BabiDB
 from globals import BABI_T6_KB_FILE, BABI_T6_TRN_FILE, BABI_T6_DEV_FILE, BABI_T6_TST_FILE, \
-    PERSISTED_T6_MEMNET_OFFLINE_PATH, PERSISTED_T5_MEMNET_OFFLINE_PATH, BABI_T5_TRN_FILE, BABI_T5_DEV_FILE, \
-    BABI_T5_TST_FILE
+    PERSISTED_MEMNET_PATH, BABI_T5_TRN_FILE, BABI_T5_DEV_FILE, \
+    BABI_T5_TST_FILE, BABI_T5_TST_OOV_FILE
 from rasa_core.policies import Policy
 from rasa_core.events import ActionExecuted
 from rasa_core.actions.action import ACTION_LISTEN_NAME
 from numpy import mean, exp, argmax
-from os.path import join, isfile
+from os.path import join, isfile, exists
+from os import mkdir
 import logging
 import pickle
 import argparse
@@ -119,6 +120,7 @@ class MemoryNetwork(object):
                 # multiply each of the [batch, mem] c embeddings by scalar p to get weighted average output embedding
                 o = tf.reduce_sum(tf.expand_dims(p, -1) * c, axis=1)  # [batch, embedding_size]
                 u = o + tf.matmul(u, self.H)
+                tf.summary.tensor_summary('my_tensor_summary', p)
             self.logits = tf.nn.dropout(tf.matmul((o + u), self.W), self.keep_prob)  # [batch, actions]
             self.loss = tf.reduce_mean(tf.nn.softmax_cross_entropy_with_logits(labels=self.labels, logits=self.logits))
             self.output_p = tf.nn.softmax(self.logits)
@@ -132,12 +134,19 @@ class MemoryNetwork(object):
             self.train_op = optimizer.apply_gradients(zip(grads_clipped, vars))
 
             self.sess = tf.Session()
+            self.summary = tf.summary.merge_all()
+            self.summary_writer = tf.summary.FileWriter('misc_experiments/logs/', self.sess.graph)
             self.sess.run(tf.global_variables_initializer())
+            self.step = 0
+            self.p = p
 
     def prediction(self, history, query):
-        prediction = self.sess.run(self.output_p, feed_dict={self.history: [history],
-                                                             self.queries: [query],
-                                                             self.keep_prob: 1})
+        summary_str, prediction = self.sess.run([self.summary, self.output_p], feed_dict={self.history: [history],
+                                                                                          self.queries: [query],
+                                                                                          self.keep_prob: 1})
+        self.summary_writer.add_summary(summary_str, self.step)
+        self.step += 1
+        self.summary_writer.flush()
         return prediction
 
     def train_step(self, history_batch, query_batch, label_batch):
@@ -167,6 +176,8 @@ class MemoryNetwork(object):
         config = {'hops': self.hops, 'num_actions': int(self.labels.shape[-1]), 'mem_size': self.mem_size,
                   'train_dropout': self.train_keep_prob, 'input_dim': int(self.queries.shape[-1]),
                   'embedding_size': self.embedding_size}
+        if not exists(path):
+            mkdir(path)
         with open(join(path, 'config.json'), 'w') as fh:
             json.dump(config, indent=2, fp=fh)
         saver = tf.train.Saver()
@@ -399,6 +410,8 @@ class MemNetPolicy(Policy):
 class MemNetT5Policy(MemNetPolicy):
     def persist(self, path):
         # persist metadata
+        if not exists(path):
+            mkdir(path)
         with open(join(path, 'MemoryNetwork_metadata.pickle'), 'wb') as metadata_fh:
             pickle.dump((self.history, self.queries, self.labels, self.batch_indexes, self.model.hops,
                          self.model.embedding_size, self.current_epoch, self.model_name), metadata_fh)
@@ -437,6 +450,8 @@ class MemNetT6Policy(MemNetPolicy):
 
     def persist(self, path):
         # persist metadata
+        if not exists(path):
+            mkdir(path)
         with open(join(path, 'MemoryNetwork_metadata.pickle'), 'wb') as metadata_fh:
             pickle.dump((self.history, self.queries, self.labels, self.batch_indexes, self.model.hops,
                          self.model.embedding_size, self.current_epoch, self.model_name, self.encoder.path,
@@ -499,6 +514,10 @@ def get_args():
                         help='regex if you want to use basic pattern match to find entities. nlu if you want to use '
                              'Rasa NLU instead. Mandatory')
     parser.add_argument('--features', choices=['williams', 'rasa'], required=True)
+    parser.add_argument('--bot-prev', choices=['online', 'offline', 'no'], required=True,
+                        help="'online' to use the actual bot last prediction as a feature. 'offline' to use the ground "
+                             "truth previous prediction instead. 'no' to not use that feature at all")
+    parser.add_argument('--oov', action='store_true', default=False, help='use OOV test file for task 5')
     return parser.parse_args()
 
 
@@ -578,8 +597,8 @@ def train_t6():
         'keep prob: {}\n'.format(hops, num_actions, h_len, embedding_size, batch, mem_size, epochs,
                                  clip_norm,
                                  keep_prob))
-    saved_batches = 'fabot/custom/memnet/saved_data/t6_trn_memnet_offline_{ent}_{feats}_data.pickle'.format(
-        ent=args.entities, feats=args.features)
+    saved_batches = 'fabot/custom/memnet/saved_data/t6_trn_memnet_{bot_prev}_{ent}_{feats}_data.pickle'.format(
+        bot_prev=args.bot_prev if args.bot_prev != 'online' else 'offline', ent=args.entities, feats=args.features)
     if isfile(saved_batches):
         with open(saved_batches, 'rb') as batches_fh:
             trn_history, trn_query, trn_label, trn_entities, batch_indexes = pickle.load(batches_fh)
@@ -593,8 +612,8 @@ def train_t6():
         with open(saved_batches, 'wb') as batches_fh:
             pickle.dump((trn_history, trn_query, trn_label, trn_entities, batch_indexes), batches_fh)
         print('saved')
-    saved_batches = 'fabot/custom/memnet/saved_data/t6_dev_memnet_offline_{ent}_{feats}_data.pickle'.format(
-        ent=args.entities, feats=args.features)
+    saved_batches = 'fabot/custom/memnet/saved_data/t6_dev_memnet_{bot_prev}_{ent}_{feats}_data.pickle'.format(
+        bot_prev=args.bot_prev if args.bot_prev != 'online' else 'offline', ent=args.entities, feats=args.features)
     if isfile(saved_batches):
         with open(saved_batches, 'rb') as batches_fh:
             dev_history, dev_query, dev_label, dev_entities, dev_batch_indexes = pickle.load(batches_fh)
@@ -671,8 +690,9 @@ def train(task='5'):
         'keep prob: {}\n'.format(hops, num_actions, h_len, embedding_size, batch, mem_size, epochs,
                                  clip_norm,
                                  keep_prob))
-    saved_batches = 'fabot/custom/memnet/saved_data/t{task}_trn_memnet_offline_{ent}_{feats}_data.pickle'.format(
-        task=task, ent=args.entities, feats=args.features)
+    saved_batches = 'fabot/custom/memnet/saved_data/t{task}_trn_memnet_{bot_prev}_{ent}_{feats}_data.pickle'.format(
+        bot_prev=args.bot_prev if args.bot_prev != 'online' else 'offline', task=task, ent=args.entities,
+        feats=args.features)
     if isfile(saved_batches):
         with open(saved_batches, 'rb') as batches_fh:
             trn_history, trn_query, trn_label, trn_entities, batch_indexes = pickle.load(batches_fh)
@@ -686,8 +706,9 @@ def train(task='5'):
         with open(saved_batches, 'wb') as batches_fh:
             pickle.dump((trn_history, trn_query, trn_label, trn_entities, batch_indexes), batches_fh)
         print('saved')
-    saved_batches = 'fabot/custom/memnet/saved_data/t{task}_dev_memnet_offline_{ent}_{feats}_data.pickle'.format(
-        task=task, ent=args.entities, feats=args.features)
+    saved_batches = 'fabot/custom/memnet/saved_data/t{task}_dev_memnet_{bot_prev}_{ent}_{feats}_data.pickle'.format(
+        bot_prev=args.bot_prev if args.bot_prev != 'online' else 'offline', task=task, ent=args.entities,
+        feats=args.features)
     if isfile(saved_batches):
         with open(saved_batches, 'rb') as batches_fh:
             dev_history, dev_query, dev_label, dev_entities, dev_batch_indexes = pickle.load(batches_fh)
@@ -751,6 +772,19 @@ def train(task='5'):
         ))
 
 
+def bot_prev_utter(story, turn, prev_pred):
+    if turn == 0:
+        return ''
+    elif args.bot_prev == 'offline':
+        return story[turn - 1]['bot']
+    elif args.bot_prev == 'online':
+        return prev_pred
+    elif args.bot_prev == 'no':
+        return prev_pred  # just to update the current rest correctly
+    else:
+        raise ValueError('bot-prev argument should be online, offline or no. Received {}'.format(args.bot_prev))
+
+
 def test(task='6'):
     model = MemoryNetwork.load(persisted_path)
     results = []
@@ -761,16 +795,17 @@ def test(task='6'):
         total_turns = 11237
         total_dialogs = 1117
     else:  # i.e. 5
-        tst_file = BABI_T5_TST_FILE
-        total_turns = 18398
+        tst_file = BABI_T5_TST_FILE if not args.oov else BABI_T5_TST_OOV_FILE
+        total_turns = 18398 if not args.oov else 18368
         total_dialogs = 1000
     for story in BabiReader.babi_dialogue_iterator(tst_file):
         featurizer.reset()
         story_results = []
         dialog_act_matches, dialog_literal_matches = 0, 0
         h = []
+        prev_pred = ''  # initial value for the previous prediction
         for i, turn in enumerate(story):
-            x = featurizer.featurize(user_text=turn['human'], prev_bot_text='' if i == 0 else story[i-1]['bot'], turn=i)
+            x = featurizer.featurize(user_text=turn['human'], prev_bot_text=bot_prev_utter(story, i, prev_pred), turn=i)
             prediction = model.prediction(history=h if len(h) > 0 else [[0] * featurizer.feature_len()], query=x)
 
             turn_results = dict()
@@ -778,7 +813,8 @@ def test(task='6'):
             turn_results['target'] = turn['bot']
             actual_da = featurizer.get_bot_act(turn['bot'])
             predicted_da = featurizer.id2act(argmax(prediction))
-            turn_results['actual'] = featurizer.act2pattern(predicted_da)[1].format(**featurizer.slots())
+            prev_pred = featurizer.act2pattern(predicted_da)[1].format(**featurizer.slots())
+            turn_results['actual'] = prev_pred
             turn_results['literal_match'] = re.match(pattern=turn_results['actual'],
                                                      string=turn_results['target']) is not None
             turn_results['act_match'] = actual_da == predicted_da
@@ -795,8 +831,9 @@ def test(task='6'):
         perfect_act_dialogs += int(dialog_act_matches == len(story))
         perfect_literal_dialogs += int(dialog_literal_matches == len(story))
         results.append(story_results)
-    with open('fabot/custom/memnet/results/tst_t{task}_memnet_offline_{ent}_{feats}_results.json'.format(
-            task=task, ent=args.entities, feats=args.features), 'w') as fh:
+    with open('fabot/custom/memnet/results/tst_t{task}_memnet_{bot_prev}_{ent}_{feats}_{oov}results.json'.format(
+            task=task, ent=args.entities, feats=args.features, bot_prev=args.bot_prev, oov='oov_' if args.oov else ''),
+            'w') as fh:
         json.dump(results, fh, indent=2)
     logging.info('test act match results:\n'
                  'accuracy: {}/{} ({:.2%})\tperfect dialogs: {}/{} ({})'.format(
@@ -812,14 +849,16 @@ if __name__ == '__main__':
     args = get_args()
     if args.task == '6':
         if args.features == 'williams':
-            features = {'use_bow': True, 'use_turn': True, 'use_bot_utter': True, 'use_embeddings': True,
-                        'use_intent': False, 'use_nlu_entity_extractor': args.entities == 'nlu', 'use_entities': True,
-                        'use_context': True}
+            features = {'use_bow': True, 'use_turn': True, 'use_bot_utter': args.bot_prev != 'no',
+                        'use_embeddings': True, 'use_intent': False, 'use_nlu_entity_extractor': args.entities == 'nlu',
+                        'use_entities': True, 'use_context': True}
         else:  # Rasa
-            features = {'use_bow': False, 'use_turn': True, 'use_bot_utter': True, 'use_embeddings': False,
-                        'use_intent': True, 'use_nlu_entity_extractor': args.entities == 'nlu', 'use_entities': True,
-                        'use_context': True}
-        persisted_path = PERSISTED_T6_MEMNET_OFFLINE_PATH.format(ent=args.entities, feats=args.features)
+            features = {'use_bow': False, 'use_turn': True, 'use_bot_utter': args.bot_prev != 'no',
+                        'use_embeddings': False, 'use_intent': True, 'use_nlu_entity_extractor': args.entities == 'nlu',
+                        'use_entities': True, 'use_context': True}
+        persisted_path = PERSISTED_MEMNET_PATH.format(
+            bot_prev=args.bot_prev if args.bot_prev != 'online' else 'offline', task=args.task, ent=args.entities,
+            feats=args.features)
         featurizer = T6Featurizer(**features)
         num_actions = T6Featurizer.num_actions()
         h_len = featurizer.feature_len()
@@ -838,15 +877,17 @@ if __name__ == '__main__':
             test(args.task)
     if args.task == '5':
         if args.features == 'williams':
-            features = {'use_bow': True, 'use_turn': True, 'use_bot_utter': True, 'use_embeddings': True,
-                        'use_intent': False, 'use_nlu_entity_extractor': args.entities == 'nlu', 'use_entities': True,
-                        'use_context': False}
+            features = {'use_bow': True, 'use_turn': True, 'use_bot_utter': args.bot_prev != 'no',
+                        'use_embeddings': True, 'use_intent': False, 'use_nlu_entity_extractor': args.entities == 'nlu',
+                        'use_entities': True, 'use_context': False, 'use_oov': args.oov}
         else:  # Rasa
-            features = {'use_bow': False, 'use_turn': True, 'use_bot_utter': True, 'use_embeddings': False,
-                        'use_intent': True, 'use_nlu_entity_extractor': args.entities == 'nlu', 'use_entities': True,
-                        'use_context': False}
+            features = {'use_bow': False, 'use_turn': True, 'use_bot_utter': args.bot_prev != 'no',
+                        'use_embeddings': False, 'use_intent': True, 'use_nlu_entity_extractor': args.entities == 'nlu',
+                        'use_entities': True, 'use_context': False, 'use_oov': args.oov}
         featurizer = T5Featurizer(**features)
-        persisted_path = PERSISTED_T5_MEMNET_OFFLINE_PATH.format(ent=args.entities, feats=args.features)
+        persisted_path = PERSISTED_MEMNET_PATH.format(
+            bot_prev=args.bot_prev if args.bot_prev != 'online' else 'offline', task=args.task, ent=args.entities,
+            feats=args.features)
         num_actions = T5Featurizer.num_actions()
         h_len = featurizer.feature_len()
 

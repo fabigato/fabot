@@ -1,7 +1,8 @@
 from data.database import BabiDB
 from data.babi_reader import BabiT6Reader, BabiT5Reader
 from numpy import mean
-from globals import BABI_T6_KB_FILE, W2VEC_MODEL_PATH, NLU_T6_MODEL_PATH, BABI_T5_KB_FILE, NLU_T5_MODEL_PATH
+from globals import BABI_T6_KB_FILE, W2VEC_MODEL_PATH, NLU_T6_MODEL_PATH, BABI_T5_KB_FILE, NLU_T5_MODEL_PATH, \
+    BABI_T5_KB_OOV_FILE
 import gensim
 from rasa_core.interpreter import RasaNLUInterpreter
 
@@ -228,7 +229,7 @@ class T5Featurizer(object):
     """
 
     def __init__(self, use_bow=True, use_turn=True, use_bot_utter=True, use_embeddings=True, use_intent=False,
-                 use_nlu_entity_extractor=False, use_entities=True, use_context=True):
+                 use_nlu_entity_extractor=False, use_entities=True, use_context=True, use_oov=False):
         """
         :param use_bow: if True, BoW features will be used
         :param use_turn: if True, conversation turn will be added to the features
@@ -251,7 +252,7 @@ class T5Featurizer(object):
         self._use_entities = use_entities
         self._use_context = use_context
 
-        self.db = BabiDB(BABI_T5_KB_FILE, task=5)
+        self.db = BabiDB(BABI_T5_KB_FILE if not use_oov else BABI_T5_KB_OOV_FILE, task=5)
         self.current_rests = None
         self.current_rest_idx = 0
 
@@ -367,8 +368,11 @@ class T5Featurizer(object):
 
     def slots(self):
         converted_slots = {e: v if v else 'R_' + e for e, v in self.slot_values.items()}
+        # try:
         rest = self.current_rests.iloc[self.current_rest_idx][['name', 'phone', 'address']].to_dict() \
-            if self.current_rests is not None and not self.current_rests.empty else {}
+            if self.current_rests is not None and not self.current_rests.empty and \
+               self.current_rest_idx < len(self.current_rests) else {'name': None, 'phone': None,
+                                                                     'address': None}
         # except IndexError:
         #     print('time to backtrack')
         return {**converted_slots, **rest}

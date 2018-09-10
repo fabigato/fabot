@@ -203,8 +203,7 @@ class TestBabiReader(TestCase):
                 '^area$',
                 '^what area$',
                 '^and the area$',
-                '^and what area of town is it in$',
-                '^what area is it in$',
+                '^(and )?what area( of town)? is it in$',
                 'what part of town'
             ],
             'request_price': [
@@ -258,8 +257,10 @@ class TestBabiReader(TestCase):
         for file in [BABI_T6_TRN_FILE, BABI_T6_DEV_FILE]:
             print(file)
             outliers = 0
+            total_turns = 0
             for story in BabiReader.babi_dialogue_iterator(file):
                 for turn in story:
+                    total_turns += 1
                     human_says = turn['human']
                     matched = False
                     for intent in intent_priority:
@@ -274,7 +275,7 @@ class TestBabiReader(TestCase):
                     if not matched:
                         outliers += 1
                         print('human: {}\t (bot: {})'.format(human_says, turn['bot']))
-            print('outliers: {}'.format(outliers))
+            print('total turns: {}\toutliers: {} ({:.2f}%)'.format(total_turns, outliers, outliers/total_turns))
         examples = [examples[intent][text] for intent in examples for text in examples[intent]]
         print('done')
 
